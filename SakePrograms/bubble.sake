@@ -3,7 +3,7 @@ seisu kansu swapKansu(hairetsu A, kansu i, kansu j) kido
     A[i] = A[j];
     A[j] = c;
     modoru 0; #return
-shushi;
+shushi
 
 seisu kansu bubble(haiersu A, kansu N) kido
     shuki j = 0 : N kido
@@ -12,15 +12,15 @@ seisu kansu bubble(haiersu A, kansu N) kido
             sorenara A[i] > A[i+1] kido
                 swapKansu(A, j, j);
                 F = shinri;
-            shushi;
-        shushi;
+            shushi
+        shushi
 
         sorenara ~F kido
             j = N - 1;
-        shushi;
-    shushi;
+        shushi
+    shushi
     moduru 0;
-shushi;
+shush
 
 seisu samurai kido
     kansu N = 10;
@@ -39,4 +39,4 @@ seisu samurai kido
     bubble(A, N);
 
     senden(A); #function print
-shushi;
+shushi
