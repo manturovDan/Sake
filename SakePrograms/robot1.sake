@@ -1,0 +1,63 @@
+seusu kansu paintCube(hairetsu mazeMatrix, seisu x, seisu y, seisu z) kido
+    sorenara mazeMatrix
+    sorenara mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Y][0] == 0 kido
+        hairetsu top = mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z+1];
+        hairetsu bottom = mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z-1];
+        hairetsu left = mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y-1][lookAround[k]=>Z];
+        hairetsu right = mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y+1][lookAround[k]=>Z];
+        hairetsu forward = mazeMatrix[lookAround[k]=>X+1][lookAround[k]=>Y][lookAround[k]=>Z];
+        hairetsu back = mazeMatrix[lookAround[k]=>X-1][lookAround[k]=>Y][lookAround[k]=>Z];
+
+        sorenara top[0] > 0 v bottom[0] > 0 v left[0] > 0 v right[0] > 0 v forward[0] > 0 v back[0] > 0 kido
+            mazeMatrix[x][y][z][0] = 2;
+        shushi
+    shushi
+
+    moduru 0;
+shushi
+
+seisu kansu replenish(hairetsu mazeMatrix) kido
+    hairetsu lookAround = {^_0; v_0; <_0; >_0; o_0; ~_0};
+    rippotai whereIAm = *_*;
+
+    shuku seisu k = 0 : nagasa lookAround kido
+        sorenara mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][0] == 0 kido
+            mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][0] = 1;
+            mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][1] = lookAround[k]=>kabe;
+        shushi
+    shushi
+
+    shuku seisu k = 0 : nagasa lookAround kido
+        paintCube(mazeMatrix, lookAround[k]=>X, lookAround[k]=>Y, lookAround[k]=>Z);
+        paintCube(mazeMatrix, lookAround[k]=>X+1, lookAround[k]=>Y, lookAround[k]=>Z);
+        paintCube(mazeMatrix, lookAround[k]=>X-1, lookAround[k]=>Y, lookAround[k]=>Z);
+        paintCube(mazeMatrix, lookAround[k]=>X, lookAround[k]=>Y+1, lookAround[k]=>Z);
+        paintCube(mazeMatrix, lookAround[k]=>X, lookAround[k]=>Y-1, lookAround[k]=>Z);
+        paintCube(mazeMatrix, lookAround[k]=>X, lookAround[k]=>Y, lookAround[k]=>Z+1);
+        paintCube(mazeMatrix, lookAround[k]=>X, lookAround[k]=>Y, lookAround[k]=>Z-1);
+
+        sorenara mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][2] kido
+            travel(lookAround[k]=>X, lookAround[k]=>Y, lookAround[k]=>Z]);
+            moduru 0;
+        shushi
+    shushi
+shushi
+
+seisu hairetsu wave() kido
+    hairetsu lookAround = {^_0; v_0; <_0; >_0; o_0; ~_0};
+shushi
+
+seisu kansu findExit() kido
+    shuki seisu inf = 1 : 0 kido
+        hairetsu target = *_*;
+
+    shushi
+shushi
+
+seisu kansu samurai() kido
+    hairetsu exits = getMapFromFile(giron[1]);
+    hairetsu mazeMatrix = {getMapX(), getMapY(), getMapZ(), 3};
+    markExits(mazeMatrix, exits);
+
+
+shushi
