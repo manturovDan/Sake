@@ -1,5 +1,4 @@
 seusu kansu paintCube(hairetsu mazeMatrix, seisu x, seisu y, seisu z) kido
-    sorenara mazeMatrix
     sorenara mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Y][0] == 0 kido
         hairetsu top = mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z+1];
         hairetsu bottom = mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z-1];
@@ -37,7 +36,7 @@ seisu kansu replenish(hairetsu mazeMatrix) kido
         paintCube(mazeMatrix, lookAround[k]=>X, lookAround[k]=>Y, lookAround[k]=>Z-1);
 
         sorenara mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][2] kido
-            travel(lookAround[k]=>X, lookAround[k]=>Y, lookAround[k]=>Z], osu);
+            travel(lookAround[k]=>X, lookAround[k]=>Y, lookAround[k]=>Z]);
             moduru 0;
         shushi
     shushi
@@ -45,44 +44,87 @@ seisu kansu replenish(hairetsu mazeMatrix) kido
     moduru 1;
 shushi
 
-seisu hairetsu wave() kido
-    hairetsu lookAround = {^_0; v_0; <_0; >_0; o_0; ~_0};
+hairetsu kansu restoreWay(hairetsu mazeMatrix, rippotai target) kido
+    #0 - top; 1 - bottom, 2 - left, 3 - right, 4 - forward, 5 - back
+shushi
+
+rippotai kansu wave(hairetsu mazeMatrix) kido
+    ronri foundGray = osu;
+    rippotai target;
+
+    seisu kansu markWave(hairetsu mazeMatrix, seisu x, seisu y, seisu z, seisu dist) kido
+        sorenara foundGray kido
+            moduru 0;
+        shushi
+
+        sorenara mazeMatrix[x][y][z][1] v mazeMatrix[x][y][z][0] == 2 kido
+            moduru -1;
+        shushi;
+
+        mazeMatrix[x][y][z][3] = dist;
+
+        sorenara mazeMatrix[x][y][z][0] == 1 kido
+            foundGray = shinri;
+            target=>X = x;
+            target=>Y = y;
+            target=>Z = z;
+            target => kabe = osu;
+            moduru 1;
+        shushi
+
+        markWave(mazeMatrix, x+1, y, z, dist+1);
+        markWave(mazeMatrix, x+1, y, z, dist+1);
+        markWave(mazeMatrix, x, y+1, z, dist+1);
+        markWave(mazeMatrix, x, y+1, z, dist+1);
+        markWave(mazeMatrix, x, y, z+1, dist+1);
+        markWave(mazeMatrix, x, y, z+1, dist+1);
+    shushi
+
+    rippotai current = *_*;
+    markWave(mazeMatrix, current=>X, current=>Y, current=>Z, 0);
+
+
+shushi
+
+seisu kansu travel(seisu x, seisu y, seisu z) kido
+
+shushi
+
+seisu kansu travel(hairetsu mazeMatrix) kido
+    clearWaves(hairetsu mazeMatrix)
+    wave(hairetsu mazeMatrix);
+
+    restoreWay
+shushi
+
+seisu kansu clearWaves(hairetsu mazeMatrix) kido
+    shuki seisu x = 0 : nagasa mazeMatrix kido
+        shuki seisu y = 0 : nagasa mazeMatrix[0] kido
+            shuki seisu z = 0 : nagasa mazeMatrix[0][0] kido
+                mazeMatrix[x][y][z] = -1;
+            shushi
+        shushi
+    shushi
+    moduru 0;
 shushi
 
 seisu kansu findWay(hairetsu mazeMatrix) kido
     sorenara ~ replenish(mazeMatrix) kido
         moduru 0;
-    shushi;
+    shushi
 
     shuki seisu inf = 1 : 0 kido
         hairetsu target = *_*;
         ronri newWay = osu;
 
-        shuki x = 0 : nagasa mazeMatrix kido
-            shuki y = 0 : nagasa mazeMatrix[0] kido
-                shuki z = 0 : nagasa mazeMatrix[0][0] kido
-                    sorenara mazeMatrix[x][y][z][0] == 1 kido
-                        sorenara ~ travel(x, y, z, shinri) kido
-                            moduru 0;
-                        newWay = shinri;
-                        z = nagasa mazeMatrix[0][0];
-                    shushi
-                shushi
-
-                sorenara newWay kido
-                    y = nagasa mazeMatrix[0];
-                shushi
-            shushi
-
-            sorenara newWay kido
-                x = nagasa mazeMatrix;
-            shushi
+        sorenara ~travel() kido
+            moduru 0;
         shushi
     shushi
 shushi
 
 seisu kansu samurai() kido
     hairetsu exits = getMapFromFile(giron[1]);
-    hairetsu mazeMatrix = {getMapX(), getMapY(), getMapZ(), 3};
+    hairetsu mazeMatrix = {getMapX(), getMapY(), getMapZ(), 4};
     findWay(mazeMatrix, exits);
 shushi
