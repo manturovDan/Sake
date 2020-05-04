@@ -12,3 +12,6 @@ package man.dan.lexer;
 %}
 
 %%
+    <YYINITIAL> {
+
+    }
