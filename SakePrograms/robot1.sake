@@ -19,7 +19,7 @@ seisu kansu replenish(hairetsu mazeMatrix) kido
     hairetsu lookAround = {^_0; v_0; <_0; >_0; o_0; ~_0};
     rippotai whereIAm = *_*;
 
-    shuku seisu k = 0 : nagasa lookAround kido
+    shuku seisu k = ee 0 : nagasa lookAround kido
         sorenara mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][0] == 0 kido
             mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][0] = 1;
             mazeMatrix[lookAround[k]=>X][lookAround[k]=>Y][lookAround[k]=>Z][1] = lookAround[k]=>kabe;
