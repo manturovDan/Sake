@@ -14,10 +14,12 @@ INT
     : ('-'|'+') INT_NON_NEG
 ;
 
+/* int */
 SEISU
     : 'seisu'
 ;
 
+/* bool */
 RONRI
     : 'ronri'
 ;
@@ -47,9 +49,21 @@ NAGASA
 ;
 
 NEWLINE
-    : '\r'? '\n'
+    : '\r'? '\n' -> skip
+;
+
+END_EXPR
+    : ';'
 ;
 
 WS
     : [ \t]+ -> skip
+;
+
+SHUSHI
+    : 'SHUSHI'
+;
+
+END_BLOCK
+    : SHUSHI END_EXPR
 ;
