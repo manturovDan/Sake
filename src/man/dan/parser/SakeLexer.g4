@@ -28,7 +28,7 @@ SHINRI
     : 'shinri'
 ;
 
-USO
+OSU
     : 'osu'
 ;
 
@@ -52,7 +52,7 @@ NEWLINE
     : '\r'? '\n' -> skip
 ;
 
-END_EXPR
+ENDEXPR
     : ';'
 ;
 
@@ -65,5 +65,5 @@ SHUSHI
 ;
 
 END_BLOCK
-    : SHUSHI END_EXPR
+    : SHUSHI ENDEXPR
 ;
