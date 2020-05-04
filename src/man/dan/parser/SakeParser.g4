@@ -6,20 +6,46 @@ program
     : statement+
 ;
 
+constant
+    : INT
+    | SHINRI
+    | OSU
+;
+
+expr
+    :
+    | '~' expr
+    | expr ('+'|'-') expr
+    | expr ('<'|'>') expr
+    | expr '^' expr
+    | expr 'v' expr
+    | ID
+    | constant
+    | '(' expr ')'
+;
+
 num_assign
-    : SEISU ID '=' num_expr ENDEXPR
+    : SEISU ID '=' expr ENDEXPR
 ;
 
 bool_assign
-    : RONRI ID '=' bool_expr ENDEXPR
+    : RONRI ID '=' expr ENDEXPR
 ;
 
 rippotai_assign
-    : RIPPOTAI ID '=' num_expr ',' num_expr ',' num_expr ',' bool_expr ENDEXPR
+    : RIPPOTAI ID '=' expr ',' expr ',' expr ',' expr ENDEXPR
+;
+
+order
+    : expr (',' expr)*
 ;
 
 hairetsu_assign
-    : HAIRETSU ID '=' '{' num_expr (',' num_expr (',' num_expr)?)? '}'
+    : HAIRETSU ID '=' '{' order '}'
+;
+
+appeal
+    : ID ('[' order ']')?
 ;
 
 assignment_stmt
@@ -30,15 +56,15 @@ assignment_stmt
 ;
 
 declaration_stmt
-    : (SEISU | RONRI | RIPPOTAI) ID ENDEXPR
+    : (SEISU | RONRI | RIPPOTAI | HAIRETSU) ID ENDEXPR
 ;
 
 jigen_stmt
-    : JIGEN ID ENDEXPR
+    : JIGEN appeal ENDEXPR
 ;
 
 nagasa_stmt
-    : NAGASA ID ENDEXPR
+    : NAGASA appeal ENDEXPR
 ;
 
 statement
@@ -46,7 +72,7 @@ statement
     | declaration_stmt
     | jigen_stmt
     | nagasa_stmt
-    | NEWLINE # blank
+    | NEWLINE
 ;
 
 
