@@ -6,6 +6,15 @@ program
     : statement+
 ;
 
+statement
+    : assignment_stmt
+    | declaration_stmt
+    | jigen_stmt
+    | nagasa_stmt
+    | NEWLINE
+;
+
+
 constant
     : INT
     | SHINRI
@@ -66,14 +75,5 @@ jigen_stmt
 nagasa_stmt
     : NAGASA appeal ENDEXPR
 ;
-
-statement
-    : assignment_stmt
-    | declaration_stmt
-    | jigen_stmt
-    | nagasa_stmt
-    | NEWLINE
-;
-
 
 

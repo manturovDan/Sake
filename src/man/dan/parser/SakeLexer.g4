@@ -1,17 +1,14 @@
 lexer grammar SakeLexer;
 
-ID
-    : [a-zA-Z][a-zA-Z0-9]*
-;
-
 fragment
+
 INT_NON_NEG
     : [0-9]+
     | 'x' [0-9A-F]+
 ;
 
 INT
-    : ('-'|'+') INT_NON_NEG
+    : ('-'|'+')? INT_NON_NEG
 ;
 
 /* int */
@@ -46,6 +43,10 @@ JIGEN
 
 NAGASA
     : 'nagasa'
+;
+
+ID
+    : [a-zA-Z][a-zA-Z0-9]*
 ;
 
 NEWLINE

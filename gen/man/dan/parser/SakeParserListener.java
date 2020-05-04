@@ -18,6 +18,16 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitProgram(SakeParserParser.ProgramContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatement(SakeParserParser.StatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatement(SakeParserParser.StatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#constant}.
 	 * @param ctx the parse tree
 	 */
@@ -137,14 +147,4 @@ public interface SakeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SakeParserParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatement(SakeParserParser.StatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SakeParserParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatement(SakeParserParser.StatementContext ctx);
 }

@@ -28,6 +28,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStatement(SakeParserParser.StatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStatement(SakeParserParser.StatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterConstant(SakeParserParser.ConstantContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -167,18 +179,6 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStatement(SakeParserParser.StatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStatement(SakeParserParser.StatementContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -17,6 +17,12 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgram(SakeParserParser.ProgramContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatement(SakeParserParser.StatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SakeParserParser#constant}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -88,10 +94,4 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SakeParserParser#statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStatement(SakeParserParser.StatementContext ctx);
 }

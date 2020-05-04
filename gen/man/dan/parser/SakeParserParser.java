@@ -18,20 +18,19 @@ public class SakeParserParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, ID=16, INT=17, 
-		SEISU=18, RONRI=19, SHINRI=20, USO=21, RIPPOTAI=22, HAIRETSU=23, JIGEN=24, 
-		NAGASA=25, NEWLINE=26, END_EXPR=27, WS=28, SHUSHI=29, END_BLOCK=30, OSU=31, 
-		ENDEXPR=32;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, INT=16, SEISU=17, 
+		RONRI=18, SHINRI=19, OSU=20, RIPPOTAI=21, HAIRETSU=22, JIGEN=23, NAGASA=24, 
+		ID=25, NEWLINE=26, ENDEXPR=27, WS=28, SHUSHI=29, END_BLOCK=30;
 	public static final int
-		RULE_program = 0, RULE_constant = 1, RULE_expr = 2, RULE_num_assign = 3, 
-		RULE_bool_assign = 4, RULE_rippotai_assign = 5, RULE_order = 6, RULE_hairetsu_assign = 7, 
-		RULE_appeal = 8, RULE_assignment_stmt = 9, RULE_declaration_stmt = 10, 
-		RULE_jigen_stmt = 11, RULE_nagasa_stmt = 12, RULE_statement = 13;
+		RULE_program = 0, RULE_statement = 1, RULE_constant = 2, RULE_expr = 3, 
+		RULE_num_assign = 4, RULE_bool_assign = 5, RULE_rippotai_assign = 6, RULE_order = 7, 
+		RULE_hairetsu_assign = 8, RULE_appeal = 9, RULE_assignment_stmt = 10, 
+		RULE_declaration_stmt = 11, RULE_jigen_stmt = 12, RULE_nagasa_stmt = 13;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"program", "constant", "expr", "num_assign", "bool_assign", "rippotai_assign", 
-			"order", "hairetsu_assign", "appeal", "assignment_stmt", "declaration_stmt", 
-			"jigen_stmt", "nagasa_stmt", "statement"
+			"program", "statement", "constant", "expr", "num_assign", "bool_assign", 
+			"rippotai_assign", "order", "hairetsu_assign", "appeal", "assignment_stmt", 
+			"declaration_stmt", "jigen_stmt", "nagasa_stmt"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -39,18 +38,18 @@ public class SakeParserParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'~'", "'+'", "'-'", "'<'", "'>'", "'^'", "'v'", "'('", "')'", 
-			"'='", "','", "'{'", "'}'", "'['", "']'", null, null, "'seisu'", "'ronri'", 
+			"'='", "','", "'{'", "'}'", "'['", "']'", null, "'seisu'", "'ronri'", 
 			"'shinri'", "'osu'", "'rippotai'", "'hairetsu'", "'jigen'", "'nagasa'", 
-			null, "';'", null, "'SHUSHI'"
+			null, null, "';'", null, "'SHUSHI'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, "ID", "INT", "SEISU", "RONRI", "SHINRI", "USO", 
-			"RIPPOTAI", "HAIRETSU", "JIGEN", "NAGASA", "NEWLINE", "END_EXPR", "WS", 
-			"SHUSHI", "END_BLOCK", "OSU", "ENDEXPR"
+			null, null, null, null, "INT", "SEISU", "RONRI", "SHINRI", "OSU", "RIPPOTAI", 
+			"HAIRETSU", "JIGEN", "NAGASA", "ID", "NEWLINE", "ENDEXPR", "WS", "SHUSHI", 
+			"END_BLOCK"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -164,6 +163,94 @@ public class SakeParserParser extends Parser {
 		return _localctx;
 	}
 
+	public static class StatementContext extends ParserRuleContext {
+		public Assignment_stmtContext assignment_stmt() {
+			return getRuleContext(Assignment_stmtContext.class,0);
+		}
+		public Declaration_stmtContext declaration_stmt() {
+			return getRuleContext(Declaration_stmtContext.class,0);
+		}
+		public Jigen_stmtContext jigen_stmt() {
+			return getRuleContext(Jigen_stmtContext.class,0);
+		}
+		public Nagasa_stmtContext nagasa_stmt() {
+			return getRuleContext(Nagasa_stmtContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(SakeParserParser.NEWLINE, 0); }
+		public StatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_statement; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterStatement(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitStatement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final StatementContext statement() throws RecognitionException {
+		StatementContext _localctx = new StatementContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_statement);
+		try {
+			setState(38);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(33);
+				assignment_stmt();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(34);
+				declaration_stmt();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(35);
+				jigen_stmt();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(36);
+				nagasa_stmt();
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(37);
+				match(NEWLINE);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static class ConstantContext extends ParserRuleContext {
 		public TerminalNode INT() { return getToken(SakeParserParser.INT, 0); }
 		public TerminalNode SHINRI() { return getToken(SakeParserParser.SHINRI, 0); }
@@ -189,12 +276,12 @@ public class SakeParserParser extends Parser {
 
 	public final ConstantContext constant() throws RecognitionException {
 		ConstantContext _localctx = new ConstantContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_constant);
+		enterRule(_localctx, 4, RULE_constant);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
+			setState(40);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << SHINRI) | (1L << OSU))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -256,70 +343,70 @@ public class SakeParserParser extends Parser {
 		int _parentState = getState();
 		ExprContext _localctx = new ExprContext(_ctx, _parentState);
 		ExprContext _prevctx = _localctx;
-		int _startState = 4;
-		enterRecursionRule(_localctx, 4, RULE_expr, _p);
+		int _startState = 6;
+		enterRecursionRule(_localctx, 6, RULE_expr, _p);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
+			setState(51);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
 				}
 				break;
 			case 2:
 				{
-				setState(36);
+				setState(43);
 				match(T__0);
-				setState(37);
+				setState(44);
 				expr(8);
 				}
 				break;
 			case 3:
 				{
-				setState(38);
+				setState(45);
 				match(ID);
 				}
 				break;
 			case 4:
 				{
-				setState(39);
+				setState(46);
 				constant();
 				}
 				break;
 			case 5:
 				{
-				setState(40);
+				setState(47);
 				match(T__7);
-				setState(41);
+				setState(48);
 				expr(0);
-				setState(42);
+				setState(49);
 				match(T__8);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(60);
+			setState(67);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(58);
+					setState(65);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(46);
+						setState(53);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(47);
+						setState(54);
 						_la = _input.LA(1);
 						if ( !(_la==T__1 || _la==T__2) ) {
 						_errHandler.recoverInline(this);
@@ -329,7 +416,7 @@ public class SakeParserParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(48);
+						setState(55);
 						expr(8);
 						}
 						break;
@@ -337,9 +424,9 @@ public class SakeParserParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(49);
+						setState(56);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(50);
+						setState(57);
 						_la = _input.LA(1);
 						if ( !(_la==T__3 || _la==T__4) ) {
 						_errHandler.recoverInline(this);
@@ -349,7 +436,7 @@ public class SakeParserParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(51);
+						setState(58);
 						expr(7);
 						}
 						break;
@@ -357,11 +444,11 @@ public class SakeParserParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(52);
+						setState(59);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(53);
+						setState(60);
 						match(T__5);
-						setState(54);
+						setState(61);
 						expr(6);
 						}
 						break;
@@ -369,20 +456,20 @@ public class SakeParserParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(55);
+						setState(62);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(56);
+						setState(63);
 						match(T__6);
-						setState(57);
+						setState(64);
 						expr(5);
 						}
 						break;
 					}
 					} 
 				}
-				setState(62);
+				setState(69);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			}
 			}
 		}
@@ -425,19 +512,19 @@ public class SakeParserParser extends Parser {
 
 	public final Num_assignContext num_assign() throws RecognitionException {
 		Num_assignContext _localctx = new Num_assignContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_num_assign);
+		enterRule(_localctx, 8, RULE_num_assign);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(63);
+			setState(70);
 			match(SEISU);
-			setState(64);
+			setState(71);
 			match(ID);
-			setState(65);
+			setState(72);
 			match(T__9);
-			setState(66);
+			setState(73);
 			expr(0);
-			setState(67);
+			setState(74);
 			match(ENDEXPR);
 			}
 		}
@@ -480,19 +567,19 @@ public class SakeParserParser extends Parser {
 
 	public final Bool_assignContext bool_assign() throws RecognitionException {
 		Bool_assignContext _localctx = new Bool_assignContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_bool_assign);
+		enterRule(_localctx, 10, RULE_bool_assign);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(76);
 			match(RONRI);
-			setState(70);
+			setState(77);
 			match(ID);
-			setState(71);
+			setState(78);
 			match(T__9);
-			setState(72);
+			setState(79);
 			expr(0);
-			setState(73);
+			setState(80);
 			match(ENDEXPR);
 			}
 		}
@@ -538,31 +625,31 @@ public class SakeParserParser extends Parser {
 
 	public final Rippotai_assignContext rippotai_assign() throws RecognitionException {
 		Rippotai_assignContext _localctx = new Rippotai_assignContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_rippotai_assign);
+		enterRule(_localctx, 12, RULE_rippotai_assign);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(75);
-			match(RIPPOTAI);
-			setState(76);
-			match(ID);
-			setState(77);
-			match(T__9);
-			setState(78);
-			expr(0);
-			setState(79);
-			match(T__10);
-			setState(80);
-			expr(0);
-			setState(81);
-			match(T__10);
 			setState(82);
-			expr(0);
+			match(RIPPOTAI);
 			setState(83);
-			match(T__10);
+			match(ID);
 			setState(84);
-			expr(0);
+			match(T__9);
 			setState(85);
+			expr(0);
+			setState(86);
+			match(T__10);
+			setState(87);
+			expr(0);
+			setState(88);
+			match(T__10);
+			setState(89);
+			expr(0);
+			setState(90);
+			match(T__10);
+			setState(91);
+			expr(0);
+			setState(92);
 			match(ENDEXPR);
 			}
 		}
@@ -605,26 +692,26 @@ public class SakeParserParser extends Parser {
 
 	public final OrderContext order() throws RecognitionException {
 		OrderContext _localctx = new OrderContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_order);
+		enterRule(_localctx, 14, RULE_order);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(87);
+			setState(94);
 			expr(0);
-			setState(92);
+			setState(99);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__10) {
 				{
 				{
-				setState(88);
+				setState(95);
 				match(T__10);
-				setState(89);
+				setState(96);
 				expr(0);
 				}
 				}
-				setState(94);
+				setState(101);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -668,21 +755,21 @@ public class SakeParserParser extends Parser {
 
 	public final Hairetsu_assignContext hairetsu_assign() throws RecognitionException {
 		Hairetsu_assignContext _localctx = new Hairetsu_assignContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_hairetsu_assign);
+		enterRule(_localctx, 16, RULE_hairetsu_assign);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(95);
+			setState(102);
 			match(HAIRETSU);
-			setState(96);
+			setState(103);
 			match(ID);
-			setState(97);
+			setState(104);
 			match(T__9);
-			setState(98);
+			setState(105);
 			match(T__11);
-			setState(99);
+			setState(106);
 			order();
-			setState(100);
+			setState(107);
 			match(T__12);
 			}
 		}
@@ -723,23 +810,23 @@ public class SakeParserParser extends Parser {
 
 	public final AppealContext appeal() throws RecognitionException {
 		AppealContext _localctx = new AppealContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_appeal);
+		enterRule(_localctx, 18, RULE_appeal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102);
+			setState(109);
 			match(ID);
-			setState(107);
+			setState(114);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__13) {
 				{
-				setState(103);
+				setState(110);
 				match(T__13);
-				setState(104);
+				setState(111);
 				order();
-				setState(105);
+				setState(112);
 				match(T__14);
 				}
 			}
@@ -791,36 +878,36 @@ public class SakeParserParser extends Parser {
 
 	public final Assignment_stmtContext assignment_stmt() throws RecognitionException {
 		Assignment_stmtContext _localctx = new Assignment_stmtContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_assignment_stmt);
+		enterRule(_localctx, 20, RULE_assignment_stmt);
 		try {
-			setState(113);
+			setState(120);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case SEISU:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(109);
+				setState(116);
 				num_assign();
 				}
 				break;
 			case RONRI:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(110);
+				setState(117);
 				bool_assign();
 				}
 				break;
 			case RIPPOTAI:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(111);
+				setState(118);
 				rippotai_assign();
 				}
 				break;
 			case HAIRETSU:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(112);
+				setState(119);
 				hairetsu_assign();
 				}
 				break;
@@ -867,12 +954,12 @@ public class SakeParserParser extends Parser {
 
 	public final Declaration_stmtContext declaration_stmt() throws RecognitionException {
 		Declaration_stmtContext _localctx = new Declaration_stmtContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_declaration_stmt);
+		enterRule(_localctx, 22, RULE_declaration_stmt);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(115);
+			setState(122);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SEISU) | (1L << RONRI) | (1L << RIPPOTAI) | (1L << HAIRETSU))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -882,9 +969,9 @@ public class SakeParserParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(116);
+			setState(123);
 			match(ID);
-			setState(117);
+			setState(124);
 			match(ENDEXPR);
 			}
 		}
@@ -926,15 +1013,15 @@ public class SakeParserParser extends Parser {
 
 	public final Jigen_stmtContext jigen_stmt() throws RecognitionException {
 		Jigen_stmtContext _localctx = new Jigen_stmtContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_jigen_stmt);
+		enterRule(_localctx, 24, RULE_jigen_stmt);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(126);
 			match(JIGEN);
-			setState(120);
+			setState(127);
 			appeal();
-			setState(121);
+			setState(128);
 			match(ENDEXPR);
 			}
 		}
@@ -976,104 +1063,16 @@ public class SakeParserParser extends Parser {
 
 	public final Nagasa_stmtContext nagasa_stmt() throws RecognitionException {
 		Nagasa_stmtContext _localctx = new Nagasa_stmtContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_nagasa_stmt);
+		enterRule(_localctx, 26, RULE_nagasa_stmt);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123);
+			setState(130);
 			match(NAGASA);
-			setState(124);
+			setState(131);
 			appeal();
-			setState(125);
-			match(ENDEXPR);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class StatementContext extends ParserRuleContext {
-		public Assignment_stmtContext assignment_stmt() {
-			return getRuleContext(Assignment_stmtContext.class,0);
-		}
-		public Declaration_stmtContext declaration_stmt() {
-			return getRuleContext(Declaration_stmtContext.class,0);
-		}
-		public Jigen_stmtContext jigen_stmt() {
-			return getRuleContext(Jigen_stmtContext.class,0);
-		}
-		public Nagasa_stmtContext nagasa_stmt() {
-			return getRuleContext(Nagasa_stmtContext.class,0);
-		}
-		public TerminalNode NEWLINE() { return getToken(SakeParserParser.NEWLINE, 0); }
-		public StatementContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_statement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitStatement(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitStatement(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final StatementContext statement() throws RecognitionException {
-		StatementContext _localctx = new StatementContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_statement);
-		try {
 			setState(132);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(127);
-				assignment_stmt();
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(128);
-				declaration_stmt();
-				}
-				break;
-			case 3:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(129);
-				jigen_stmt();
-				}
-				break;
-			case 4:
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(130);
-				nagasa_stmt();
-				}
-				break;
-			case 5:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(131);
-				match(NEWLINE);
-				}
-				break;
+			match(ENDEXPR);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1089,7 +1088,7 @@ public class SakeParserParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 2:
+		case 3:
 			return expr_sempred((ExprContext)_localctx, predIndex);
 		}
 		return true;
@@ -1109,41 +1108,40 @@ public class SakeParserParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"\u0089\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3 \u0089\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\6\2 \n\2\r\2\16\2!\3\3\3\3"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4/\n\4\3\4\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\7\4=\n\4\f\4\16\4@\13\4\3\5\3\5\3\5\3\5\3\5\3"+
-		"\5\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7"+
-		"\3\7\3\b\3\b\3\b\7\b]\n\b\f\b\16\b`\13\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3"+
-		"\n\3\n\3\n\3\n\3\n\5\nn\n\n\3\13\3\13\3\13\3\13\5\13t\n\13\3\f\3\f\3\f"+
-		"\3\f\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\17\5\17"+
-		"\u0087\n\17\3\17\2\3\6\20\2\4\6\b\n\f\16\20\22\24\26\30\32\34\2\6\5\2"+
-		"\23\23\26\26!!\3\2\4\5\3\2\6\7\4\2\24\25\30\31\2\u008c\2\37\3\2\2\2\4"+
-		"#\3\2\2\2\6.\3\2\2\2\bA\3\2\2\2\nG\3\2\2\2\fM\3\2\2\2\16Y\3\2\2\2\20a"+
-		"\3\2\2\2\22h\3\2\2\2\24s\3\2\2\2\26u\3\2\2\2\30y\3\2\2\2\32}\3\2\2\2\34"+
-		"\u0086\3\2\2\2\36 \5\34\17\2\37\36\3\2\2\2 !\3\2\2\2!\37\3\2\2\2!\"\3"+
-		"\2\2\2\"\3\3\2\2\2#$\t\2\2\2$\5\3\2\2\2%/\b\4\1\2&\'\7\3\2\2\'/\5\6\4"+
-		"\n(/\7\22\2\2)/\5\4\3\2*+\7\n\2\2+,\5\6\4\2,-\7\13\2\2-/\3\2\2\2.%\3\2"+
-		"\2\2.&\3\2\2\2.(\3\2\2\2.)\3\2\2\2.*\3\2\2\2/>\3\2\2\2\60\61\f\t\2\2\61"+
-		"\62\t\3\2\2\62=\5\6\4\n\63\64\f\b\2\2\64\65\t\4\2\2\65=\5\6\4\t\66\67"+
-		"\f\7\2\2\678\7\b\2\28=\5\6\4\b9:\f\6\2\2:;\7\t\2\2;=\5\6\4\7<\60\3\2\2"+
-		"\2<\63\3\2\2\2<\66\3\2\2\2<9\3\2\2\2=@\3\2\2\2><\3\2\2\2>?\3\2\2\2?\7"+
-		"\3\2\2\2@>\3\2\2\2AB\7\24\2\2BC\7\22\2\2CD\7\f\2\2DE\5\6\4\2EF\7\"\2\2"+
-		"F\t\3\2\2\2GH\7\25\2\2HI\7\22\2\2IJ\7\f\2\2JK\5\6\4\2KL\7\"\2\2L\13\3"+
-		"\2\2\2MN\7\30\2\2NO\7\22\2\2OP\7\f\2\2PQ\5\6\4\2QR\7\r\2\2RS\5\6\4\2S"+
-		"T\7\r\2\2TU\5\6\4\2UV\7\r\2\2VW\5\6\4\2WX\7\"\2\2X\r\3\2\2\2Y^\5\6\4\2"+
-		"Z[\7\r\2\2[]\5\6\4\2\\Z\3\2\2\2]`\3\2\2\2^\\\3\2\2\2^_\3\2\2\2_\17\3\2"+
-		"\2\2`^\3\2\2\2ab\7\31\2\2bc\7\22\2\2cd\7\f\2\2de\7\16\2\2ef\5\16\b\2f"+
-		"g\7\17\2\2g\21\3\2\2\2hm\7\22\2\2ij\7\20\2\2jk\5\16\b\2kl\7\21\2\2ln\3"+
-		"\2\2\2mi\3\2\2\2mn\3\2\2\2n\23\3\2\2\2ot\5\b\5\2pt\5\n\6\2qt\5\f\7\2r"+
-		"t\5\20\t\2so\3\2\2\2sp\3\2\2\2sq\3\2\2\2sr\3\2\2\2t\25\3\2\2\2uv\t\5\2"+
-		"\2vw\7\22\2\2wx\7\"\2\2x\27\3\2\2\2yz\7\32\2\2z{\5\22\n\2{|\7\"\2\2|\31"+
-		"\3\2\2\2}~\7\33\2\2~\177\5\22\n\2\177\u0080\7\"\2\2\u0080\33\3\2\2\2\u0081"+
-		"\u0087\5\24\13\2\u0082\u0087\5\26\f\2\u0083\u0087\5\30\r\2\u0084\u0087"+
-		"\5\32\16\2\u0085\u0087\7\34\2\2\u0086\u0081\3\2\2\2\u0086\u0082\3\2\2"+
-		"\2\u0086\u0083\3\2\2\2\u0086\u0084\3\2\2\2\u0086\u0085\3\2\2\2\u0087\35"+
-		"\3\2\2\2\n!.<>^ms\u0086";
+		"\3\3\3\3\3\3\5\3)\n\3\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5"+
+		"\66\n\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5D\n\5\f\5\16"+
+		"\5G\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3"+
+		"\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\7\td\n\t\f\t\16\tg\13\t"+
+		"\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\5\13u\n\13\3\f\3"+
+		"\f\3\f\3\f\5\f{\n\f\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\17\3\17\3\17"+
+		"\3\17\3\17\2\3\b\20\2\4\6\b\n\f\16\20\22\24\26\30\32\34\2\6\4\2\22\22"+
+		"\25\26\3\2\4\5\3\2\6\7\4\2\23\24\27\30\2\u008c\2\37\3\2\2\2\4(\3\2\2\2"+
+		"\6*\3\2\2\2\b\65\3\2\2\2\nH\3\2\2\2\fN\3\2\2\2\16T\3\2\2\2\20`\3\2\2\2"+
+		"\22h\3\2\2\2\24o\3\2\2\2\26z\3\2\2\2\30|\3\2\2\2\32\u0080\3\2\2\2\34\u0084"+
+		"\3\2\2\2\36 \5\4\3\2\37\36\3\2\2\2 !\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\""+
+		"\3\3\2\2\2#)\5\26\f\2$)\5\30\r\2%)\5\32\16\2&)\5\34\17\2\')\7\34\2\2("+
+		"#\3\2\2\2($\3\2\2\2(%\3\2\2\2(&\3\2\2\2(\'\3\2\2\2)\5\3\2\2\2*+\t\2\2"+
+		"\2+\7\3\2\2\2,\66\b\5\1\2-.\7\3\2\2.\66\5\b\5\n/\66\7\33\2\2\60\66\5\6"+
+		"\4\2\61\62\7\n\2\2\62\63\5\b\5\2\63\64\7\13\2\2\64\66\3\2\2\2\65,\3\2"+
+		"\2\2\65-\3\2\2\2\65/\3\2\2\2\65\60\3\2\2\2\65\61\3\2\2\2\66E\3\2\2\2\67"+
+		"8\f\t\2\289\t\3\2\29D\5\b\5\n:;\f\b\2\2;<\t\4\2\2<D\5\b\5\t=>\f\7\2\2"+
+		">?\7\b\2\2?D\5\b\5\b@A\f\6\2\2AB\7\t\2\2BD\5\b\5\7C\67\3\2\2\2C:\3\2\2"+
+		"\2C=\3\2\2\2C@\3\2\2\2DG\3\2\2\2EC\3\2\2\2EF\3\2\2\2F\t\3\2\2\2GE\3\2"+
+		"\2\2HI\7\23\2\2IJ\7\33\2\2JK\7\f\2\2KL\5\b\5\2LM\7\35\2\2M\13\3\2\2\2"+
+		"NO\7\24\2\2OP\7\33\2\2PQ\7\f\2\2QR\5\b\5\2RS\7\35\2\2S\r\3\2\2\2TU\7\27"+
+		"\2\2UV\7\33\2\2VW\7\f\2\2WX\5\b\5\2XY\7\r\2\2YZ\5\b\5\2Z[\7\r\2\2[\\\5"+
+		"\b\5\2\\]\7\r\2\2]^\5\b\5\2^_\7\35\2\2_\17\3\2\2\2`e\5\b\5\2ab\7\r\2\2"+
+		"bd\5\b\5\2ca\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2\2f\21\3\2\2\2ge\3\2\2"+
+		"\2hi\7\30\2\2ij\7\33\2\2jk\7\f\2\2kl\7\16\2\2lm\5\20\t\2mn\7\17\2\2n\23"+
+		"\3\2\2\2ot\7\33\2\2pq\7\20\2\2qr\5\20\t\2rs\7\21\2\2su\3\2\2\2tp\3\2\2"+
+		"\2tu\3\2\2\2u\25\3\2\2\2v{\5\n\6\2w{\5\f\7\2x{\5\16\b\2y{\5\22\n\2zv\3"+
+		"\2\2\2zw\3\2\2\2zx\3\2\2\2zy\3\2\2\2{\27\3\2\2\2|}\t\5\2\2}~\7\33\2\2"+
+		"~\177\7\35\2\2\177\31\3\2\2\2\u0080\u0081\7\31\2\2\u0081\u0082\5\24\13"+
+		"\2\u0082\u0083\7\35\2\2\u0083\33\3\2\2\2\u0084\u0085\7\32\2\2\u0085\u0086"+
+		"\5\24\13\2\u0086\u0087\7\35\2\2\u0087\35\3\2\2\2\n!(\65CEetz";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
