@@ -21,28 +21,47 @@ RONRI
     : 'ronri'
 ;
 
+/* true */
 SHINRI
     : 'shinri'
 ;
 
+/* false */
 OSU
     : 'osu'
 ;
 
+/* coube */
 RIPPOTAI
     : 'rippotai'
 ;
 
+/* array */
 HAIRETSU
     : 'hairetsu'
 ;
 
+/* dimension */
 JIGEN
     : 'jigen'
 ;
 
+/* size */
 NAGASA
     : 'nagasa'
+;
+
+SHUSHI
+    : 'shushi'
+;
+
+KIDO
+    : 'kido'
+;
+
+/* function */
+KANSU
+    : 'kansu'
 ;
 
 ID
@@ -59,10 +78,6 @@ ENDEXPR
 
 WS
     : [ \t]+ -> skip
-;
-
-SHUSHI
-    : 'SHUSHI'
 ;
 
 END_BLOCK

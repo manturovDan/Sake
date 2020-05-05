@@ -9,8 +9,10 @@ program
 statement
     : assignment_stmt
     | declaration_stmt
+    | def_stmt
     | jigen_stmt
     | nagasa_stmt
+    | function
     | NEWLINE
 ;
 
@@ -64,8 +66,16 @@ assignment_stmt
     | hairetsu_assign
 ;
 
+type
+    : SEISU | RONRI | RIPPOTAI | HAIRETSU
+;
+
 declaration_stmt
-    : (SEISU | RONRI | RIPPOTAI | HAIRETSU) ID ENDEXPR
+    : type ID ENDEXPR
+;
+
+def_stmt
+    : ID '=' expr ENDEXPR
 ;
 
 jigen_stmt
@@ -76,4 +86,10 @@ nagasa_stmt
     : NAGASA appeal ENDEXPR
 ;
 
+arguments
+    : (type ID (',' type ID)*)?
+;
 
+function
+    : KANSU type ID '(' arguments ')' KIDO statement+ END_BLOCK
+;
