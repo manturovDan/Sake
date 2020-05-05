@@ -148,6 +148,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterType(SakeParserParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType(SakeParserParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaration_stmt(SakeParserParser.Declaration_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -155,6 +167,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaration_stmt(SakeParserParser.Declaration_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDef_stmt(SakeParserParser.Def_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDef_stmt(SakeParserParser.Def_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -179,6 +203,30 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArguments(SakeParserParser.ArgumentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArguments(SakeParserParser.ArgumentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunction(SakeParserParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction(SakeParserParser.FunctionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

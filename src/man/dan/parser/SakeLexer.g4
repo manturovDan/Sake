@@ -72,6 +72,10 @@ NEWLINE
     : '\r'? '\n' -> skip
 ;
 
+COMMENT
+    : '#' ~( '\r' | '\n' )*
+;
+
 ENDEXPR
     : ';'
 ;

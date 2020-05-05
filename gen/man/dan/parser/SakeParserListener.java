@@ -118,6 +118,16 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitAssignment_stmt(SakeParserParser.Assignment_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterType(SakeParserParser.TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitType(SakeParserParser.TypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#declaration_stmt}.
 	 * @param ctx the parse tree
 	 */
@@ -127,6 +137,16 @@ public interface SakeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaration_stmt(SakeParserParser.Declaration_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#def_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterDef_stmt(SakeParserParser.Def_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#def_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitDef_stmt(SakeParserParser.Def_stmtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#jigen_stmt}.
 	 * @param ctx the parse tree
@@ -147,4 +167,24 @@ public interface SakeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterArguments(SakeParserParser.ArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitArguments(SakeParserParser.ArgumentsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(SakeParserParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(SakeParserParser.FunctionContext ctx);
 }

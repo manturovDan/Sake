@@ -13,6 +13,7 @@ statement
     | jigen_stmt
     | nagasa_stmt
     | function
+    | COMMENT
     | NEWLINE
 ;
 

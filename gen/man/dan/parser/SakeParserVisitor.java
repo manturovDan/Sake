@@ -77,11 +77,23 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignment_stmt(SakeParserParser.Assignment_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType(SakeParserParser.TypeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SakeParserParser#declaration_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitDeclaration_stmt(SakeParserParser.Declaration_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#def_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDef_stmt(SakeParserParser.Def_stmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SakeParserParser#jigen_stmt}.
 	 * @param ctx the parse tree
@@ -94,4 +106,16 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#arguments}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArguments(SakeParserParser.ArgumentsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(SakeParserParser.FunctionContext ctx);
 }
