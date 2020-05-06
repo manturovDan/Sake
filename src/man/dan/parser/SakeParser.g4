@@ -12,6 +12,7 @@ statement
     | def_stmt
     | jigen_stmt
     | nagasa_stmt
+    | call_stmt
     | function
     | COMMENT
     | NEWLINE
@@ -33,6 +34,7 @@ expr
     | expr 'v' expr
     | ID
     | constant
+    | function_call
     | '(' expr ')'
 ;
 
@@ -87,10 +89,22 @@ nagasa_stmt
     : NAGASA appeal ENDEXPR
 ;
 
-arguments
+call_stmt
+    : function_call ENDEXPR
+;
+
+params
     : (type ID (',' type ID)*)?
 ;
 
 function
-    : KANSU type ID '(' arguments ')' KIDO statement+ END_BLOCK
+    : KANSU type ID '(' params ')' KIDO statement+ END_BLOCK
+;
+
+arguments
+    : (expr (',' expr)*)?
+;
+
+function_call
+    : ID '(' arguments ')'
 ;
