@@ -35,7 +35,7 @@ expr
     | expr '^' expr
     | expr 'v' expr
     | constant
-    | ID
+    | appeal
     | function_call
     | '(' expr ')'
 ;
@@ -80,7 +80,7 @@ declaration_stmt
 ;
 
 def_stmt
-    : ID '=' expr ENDEXPR
+    : appeal '=' expr ENDEXPR
 ;
 
 jigen_stmt
