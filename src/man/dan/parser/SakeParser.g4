@@ -14,6 +14,7 @@ statement
     | nagasa_stmt
     | call_stmt
     | function
+    | condition
     | COMMENT
     | NEWLINE
 ;
@@ -103,6 +104,10 @@ function
 
 arguments
     : (expr (',' expr)*)?
+;
+
+condition
+    : SORENARA expr KIDO statement+ END_BLOCK
 ;
 
 function_call

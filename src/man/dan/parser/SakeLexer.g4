@@ -64,6 +64,11 @@ KANSU
     : 'kansu'
 ;
 
+/* condition */
+SORENARA
+    : 'sorenara'
+;
+
 ID
     : [a-zA-Z][a-zA-Z0-9]*
 ;
