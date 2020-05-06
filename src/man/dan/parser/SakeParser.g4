@@ -28,14 +28,14 @@ constant
 ;
 
 expr
-    :
+    : '-' expr
     | '~' expr
     | expr ('+'|'-') expr
     | expr ('<'|'>') expr
     | expr '^' expr
     | expr 'v' expr
-    | ID
     | constant
+    | ID
     | function_call
     | '(' expr ')'
 ;

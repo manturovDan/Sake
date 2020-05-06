@@ -168,15 +168,25 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SakeParserParser#arguments}.
+	 * Enter a parse tree produced by {@link SakeParserParser#call_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void enterArguments(SakeParserParser.ArgumentsContext ctx);
+	void enterCall_stmt(SakeParserParser.Call_stmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SakeParserParser#arguments}.
+	 * Exit a parse tree produced by {@link SakeParserParser#call_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitArguments(SakeParserParser.ArgumentsContext ctx);
+	void exitCall_stmt(SakeParserParser.Call_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#params}.
+	 * @param ctx the parse tree
+	 */
+	void enterParams(SakeParserParser.ParamsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#params}.
+	 * @param ctx the parse tree
+	 */
+	void exitParams(SakeParserParser.ParamsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#function}.
 	 * @param ctx the parse tree
@@ -187,4 +197,44 @@ public interface SakeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunction(SakeParserParser.FunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterArguments(SakeParserParser.ArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitArguments(SakeParserParser.ArgumentsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition(SakeParserParser.ConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition(SakeParserParser.ConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#cycle}.
+	 * @param ctx the parse tree
+	 */
+	void enterCycle(SakeParserParser.CycleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#cycle}.
+	 * @param ctx the parse tree
+	 */
+	void exitCycle(SakeParserParser.CycleContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_call(SakeParserParser.Function_callContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_call(SakeParserParser.Function_callContext ctx);
 }

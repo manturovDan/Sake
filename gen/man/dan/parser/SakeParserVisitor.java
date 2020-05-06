@@ -107,15 +107,45 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SakeParserParser#arguments}.
+	 * Visit a parse tree produced by {@link SakeParserParser#call_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArguments(SakeParserParser.ArgumentsContext ctx);
+	T visitCall_stmt(SakeParserParser.Call_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#params}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParams(SakeParserParser.ParamsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SakeParserParser#function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunction(SakeParserParser.FunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#arguments}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArguments(SakeParserParser.ArgumentsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition(SakeParserParser.ConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#cycle}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCycle(SakeParserParser.CycleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction_call(SakeParserParser.Function_callContext ctx);
 }

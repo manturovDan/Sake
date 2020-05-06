@@ -1,15 +1,10 @@
 lexer grammar SakeLexer;
 
-fragment
-
-INT_NON_NEG
+INT
     : [0-9]+
     | 'x' [0-9A-F]+
 ;
 
-INT
-    : ('-'|'+')? INT_NON_NEG
-;
 
 /* int */
 SEISU
