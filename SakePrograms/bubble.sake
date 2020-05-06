@@ -1,11 +1,11 @@
-seisu kansu swapKansu(hairetsu A, kansu i, kansu j) kido
-    kansu c = A[i];
+seisu kansu swapKansu(hairetsu A, seisu i, seisu j) kido
+    seisu c = A[i];
     A[i] = A[j];
     A[j] = c;
     modoru 0; #return
-shushi
+shushi;
 
-seisu kansu bubble(hairetsu A, kansu N) kido
+seisu kansu bubble(hairetsu A, seisu N) kido
     shuki j = 0 : N kido
         seisu F = osu;
         shuki i = 1 : N-j-1 kido
@@ -19,7 +19,7 @@ seisu kansu bubble(hairetsu A, kansu N) kido
             j = N - 1;
         shushi;
     shushi;
-    moduru 0;
+    modoru 0;
 shushi;
 
 kansu N = 10;

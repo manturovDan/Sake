@@ -9,6 +9,7 @@ program
 statement
     : assignment_stmt
     | declaration_stmt
+    | return_stmt
     | def_stmt
     | jigen_stmt
     | nagasa_stmt
@@ -95,12 +96,16 @@ call_stmt
     : function_call ENDEXPR
 ;
 
+return_stmt
+    : MODURU expr ENDEXPR
+;
+
 params
     : (type ID (',' type ID)*)?
 ;
 
 function
-    : KANSU type ID '(' params ')' KIDO statement+ END_BLOCK
+    : type KANSU ID '(' params ')' KIDO statement+ END_BLOCK
 ;
 
 arguments

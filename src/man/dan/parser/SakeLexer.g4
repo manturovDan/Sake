@@ -64,6 +64,11 @@ SORENARA
     : 'sorenara'
 ;
 
+/* return */
+MODURU
+    : 'modoru'
+;
+
 SHUKI
     : 'shuki'
 ;
