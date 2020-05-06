@@ -15,6 +15,7 @@ statement
     | call_stmt
     | function
     | condition
+    | cycle
     | COMMENT
     | NEWLINE
 ;
@@ -108,6 +109,10 @@ arguments
 
 condition
     : SORENARA expr KIDO statement+ END_BLOCK
+;
+
+cycle
+    : SHUKI ID '=' expr ':' expr KIDO statement+ END_BLOCK
 ;
 
 function_call
