@@ -26,7 +26,7 @@ OSU
     : 'osu'
 ;
 
-/* coube */
+/* cube */
 RIPPOTAI
     : 'rippotai'
 ;
