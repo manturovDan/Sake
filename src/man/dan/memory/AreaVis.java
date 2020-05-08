@@ -28,4 +28,14 @@ public class AreaVis {
 
         variables.put(name, obj);
     }
+
+    public SakeObj getValByName(String name) throws Exception {
+        if (variables.containsKey(name))
+            return variables.get(name);
+
+        if(parent != null)
+            return parent.getValByName(name);
+
+        throw new Exception("No var");
+    }
 }

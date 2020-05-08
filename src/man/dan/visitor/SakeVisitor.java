@@ -40,7 +40,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitProgram(SakeParserParser.ProgramContext ctx) {
         init();
         try {
-            printStream.println("Program");
             return super.visitProgram(ctx);
         } finally {
             cleanup();
@@ -123,6 +122,17 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else if (ctx.constant().OSU() != null)
             return new Countable(false);
         return null;
+    }
+
+    @Override
+    public SakeObj visitApp(SakeParserParser.AppContext ctx) {
+        String name = ctx.appeal().ID().getText();
+        try {
+            return memory.getValByName(name);
+        } catch (Exception e) {
+            printStream.println("No var " + name);
+            return null;
+        } //write semantic error
     }
 
 }
