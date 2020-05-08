@@ -53,8 +53,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         Countable value = (Countable) visit(ctx.expr());
 
         //global now
-
-        memory.
+        try {
+            memory.declAndAssign(name, value);
+        } catch (Exception e) { //make normal
+            //Semantic error
+        }
 
         return value;
     }
@@ -76,7 +79,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     @Override
-    public SakeObj visitPlusMin(SakeParserParser.PlusMinContext ctx) throws Exception {
+    public SakeObj visitPlusMin(SakeParserParser.PlusMinContext ctx) {
         Countable left = (Countable) visit(ctx.expr(0));
         Countable right = (Countable) visit(ctx.expr(1));
 
@@ -85,13 +88,14 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
         else if (ctx.op.getType() == SakeParserParser.MINUS) {
             return left.minus(right);
-        } else {
-            throw new Exception("Interpreter grammar error +-");
         }
+            //throw new Exception("Interpreter grammar error +-");
+            return null;
+
     }
 
     @Override
-    public SakeObj visitGrLess(SakeParserParser.GrLessContext ctx) throws Exception {
+    public SakeObj visitGrLess(SakeParserParser.GrLessContext ctx) {
         Countable left = (Countable) visit(ctx.expr(0));
         Countable right = (Countable) visit(ctx.expr(1));
 
@@ -100,9 +104,25 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
         else if (ctx.op.getType() == SakeParserParser.GREATER) {
             return right.lessThan(left);
-        } else {
-            throw new Exception("Interpreter grammar error ><");
         }
+            //throw new Exception("Interpreter grammar error ><");
+            return null;
+
+    }
+
+    @Override
+    public SakeObj visitConst(SakeParserParser.ConstContext ctx) {
+        if(ctx.constant().INT() != null) {
+            String digStr = ctx.constant().INT().getText();
+            if (digStr.charAt(0) == 'x')
+                return new Countable(Integer.parseInt(digStr.substring(1), 16));
+            else
+                return new Countable(Integer.parseInt(digStr));
+        } else if (ctx.constant().SHINRI() != null)
+            return new Countable(true);
+        else if (ctx.constant().OSU() != null)
+            return new Countable(false);
+        return null;
     }
 
 }
