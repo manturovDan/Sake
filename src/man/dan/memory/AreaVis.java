@@ -21,4 +21,11 @@ public class AreaVis {
         nested = new ArrayList<>();
         parent = _par;
     }
+
+    public void declAndAssign(String name, SakeObj obj) throws Exception {
+        if (variables.containsKey(name))
+            throw new Exception("Semantic: one var two times"); //redo than
+
+        variables.put(name, obj);
+    }
 }

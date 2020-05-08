@@ -29,6 +29,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected void init() {
         printStream = new PrintStream(sout, true);
         inputStream = new BufferedReader(new InputStreamReader(sin));
+        memory = new AreaVis();
     }
 
     protected void cleanup() {
@@ -51,7 +52,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         String name = ctx.ID().getText();
         Countable value = (Countable) visit(ctx.expr());
 
-        //to mem
+        //global now
+
+        memory.
 
         return value;
     }
