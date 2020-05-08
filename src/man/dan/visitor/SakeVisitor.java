@@ -1,5 +1,6 @@
 package man.dan.visitor;
 import man.dan.langobj.SakeObj;
+import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
 
@@ -12,14 +13,16 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected InputStream in;
     protected PrintStream out;
     protected PrintStream err;
+    protected AreaVis memory;
 
     protected PrintStream printStream;
     protected BufferedReader inputStream;
 
-    public SakeVisitor(InputStream _in, PrintStream _out, PrintStream _err) {
+    public SakeVisitor(AreaVis mem, InputStream _in, PrintStream _out, PrintStream _err) {
         in = _in;
         out = _out;
         err = _err;
+        memory = mem;
     }
 
     @Override

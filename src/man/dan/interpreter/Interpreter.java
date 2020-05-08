@@ -1,6 +1,7 @@
 package man.dan.interpreter;
 
 import man.dan.langobj.SakeObj;
+import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserLexer;
 import man.dan.parser.SakeParserParser;
 import man.dan.parser.SakeParserVisitor;
@@ -20,6 +21,7 @@ public class Interpreter {
     protected OutputStream err;
     protected PrintStream outPrint;
     protected PrintStream errPrint;
+    protected AreaVis memory;
 
     public Interpreter(InputStream _in, OutputStream _out, OutputStream _err) {
         in = _in;
@@ -27,6 +29,7 @@ public class Interpreter {
         err = _err;
         outPrint = new PrintStream(out, true);
         errPrint = new PrintStream(err, true);
+        memory = new AreaVis();
     }
 
     public void run(InputStream progIn) throws IOException {
@@ -35,9 +38,11 @@ public class Interpreter {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SakeParserParser parser = new SakeParserParser(tokens);
 
+
         try {
             ParseTree tree = parser.program();
-            SakeVisitor eval = new SakeVisitor(in, outPrint, errPrint);
+            SakeVisitor eval = new SakeVisitor(memory, in, outPrint, errPrint);
+            eval.visit(tree);
         } catch (ParseCancellationException e) {
             errPrint.println("Error message");
         }
