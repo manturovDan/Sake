@@ -16,19 +16,19 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class Interpreter {
-    protected InputStream in;
-    protected OutputStream out;
-    protected OutputStream err;
+    protected InputStream sin;
+    protected OutputStream sout;
+    protected OutputStream serr;
     protected PrintStream outPrint;
     protected PrintStream errPrint;
     protected AreaVis memory;
 
     public Interpreter(InputStream _in, OutputStream _out, OutputStream _err) {
-        in = _in;
-        out = _out;
-        err = _err;
-        outPrint = new PrintStream(out, true);
-        errPrint = new PrintStream(err, true);
+        sin = _in;
+        sout = _out;
+        serr = _err;
+        outPrint = new PrintStream(sout, true);
+        errPrint = new PrintStream(serr, true);
         memory = new AreaVis();
     }
 
@@ -40,9 +40,10 @@ public class Interpreter {
 
         try {
             ParseTree tree = parser.program();
-            System.out.println(tree.toStringTree(parser));
-            System.out.println(tree);
-            SakeVisitor eval = new SakeVisitor(memory, in, outPrint, errPrint);
+            outPrint.println();
+            outPrint.println(tree.toStringTree(parser));
+            outPrint.println(tree);
+            SakeVisitor eval = new SakeVisitor(memory, sin, outPrint, errPrint);
             eval.visit(tree);
         } catch (ParseCancellationException e) {
             errPrint.println("Error message");
