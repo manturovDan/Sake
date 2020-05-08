@@ -1,7 +1,7 @@
 package man.dan.langobj;
 
 public class Countable implements SakeObj {
-    int value;
+    protected int value;
 
     public Countable(int val) {
         value = val;
@@ -13,6 +13,10 @@ public class Countable implements SakeObj {
 
     public void unMin() {
         value *= -1;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     public void not() {
@@ -27,5 +31,12 @@ public class Countable implements SakeObj {
 
     public Countable minus(Countable sub) {
         return new Countable(value - sub.value);
+    }
+
+    public Countable lessThan(Countable comp) {
+        if (value < comp.value)
+            return new Countable(true);
+        else
+            return new Countable(false);
     }
 }

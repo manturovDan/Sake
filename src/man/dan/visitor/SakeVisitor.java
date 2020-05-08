@@ -83,7 +83,22 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else if (ctx.op.getType() == SakeParserParser.MINUS) {
             return left.minus(right);
         } else {
-            throw new Exception("Interpreter grammar error");
+            throw new Exception("Interpreter grammar error +-");
+        }
+    }
+
+    @Override
+    public SakeObj visitGrLess(SakeParserParser.GrLessContext ctx) throws Exception {
+        Countable left = (Countable) visit(ctx.expr(0));
+        Countable right = (Countable) visit(ctx.expr(1));
+
+        if (ctx.op.getType() == SakeParserParser.LESS) {
+            return left.lessThan(right);
+        }
+        else if (ctx.op.getType() == SakeParserParser.GREATER) {
+            return right.lessThan(left);
+        } else {
+            throw new Exception("Interpreter grammar error ><");
         }
     }
 
