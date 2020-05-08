@@ -135,4 +135,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         } //write semantic error
     }
 
+    @Override
+    public SakeObj visitSenden_stmt(SakeParserParser.Senden_stmtContext ctx) {
+        printStream.println(visit(ctx.expr()));
+        return null;
+    }
+
 }

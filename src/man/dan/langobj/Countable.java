@@ -39,4 +39,8 @@ public class Countable implements SakeObj {
         else
             return new Countable(false);
     }
+
+    public String toString() {
+        return String.valueOf(value);
+    }
 }

@@ -1,3 +1,4 @@
 seisu b = x98;
 seisu c1 = 123;
 seisu aa1 = b + c1;
+senden aa1;
