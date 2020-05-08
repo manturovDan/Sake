@@ -1,5 +1,6 @@
 package man.dan.visitor;
 import man.dan.langobj.SakeObj;
+import man.dan.langobj.Seisu;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
@@ -25,17 +26,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         memory = mem;
     }
 
-    @Override
-    public SakeObj visitProgram(SakeParserParser.ProgramContext ctx) {
-        init();
-        try {
-            sout.println("Visit");
-            return super.visitProgram(ctx);
-        } finally {
-            cleanup();
-        }
-    }
-
     protected void init() {
         printStream = new PrintStream(sout, true);
         inputStream = new BufferedReader(new InputStreamReader(sin));
@@ -44,4 +34,31 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected void cleanup() {
 
     }
+
+    @Override
+    public SakeObj visitProgram(SakeParserParser.ProgramContext ctx) {
+        init();
+        try {
+            printStream.println("Program");
+            return super.visitProgram(ctx);
+        } finally {
+            cleanup();
+        }
+    }
+
+    @Override
+    public SakeObj visitNum_assign(SakeParserParser.Num_assignContext ctx) {
+        String name = ctx.ID().getText();
+        Seisu value = (Seisu) visit(ctx.expr());
+
+        //to mem
+
+        return value;
+    }
+
+    @Override
+    public SakeObj visitUn_min(SakeParserParser.Un_minContext ctx) {
+
+    }
+
 }

@@ -29,16 +29,16 @@ constant
 ;
 
 expr
-    : '-' expr
-    | '~' expr
-    | expr ('+'|'-') expr
-    | expr ('<'|'>') expr
-    | expr '^' expr
-    | expr 'v' expr
-    | constant
-    | appeal
-    | function_call
-    | '(' expr ')'
+    : '-' expr              #un_min
+    | '~' expr              #not
+    | expr ('+'|'-') expr   #plus_min
+    | expr ('<'|'>') expr   #gr_less
+    | expr '^' expr         #or
+    | expr 'v' expr         #and
+    | constant              #const
+    | appeal                #app
+    | function_call         #fun_call
+    | '(' expr ')'          #brackets
 ;
 
 num_assign

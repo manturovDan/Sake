@@ -29,11 +29,75 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConstant(SakeParserParser.ConstantContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SakeParserParser#expr}.
+	 * Visit a parse tree produced by the {@code app}
+	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr(SakeParserParser.ExprContext ctx);
+	T visitApp(SakeParserParser.AppContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code plus_min}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPlus_min(SakeParserParser.Plus_minContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code fun_call}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFun_call(SakeParserParser.Fun_callContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code not}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNot(SakeParserParser.NotContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code or}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOr(SakeParserParser.OrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code const}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConst(SakeParserParser.ConstContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code and}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAnd(SakeParserParser.AndContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code gr_less}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGr_less(SakeParserParser.Gr_lessContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code un_min}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUn_min(SakeParserParser.Un_minContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code brackets}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBrackets(SakeParserParser.BracketsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SakeParserParser#num_assign}.
 	 * @param ctx the parse tree
