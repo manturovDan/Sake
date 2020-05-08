@@ -14,6 +14,7 @@ statement
     | jigen_stmt
     | nagasa_stmt
     | call_stmt
+    | senden_stmt
     | function
     | condition
     | cycle
@@ -90,6 +91,10 @@ jigen_stmt
 
 nagasa_stmt
     : NAGASA appeal ENDEXPR
+;
+
+senden_stmt
+    : SENDEN expr ENDEXPR
 ;
 
 call_stmt

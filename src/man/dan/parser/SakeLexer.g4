@@ -73,6 +73,11 @@ SHUKI
     : 'shuki'
 ;
 
+/* print */
+SENDEN
+    : 'senden'
+;
+
 PLUS
     : '+'
 ;
