@@ -1,7 +1,6 @@
 package man.dan.visitor;
 import man.dan.langobj.Countable;
 import man.dan.langobj.SakeObj;
-import man.dan.langobj.Seisu;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
@@ -71,6 +70,21 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         minExpr.not();
 
         return minExpr;
+    }
+
+    @Override
+    public SakeObj visitPlusMin(SakeParserParser.PlusMinContext ctx) throws Exception {
+        Countable left = (Countable) visit(ctx.expr(0));
+        Countable right = (Countable) visit(ctx.expr(1));
+
+        if(ctx.op.getType() == SakeParserParser.PLUS) {
+            return left.plus(right);
+        }
+        else if (ctx.op.getType() == SakeParserParser.MINUS) {
+            return left.minus(right);
+        } else {
+            throw new Exception("Interpreter grammar error");
+        }
     }
 
 }

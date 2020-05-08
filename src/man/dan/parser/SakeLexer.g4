@@ -73,6 +73,22 @@ SHUKI
     : 'shuki'
 ;
 
+PLUS
+    : '+'
+;
+
+MINUS
+    : '-'
+;
+
+GREATER
+    : '>'
+;
+
+LESS
+    : '<'
+;
+
 ID
     : [a-zA-Z][a-zA-Z0-9]*
 ;

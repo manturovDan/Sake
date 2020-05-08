@@ -24,4 +24,8 @@ public class Countable implements SakeObj {
     public Countable plus(Countable add) {
         return new Countable(value + add.value);
     }
+
+    public Countable minus(Countable sub) {
+        return new Countable(value - sub.value);
+    }
 }
