@@ -1,4 +1,5 @@
 package man.dan.visitor;
+import man.dan.langobj.Countable;
 import man.dan.langobj.SakeObj;
 import man.dan.langobj.Seisu;
 import man.dan.memory.AreaVis;
@@ -49,7 +50,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitNum_assign(SakeParserParser.Num_assignContext ctx) {
         String name = ctx.ID().getText();
-        Seisu value = (Seisu) visit(ctx.expr());
+        Countable value = (Countable) visit(ctx.expr());
 
         //to mem
 
@@ -57,8 +58,19 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     @Override
-    public SakeObj visitUn_min(SakeParserParser.Un_minContext ctx) {
+    public SakeObj visitUnMin(SakeParserParser.UnMinContext ctx) {
+        Countable minExpr = (Countable)visit(ctx.expr());
+        minExpr.unMin();
 
+        return minExpr;
+    }
+
+    @Override
+    public SakeObj visitNot(SakeParserParser.NotContext ctx) {
+        Countable minExpr = (Countable)visit(ctx.expr());
+        minExpr.not();
+
+        return minExpr;
     }
 
 }

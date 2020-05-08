@@ -410,47 +410,6 @@ public class SakeParserParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class Plus_minContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public Plus_minContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterPlus_min(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitPlus_min(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitPlus_min(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class Fun_callContext extends ExprContext {
-		public Function_callContext function_call() {
-			return getRuleContext(Function_callContext.class,0);
-		}
-		public Fun_callContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterFun_call(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitFun_call(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitFun_call(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class NotContext extends ExprContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
@@ -467,6 +426,28 @@ public class SakeParserParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitNot(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class PlusMinContext extends ExprContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public PlusMinContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterPlusMin(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitPlusMin(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitPlusMin(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -533,44 +514,63 @@ public class SakeParserParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class Gr_lessContext extends ExprContext {
+	public static class GrLessContext extends ExprContext {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public Gr_lessContext(ExprContext ctx) { copyFrom(ctx); }
+		public GrLessContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterGr_less(this);
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterGrLess(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitGr_less(this);
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitGrLess(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitGr_less(this);
+			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitGrLess(this);
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class Un_minContext extends ExprContext {
+	public static class UnMinContext extends ExprContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public Un_minContext(ExprContext ctx) { copyFrom(ctx); }
+		public UnMinContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterUn_min(this);
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterUnMin(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitUn_min(this);
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitUnMin(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitUn_min(this);
+			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitUnMin(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class FunCallContext extends ExprContext {
+		public Function_callContext function_call() {
+			return getRuleContext(Function_callContext.class,0);
+		}
+		public FunCallContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).enterFunCall(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SakeParserListener ) ((SakeParserListener)listener).exitFunCall(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SakeParserVisitor ) return ((SakeParserVisitor<? extends T>)visitor).visitFunCall(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -615,7 +615,7 @@ public class SakeParserParser extends Parser {
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
-				_localctx = new Un_minContext(_localctx);
+				_localctx = new UnMinContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
@@ -656,7 +656,7 @@ public class SakeParserParser extends Parser {
 				break;
 			case 5:
 				{
-				_localctx = new Fun_callContext(_localctx);
+				_localctx = new FunCallContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(76);
@@ -691,7 +691,7 @@ public class SakeParserParser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 					case 1:
 						{
-						_localctx = new Plus_minContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new PlusMinContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(83);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
@@ -711,7 +711,7 @@ public class SakeParserParser extends Parser {
 						break;
 					case 2:
 						{
-						_localctx = new Gr_lessContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new GrLessContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(86);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");

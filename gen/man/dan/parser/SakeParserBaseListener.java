@@ -64,30 +64,6 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPlus_min(SakeParserParser.Plus_minContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPlus_min(SakeParserParser.Plus_minContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFun_call(SakeParserParser.Fun_callContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFun_call(SakeParserParser.Fun_callContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterNot(SakeParserParser.NotContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -95,6 +71,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNot(SakeParserParser.NotContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPlusMin(SakeParserParser.PlusMinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPlusMin(SakeParserParser.PlusMinContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,25 +124,37 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGr_less(SakeParserParser.Gr_lessContext ctx) { }
+	@Override public void enterGrLess(SakeParserParser.GrLessContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGr_less(SakeParserParser.Gr_lessContext ctx) { }
+	@Override public void exitGrLess(SakeParserParser.GrLessContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUn_min(SakeParserParser.Un_minContext ctx) { }
+	@Override public void enterUnMin(SakeParserParser.UnMinContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUn_min(SakeParserParser.Un_minContext ctx) { }
+	@Override public void exitUnMin(SakeParserParser.UnMinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunCall(SakeParserParser.FunCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunCall(SakeParserParser.FunCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

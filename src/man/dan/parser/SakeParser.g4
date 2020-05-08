@@ -29,15 +29,15 @@ constant
 ;
 
 expr
-    : '-' expr              #un_min
+    : '-' expr              #unMin
     | '~' expr              #not
-    | expr ('+'|'-') expr   #plus_min
-    | expr ('<'|'>') expr   #gr_less
+    | expr ('+'|'-') expr   #plusMin
+    | expr ('<'|'>') expr   #grLess
     | expr '^' expr         #or
     | expr 'v' expr         #and
     | constant              #const
     | appeal                #app
-    | function_call         #fun_call
+    | function_call         #funCall
     | '(' expr ')'          #brackets
 ;
 

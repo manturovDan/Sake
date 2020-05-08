@@ -50,30 +50,6 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitApp(SakeParserParser.AppContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code plus_min}
-	 * labeled alternative in {@link SakeParserParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPlus_min(SakeParserParser.Plus_minContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code plus_min}
-	 * labeled alternative in {@link SakeParserParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPlus_min(SakeParserParser.Plus_minContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code fun_call}
-	 * labeled alternative in {@link SakeParserParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterFun_call(SakeParserParser.Fun_callContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code fun_call}
-	 * labeled alternative in {@link SakeParserParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitFun_call(SakeParserParser.Fun_callContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code not}
 	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
@@ -85,6 +61,18 @@ public interface SakeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNot(SakeParserParser.NotContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code plusMin}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPlusMin(SakeParserParser.PlusMinContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code plusMin}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPlusMin(SakeParserParser.PlusMinContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code or}
 	 * labeled alternative in {@link SakeParserParser#expr}.
@@ -122,29 +110,41 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitAnd(SakeParserParser.AndContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code gr_less}
+	 * Enter a parse tree produced by the {@code grLess}
 	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterGr_less(SakeParserParser.Gr_lessContext ctx);
+	void enterGrLess(SakeParserParser.GrLessContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code gr_less}
+	 * Exit a parse tree produced by the {@code grLess}
 	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitGr_less(SakeParserParser.Gr_lessContext ctx);
+	void exitGrLess(SakeParserParser.GrLessContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code un_min}
+	 * Enter a parse tree produced by the {@code unMin}
 	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterUn_min(SakeParserParser.Un_minContext ctx);
+	void enterUnMin(SakeParserParser.UnMinContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code un_min}
+	 * Exit a parse tree produced by the {@code unMin}
 	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitUn_min(SakeParserParser.Un_minContext ctx);
+	void exitUnMin(SakeParserParser.UnMinContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code funCall}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunCall(SakeParserParser.FunCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code funCall}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunCall(SakeParserParser.FunCallContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code brackets}
 	 * labeled alternative in {@link SakeParserParser#expr}.
