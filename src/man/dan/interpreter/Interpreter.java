@@ -33,7 +33,7 @@ public class Interpreter {
     }
 
     public void run(InputStream progIn) throws IOException {
-        ANTLRInputStream input = new ANTLRFileStream("SakePrograms/EasyCalcul.sake");
+        CharStream input = CharStreams.fromStream(progIn);
         SakeParserLexer lexer = new SakeParserLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SakeParserParser parser = new SakeParserParser(tokens);
