@@ -10,18 +10,18 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
-    protected InputStream in;
-    protected PrintStream out;
-    protected PrintStream err;
+    protected InputStream sin;
+    protected PrintStream sout;
+    protected PrintStream serr;
     protected AreaVis memory;
 
     protected PrintStream printStream;
     protected BufferedReader inputStream;
 
     public SakeVisitor(AreaVis mem, InputStream _in, PrintStream _out, PrintStream _err) {
-        in = _in;
-        out = _out;
-        err = _err;
+        sin = _in;
+        sout = _out;
+        serr = _err;
         memory = mem;
     }
 
@@ -29,6 +29,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitProgram(SakeParserParser.ProgramContext ctx) {
         init();
         try {
+            sout.println("Visit");
             return super.visitProgram(ctx);
         } finally {
             cleanup();
@@ -36,8 +37,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected void init() {
-        printStream = new PrintStream(out, true);
-        inputStream = new BufferedReader(new InputStreamReader(in));
+        printStream = new PrintStream(sout, true);
+        inputStream = new BufferedReader(new InputStreamReader(sin));
     }
 
     protected void cleanup() {

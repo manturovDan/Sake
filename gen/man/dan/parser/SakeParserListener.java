@@ -178,6 +178,16 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitCall_stmt(SakeParserParser.Call_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#return_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_stmt(SakeParserParser.Return_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#return_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_stmt(SakeParserParser.Return_stmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#params}.
 	 * @param ctx the parse tree
 	 */

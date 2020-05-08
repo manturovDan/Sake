@@ -1,4 +1,4 @@
-seisu aa1 = -2;
 seisu b = x98;
-seisu c = 123;
-aa1 = aa1 + b - c -1 + -2;
+seisu c1 = 123;
+seisu aa1 = -2;
+aa1 = aa1 + b - c1 -1 + -2;

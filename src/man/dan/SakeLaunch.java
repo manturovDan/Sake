@@ -15,7 +15,7 @@ public class SakeLaunch {
 
         try {
             if (args.length == 0) {
-                System.out.println("run interpreter with <PROGRAM>.sake <MAZE>.LB (optional)");
+                System.out.println("Run interpreter with <PROGRAM>.sake <MAZE>.LB (optional)");
                 System.exit(-1);
             }
 

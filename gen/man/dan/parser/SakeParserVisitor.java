@@ -113,6 +113,12 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCall_stmt(SakeParserParser.Call_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#return_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn_stmt(SakeParserParser.Return_stmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SakeParserParser#params}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

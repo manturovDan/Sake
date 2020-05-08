@@ -33,14 +33,15 @@ public class Interpreter {
     }
 
     public void run(InputStream progIn) throws IOException {
-        CharStream input = new UnbufferedCharStream(progIn);
+        ANTLRInputStream input = new ANTLRFileStream("SakePrograms/EasyCalcul.sake");
         SakeParserLexer lexer = new SakeParserLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SakeParserParser parser = new SakeParserParser(tokens);
 
-
         try {
             ParseTree tree = parser.program();
+            System.out.println(tree.toStringTree(parser));
+            System.out.println(tree);
             SakeVisitor eval = new SakeVisitor(memory, in, outPrint, errPrint);
             eval.visit(tree);
         } catch (ParseCancellationException e) {
