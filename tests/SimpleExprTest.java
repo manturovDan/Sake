@@ -32,7 +32,7 @@ public class SimpleExprTest {
     }
 
     @Test
-    public void simpleCond() throws Exception {
+    public void simpleCondTTest() throws Exception {
         String initialString =  "seisu var1 = x578;\n" + //1400
                                 "ronri bl = shinri;\n" +
                                 "seisu c = var1 + (bl + 2);\n" +
@@ -52,5 +52,28 @@ public class SimpleExprTest {
         assertEquals(((Countable)memory.getValByName("bl")).getValue(), 500);
         assertEquals(((Countable)memory.getValByName("c")).getValue(), 1403);
         assertEquals(((Countable)memory.getValByName("k")).getValue(), 0);
+    }
+
+    @Test
+    public void simpleCondFTest() throws Exception {
+        String initialString =  "seisu var1 = x578;\n" + //1400
+                                "ronri bl = shinri;\n" +
+                                "seisu c = var1 + (bl + 2);\n" +
+                                "sorenara (var1 < 100) kido\n" +
+                                "    bl = 500;\n" +
+                                "    var1 = (bl + var1);\n" +
+                                "shushi;\n" +
+                                "ronri k = var1 > bl;\n";
+
+        InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
+        Interpreter interpreter;
+        interpreter = new Interpreter(System.in, System.out, System.out);
+        AreaVis memory = interpreter.getMemory();
+        interpreter.run(progIn);
+
+        assertEquals(((Countable)memory.getValByName("var1")).getValue(), 1400);
+        assertEquals(((Countable)memory.getValByName("bl")).getValue(), 1);
+        assertEquals(((Countable)memory.getValByName("c")).getValue(), 1403);
+        assertEquals(((Countable)memory.getValByName("k")).getValue(), 1);
     }
 }
