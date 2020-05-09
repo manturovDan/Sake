@@ -1,6 +1,8 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
+import man.dan.langobj.Undefined;
 import man.dan.memory.AreaVis;
+import man.dan.parser.SakeParserParser;
 import org.junit.*;
 
 import java.io.ByteArrayInputStream;
@@ -93,5 +95,31 @@ public class SimpleExprTest {
         assertEquals(((Countable)memory.getValByName("target")).getValue(), 10000);
         assertEquals(((Countable)memory.getValByName("counter")).getValue(), 10204);
         assertEquals(((Countable)memory.getValByName("cont")).getValue(), 5);
+    }
+
+    @Test
+    public void LoopIfTest() throws Exception {
+        String initialString =  "seisu undef;\n" +
+                                "ronri undef_ron;\n" +
+                                "undef_ron = osu;\n" +
+                                "seisu redef = -(4-9);\n" +
+                                "undef = redef;\n" +
+                                "seisu ko;\n" +
+                                "shuki k1 = 0 : (5+2) kido\n" +
+                                "    sorenara redef > 9 kido\n" +
+                                "        redef = redef + 2;\n" +
+                                "    shushi;\n" +
+                                "    \n" +
+                                "    sorenara redef < 10 kido \n" +
+                                "        redef = redef + 1;\n" +
+                                "    shushi;\n" +
+                                "shushi\n";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByName("undef")).getValue(), 5);
+        assertEquals(((Countable)memory.getValByName("redef")).getValue(), 14);
+        assertEquals(((Countable)memory.getValByName("undef_ron")).getValue(), 0);
+        assertEquals(((Undefined)memory.getValByName("ko")).getType(), SakeParserParser.SEISU);
     }
 }

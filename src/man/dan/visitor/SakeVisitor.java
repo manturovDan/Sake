@@ -172,6 +172,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                         ((Undefined)current).getType() == SakeParserParser.RONRI)))
             value = visit(ctx.expr());
         //then another
+        // error if undef
 
         try {
             memory.defineVal(name, value);

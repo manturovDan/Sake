@@ -1,1 +1,15 @@
-seisu
+seisu undef;
+ronri undef_ron;
+undef_ron = osu;
+seisu redef = -(4-9);
+undef = redef;
+seisu ko;
+shuki k1 = 0 : (5+2) kido
+    sorenara redef > 10 kido
+        redef = redef + 2;
+    shushi;
+
+    sorenara redef < 10 kido
+        redef = redef + 1;
+    shushi;
+shushi
