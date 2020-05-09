@@ -46,4 +46,14 @@ public class AreaVis {
             parent.defineVal(name, obj);
         else throw new Exception("No var");
     }
+
+    public AreaVis nestedArea() {
+        AreaVis newArea = new AreaVis(this);
+        nested.add(newArea);
+        return newArea;
+    }
+
+    public AreaVis parentArea() {
+        return parent;
+    }
 }

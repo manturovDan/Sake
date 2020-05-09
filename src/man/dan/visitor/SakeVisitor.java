@@ -192,4 +192,19 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else
             return new Countable(false);
     }
+
+    @Override
+    public SakeObj visitCondition(SakeParserParser.ConditionContext ctx) {
+        if (((Countable)visit(ctx.expr())).isShinri()) {
+            memory = memory.nestedArea();
+
+            for (SakeParserParser.StatementContext stmt : ctx.statement()) {
+                visit(stmt);
+            }
+
+            memory = memory.parentArea();
+        }
+
+        return null;
+    }
 }
