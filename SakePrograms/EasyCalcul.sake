@@ -1,7 +1,9 @@
-seisu b = x98;
-seisu c1 = 123;
-seisu aa1 = b + c1;
-senden aa1;
+seisu b =   x98;
+seisu c1 =   123;
+
+seisu aa1 = b    + c1;
+    senden   aa1;
 c1 = c1 + -2;
-senden aa1;
-senden c1;
+
+
+senden aa1;senden c1;

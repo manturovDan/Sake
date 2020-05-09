@@ -50,4 +50,8 @@ public class Interpreter {
         }
 
     }
+
+    public AreaVis getMemory() {
+        return memory;
+    }
 }

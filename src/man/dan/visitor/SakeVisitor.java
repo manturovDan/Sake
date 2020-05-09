@@ -29,7 +29,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected void init() {
         printStream = new PrintStream(sout, true);
         inputStream = new BufferedReader(new InputStreamReader(sin));
-        memory = new AreaVis();
     }
 
     protected void cleanup() {
