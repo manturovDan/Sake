@@ -43,4 +43,8 @@ public class Countable implements SakeObj {
     public String toString() {
         return String.valueOf(value);
     }
+
+    public boolean isShinri() {
+        return value != 0;
+    }
 }
