@@ -10,6 +10,15 @@ import java.io.InputStream;
 import static org.junit.Assert.*;
 
 public class SimpleExprTest {
+    AreaVis execute(String initialString) throws IOException {
+        InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
+        Interpreter interpreter;
+        interpreter = new Interpreter(System.in, System.out, System.out);
+        AreaVis memory = interpreter.getMemory();
+        interpreter.run(progIn);
+        return memory;
+    }
+
     @Test
     public void simpleCalc() throws Exception {
         String initialString =  "seisu b =   x98;\n" +
@@ -21,11 +30,7 @@ public class SimpleExprTest {
                                 "\n" +
                                 "\n";
 
-        InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
-        Interpreter interpreter;
-        interpreter = new Interpreter(System.in, System.out, System.out);
-        AreaVis memory = interpreter.getMemory();
-        interpreter.run(progIn);
+        AreaVis memory = execute(initialString);
 
         assertEquals(((Countable)memory.getValByName("c1")).getValue(), 121);
         assertEquals(((Countable)memory.getValByName("b")).getValue(), 152);
@@ -42,11 +47,7 @@ public class SimpleExprTest {
                                 "shushi;\n" +
                                 "ronri k = var1 < bl;\n";
 
-        InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
-        Interpreter interpreter;
-        interpreter = new Interpreter(System.in, System.out, System.out);
-        AreaVis memory = interpreter.getMemory();
-        interpreter.run(progIn);
+        AreaVis memory = execute(initialString);
 
         assertEquals(((Countable)memory.getValByName("var1")).getValue(), 1900);
         assertEquals(((Countable)memory.getValByName("bl")).getValue(), 500);
@@ -65,15 +66,32 @@ public class SimpleExprTest {
                                 "shushi;\n" +
                                 "ronri k = var1 > bl;\n";
 
-        InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
-        Interpreter interpreter;
-        interpreter = new Interpreter(System.in, System.out, System.out);
-        AreaVis memory = interpreter.getMemory();
-        interpreter.run(progIn);
+        AreaVis memory = execute(initialString);
 
         assertEquals(((Countable)memory.getValByName("var1")).getValue(), 1400);
         assertEquals(((Countable)memory.getValByName("bl")).getValue(), 1);
         assertEquals(((Countable)memory.getValByName("c")).getValue(), 1403);
         assertEquals(((Countable)memory.getValByName("k")).getValue(), 1);
+    }
+
+    @Test
+    public void simpleLoopTest() throws Exception {
+        String initialString =      "seisu some_var = -201;\n" +
+                                    "seisu target = 10000;\n" +
+                                    "seisu counter = 0;\n" +
+                                    "seisu cont = -1;\n" +
+                                    "\n" +
+                                    "shuki i = some_var - 1 : target - -2 kido\n" +
+                                    "    seisu some_var = 5;\n" +
+                                    "    cont = some_var;\n" +
+                                    "    counter = counter + 1;\n" +
+                                    "shushi;";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByName("some_var")).getValue(), -201);
+        assertEquals(((Countable)memory.getValByName("target")).getValue(), 10000);
+        assertEquals(((Countable)memory.getValByName("counter")).getValue(), 10204);
+        assertEquals(((Countable)memory.getValByName("cont")).getValue(), 5);
     }
 }
