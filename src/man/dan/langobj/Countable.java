@@ -47,4 +47,8 @@ public class Countable implements SakeObj {
     public boolean isShinri() {
         return value != 0;
     }
+
+    public void inc() {
+        value++;
+    }
 }

@@ -202,8 +202,30 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 visit(stmt);
             }
 
-            memory = memory.parentArea();
+            memory = memory.parentArea(); //maybe clear
         }
+
+        return null;
+    }
+
+    @Override
+    public SakeObj visitCycle(SakeParserParser.CycleContext ctx) {
+        memory = memory.nestedArea();
+        String name = ctx.ID().getText();
+
+        Countable cur = (Countable) visit(ctx.expr(0)); // [
+        Countable to = (Countable) visit(ctx.expr(1)); // )
+
+        try {
+            memory.declAndAssign(name, cur);
+            while (cur.lessThan(to).isShinri()) {
+                for (SakeParserParser.StatementContext stmt : ctx.statement()) {
+                    visit(stmt);
+                }
+                cur.inc();
+            }
+        }
+        catch (Exception e) {}
 
         return null;
     }
