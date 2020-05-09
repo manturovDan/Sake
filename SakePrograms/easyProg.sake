@@ -1,0 +1,12 @@
+seisu var1 = x578;
+ronri bl = shinri;
+seisu c = var1 + bl + 2;
+sorenara (var1 > 100) kido
+    bl = 500;
+    var1 = (bl + var1);
+shushi;
+#ronri k = var1 < bl;
+
+senden var1;
+senden bl;
+senden c;
