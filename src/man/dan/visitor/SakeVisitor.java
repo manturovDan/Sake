@@ -1,6 +1,7 @@
 package man.dan.visitor;
 import man.dan.langobj.Countable;
 import man.dan.langobj.SakeObj;
+import man.dan.langobj.Undefined;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
@@ -169,6 +170,20 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
 
         return value;
+    }
+
+    @Override
+    public SakeObj visitDeclaration_stmt(SakeParserParser.Declaration_stmtContext ctx) {
+        String name = ctx.ID().getText();
+        SakeObj undef = new Undefined(ctx.type().t.getType());
+
+        try {
+            memory.declAndAssign(name, undef);
+        } catch (Exception e) { //make normal
+            //Semantic error
+        }
+
+        return undef;
     }
 
     @Override

@@ -74,7 +74,7 @@ assignment_stmt
 ;
 
 type
-    : SEISU | RONRI | RIPPOTAI | HAIRETSU
+    : t=(SEISU | RONRI | RIPPOTAI | HAIRETSU)
 ;
 
 declaration_stmt

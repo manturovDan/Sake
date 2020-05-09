@@ -1,5 +1,7 @@
 package man.dan.langobj;
 
+import man.dan.parser.SakeParserParser;
+
 public class Countable implements SakeObj {
     protected int value;
 

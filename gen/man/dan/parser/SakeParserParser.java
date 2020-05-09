@@ -1234,6 +1234,7 @@ public class SakeParserParser extends Parser {
 	}
 
 	public static class TypeContext extends ParserRuleContext {
+		public Token t;
 		public TerminalNode SEISU() { return getToken(SakeParserParser.SEISU, 0); }
 		public TerminalNode RONRI() { return getToken(SakeParserParser.RONRI, 0); }
 		public TerminalNode RIPPOTAI() { return getToken(SakeParserParser.RIPPOTAI, 0); }
@@ -1265,9 +1266,10 @@ public class SakeParserParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(155);
+			((TypeContext)_localctx).t = _input.LT(1);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SEISU) | (1L << RONRI) | (1L << RIPPOTAI) | (1L << HAIRETSU))) != 0)) ) {
-			_errHandler.recoverInline(this);
+				((TypeContext)_localctx).t = (Token)_errHandler.recoverInline(this);
 			}
 			else {
 				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
