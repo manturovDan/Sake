@@ -229,4 +229,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         return null;
     }
+
+    @Override
+    public SakeObj visitBrackets(SakeParserParser.BracketsContext ctx) {
+        return visit(ctx.expr());
+    }
 }
