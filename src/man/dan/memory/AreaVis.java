@@ -38,4 +38,12 @@ public class AreaVis {
 
         throw new Exception("No var");
     }
+
+    public void defineVal(String name, SakeObj obj) throws Exception {
+        if (variables.containsKey(name))
+            variables.put(name, obj);
+        else if (parent != null)
+            parent.defineVal(name, obj);
+        else throw new Exception("No var");
+    }
 }

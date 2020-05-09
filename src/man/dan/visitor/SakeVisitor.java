@@ -141,4 +141,34 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return null;
     }
 
+    @Override
+    public SakeObj visitBool_assign(SakeParserParser.Bool_assignContext ctx) {
+        String name = ctx.ID().getText();
+        Countable value = (Countable) visit(ctx.expr());
+
+        //UNITE with seisu
+        //global now
+        try {
+            memory.declAndAssign(name, value);
+        } catch (Exception e) { //make normal
+            //Semantic error
+        }
+
+        return value;
+    }
+
+    @Override
+    public SakeObj visitDef_stmt(SakeParserParser.Def_stmtContext ctx) {
+        String name = ctx.appeal().ID().getText();
+        Countable value = (Countable) visit(ctx.expr());
+
+        //global now
+        try {
+            memory.defineVal(name, value);
+        } catch (Exception e) { //make normal
+            //Semantic error
+        }
+
+        return value;
+    }
 }
