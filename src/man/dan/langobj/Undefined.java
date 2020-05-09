@@ -10,4 +10,8 @@ public class Undefined implements SakeObj {
     public String toString() {
         return "undefined";
     }
+
+    public int getType() {
+        return type;
+    }
 }

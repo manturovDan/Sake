@@ -160,9 +160,19 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitDef_stmt(SakeParserParser.Def_stmtContext ctx) {
         String name = ctx.appeal().ID().getText();
-        Countable value = (Countable) visit(ctx.expr());
+        SakeObj value = null;
 
-        //global now
+        SakeObj current = null;
+        try {
+            current = memory.getValByName(name);
+        } catch (Exception e) {}
+
+        if (current instanceof Countable || (current instanceof Undefined &&
+                (((Undefined)current).getType() == SakeParserParser.SEISU ||
+                        ((Undefined)current).getType() == SakeParserParser.RONRI)))
+            value = visit(ctx.expr());
+        //then another
+
         try {
             memory.defineVal(name, value);
         } catch (Exception e) { //make normal
