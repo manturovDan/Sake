@@ -23,8 +23,8 @@ public class AreaVis {
     }
 
     public void declAndAssign(String name, SakeObj obj) throws Exception {
-        if (variables.containsKey(name))
-            throw new Exception("Semantic: one var two times"); //redo than
+        if (variables.containsKey(name) || obj == null)
+            throw new Exception("Semantic: one var two times or null"); //redo than
 
         variables.put(name, obj);
     }

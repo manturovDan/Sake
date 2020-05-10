@@ -159,6 +159,28 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     @Override
+    public SakeObj visitRippotai_assign(SakeParserParser.Rippotai_assignContext ctx) {
+        String name = ctx.ID().getText();
+        int x = ((Countable)visit(ctx.block_coub().expr(0))).getValue();
+        int y = ((Countable)visit(ctx.block_coub().expr(1))).getValue();
+        int z = ((Countable)visit(ctx.block_coub().expr(2))).getValue();
+        boolean kabe = ((Countable) visit(ctx.block_coub().expr(3))).getValue() == 1;
+
+        Rippotai value = null;
+        try {
+            value = new Rippotai(x, y, z, kabe);
+        } catch (Exception e) {} //later
+
+        try {
+            memory.declAndAssign(name, value);
+        } catch (Exception e) { //make normal
+            //Semantic error
+        }
+
+        return value;
+    }
+
+    @Override
     public SakeObj visitDef_simp_stmt(SakeParserParser.Def_simp_stmtContext ctx) {
         String name = ctx.appeal().ID().getText();
         SakeObj value = null;
@@ -166,15 +188,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         SakeObj current = null;
         try {
             current = memory.getValByName(name);
-        } catch (Exception e) {}
+        } catch (Exception e) {} //later
 
         if (current instanceof Countable || (current instanceof Undefined &&
                 (((Undefined)current).getType() == SakeParserParser.SEISU ||
                         ((Undefined)current).getType() == SakeParserParser.RONRI)))
             value = visit(ctx.expr());
-        else if (current instanceof Rippotai || (current instanceof Undefined &&
-                ((Undefined)current).getType() == SakeParserParser.RIPPOTAI))
-            value = visit(ctx.expr(0));
         //then another
         // error if undef
 
