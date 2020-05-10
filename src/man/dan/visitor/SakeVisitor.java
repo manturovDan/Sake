@@ -127,7 +127,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitApp(SakeParserParser.AppContext ctx) {
         String name = ctx.appeal().ID().getText();
         try {
-            return memory.getValByName(name);
+            return memory.getValByName(name).getCopy();
         } catch (Exception e) {
             printStream.println("No var " + name);
             return null;
