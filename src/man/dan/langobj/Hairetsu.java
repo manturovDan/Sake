@@ -21,4 +21,8 @@ public class Hairetsu implements SakeObj{
             }
         }
     }
+
+    public SakeObj get(int num) {
+        return arr.get(num);
+    }
 }

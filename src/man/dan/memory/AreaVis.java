@@ -1,6 +1,8 @@
 package man.dan.memory;
 
+import man.dan.langobj.Hairetsu;
 import man.dan.langobj.SakeObj;
+import man.dan.visitor.Pointer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,19 +24,30 @@ public class AreaVis {
         parent = _par;
     }
 
-    public void declAndAssign(String name, SakeObj obj) throws Exception {
-        if (variables.containsKey(name) || obj == null)
+    public void declAndAssign(Pointer ptr, SakeObj obj) throws Exception {
+        if (ptr.isArray() || variables.containsKey(ptr.getName()) || obj == null)
             throw new Exception("Semantic: one var two times or null"); //redo than
 
-        variables.put(name, obj);
+        variables.put(ptr.getName(), obj);
     }
 
-    public SakeObj getValByName(String name) throws Exception {
-        if (variables.containsKey(name))
-            return variables.get(name);
+    protected SakeObj getInArr(Hairetsu arr, ArrayList<Integer> deep) {
+        if (deep.size() == 1)
+            return arr.get(deep.get(0));
+        return getInArr((Hairetsu)arr.get(0), new ArrayList<>(deep.subList(1, deep.size())));
+
+    }
+
+    public SakeObj getValByPtr(Pointer ptr) throws Exception {
+        if (variables.containsKey(ptr.getName())) {
+            if (ptr.isArray())
+                return getInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep());
+            else
+                return variables.get(ptr.getName());
+        }
 
         if(parent != null)
-            return parent.getValByName(name);
+            return parent.getValByPtr(ptr);
 
         throw new Exception("No var");
     }

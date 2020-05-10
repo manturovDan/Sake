@@ -125,7 +125,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitApp(SakeParserParser.AppContext ctx) {
-        String name = ctx.appeal().ID().getText();
+        ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
+
+        Pointer ptr = new Pointer(ctx.appeal().ID().getText(), ctx.appeal().order().expr())
         try {
             return memory.getValByName(name).getCopy();
         } catch (Exception e) {
@@ -200,13 +202,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected SakeObj defineHairetsu(SakeParserParser.OrderContext order, String name, boolean assign) {
-        ArrayList<Integer> dimensions = new ArrayList<>();
-        for (SakeParserParser.ExprContext expr : order.expr()) {
-            int sz = ((Countable)visit(expr)).getValue();
-            //if (sz < 1)
-            //    throw later
-            dimensions.add(sz);
-        }
+        ArrayList<Integer> dimensions = ArFromOrder(order);
 
         Hairetsu arr = new Hairetsu(dimensions);
 
@@ -220,6 +216,18 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
 
         return arr;
+    }
+
+    protected ArrayList<Integer> ArFromOrder(SakeParserParser.OrderContext order) {
+        ArrayList<Integer> res = new ArrayList<>();
+        for (SakeParserParser.ExprContext expr : order.expr()) {
+            int sz = ((Countable)visit(expr)).getValue();
+            //if (sz < 1)
+            //    throw later
+            res.add(sz);
+        }
+
+        return res;
     }
 
     @Override
