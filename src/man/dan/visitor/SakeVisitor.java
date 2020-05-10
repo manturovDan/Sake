@@ -241,31 +241,28 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         if (isCountable(current))
             value = visit(ctx.expr());
         else if (isRippotai(current)) {
-            if (ctx.expr() != null) {
+            if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
-            }
-            else {
+            else
                 value = defineRippotai(ctx.block_coub(), name, false);
-            }
         }
         else if (isHairetsu(current)) {
-            if (ctx.expr() != null) {
+            if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
-            }
-            else {
+            else
                 defineHairetsu(ctx.array_vals().order(), name, false);
-            }
         }
         else if (isUndefinedUndefined(current)) {
-
+            if (ctx.expr() != null)
+                value = visit(ctx.expr()).getCopy();
+            else if (ctx.array_vals() != null)
+                defineHairetsu(ctx.array_vals().order(), name, false);
+            else if (ctx.block_coub() != null)
+                value = defineRippotai(ctx.block_coub(), name, false);
+            else { /* error later */}
         }
-        //then another
-        // error if undef
-
-        try {
-            memory.defineVal(name, value);
-        } catch (Exception e) { //make normal
-            //Semantic error
+        else {
+            //error later
         }
 
         return value;
