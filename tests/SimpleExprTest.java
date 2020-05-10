@@ -129,9 +129,12 @@ public class SimpleExprTest {
 
     @Test
     public void arrayCrTest() throws Exception {
-        String initialString =  "seisu b = 123;" +
-                                "hairetsu arr1 = { 4, 3, 2, 1 };" +
-                                "arr1[0, 0, 0, 0] = 56;";
+        String initialString =      "seisu b = 123;\n" +
+                                    "hairetsu arr1 = { 4, 3, 2, 1 };\n" +
+                                    "arr1[0, 0, 0, 0] = 56;\n" +
+                                    "arr1[3, 0, 1, 0] = b + -3;\n" +
+                                    "arr1[0, 0, 0, 1] = {2};\n" +
+                                    "arr1[0, 0, 0, 1, 1] = arr1[3, 0, 1, 0] < 1000;";
 
         AreaVis memory = execute(initialString);
 
