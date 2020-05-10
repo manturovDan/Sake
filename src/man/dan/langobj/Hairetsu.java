@@ -12,11 +12,13 @@ public class Hairetsu implements SakeObj{
 
     public Hairetsu(ArrayList<Integer> dims) {
         arr = new ArrayList<>();
-        if (dims.size() != 1) {
-            arr.add(new Hairetsu((ArrayList<Integer>) dims.subList(1, dims.size())));
-        }
-        else {
-            arr.add(new Undefined(0));
+        for (int i = 0; i < dims.get(0); ++i) {
+            if (dims.size() != 1) {
+                ArrayList<Integer> transfer = new ArrayList<>(dims.subList(1, dims.size()));
+                arr.add(new Hairetsu(transfer));
+            } else {
+                arr.add(new Undefined());
+            }
         }
     }
 }

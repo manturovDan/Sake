@@ -122,4 +122,13 @@ public class SimpleExprTest {
         assertEquals(((Countable)memory.getValByName("undef_ron")).getValue(), 0);
         assertEquals(((Undefined)memory.getValByName("ko")).getType(), SakeParserParser.SEISU);
     }
+
+    @Test
+    public void arrayCrTest() throws Exception {
+        String initialString =  "hairetsu arr1 = { 4, 3, 2, 1 }";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(1, 1);
+    }
 }

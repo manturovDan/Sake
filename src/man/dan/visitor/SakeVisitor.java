@@ -291,7 +291,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         ArrayList<Integer> dimensions = new ArrayList<>();
         for (SakeParserParser.ExprContext expr : ctx.array_vals().order().expr()) {
-            dimensions.add(((Countable)visit(expr)).getValue());
+            int sz = ((Countable)visit(expr)).getValue();
+            //if (sz < 1)
+            //    throw later
+            dimensions.add(sz);
         }
 
         Hairetsu arr = new Hairetsu(dimensions);
