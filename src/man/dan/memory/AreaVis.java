@@ -34,7 +34,7 @@ public class AreaVis {
     protected SakeObj getInArr(Hairetsu arr, ArrayList<Integer> deep) {
         if (deep.size() == 1)
             return arr.get(deep.get(0));
-        return getInArr((Hairetsu)arr.get(0), new ArrayList<>(deep.subList(1, deep.size())));
+        return getInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())));
     }
 
     protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet) {
@@ -47,7 +47,7 @@ public class AreaVis {
             } //expr later
         }
 
-        setInArr((Hairetsu)arr.get(0), new ArrayList<>(deep.subList(1, deep.size())), whatSet);
+        setInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())), whatSet);
     }
 
     public SakeObj getValByPtr(Pointer ptr) throws Exception {
