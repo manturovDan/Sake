@@ -35,8 +35,8 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByName("c1")).getValue(), 121);
-        assertEquals(((Countable)memory.getValByName("b")).getValue(), 152);
+        assertEquals(((Countable)memory.getValByPtr("c1")).getValue(), 121);
+        assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 152);
     }
 
     @Test
@@ -52,10 +52,10 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByName("var1")).getValue(), 1900);
-        assertEquals(((Countable)memory.getValByName("bl")).getValue(), 500);
-        assertEquals(((Countable)memory.getValByName("c")).getValue(), 1403);
-        assertEquals(((Countable)memory.getValByName("k")).getValue(), 0);
+        assertEquals(((Countable)memory.getValByPtr("var1")).getValue(), 1900);
+        assertEquals(((Countable)memory.getValByPtr("bl")).getValue(), 500);
+        assertEquals(((Countable)memory.getValByPtr("c")).getValue(), 1403);
+        assertEquals(((Countable)memory.getValByPtr("k")).getValue(), 0);
     }
 
     @Test
@@ -71,10 +71,10 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByName("var1")).getValue(), 1400);
-        assertEquals(((Countable)memory.getValByName("bl")).getValue(), 1);
-        assertEquals(((Countable)memory.getValByName("c")).getValue(), 1403);
-        assertEquals(((Countable)memory.getValByName("k")).getValue(), 1);
+        assertEquals(((Countable)memory.getValByPtr("var1")).getValue(), 1400);
+        assertEquals(((Countable)memory.getValByPtr("bl")).getValue(), 1);
+        assertEquals(((Countable)memory.getValByPtr("c")).getValue(), 1403);
+        assertEquals(((Countable)memory.getValByPtr("k")).getValue(), 1);
     }
 
     @Test
@@ -92,10 +92,10 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByName("some_var")).getValue(), -201);
-        assertEquals(((Countable)memory.getValByName("target")).getValue(), 10000);
-        assertEquals(((Countable)memory.getValByName("counter")).getValue(), 10204);
-        assertEquals(((Countable)memory.getValByName("cont")).getValue(), 5);
+        assertEquals(((Countable)memory.getValByPtr("some_var")).getValue(), -201);
+        assertEquals(((Countable)memory.getValByPtr("target")).getValue(), 10000);
+        assertEquals(((Countable)memory.getValByPtr("counter")).getValue(), 10204);
+        assertEquals(((Countable)memory.getValByPtr("cont")).getValue(), 5);
     }
 
     @Test
@@ -118,10 +118,10 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByName("undef")).getValue(), 5);
-        assertEquals(((Countable)memory.getValByName("redef")).getValue(), 14);
-        assertEquals(((Countable)memory.getValByName("undef_ron")).getValue(), 0);
-        assertEquals(((Undefined)memory.getValByName("ko")).getType(), SakeParserParser.SEISU);
+        assertEquals(((Countable)memory.getValByPtr("undef")).getValue(), 5);
+        assertEquals(((Countable)memory.getValByPtr("redef")).getValue(), 14);
+        assertEquals(((Countable)memory.getValByPtr("undef_ron")).getValue(), 0);
+        assertEquals(((Undefined)memory.getValByPtr("ko")).getType(), SakeParserParser.SEISU);
     }
 
     @Test
@@ -131,8 +131,8 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByName("b")).getValue(), 123);
-        assertTrue(memory.getValByName("arr1") instanceof Hairetsu);
+        assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 123);
+        assertTrue(memory.getValByPtr("arr1") instanceof Hairetsu);
     }
 
 }

@@ -47,12 +47,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitNum_assign(SakeParserParser.Num_assignContext ctx) {
-        String name = ctx.ID().getText();
+        Pointer ptr = new Pointer(ctx.ID().getText());
         Countable value = (Countable) visit(ctx.expr());
 
         //global now
         try {
-            memory.declAndAssign(name, value);
+            memory.declAndAssign(ptr, value);
         } catch (Exception e) { //make normal
             //Semantic error
         }
@@ -126,12 +126,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitApp(SakeParserParser.AppContext ctx) {
         ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
+        Pointer ptr = new Pointer(ctx.appeal().ID().getText(), deep);
 
-        Pointer ptr = new Pointer(ctx.appeal().ID().getText(), ctx.appeal().order().expr())
         try {
-            return memory.getValByName(name).getCopy();
+            return memory.getValByPtr(ptr).getCopy();
         } catch (Exception e) {
-            printStream.println("No var " + name);
+            printStream.println("No var " + ptr.getName());
             return null;
         } //write semantic error
     }
@@ -143,14 +143,20 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     @Override
+    public SakeObj visitBrackets(SakeParserParser.BracketsContext ctx) {
+        return visit(ctx.expr());
+    }
+
+
+    @Override
     public SakeObj visitBool_assign(SakeParserParser.Bool_assignContext ctx) {
-        String name = ctx.ID().getText();
+        Pointer ptr = new Pointer(ctx.ID().getText());
         Countable value = (Countable) visit(ctx.expr());
 
         //UNITE with seisu
         //global now
         try {
-            memory.declAndAssign(name, value);
+            memory.declAndAssign(ptr, value);
         } catch (Exception e) { //make normal
             //Semantic error
         }
@@ -178,7 +184,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return current instanceof Undefined && ((Undefined) current).getType() == -1;
     }
 
-    protected SakeObj defineRippotai(SakeParserParser.Block_coubContext block_cb, String name, boolean assign) {
+    protected SakeObj defineRippotai(SakeParserParser.Block_coubContext block_cb, Pointer ptr, boolean assign) {
         int x = ((Countable)visit(block_cb.expr(0))).getValue();
         int y = ((Countable)visit(block_cb.expr(1))).getValue();
         int z = ((Countable)visit(block_cb.expr(2))).getValue();
@@ -191,9 +197,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         try {
             if (assign)
-                memory.declAndAssign(name, value);
+                memory.declAndAssign(ptr, value);
             else
-                memory.defineVal(name, value);
+                memory.defineVal(ptr, value);
         } catch (Exception e) { //make normal
             //Semantic error
         }
@@ -201,16 +207,16 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return value;
     }
 
-    protected SakeObj defineHairetsu(SakeParserParser.OrderContext order, String name, boolean assign) {
+    protected SakeObj defineHairetsu(SakeParserParser.OrderContext order, Pointer ptr, boolean assign) {
         ArrayList<Integer> dimensions = ArFromOrder(order);
 
         Hairetsu arr = new Hairetsu(dimensions);
 
         try {
             if (assign)
-                memory.declAndAssign(name, arr);
+                memory.declAndAssign(ptr, arr);
             else
-                memory.defineVal(name, arr);
+                memory.defineVal(ptr, arr);
         } catch (Exception e) { //make normal
             //Semantic error
         }
@@ -232,18 +238,27 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitRippotai_assign(SakeParserParser.Rippotai_assignContext ctx) {
-        String name = ctx.ID().getText();
-        return defineRippotai(ctx.block_coub(), name, true);
+        Pointer ptr = new Pointer(ctx.ID().getText());
+        return defineRippotai(ctx.block_coub(), ptr, true);
+    }
+
+    @Override
+    public SakeObj visitHairetsu_assign(SakeParserParser.Hairetsu_assignContext ctx) {
+        Pointer ptr = new Pointer(ctx.ID().getText());
+        return defineHairetsu(ctx.array_vals().order(), ptr, true);
     }
 
     @Override
     public SakeObj visitDef_simp_stmt(SakeParserParser.Def_simp_stmtContext ctx) {
         String name = ctx.appeal().ID().getText();
-        SakeObj value = null;
+        ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
+        Pointer ptr = new Pointer(name, deep);
 
+        SakeObj value = null;
         SakeObj current = null;
+
         try {
-            current = memory.getValByName(name);
+            current = memory.getValByPtr(ptr);
         } catch (Exception e) {} //later
 
         if (isCountable(current))
@@ -252,21 +267,21 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
             else
-                return defineRippotai(ctx.block_coub(), name, false);
+                return defineRippotai(ctx.block_coub(), ptr, false);
         }
         else if (isHairetsu(current)) {
             if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
             else
-                return defineHairetsu(ctx.array_vals().order(), name, false);
+                return defineHairetsu(ctx.array_vals().order(), ptr, false);
         }
         else if (isUndefinedUndefined(current)) {
             if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
             else if (ctx.array_vals() != null)
-                return defineHairetsu(ctx.array_vals().order(), name, false);
+                return defineHairetsu(ctx.array_vals().order(), ptr, false);
             else if (ctx.block_coub() != null)
-                return defineRippotai(ctx.block_coub(), name, false);
+                return defineRippotai(ctx.block_coub(), ptr, false);
             else { /* error later */}
         }
         else {
@@ -274,7 +289,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
 
         try {
-            memory.defineVal(name, value);
+            memory.defineVal(ptr, value);
         } catch (Exception e) { //make normal
             //Semantic error
         }
@@ -284,11 +299,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitDeclaration_stmt(SakeParserParser.Declaration_stmtContext ctx) {
-        String name = ctx.ID().getText();
+        Pointer ptr = new Pointer(ctx.ID().getText());
         SakeObj undef = new Undefined(ctx.type().t.getType());
 
         try {
-            memory.declAndAssign(name, undef);
+            memory.declAndAssign(ptr, undef);
         } catch (Exception e) { //make normal
             //Semantic error
         }
@@ -336,13 +351,13 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitCycle(SakeParserParser.CycleContext ctx) {
         memory = memory.nestedArea();
-        String name = ctx.ID().getText();
+        Pointer ptr = new Pointer(ctx.ID().getText());
 
         Countable cur = (Countable) visit(ctx.expr(0)); // [
         Countable to = (Countable) visit(ctx.expr(1)); // )
 
         try {
-            memory.declAndAssign(name, cur);
+            memory.declAndAssign(ptr, cur);
             while (cur.lessThan(to).isShinri()) {
                 for (SakeParserParser.StatementContext stmt : ctx.statement()) {
                     visit(stmt);
@@ -355,16 +370,5 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         catch (Exception e) {}
 
         return null;
-    }
-
-    @Override
-    public SakeObj visitBrackets(SakeParserParser.BracketsContext ctx) {
-        return visit(ctx.expr());
-    }
-
-    @Override
-    public SakeObj visitHairetsu_assign(SakeParserParser.Hairetsu_assignContext ctx) {
-        String name = ctx.ID().getText();
-        return defineHairetsu(ctx.array_vals().order(), name, true);
     }
 }

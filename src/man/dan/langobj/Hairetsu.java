@@ -25,4 +25,8 @@ public class Hairetsu implements SakeObj{
     public SakeObj get(int num) {
         return arr.get(num);
     }
+
+    public void set(int where, SakeObj what) {
+        arr.set(where, what);
+    }
 }

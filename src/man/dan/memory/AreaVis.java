@@ -35,10 +35,23 @@ public class AreaVis {
         if (deep.size() == 1)
             return arr.get(deep.get(0));
         return getInArr((Hairetsu)arr.get(0), new ArrayList<>(deep.subList(1, deep.size())));
+    }
 
+    protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet) {
+        if (deep.size() == 1) {
+            try {
+                arr.set(deep.get(0), whatSet);
+                return;
+            } catch (Exception e) {
+                return;
+            } //expr later
+        }
+
+        setInArr((Hairetsu)arr.get(0), new ArrayList<>(deep.subList(1, deep.size())), whatSet);
     }
 
     public SakeObj getValByPtr(Pointer ptr) throws Exception {
+        //expr later
         if (variables.containsKey(ptr.getName())) {
             if (ptr.isArray())
                 return getInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep());
@@ -52,11 +65,20 @@ public class AreaVis {
         throw new Exception("No var");
     }
 
-    public void defineVal(String name, SakeObj obj) throws Exception {
-        if (variables.containsKey(name))
-            variables.put(name, obj);
+    public SakeObj getValByPtr(String name) throws Exception {
+        Pointer ptr = new Pointer(name);
+        return getValByPtr(ptr);
+    }
+
+    public void defineVal(Pointer ptr, SakeObj obj) throws Exception {
+        //expr later
+        if (variables.containsKey(ptr.getName()))
+            if (ptr.isArray())
+                setInArr((Hairetsu)variables.get(ptr.getName()), ptr.getDeep(), obj);
+            else
+                variables.put(ptr.getName(), obj);
         else if (parent != null)
-            parent.defineVal(name, obj);
+            parent.defineVal(ptr, obj);
         else throw new Exception("No var");
     }
 
