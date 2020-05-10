@@ -286,7 +286,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitHairetsu_assign(SakeParserParser.Hairetsu_assignContext ctx) {
-        memory = memory.nestedArea();
         String name = ctx.ID().getText();
 
         ArrayList<Integer> dimensions = new ArrayList<>();

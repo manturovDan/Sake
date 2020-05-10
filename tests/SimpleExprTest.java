@@ -1,5 +1,6 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
+import man.dan.langobj.Hairetsu;
 import man.dan.langobj.Undefined;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserParser;
@@ -125,10 +126,13 @@ public class SimpleExprTest {
 
     @Test
     public void arrayCrTest() throws Exception {
-        String initialString =  "hairetsu arr1 = { 4, 3, 2, 1 }";
+        String initialString =  "seisu b = 123;" +
+                                "hairetsu arr1 = { 4, 3, 2, 1 };";
+
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(1, 1);
+        assertEquals(((Countable)memory.getValByName("b")).getValue(), 123);
+        assertTrue(memory.getValByName("arr1") instanceof Hairetsu);
     }
 }
