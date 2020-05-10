@@ -48,7 +48,6 @@ public class Interpreter {
         } catch (ParseCancellationException e) {
             errPrint.println("Error message");
         }
-
     }
 
     public AreaVis getMemory() {

@@ -1,5 +1,6 @@
 package man.dan.visitor;
 import man.dan.langobj.Countable;
+import man.dan.langobj.Rippotai;
 import man.dan.langobj.SakeObj;
 import man.dan.langobj.Undefined;
 import man.dan.memory.AreaVis;
@@ -158,7 +159,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     @Override
-    public SakeObj visitDef_stmt(SakeParserParser.Def_stmtContext ctx) {
+    public SakeObj visitDef_simp_stmt(SakeParserParser.Def_simp_stmtContext ctx) {
         String name = ctx.appeal().ID().getText();
         SakeObj value = null;
 
@@ -171,6 +172,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 (((Undefined)current).getType() == SakeParserParser.SEISU ||
                         ((Undefined)current).getType() == SakeParserParser.RONRI)))
             value = visit(ctx.expr());
+        else if (current instanceof Rippotai || (current instanceof Undefined &&
+                ((Undefined)current).getType() == SakeParserParser.RIPPOTAI))
+            value = visit(ctx.expr(0));
         //then another
         // error if undef
 

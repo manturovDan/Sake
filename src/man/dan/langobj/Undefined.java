@@ -14,4 +14,9 @@ public class Undefined implements SakeObj {
     public int getType() {
         return type;
     }
+
+    @Override
+    public SakeObj getCopy() {
+        return new Undefined(type);
+    }
 }

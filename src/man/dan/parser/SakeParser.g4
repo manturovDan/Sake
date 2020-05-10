@@ -10,7 +10,9 @@ statement
     : assignment_stmt
     | declaration_stmt
     | return_stmt
-    | def_stmt
+    | def_simp_stmt
+    | def_coub_stmt
+    | def_array_stmt
     | jigen_stmt
     | nagasa_stmt
     | call_stmt
@@ -50,16 +52,24 @@ bool_assign
     : RONRI ID '=' expr ENDEXPR
 ;
 
+block_coub
+    : expr ',' expr ',' expr ',' expr
+;
+
 rippotai_assign
-    : RIPPOTAI ID '=' expr ',' expr ',' expr ',' expr ENDEXPR
+    : RIPPOTAI ID '=' block_coub ENDEXPR
 ;
 
 order
     : expr (',' expr)*
 ;
 
+array_vals
+    : '{' order '}'
+;
+
 hairetsu_assign
-    : HAIRETSU ID '=' '{' order '}'
+    : HAIRETSU ID '=' array_vals
 ;
 
 appeal
@@ -81,8 +91,16 @@ declaration_stmt
     : type ID ENDEXPR
 ;
 
-def_stmt
+def_simp_stmt
     : appeal '=' expr ENDEXPR
+;
+
+def_coub_stmt
+    : appeal '=' block_coub ENDEXPR
+;
+
+def_array_stmt
+    : appeal '=' array_vals ENDEXPR
 ;
 
 jigen_stmt

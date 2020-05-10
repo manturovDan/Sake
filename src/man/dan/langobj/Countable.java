@@ -53,4 +53,9 @@ public class Countable implements SakeObj {
     public void inc() {
         value++;
     }
+
+    @Override
+    public SakeObj getCopy() {
+        return new Countable(value);
+    }
 }
