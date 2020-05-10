@@ -67,7 +67,7 @@ array_vals
 ;
 
 hairetsu_assign
-    : HAIRETSU ID '=' array_vals
+    : HAIRETSU ID '=' array_vals ENDEXPR
 ;
 
 appeal

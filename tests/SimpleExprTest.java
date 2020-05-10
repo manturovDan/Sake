@@ -4,11 +4,14 @@ import man.dan.langobj.Hairetsu;
 import man.dan.langobj.Undefined;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserParser;
+import man.dan.visitor.Pointer;
 import org.junit.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -127,12 +130,14 @@ public class SimpleExprTest {
     @Test
     public void arrayCrTest() throws Exception {
         String initialString =  "seisu b = 123;" +
-                                "hairetsu arr1 = { 4, 3, 2, 1 };";
+                                "hairetsu arr1 = { 4, 3, 2, 1 };" +
+                                "arr1[0, 0, 0, 0] = 56;";
 
         AreaVis memory = execute(initialString);
 
         assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 123);
         assertTrue(memory.getValByPtr("arr1") instanceof Hairetsu);
+        assertEquals(((Countable)memory.getValByPtr(new Pointer("arr1", new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0))))).getValue(), 56);
     }
 
 }
