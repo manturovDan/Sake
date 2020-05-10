@@ -22,6 +22,8 @@ public class Pointer {
     }
 
     public boolean isArray() {
+        if (inDeep == null)
+            return false;
         return !inDeep.isEmpty();
     }
 

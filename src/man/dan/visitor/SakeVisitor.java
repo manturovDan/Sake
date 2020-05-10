@@ -53,6 +53,23 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         //global now
         try {
             memory.declAndAssign(ptr, value);
+        } catch (Exception e) { //make normal error later
+            //Semantic error
+            System.out.println(e.toString());
+        }
+
+        return value;
+    }
+
+    @Override
+    public SakeObj visitBool_assign(SakeParserParser.Bool_assignContext ctx) {
+        Pointer ptr = new Pointer(ctx.ID().getText());
+        Countable value = (Countable) visit(ctx.expr());
+
+        //UNITE with seisu
+        //global now
+        try {
+            memory.declAndAssign(ptr, value);
         } catch (Exception e) { //make normal
             //Semantic error
         }
@@ -147,22 +164,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return visit(ctx.expr());
     }
 
-
-    @Override
-    public SakeObj visitBool_assign(SakeParserParser.Bool_assignContext ctx) {
-        Pointer ptr = new Pointer(ctx.ID().getText());
-        Countable value = (Countable) visit(ctx.expr());
-
-        //UNITE with seisu
-        //global now
-        try {
-            memory.declAndAssign(ptr, value);
-        } catch (Exception e) { //make normal
-            //Semantic error
-        }
-
-        return value;
-    }
 
     protected boolean isCountable(SakeObj current) {
         return  (current instanceof Countable || (current instanceof Undefined &&
