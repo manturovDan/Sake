@@ -1,8 +1,5 @@
 package man.dan.visitor;
-import man.dan.langobj.Countable;
-import man.dan.langobj.Rippotai;
-import man.dan.langobj.SakeObj;
-import man.dan.langobj.Undefined;
+import man.dan.langobj.*;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
@@ -11,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected InputStream sin;
@@ -284,5 +282,27 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitBrackets(SakeParserParser.BracketsContext ctx) {
         return visit(ctx.expr());
+    }
+
+    @Override
+    public SakeObj visitHairetsu_assign(SakeParserParser.Hairetsu_assignContext ctx) {
+        memory = memory.nestedArea();
+        String name = ctx.ID().getText();
+
+        ArrayList<Integer> dimensions = new ArrayList<>();
+        for (SakeParserParser.ExprContext expr : ctx.array_vals().order().expr()) {
+            dimensions.add(((Countable)visit(expr)).getValue());
+        }
+
+        Hairetsu arr = new Hairetsu(dimensions);
+
+        try {
+            memory.declAndAssign(name, arr);
+        } catch (Exception e) { //make normal
+            //Semantic error
+        }
+
+        return arr;
+
     }
 }
