@@ -129,10 +129,10 @@ public class SimpleExprTest {
         String initialString =  "seisu b = 123;" +
                                 "hairetsu arr1 = { 4, 3, 2, 1 };";
 
-
         AreaVis memory = execute(initialString);
 
         assertEquals(((Countable)memory.getValByName("b")).getValue(), 123);
         assertTrue(memory.getValByName("arr1") instanceof Hairetsu);
     }
+
 }
