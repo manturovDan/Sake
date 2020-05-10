@@ -225,6 +225,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected ArrayList<Integer> ArFromOrder(SakeParserParser.OrderContext order) {
+        if (order == null)
+            return null;
+
         ArrayList<Integer> res = new ArrayList<>();
         for (SakeParserParser.ExprContext expr : order.expr()) {
             int sz = ((Countable)visit(expr)).getValue();

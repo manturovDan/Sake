@@ -13,7 +13,8 @@ public class Pointer {
 
     public Pointer(String n, ArrayList<Integer> deep) {
         name = n;
-        inDeep = new ArrayList<>(deep);
+        if (deep != null)
+            inDeep = new ArrayList<>(deep);
     }
 
     public String getName() {
