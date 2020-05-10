@@ -133,14 +133,17 @@ public class SimpleExprTest {
                                     "hairetsu arr1 = { 4, 3, 2, 1 };\n" +
                                     "arr1[0, 0, 0, 0] = 56;\n" +
                                     "arr1[3, 0, 1, 0] = b + -3;\n" +
-                                    "arr1[0, 0, 0, 1] = {2};\n" +
-                                    "arr1[0, 0, 0, 1, 1] = arr1[3, 0, 1, 0] < 1000;";
+                                    "arr1[0, 0, 1, 0] = {2};\n" +
+                                    "arr1[0, 0, 1, 0, 1]  = arr1[3, 0, 1, 0] < 1000;";
 
         AreaVis memory = execute(initialString);
 
         assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 123);
         assertTrue(memory.getValByPtr("arr1") instanceof Hairetsu);
-        assertEquals(((Countable)memory.getValByPtr(new Pointer("arr1", new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0))))).getValue(), 56);
+        assertEquals(((Countable)memory.getValByPtr(new Pointer("arr1", new ArrayList<>(Arrays.asList(0, 0, 0, 0))))).getValue(), 56);
+        assertEquals(((Countable)memory.getValByPtr(new Pointer("arr1", new ArrayList<>(Arrays.asList(3, 0, 1, 0))))).getValue(), 120);
+        assertTrue(memory.getValByPtr(new Pointer("arr1", new ArrayList<>(Arrays.asList(0, 0, 1, 0)))) instanceof Hairetsu);
+        assertEquals(((Countable)memory.getValByPtr(new Pointer("arr1", new ArrayList<>(Arrays.asList(0, 0, 1, 0, 1))))).getValue(), 1);
     }
 
 }
