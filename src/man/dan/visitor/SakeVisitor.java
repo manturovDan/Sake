@@ -157,19 +157,19 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected boolean isCountable(SakeObj current) {
-        return  current instanceof Countable || (current instanceof Undefined &&
+        return  (current instanceof Countable || (current instanceof Undefined &&
                 (((Undefined)current).getType() == SakeParserParser.SEISU ||
-                ((Undefined)current).getType() == SakeParserParser.RONRI));
+                ((Undefined)current).getType() == SakeParserParser.RONRI)));
     }
 
     protected boolean isRippotai(SakeObj current) {
-        return  current instanceof Rippotai || (current instanceof Undefined &&
-                (((Undefined) current).getType() == SakeParserParser.RIPPOTAI));
+        return  (current instanceof Rippotai || (current instanceof Undefined &&
+                (((Undefined) current).getType() == SakeParserParser.RIPPOTAI)));
     }
 
     protected boolean isHairetsu(SakeObj current) {
-        return current instanceof Hairetsu || (current instanceof Undefined &&
-                ((Undefined) current).getType() == SakeParserParser.HAIRETSU);
+        return  (current instanceof Hairetsu || (current instanceof Undefined &&
+                ((Undefined) current).getType() == SakeParserParser.HAIRETSU));
     }
 
     protected boolean isUndefinedUndefined(SakeObj current) {
@@ -244,25 +244,31 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
             else
-                value = defineRippotai(ctx.block_coub(), name, false);
+                return defineRippotai(ctx.block_coub(), name, false);
         }
         else if (isHairetsu(current)) {
             if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
             else
-                defineHairetsu(ctx.array_vals().order(), name, false);
+                return defineHairetsu(ctx.array_vals().order(), name, false);
         }
         else if (isUndefinedUndefined(current)) {
             if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
             else if (ctx.array_vals() != null)
-                defineHairetsu(ctx.array_vals().order(), name, false);
+                return defineHairetsu(ctx.array_vals().order(), name, false);
             else if (ctx.block_coub() != null)
-                value = defineRippotai(ctx.block_coub(), name, false);
+                return defineRippotai(ctx.block_coub(), name, false);
             else { /* error later */}
         }
         else {
             //error later
+        }
+
+        try {
+            memory.defineVal(name, value);
+        } catch (Exception e) { //make normal
+            //Semantic error
         }
 
         return value;
