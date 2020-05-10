@@ -316,30 +316,6 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDef_coub_stmt(SakeParserParser.Def_coub_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDef_coub_stmt(SakeParserParser.Def_coub_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDef_array_stmt(SakeParserParser.Def_array_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDef_array_stmt(SakeParserParser.Def_array_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterJigen_stmt(SakeParserParser.Jigen_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}

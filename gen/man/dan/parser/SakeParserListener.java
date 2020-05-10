@@ -278,26 +278,6 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitDef_simp_stmt(SakeParserParser.Def_simp_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SakeParserParser#def_coub_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterDef_coub_stmt(SakeParserParser.Def_coub_stmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SakeParserParser#def_coub_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitDef_coub_stmt(SakeParserParser.Def_coub_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SakeParserParser#def_array_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterDef_array_stmt(SakeParserParser.Def_array_stmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SakeParserParser#def_array_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitDef_array_stmt(SakeParserParser.Def_array_stmtContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#jigen_stmt}.
 	 * @param ctx the parse tree
 	 */

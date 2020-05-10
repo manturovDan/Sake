@@ -11,8 +11,6 @@ statement
     | declaration_stmt
     | return_stmt
     | def_simp_stmt
-    | def_coub_stmt
-    | def_array_stmt
     | jigen_stmt
     | nagasa_stmt
     | call_stmt
@@ -92,15 +90,7 @@ declaration_stmt
 ;
 
 def_simp_stmt
-    : appeal '=' expr ENDEXPR
-;
-
-def_coub_stmt
-    : appeal '=' block_coub ENDEXPR
-;
-
-def_array_stmt
-    : appeal '=' array_vals ENDEXPR
+    : appeal '=' (expr|array_vals|block_coub) ENDEXPR
 ;
 
 jigen_stmt
