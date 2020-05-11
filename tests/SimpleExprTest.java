@@ -1,9 +1,11 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
 import man.dan.langobj.Hairetsu;
+import man.dan.langobj.Rippotai;
 import man.dan.langobj.Undefined;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserParser;
+import man.dan.visitor.CubeAttr;
 import man.dan.visitor.Pointer;
 import org.junit.*;
 
@@ -155,7 +157,15 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 123);
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("cube1", CubeAttr.X)))).getValue(), 0);
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("cube1", CubeAttr.Y)))).getValue(), 1);
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("cube1", CubeAttr.Z)))).getValue(), 2);
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("cube1", CubeAttr.kabe)))).getValue(), 0);
+
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("carr", new ArrayList<>(Arrays.asList(0, 1, 0, 1)), CubeAttr.X)))).getValue(), 0);
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("carr", new ArrayList<>(Arrays.asList(0, 1, 0, 1)), CubeAttr.Y)))).getValue(), 1);
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("carr", new ArrayList<>(Arrays.asList(0, 1, 0, 1)), CubeAttr.Z)))).getValue(), 5);
+        assertEquals(((Countable)(memory.getValByPtr(new Pointer("carr", new ArrayList<>(Arrays.asList(0, 1, 0, 1)), CubeAttr.kabe)))).getValue(), 0);
     }
 
 }
