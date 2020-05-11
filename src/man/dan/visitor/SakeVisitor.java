@@ -242,10 +242,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected CubeAttr whichCubeAttr(SakeParserParser.AppealContext appeal) {
-        if(appeal.FIELD() == null)
+        if(appeal.cube_attr() == null)
             return null;
 
-        int attrType = appeal.hand.getType();
+        int attrType = appeal.cube_attr().hand.getType();
         switch (attrType) {
             case (SakeParserParser.TOX):
                 return CubeAttr.X;

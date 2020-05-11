@@ -70,13 +70,19 @@ hairetsu_assign
     : HAIRETSU ID '=' array_vals ENDEXPR
 ;
 
+cube_attr
+    : FIELD
+    hand=(TOX
+    | TOY
+    | TOZ
+    | TOKABE)
+;
+
 appeal
-    : ID    ('[' order ']'
-            | FIELD
-            hand=(TOX
-            | TOY
-            | TOZ
-            | TOKABE))?
+    : ID    (('[' order ']'
+            | cube_attr)
+            | ('[' order ']'
+            cube_attr))?
 ;
 
 assignment_stmt
