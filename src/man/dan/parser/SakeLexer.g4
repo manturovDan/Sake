@@ -65,7 +65,7 @@ SORENARA
 ;
 
 /* return */
-MODURU
+MODORU
     : 'modoru'
 ;
 

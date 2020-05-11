@@ -125,7 +125,7 @@ call_stmt
 ;
 
 return_stmt
-    : MODURU expr ENDEXPR
+    : MODORU expr ENDEXPR
 ;
 
 one_param
