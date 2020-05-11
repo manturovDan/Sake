@@ -295,7 +295,23 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return extraction;
     }
 
-    public HashMap<String, Types> defineFunArgs(SakeParserParser.ParamsContext params) {
+    protected Types typeByType(int type) {
+        switch (type) {
+            case (SakeParserParser.SEISU) :
+                return Types.seisu;
+            case (SakeParserParser.RONRI) :
+                return Types.ronri;
+            case (SakeParserParser.RIPPOTAI) :
+                return Types.rippotai;
+            case (SakeParserParser.HAIRETSU) :
+                return Types.hairetsu;
+            default :
+                System.out.println("Error later");
+                return null;
+        }
+    }
+
+    protected HashMap<String, Types> defineFunArgs(SakeParserParser.ParamsContext params) {
         HashMap<String, Types> pasDct = new HashMap<>();
 
         for(SakeParserParser.One_paramContext param : params.one_param()) {
@@ -303,22 +319,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             if (pasDct.containsKey(name))
                 System.out.println("error later");
 
-            switch (param.type().t.getType()) {
-                case (SakeParserParser.SEISU) :
-                    pasDct.put(name, Types.seisu);
-                    break;
-                case (SakeParserParser.RONRI) :
-                    pasDct.put(name, Types.ronri);
-                    break;
-                case (SakeParserParser.RIPPOTAI) :
-                    pasDct.put(name, Types.rippotai);
-                    break;
-                case (SakeParserParser.HAIRETSU) :
-                    pasDct.put(name, Types.hairetsu);
-                    break;
-                default :
-                    System.out.println("Error later");
-            }
+            pasDct.put(name, typeByType(param.type().t.getType()));
+
         }
 
         return pasDct;
@@ -465,8 +467,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitFunction(SakeParserParser.FunctionContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
         HashMap<String, Types> argFields =  defineFunArgs(ctx.params());
+        Types retType = typeByType(ctx.type().t.getType());
 
-        Kansu func = new Kansu(ctx, argFields);
+        Kansu func = new Kansu(ctx, argFields, retType);
         try {
             memory.declAndAssign(ptr, func);
         } catch (Exception e) {} //error later

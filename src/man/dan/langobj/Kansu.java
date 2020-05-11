@@ -9,10 +9,12 @@ public class Kansu implements SakeObj {
     protected SakeParserParser.FunctionContext ctx;
     protected HashMap<String, Types> params;
     protected AreaVis curMemory;
+    protected Types retType;
 
-    public Kansu(SakeParserParser.FunctionContext _ctx, HashMap<String, Types> par) {
+    public Kansu(SakeParserParser.FunctionContext _ctx, HashMap<String, Types> par, Types ret) {
         ctx = _ctx;
         params = new HashMap<>(par);
+        retType = ret;
     }
 
     public void setArea(AreaVis mem) {
