@@ -1,9 +1,6 @@
 package man.dan.memory;
 
-import man.dan.langobj.Countable;
-import man.dan.langobj.Hairetsu;
-import man.dan.langobj.Rippotai;
-import man.dan.langobj.SakeObj;
+import man.dan.langobj.*;
 import man.dan.visitor.CubeAttr;
 import man.dan.visitor.Pointer;
 
@@ -30,6 +27,9 @@ public class AreaVis {
     public void declAndAssign(Pointer ptr, SakeObj obj) throws Exception {
         if (ptr.isArray() || variables.containsKey(ptr.getName()) || obj == null)
             throw new Exception("Semantic: one var two times or null"); //redo than
+
+        if (obj instanceof Kansu)
+            ((Kansu) obj).setArea(this);
 
         variables.put(ptr.getName(), obj);
     }

@@ -296,7 +296,32 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     public HashMap<String, Types> defineFunArgs(SakeParserParser.ParamsContext params) {
+        HashMap<String, Types> pasDct = new HashMap<>();
 
+        for(SakeParserParser.One_paramContext param : params.one_param()) {
+            String name = param.ID().getText();
+            if (pasDct.containsKey(name))
+                System.out.println("error later");
+
+            switch (param.type().t.getType()) {
+                case (SakeParserParser.SEISU) :
+                    pasDct.put(name, Types.seisu);
+                    break;
+                case (SakeParserParser.RONRI) :
+                    pasDct.put(name, Types.ronri);
+                    break;
+                case (SakeParserParser.RIPPOTAI) :
+                    pasDct.put(name, Types.rippotai);
+                    break;
+                case (SakeParserParser.HAIRETSU) :
+                    pasDct.put(name, Types.hairetsu);
+                    break;
+                default :
+                    System.out.println("Error later");
+            }
+        }
+
+        return pasDct;
     }
 
     @Override
@@ -439,9 +464,14 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitFunction(SakeParserParser.FunctionContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
-        defineFunArgs(ctx.params());
+        HashMap<String, Types> argFields =  defineFunArgs(ctx.params());
 
+        Kansu func = new Kansu(ctx, argFields);
+        try {
+            memory.declAndAssign(ptr, func);
+        } catch (Exception e) {} //error later
 
+        return func;
     }
 
     @Override

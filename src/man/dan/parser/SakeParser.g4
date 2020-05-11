@@ -128,8 +128,12 @@ return_stmt
     : MODURU expr ENDEXPR
 ;
 
+one_param
+    : type ID
+;
+
 params
-    : (type ID (',' type ID)*)?
+    : (one_param (',' one_param)*)?
 ;
 
 function
