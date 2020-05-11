@@ -2,9 +2,6 @@ seisu kansu fibo(seisu f) kido
     sorenara f < 3 kido
         modoru f;
     shushi;
-
-    modoru fibo(f-2) + fibo(f-1);
 shushi;
 
-seisu k = fibo(10);
-senden k;
+fibo(2);
