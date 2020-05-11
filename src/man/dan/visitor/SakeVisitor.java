@@ -277,7 +277,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitDef_simp_stmt(SakeParserParser.Def_simp_stmtContext ctx) {
         String name = ctx.appeal().ID().getText();
         ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
-        Pointer ptr = new Pointer(name, deep);
+        CubeAttr attr = whichCubeAttr(ctx.appeal());
+        Pointer ptr = new Pointer(name, deep, attr);
 
         SakeObj value = null;
         SakeObj current = null;
