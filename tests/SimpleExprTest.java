@@ -153,7 +153,8 @@ public class SimpleExprTest {
         String initialString =      "rippotai cube1 = [0, 1, 2, osu];\n" +
                                     "hairetsu carr = {2, 2, 2, 2};\n" +
                                     "carr[0, 1, 0, 1] = cube1;\n" +
-                                    "carr[0, 1, 0, 1] => Z = 5;";
+                                    "carr[0, 1, 0, 1] => Z = 5;" +
+                                    "seisu k = carr[0, 1, 0, 1] => Y + - 3;";
 
         AreaVis memory = execute(initialString);
 
@@ -166,6 +167,8 @@ public class SimpleExprTest {
         assertEquals(((Countable)(memory.getValByPtr(new Pointer("carr", new ArrayList<>(Arrays.asList(0, 1, 0, 1)), CubeAttr.Y)))).getValue(), 1);
         assertEquals(((Countable)(memory.getValByPtr(new Pointer("carr", new ArrayList<>(Arrays.asList(0, 1, 0, 1)), CubeAttr.Z)))).getValue(), 5);
         assertEquals(((Countable)(memory.getValByPtr(new Pointer("carr", new ArrayList<>(Arrays.asList(0, 1, 0, 1)), CubeAttr.kabe)))).getValue(), 0);
+
+        assertEquals(((Countable)memory.getValByPtr("k")).getValue(), -2);
     }
 
 }
