@@ -7,3 +7,4 @@ seisu kansu fibo(seisu f) kido
 shushi;
 
 seisu k = fibo(10);
+senden k;
