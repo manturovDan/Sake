@@ -301,7 +301,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             else
                 return defineHairetsu(ctx.array_vals().order(), ptr, false);
         }
-        else if (isUndefinedUndefined(current)) {
+        else if (ptr.isArray()) {
             if (ctx.expr() != null)
                 value = visit(ctx.expr()).getCopy();
             else if (ctx.array_vals() != null)
