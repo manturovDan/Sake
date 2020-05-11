@@ -1,4 +1,6 @@
 package man.dan.visitor;
+import io.vavr.Tuple;
+import io.vavr.Tuple2;
 import man.dan.langobj.*;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
@@ -10,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected InputStream sin;
@@ -311,15 +314,17 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
     }
 
-    protected HashMap<String, Types> defineFunArgs(SakeParserParser.ParamsContext params) {
-        HashMap<String, Types> pasDct = new HashMap<>();
+    protected ArrayList<Tuple2<String, Types>> defineFunArgs(SakeParserParser.ParamsContext params) {
+        ArrayList<Tuple2<String, Types>> pasDct = new ArrayList<>();
+        HashSet<String> busyNames = new HashSet<>();
 
         for(SakeParserParser.One_paramContext param : params.one_param()) {
             String name = param.ID().getText();
-            if (pasDct.containsKey(name))
+            if (busyNames.contains(name))
                 System.out.println("error later");
 
-            pasDct.put(name, typeByType(param.type().t.getType()));
+            pasDct.add(new Tuple2<>(name, typeByType(param.type().t.getType())));
+            busyNames.add(name);
 
         }
 
@@ -466,7 +471,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitFunction(SakeParserParser.FunctionContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
-        HashMap<String, Types> argFields =  defineFunArgs(ctx.params());
+        ArrayList<Tuple2<String, Types>> argFields =  defineFunArgs(ctx.params());
         Types retType = typeByType(ctx.type().t.getType());
 
         Kansu func = new Kansu(ctx, argFields, retType);
@@ -487,7 +492,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             func = (Kansu) memory.getValByPtr(name);
         } catch (Exception e) {} //error later
 
-        SakeObj = func.run(arguments);
+        assert func != null;
+        AreaVis areaExec = func.setRun(arguments);
+
+
         return null;
     }
 
