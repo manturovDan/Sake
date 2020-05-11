@@ -78,6 +78,26 @@ SENDEN
     : 'senden'
 ;
 
+FIELD
+    : '=>'
+;
+
+TOX
+    : 'X'
+;
+
+TOY
+    : 'Y'
+;
+
+TOZ
+    : 'Z'
+;
+
+TOKABE
+    : 'kabe'
+;
+
 PLUS
     : '+'
 ;

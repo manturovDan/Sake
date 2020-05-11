@@ -71,7 +71,12 @@ hairetsu_assign
 ;
 
 appeal
-    : ID ('[' order ']')?
+    : ID    ('[' order ']'
+            | FIELD
+            hand=(TOX
+            | TOY
+            | TOZ
+            | TOKABE))?
 ;
 
 assignment_stmt
