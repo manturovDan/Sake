@@ -143,9 +143,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitApp(SakeParserParser.AppContext ctx) {
         ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
-        CubeAttr cAttr = whichCubeAttr(ctx.appeal().)
-        Pointer ptr = new Pointer(ctx.appeal().ID().getText(), deep);
-
+        CubeAttr cAttr = whichCubeAttr(ctx.appeal());
+        Pointer ptr = new Pointer(ctx.appeal().ID().getText(), deep, cAttr);
 
         try {
             return memory.getValByPtr(ptr).getCopy();
@@ -240,6 +239,26 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
 
         return res;
+    }
+
+    protected CubeAttr whichCubeAttr(SakeParserParser.AppealContext appeal) {
+        if(appeal.FIELD() == null)
+            return null;
+
+        int attrType = appeal.hand.getType();
+        switch (attrType) {
+            case (SakeParserParser.TOX):
+                return CubeAttr.X;
+            case (SakeParserParser.TOY):
+                return CubeAttr.Y;
+            case (SakeParserParser.TOZ):
+                return CubeAttr.Z;
+            case (SakeParserParser.TOKABE):
+                return CubeAttr.kabe;
+            default:
+                System.out.println("Error later");
+                return null;
+        }
     }
 
     @Override
