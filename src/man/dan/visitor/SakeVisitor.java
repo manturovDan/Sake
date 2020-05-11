@@ -143,6 +143,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitApp(SakeParserParser.AppContext ctx) {
         ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
+        CubeAttr cAttr = whichCubeAttr(ctx.appeal().)
         Pointer ptr = new Pointer(ctx.appeal().ID().getText(), deep);
 
 

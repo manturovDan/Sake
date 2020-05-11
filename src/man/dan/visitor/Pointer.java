@@ -6,7 +6,6 @@ public class Pointer {
     protected String name;
     protected ArrayList<Integer> inDeep;
     protected CubeAttr attr;
-    protected int attrValue;
 
     public Pointer(String n) {
         name = n;
@@ -18,15 +17,15 @@ public class Pointer {
         setInDeep(deep);
     }
 
-    public Pointer(String n, CubeAttr at, int atVal) {
+    public Pointer(String n, CubeAttr at) {
         name = n;
-        setAttr(at, atVal);
+        setAttr(at);
     }
 
-    public Pointer(String n, ArrayList<Integer> deep, CubeAttr at, int atVal) {
+    public Pointer(String n, ArrayList<Integer> deep, CubeAttr at) {
         name = n;
         setInDeep(deep);
-        setAttr(at, atVal);
+        setAttr(at);
     }
 
     protected void setInDeep(ArrayList<Integer> deep) {
@@ -34,11 +33,9 @@ public class Pointer {
             inDeep = new ArrayList<>(deep);
     }
 
-    protected void setAttr(CubeAttr at, int atVal) {
-        if (at != null) {
+    protected void setAttr(CubeAttr at) {
+        if (at != null)
             attr = at;
-            attrValue = atVal;
-        }
     }
 
     public String getName() {
