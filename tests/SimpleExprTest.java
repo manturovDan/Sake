@@ -146,4 +146,16 @@ public class SimpleExprTest {
         assertEquals(((Countable)memory.getValByPtr(new Pointer("arr1", new ArrayList<>(Arrays.asList(0, 0, 1, 0, 1))))).getValue(), 1);
     }
 
+    @Test
+    public void cubeTest() throws Exception {
+        String initialString =      "rippotai cube1 = [0, 1, 2, osu];\n" +
+                                    "hairetsu carr = {2, 2, 2, 2};\n" +
+                                    "carr[0, 1, 0, 1] = cube1;\n" +
+                                    "carr[0, 1, 0, 1] => Z = 5;";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 123);
+    }
+
 }

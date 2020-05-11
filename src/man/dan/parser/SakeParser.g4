@@ -51,7 +51,7 @@ bool_assign
 ;
 
 block_coub
-    : expr ',' expr ',' expr ',' expr
+    : '[' expr ',' expr ',' expr ',' expr ']'
 ;
 
 rippotai_assign

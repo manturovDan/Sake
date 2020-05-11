@@ -1,0 +1,3 @@
+rippotai cube1 = [0, 1, 2, osu];
+hairetsu carr = {2, 2, 2, 2};
+carr[0, 1, 0, 1] = cube1;

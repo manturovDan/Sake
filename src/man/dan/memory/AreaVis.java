@@ -4,6 +4,7 @@ import man.dan.langobj.Countable;
 import man.dan.langobj.Hairetsu;
 import man.dan.langobj.Rippotai;
 import man.dan.langobj.SakeObj;
+import man.dan.visitor.CubeAttr;
 import man.dan.visitor.Pointer;
 
 import java.util.ArrayList;
@@ -39,24 +40,32 @@ public class AreaVis {
         return getInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())));
     }
 
-    protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet) {
+    protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet, CubeAttr attr) {
         if (deep.size() == 1) {
             try {
-                arr.set(deep.get(0), whatSet);
+                if (attr == null)
+                    arr.set(deep.get(0), whatSet);
+                else {
+                    ((Rippotai)arr.get(deep.get(0))).setByAttr(attr, ((Countable)whatSet).getValue());
+                }
                 return;
             } catch (Exception e) {
                 return;
             } //expr later
         }
 
-        setInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())), whatSet);
+        setInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())), whatSet, attr);
     }
 
     public SakeObj getValByPtr(Pointer ptr) throws Exception {
         //expr later
         if (variables.containsKey(ptr.getName())) {
-            if (ptr.isArray())
-                return getInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep());
+            if (ptr.isArray()) {
+                SakeObj whatInArr = getInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep());
+                if (ptr.isCube())
+                    return new Countable(((Rippotai)whatInArr).getByAttr(ptr.getAttr()));
+                else return whatInArr;
+            }
             else if (ptr.isCube())
                 return new Countable(((Rippotai)variables.get(ptr.getName())).getByAttr(ptr.getAttr()));
             else
@@ -77,8 +86,11 @@ public class AreaVis {
     public void defineVal(Pointer ptr, SakeObj obj) throws Exception {
         //expr later
         if (variables.containsKey(ptr.getName()))
-            if (ptr.isArray())
-                setInArr((Hairetsu)variables.get(ptr.getName()), ptr.getDeep(), obj);
+            if (ptr.isArray()) {
+                setInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep(), obj, ptr.getAttr());
+            }
+            else if (ptr.isCube())
+                ((Rippotai)variables.get(ptr.getName())).setByAttr(ptr.getAttr(), ((Countable)obj).getValue());
             else
                 variables.put(ptr.getName(), obj);
         else if (parent != null)

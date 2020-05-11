@@ -44,6 +44,23 @@ public class Rippotai implements SakeObj {
         }
     }
 
+    public void setByAttr(CubeAttr attr, int val) {
+        switch (attr) {
+            case X:
+                x = val;
+                break;
+            case Y:
+                y = val;
+                break;
+            case Z:
+                z = val;
+                break;
+            case kabe:
+                kabe = val != 0;
+            default: return; //error later
+        }
+    }
+
     @Override
     public String toString() {
         return "{ X : " + x + "; Y : " + y + "; Z : " + z + "; isKabe" + kabe + " }";
