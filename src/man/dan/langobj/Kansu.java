@@ -24,7 +24,11 @@ public class Kansu implements SakeObj {
         curMemory = mem;
     }
 
-    protected boolean compareTypes(SakeObj ob, Types type) {
+    public Types getRetType() {
+        return retType;
+    }
+
+    public static boolean compareTypes(SakeObj ob, Types type) {
         if (ob instanceof Countable && (type == Types.seisu || type == Types.ronri))
             return true;
         if (ob instanceof Rippotai && type == Types.rippotai)

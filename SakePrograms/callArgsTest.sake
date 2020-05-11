@@ -10,4 +10,7 @@ seisu kansu functionCall(seisu a, rippotai b, hairetsu c, rippotai d, ronri e, h
     modoru 1;
 shushi;
 
-functionCall(c1, rip, hai, [1, 1, 0, 0], x78A, {1, 1, 1}, hai[2, 1], hai[4, 1], hai[0, 1]);
+seisu ret = functionCall(c1, rip, hai, [1, 1, 0, 0], x78A, {1, 1, 1}, hai[2, 1], hai[4, 1], hai[0, 1]);
+
+senden c1;
+senden ret;

@@ -497,13 +497,19 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         AreaVis current = memory;
         memory = areaExec;
 
+        SakeObj result = null;
         for (SakeParserParser.StatementContext stmt : func.getContext().statement()) {
-            visit(stmt);
+            result = visit(stmt);
+            if (stmt.return_stmt() != null)
+                break;
         }
+
+        if (!Kansu.compareTypes(result, func.getRetType()))
+            System.out.println("error later");
 
         memory = current;
 
-        return null;
+        return result;
     }
 
     @Override
@@ -530,7 +536,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitReturn_stmt(SakeParserParser.Return_stmtContext ctx) {
-        printStream.println("Modoru");
-        return null;
+        return visit(ctx.expr());
     }
 }
