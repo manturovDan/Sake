@@ -145,6 +145,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
         Pointer ptr = new Pointer(ctx.appeal().ID().getText(), deep);
 
+
         try {
             return memory.getValByPtr(ptr).getCopy();
         } catch (Exception e) {
