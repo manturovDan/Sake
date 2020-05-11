@@ -171,4 +171,29 @@ public class SimpleExprTest {
         assertEquals(((Countable)memory.getValByPtr("k")).getValue(), -2);
     }
 
+    @Test
+    public void funcTest() throws Exception {
+        String initialString =      "seisu c1 = 56;\n" +
+                                    "rippotai rip = [1, 2, 3, shinri];\n" +
+                                    "hairetsu hai = {10, 2};\n" +
+                                    "hai[2, 1] = rip;\n" +
+                                    "hai[4, 1] = osu;\n" +
+                                    "hai[0, 1] = {2, 2};\n" +
+                                    "\n" +
+                                    "seisu kansu functionCall(seisu a, rippotai b, hairetsu c, rippotai d, ronri e, hairetsu f, rippotai g, seisu h, hairetsu i) kido\n" +
+                                    "    //senden 123;\n" +
+                                    "    modoru 1;\n" +
+                                    "shushi;\n" +
+                                    "\n" +
+                                    "seisu ret = functionCall(c1, rip, hai, [1, 1, 0, 0], x78A, {1, 1, 1}, hai[2, 1], hai[4, 1], hai[0, 1]);\n" +
+                                    "\n" +
+                                    "//senden c1;\n" +
+                                    "//senden ret;";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByPtr("c1")).getValue(), 56);
+        assertEquals(((Countable)memory.getValByPtr("ret")).getValue(), 1);
+    }
+
 }
