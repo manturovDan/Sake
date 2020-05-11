@@ -1,0 +1,6 @@
+seisu c1 = 56;
+rippotai rip = [1, 2, 3, shinri];
+hairetsu hai = {10, 2};
+
+
+functionCall(c1, rip, hai, [1, 1, 0, 0], x78A, {1, 1, 1});

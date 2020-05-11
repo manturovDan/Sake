@@ -100,8 +100,12 @@ declaration_stmt
     : type ID ENDEXPR
 ;
 
+r_value
+    : (expr|array_vals|block_coub)
+;
+
 def_simp_stmt
-    : appeal '=' (expr|array_vals|block_coub) ENDEXPR
+    : appeal '=' r_value ENDEXPR
 ;
 
 jigen_stmt
@@ -133,7 +137,7 @@ function
 ;
 
 arguments
-    : (expr (',' expr)*)?
+    : (r_value (',' r_value)*)?
 ;
 
 condition

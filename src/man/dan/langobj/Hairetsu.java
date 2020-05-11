@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Hairetsu implements SakeObj{
     protected ArrayList<SakeObj> arr;
 
-    @Override
+    @Override //returns pointer, not copy
     public SakeObj getCopy() {
-        return null;
+        return this;
     }
 
     public Hairetsu(ArrayList<Integer> dims) {

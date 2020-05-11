@@ -186,7 +186,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return current instanceof Undefined && ((Undefined) current).getType() == -1;
     }
 
-    protected SakeObj defineRippotai(SakeParserParser.Block_coubContext block_cb, Pointer ptr, boolean assign) {
+    protected SakeObj getCubeFromDef(SakeParserParser.Block_coubContext block_cb) {
         int x = ((Countable)visit(block_cb.expr(0))).getValue();
         int y = ((Countable)visit(block_cb.expr(1))).getValue();
         int z = ((Countable)visit(block_cb.expr(2))).getValue();
@@ -196,6 +196,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         try {
             value = new Rippotai(x, y, z, kabe);
         } catch (Exception e) {} //later
+
+        return value;
+    }
+
+    protected SakeObj defineRippotai(SakeParserParser.Block_coubContext block_cb, Pointer ptr, boolean assign) {
+        SakeObj value = getCubeFromDef(block_cb);
 
         try {
             if (assign)
@@ -261,6 +267,31 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
     }
 
+    protected ArrayList<SakeObj> extractArgs(SakeParserParser.ArgumentsContext arguments) {
+        for (SakeParserParser.R_valueContext rv : arguments.r_value()) {
+            SakeObj arg = visit(rv);
+
+            if (arg instanceof Countable) {
+                printStream.println("Countable");
+            }
+            else if (arg instanceof Hairetsu) {
+                printStream.println("Hairetsu");
+            }
+            else if (arg instanceof Rippotai) {
+                printStream.println("Rippotai");
+            }
+            else if (arg instanceof Undefined && ((Undefined) arg).getType() == SakeParserParser.HAIRETSU) {
+                printStream.println("Undef hairetsu");
+            }
+            else {
+                printStream.println("Error later");
+            }
+
+        }
+
+        return null;
+    }
+
     @Override
     public SakeObj visitRippotai_assign(SakeParserParser.Rippotai_assignContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
@@ -288,26 +319,26 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         } catch (Exception e) {} //later
 
         if (isCountable(current))
-            value = visit(ctx.expr());
+            value = visit(ctx.r_value().expr());
         else if (isRippotai(current)) {
-            if (ctx.expr() != null)
-                value = visit(ctx.expr()).getCopy();
+            if (ctx.r_value().expr() != null)
+                value = visit(ctx.r_value().expr()).getCopy();
             else
-                return defineRippotai(ctx.block_coub(), ptr, false);
+                return defineRippotai(ctx.r_value().block_coub(), ptr, false);
         }
         else if (isHairetsu(current)) {
-            if (ctx.expr() != null)
-                value = visit(ctx.expr()).getCopy();
+            if (ctx.r_value().expr() != null)
+                value = visit(ctx.r_value().expr()).getCopy();
             else
-                return defineHairetsu(ctx.array_vals().order(), ptr, false);
+                return defineHairetsu(ctx.r_value().array_vals().order(), ptr, false);
         }
         else if (ptr.isArray()) {
-            if (ctx.expr() != null)
-                value = visit(ctx.expr()).getCopy();
-            else if (ctx.array_vals() != null)
-                return defineHairetsu(ctx.array_vals().order(), ptr, false);
-            else if (ctx.block_coub() != null)
-                return defineRippotai(ctx.block_coub(), ptr, false);
+            if (ctx.r_value().expr() != null)
+                value = visit(ctx.r_value().expr()).getCopy();
+            else if (ctx.r_value().array_vals() != null)
+                return defineHairetsu(ctx.r_value().array_vals().order(), ptr, false);
+            else if (ctx.r_value().block_coub() != null)
+                return defineRippotai(ctx.r_value().block_coub(), ptr, false);
             else { /* error later */}
         }
         else {
@@ -395,6 +426,43 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
         catch (Exception e) {}
 
+        return null;
+    }
+
+    /*@Override
+    public SakeObj visitFunction(SakeParserParser.FunctionContext ctx) {
+        memory = memory.nestedArea();
+        Pointer ptr = new Pointer(ctx.ID().getText());
+
+
+    }*/
+
+    @Override
+    public SakeObj visitFunction_call(SakeParserParser.Function_callContext ctx) {
+        String name = ctx.ID().getText();
+        ArrayList<SakeObj> arguments = extractArgs(ctx.arguments());
+        return null;
+    }
+
+    @Override
+    public SakeObj visitR_value(SakeParserParser.R_valueContext ctx) {
+        if(ctx.expr() != null) {
+            SakeObj val = visit(ctx.expr());
+            if (val instanceof Countable)
+                return val;
+            else if (val instanceof Rippotai)
+                return val;
+            else if (val instanceof Hairetsu)
+                return val;
+        }
+        else if (ctx.block_coub() != null) {
+            return getCubeFromDef(ctx.block_coub());
+        }
+        else if (ctx.array_vals() != null) {
+            ArrayList<Integer> dimensions = ArFromOrder(ctx.array_vals().order());
+
+            return new Hairetsu(dimensions);
+        }
         return null;
     }
 }
