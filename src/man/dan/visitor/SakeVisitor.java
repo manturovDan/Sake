@@ -494,7 +494,14 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         assert func != null;
         AreaVis areaExec = func.setRun(arguments);
+        AreaVis current = memory;
+        memory = areaExec;
 
+        for (SakeParserParser.StatementContext stmt : func.getContext().statement()) {
+            visit(stmt);
+        }
+
+        memory = current;
 
         return null;
     }
@@ -518,6 +525,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
             return new Hairetsu(dimensions);
         }
+        return null;
+    }
+
+    @Override
+    public SakeObj visitReturn_stmt(SakeParserParser.Return_stmtContext ctx) {
+        printStream.println("Modoru");
         return null;
     }
 }

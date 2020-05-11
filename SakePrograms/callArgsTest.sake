@@ -6,6 +6,7 @@ hai[4, 1] = osu;
 hai[0, 1] = {2, 2};
 
 seisu kansu functionCall(seisu a, rippotai b, hairetsu c, rippotai d, ronri e, hairetsu f, rippotai g, seisu h, hairetsu i) kido
+    senden 123;
     modoru 1;
 shushi;
 

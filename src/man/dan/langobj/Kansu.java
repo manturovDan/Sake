@@ -52,8 +52,13 @@ public class Kansu implements SakeObj {
         return runVis;
     }
 
+    public SakeParserParser.FunctionContext getContext() {
+        return ctx;
+    }
+
     @Override
     public SakeObj getCopy() {
+        assert false;
         return null;
     }
 }
