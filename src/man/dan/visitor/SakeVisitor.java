@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected InputStream sin;
@@ -268,10 +269,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected ArrayList<SakeObj> extractArgs(SakeParserParser.ArgumentsContext arguments) {
+        ArrayList<SakeObj> extraction = new ArrayList<>();;
         for (SakeParserParser.R_valueContext rv : arguments.r_value()) {
             SakeObj arg = visit(rv);
 
-            if (arg instanceof Countable) {
+            /*if (arg instanceof Countable) {
                 printStream.println("Countable");
             }
             else if (arg instanceof Hairetsu) {
@@ -285,11 +287,16 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             }
             else {
                 printStream.println("Error later");
-            }
-
+            }*/
+            
+            extraction.add(arg);
         }
 
-        return null;
+        return extraction;
+    }
+
+    public HashMap<String, Types> defineFunArgs(SakeParserParser.ParamsContext params) {
+
     }
 
     @Override
@@ -429,18 +436,25 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return null;
     }
 
-    /*@Override
+    @Override
     public SakeObj visitFunction(SakeParserParser.FunctionContext ctx) {
-        memory = memory.nestedArea();
         Pointer ptr = new Pointer(ctx.ID().getText());
+        defineFunArgs(ctx.params());
 
 
-    }*/
+    }
 
     @Override
     public SakeObj visitFunction_call(SakeParserParser.Function_callContext ctx) {
         String name = ctx.ID().getText();
         ArrayList<SakeObj> arguments = extractArgs(ctx.arguments());
+        Kansu func = null;
+
+        try {
+            func = (Kansu) memory.getValByPtr(name);
+        } catch (Exception e) {} //error later
+
+        SakeObj = func.run(arguments);
         return null;
     }
 
