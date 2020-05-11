@@ -1,6 +1,8 @@
 package man.dan.memory;
 
+import man.dan.langobj.Countable;
 import man.dan.langobj.Hairetsu;
+import man.dan.langobj.Rippotai;
 import man.dan.langobj.SakeObj;
 import man.dan.visitor.Pointer;
 
@@ -55,6 +57,8 @@ public class AreaVis {
         if (variables.containsKey(ptr.getName())) {
             if (ptr.isArray())
                 return getInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep());
+            else if (ptr.isCube())
+                return new Countable(((Rippotai)variables.get(ptr.getName())).getByAttr(ptr.getAttr()));
             else
                 return variables.get(ptr.getName());
         }

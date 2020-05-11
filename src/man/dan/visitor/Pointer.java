@@ -42,10 +42,19 @@ public class Pointer {
         return name;
     }
 
+    public CubeAttr getAttr() {
+        return attr;
+    }
+
     public boolean isArray() {
         if (inDeep == null)
             return false;
         return !inDeep.isEmpty();
+    }
+
+    public boolean isCube() {
+        return attr != null;
+
     }
 
     public ArrayList<Integer> getDeep() {

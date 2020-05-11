@@ -1,5 +1,7 @@
 package man.dan.langobj;
 
+import man.dan.visitor.CubeAttr;
+
 public class Rippotai implements SakeObj {
     protected int x;
     protected int y;
@@ -30,6 +32,16 @@ public class Rippotai implements SakeObj {
 
     public boolean isKabe() {
         return kabe;
+    }
+
+    public int getByAttr(CubeAttr attr) {
+        switch (attr) {
+            case X: return x;
+            case Y: return y;
+            case Z: return z;
+            case kabe: return kabe ? 1 : 0;
+            default: return -1; //error later
+        }
     }
 
     @Override
