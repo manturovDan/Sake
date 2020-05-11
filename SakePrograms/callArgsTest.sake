@@ -1,6 +1,8 @@
 seisu c1 = 56;
 rippotai rip = [1, 2, 3, shinri];
 hairetsu hai = {10, 2};
+hai[2, 1] = rip;
+hai[4, 1] = osu;
+hai[0, 1] = {2, 2}
 
-
-functionCall(c1, rip, hai, [1, 1, 0, 0], x78A, {1, 1, 1});
+functionCall(c1, rip, hai, [1, 1, 0, 0], x78A, {1, 1, 1}, hai[2, 1], hai[4, 1], hai[4, 0], hai[0, 1]);
