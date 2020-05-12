@@ -468,6 +468,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                     }
                 }
                 cur.inc();
+                memory.clearExcluding(ptr);
             }
 
             memory = memory.parentArea(); //maybe clear

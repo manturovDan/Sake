@@ -107,4 +107,14 @@ public class AreaVis {
     public AreaVis parentArea() {
         return parent;
     }
+
+    public void clearExcluding(Pointer ptr) {
+        SakeObj byPtr = null;
+        try {
+            byPtr = getValByPtr(ptr);
+        } catch (Exception e) { assert false; } //error later
+
+        variables.clear();
+        variables.put(ptr.getName(), byPtr);
+    }
 }
