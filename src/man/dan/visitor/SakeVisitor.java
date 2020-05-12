@@ -110,8 +110,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else if (ctx.op.getType() == SakeParserParser.MINUS) {
             return left.minus(right);
         }
-            //throw new Exception("Interpreter grammar error +-");
-            return null;
+
+        errHandler.semanticError(ctx, "addition/subtraction operators error");
+        return null;
 
     }
 
@@ -277,22 +278,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         ArrayList<SakeObj> extraction = new ArrayList<>();;
         for (SakeParserParser.R_valueContext rv : arguments.r_value()) {
             SakeObj arg = visit(rv);
-
-            /*if (arg instanceof Countable) {
-                printStream.println("Countable");
-            }
-            else if (arg instanceof Hairetsu) {
-                printStream.println("Hairetsu");
-            }
-            else if (arg instanceof Rippotai) {
-                printStream.println("Rippotai");
-            }
-            else if (arg instanceof Undefined && ((Undefined) arg).getType() == SakeParserParser.HAIRETSU) {
-                printStream.println("Undef hairetsu");
-            }
-            else {
-                printStream.println("Error later");
-            }*/
             
             extraction.add(arg);
         }
