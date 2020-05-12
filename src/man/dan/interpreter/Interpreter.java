@@ -40,9 +40,9 @@ public class Interpreter {
 
         try {
             ParseTree tree = parser.program();
-            outPrint.println();
-            outPrint.println(tree.toStringTree(parser));
-            outPrint.println(tree);
+            //outPrint.println();
+            //outPrint.println(tree.toStringTree(parser));
+            //outPrint.println(tree);
             SakeVisitor eval = new SakeVisitor(memory, sin, outPrint, errPrint);
             eval.visit(tree);
         } catch (ParseCancellationException e) {
