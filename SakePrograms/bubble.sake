@@ -1,3 +1,10 @@
+seisu kansu swap(hairetsu A, seisu i, seisu j) kido
+    seisu c = A[i];
+    A[i] = A[j];
+    A[j] = c;
+    modoru 0; #return
+shushi;
+
 seisu N = 10;
 hairetsu A = {N};
 A[0] = 21;
@@ -10,6 +17,10 @@ A[6] = 5+2+10<15-(1+2);
 A[7] = 0;
 A[8] = -1;
 A[9] = -11;
+
+senden A;
+
+swap(A, 3, 9);
 
 senden A;
 
