@@ -127,8 +127,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else if (ctx.op.getType() == SakeParserParser.GREATER) {
             return right.lessThan(left);
         }
-            //throw new Exception("Interpreter grammar error ><");
-            return null;
+
+        errHandler.semanticError(ctx, "greater/less operators error");
+        return null;
 
     }
 
@@ -144,6 +145,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             return new Countable(true);
         else if (ctx.constant().OSU() != null)
             return new Countable(false);
+
+        assert false;
         return null;
     }
 
@@ -156,9 +159,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         try {
             return memory.getValByPtr(ptr).getCopy();
         } catch (Exception e) {
-            printStream.println("No var " + ptr.getName());
+            errHandler.semanticError(ctx, e.toString());
             return null;
-        } //write semantic error
+        }
     }
 
     @Override
@@ -171,7 +174,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitBrackets(SakeParserParser.BracketsContext ctx) {
         return visit(ctx.expr());
     }
-
 
     protected boolean isCountable(SakeObj current) {
         return  (current instanceof Countable || (current instanceof Undefined &&
@@ -215,8 +217,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 memory.declAndAssign(ptr, value);
             else
                 memory.defineVal(ptr, value);
-        } catch (Exception e) { //make normal
-            //Semantic error
+        } catch (SemanticSakeError e) {
+            return null;
         }
 
         return value;
@@ -321,7 +323,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitRippotai_assign(SakeParserParser.Rippotai_assignContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
-        return defineRippotai(ctx.block_coub(), ptr, true);
+        SakeObj cube = defineRippotai(ctx.block_coub(), ptr, true);
+
+        if (cube == null)
+            errHandler.semanticError(ctx, "appeal to nonexistent cube");
+
+        return cube;
     }
 
     @Override
@@ -338,19 +345,27 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         Pointer ptr = new Pointer(name, deep, attr);
 
         SakeObj value = null;
-        SakeObj current = null;
+        SakeObj current;
 
         try {
             current = memory.getValByPtr(ptr);
-        } catch (Exception e) {} //later
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+            return null;
+        }
 
         if (isCountable(current))
             value = visit(ctx.r_value().expr());
         else if (isRippotai(current)) {
             if (ctx.r_value().expr() != null)
                 value = visit(ctx.r_value().expr()).getCopy();
-            else
-                return defineRippotai(ctx.r_value().block_coub(), ptr, false);
+            else {
+                SakeObj cube = defineRippotai(ctx.r_value().block_coub(), ptr, false);
+                if (cube == null)
+                errHandler.semanticError(ctx, "appeal to nonexistent cube");
+
+                return cube;
+            }
         }
         else if (isHairetsu(current)) {
             if (ctx.r_value().expr() != null)
@@ -363,18 +378,26 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 value = visit(ctx.r_value().expr()).getCopy();
             else if (ctx.r_value().array_vals() != null)
                 return defineHairetsu(ctx.r_value().array_vals().order(), ptr, false);
-            else if (ctx.r_value().block_coub() != null)
-                return defineRippotai(ctx.r_value().block_coub(), ptr, false);
-            else { /* error later */}
+            else if (ctx.r_value().block_coub() != null) {
+                SakeObj cube = defineRippotai(ctx.r_value().block_coub(), ptr, false);
+                if (cube == null)
+                    errHandler.semanticError(ctx, "appeal to nonexistent cube");
+
+                return cube;
+            }
+            else {
+                errHandler.semanticError(ctx, "hairetsu definition error");
+            }
         }
         else {
-            //error later
+            errHandler.semanticError(ctx, "definition l_value error");
         }
 
         try {
             memory.defineVal(ptr, value);
-        } catch (Exception e) { //make normal
-            //Semantic error
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+            return null;
         }
 
         return value;

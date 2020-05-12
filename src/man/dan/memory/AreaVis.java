@@ -60,7 +60,7 @@ public class AreaVis {
         setInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())), whatSet, attr);
     }
 
-    public SakeObj getValByPtr(Pointer ptr) throws Exception {
+    public SakeObj getValByPtr(Pointer ptr) throws SemanticSakeError {
         //expr later
         if (variables.containsKey(ptr.getName())) {
             if (ptr.isArray()) {
@@ -78,7 +78,7 @@ public class AreaVis {
         if(parent != null)
             return parent.getValByPtr(ptr);
 
-        throw new Exception("No var");
+        throw new SemanticSakeError("appeal to nonexistent variable " + ptr);
     }
 
     public SakeObj getValByPtr(String name) throws Exception {
@@ -86,8 +86,7 @@ public class AreaVis {
         return getValByPtr(ptr);
     }
 
-    public void defineVal(Pointer ptr, SakeObj obj) throws Exception {
-        //expr later
+    public void defineVal(Pointer ptr, SakeObj obj) throws SemanticSakeError {
         if (variables.containsKey(ptr.getName()))
             if (ptr.isArray()) {
                 setInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep(), obj, ptr.getAttr());
@@ -98,7 +97,7 @@ public class AreaVis {
                 variables.put(ptr.getName(), obj);
         else if (parent != null)
             parent.defineVal(ptr, obj);
-        else throw new Exception("No var");
+        else throw new SemanticSakeError("trying to define the nonexistent variable " + ptr);
     }
 
     public AreaVis nestedArea() {
