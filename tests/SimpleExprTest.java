@@ -196,4 +196,21 @@ public class SimpleExprTest {
         assertEquals(((Countable)memory.getValByPtr("ret")).getValue(), 1);
     }
 
+    @Test
+    public void fibonacciTest() throws Exception {
+        String initialString =      "seisu kansu fibo(seisu f) kido\n" +
+                                    "    sorenara f < 3 kido\n" +
+                                    "        modoru 1;\n" +
+                                    "    shushi;\n" +
+                                    "\n" +
+                                    "    modoru fibo(f-2) + fibo(f-1);\n" +
+                                    "shushi;\n" +
+                                    "\n" +
+                                    "seisu k = fibo(30) - 1;";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  832040-1);
+    }
+
 }
