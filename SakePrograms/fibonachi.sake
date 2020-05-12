@@ -4,4 +4,4 @@ seisu kansu fibo(seisu f) kido
     shushi;
 shushi;
 
-fibo(2);
+senden fibo(2);
