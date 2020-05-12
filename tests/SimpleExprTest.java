@@ -120,7 +120,7 @@ public class SimpleExprTest {
                                 "    sorenara redef < 10 kido \n" +
                                 "        redef = redef + 1;\n" +
                                 "    shushi;\n" +
-                                "shushi\n";
+                                "shushi;\n";
 
         AreaVis memory = execute(initialString);
 
