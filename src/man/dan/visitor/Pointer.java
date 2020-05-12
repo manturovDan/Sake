@@ -60,4 +60,14 @@ public class Pointer {
     public ArrayList<Integer> getDeep() {
         return new ArrayList<>(inDeep);
     }
+
+    public String toString() {
+        StringBuilder ret = new StringBuilder(name);
+        if (isArray())
+            ret.append(" ").append(inDeep);
+        if(isCube())
+            ret.append(" => ").append(attr);
+
+        return ret.toString();
+    }
 }

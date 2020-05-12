@@ -1,5 +1,6 @@
 package man.dan.memory;
 
+import man.dan.errors.SemanticSakeError;
 import man.dan.langobj.*;
 import man.dan.visitor.CubeAttr;
 import man.dan.visitor.Pointer;
@@ -24,9 +25,11 @@ public class AreaVis {
         parent = _par;
     }
 
-    public void declAndAssign(Pointer ptr, SakeObj obj) throws Exception {
-        if (ptr.isArray() || variables.containsKey(ptr.getName()) || obj == null)
-            throw new Exception("Semantic: one var two times or null"); //redo than
+    public void declAndAssign(Pointer ptr, SakeObj obj) throws SemanticSakeError {
+        if (ptr.isArray() || variables.containsKey(ptr.getName()))
+            throw new SemanticSakeError("variable " + ptr + " was declared two times");
+        else if (obj == null)
+            throw new SemanticSakeError("r_value of " + ptr + " is null");
 
         if (obj instanceof Kansu)
             ((Kansu) obj).setArea(this);

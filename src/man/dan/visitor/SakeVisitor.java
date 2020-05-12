@@ -1,6 +1,7 @@
 package man.dan.visitor;
-import io.vavr.Tuple;
 import io.vavr.Tuple2;
+import man.dan.errors.ErrorListener;
+import man.dan.errors.SemanticSakeError;
 import man.dan.langobj.*;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
@@ -11,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
@@ -19,18 +19,20 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected PrintStream sout;
     protected PrintStream serr;
     protected AreaVis memory;
+    protected ErrorListener errHandler;
 
     protected PrintStream printStream;
     protected BufferedReader inputStream;
 
     protected SakeObj returnVal;
 
-    public SakeVisitor(AreaVis mem, InputStream _in, PrintStream _out, PrintStream _err) {
+    public SakeVisitor(AreaVis mem, InputStream _in, PrintStream _out, PrintStream _err, ErrorListener handler) {
         sin = _in;
         sout = _out;
         serr = _err;
         memory = mem;
         returnVal = null;
+        errHandler = handler;
     }
 
     protected void init() {
@@ -57,12 +59,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         Pointer ptr = new Pointer(ctx.ID().getText());
         Countable value = (Countable) visit(ctx.expr());
 
-        //global now
         try {
             memory.declAndAssign(ptr, value);
-        } catch (Exception e) { //make normal error later
-            //Semantic error
-            System.out.println(e.toString());
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
         }
 
         return value;

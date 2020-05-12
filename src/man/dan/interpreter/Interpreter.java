@@ -44,9 +44,9 @@ public class Interpreter {
 
         try {
             ParseTree tree = parser.program();
-            SakeVisitor eval = new SakeVisitor(memory, sin, outPrint, errPrint);
+            SakeVisitor eval = new SakeVisitor(memory, sin, outPrint, errPrint, erHandler);
 
-            int ers = erHandler.getErrorCount();
+            int ers = erHandler.getSyntaxErrorCount();
             if (ers > 0)
                 errPrint.println("There are (is) " + ers + " syntax error(s) in the program");
 
