@@ -551,4 +551,20 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         returnVal = result;
         return result;
     }
+
+    @Override
+    public SakeObj visitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx) {
+        String name = ctx.appeal().ID().getText();
+        ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
+        CubeAttr attr = whichCubeAttr(ctx.appeal());
+        Pointer ptr = new Pointer(name, deep, attr);
+
+        Hairetsu hai = null;
+        try {
+            hai = (Hairetsu) memory.getValByPtr(ptr);
+        } catch (Exception e) {/* error later */}
+
+        assert hai != null;
+        return new Countable(hai.getLen());
+    }
 }

@@ -30,6 +30,22 @@ public class Hairetsu implements SakeObj{
         arr.set(where, what);
     }
 
+    public int getLen() {
+        return arr.size();
+    }
+
+    public int getDim() {
+        return getDim(1);
+    }
+
+    public int getDim(int curDim) {
+        if (arr.get(0) instanceof Hairetsu) {
+            return  curDim + getDim(((Hairetsu) arr.get(0)).getDim(curDim));
+        }
+
+        return curDim;
+    }
+
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder();

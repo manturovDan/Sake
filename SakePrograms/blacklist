@@ -5,7 +5,8 @@ seisu kansu swapKansu(hairetsu A, seisu i, seisu j) kido
     modoru 0; #return
 shushi;
 
-seisu kansu bubble(hairetsu A, seisu N) kido
+seisu kansu bubble(hairetsu A) kido
+    seisu N = nagasa A;
     shuki j = 0 : N kido
         seisu F = osu;
         shuki i = 1 : N-j-1 kido
