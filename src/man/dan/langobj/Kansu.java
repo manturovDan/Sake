@@ -1,12 +1,12 @@
 package man.dan.langobj;
 
 import io.vavr.Tuple2;
+import man.dan.errors.SemanticSakeError;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserParser;
 import man.dan.visitor.Pointer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Kansu implements SakeObj {
     protected SakeParserParser.FunctionContext ctx;
@@ -39,9 +39,9 @@ public class Kansu implements SakeObj {
         return false;
     }
 
-    public AreaVis setRun(ArrayList<SakeObj> arguments) {
+    public AreaVis setRun(ArrayList<SakeObj> arguments) throws SemanticSakeError {
         if (arguments.size() != params.size())
-            System.out.println("Error later");
+            throw new SemanticSakeError("arguments count missmatch");
 
         AreaVis runVis = curMemory.nestedArea();
 

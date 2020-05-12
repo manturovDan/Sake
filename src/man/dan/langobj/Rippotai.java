@@ -1,5 +1,6 @@
 package man.dan.langobj;
 
+import man.dan.errors.SemanticSakeError;
 import man.dan.visitor.CubeAttr;
 
 public class Rippotai implements SakeObj {
@@ -8,9 +9,9 @@ public class Rippotai implements SakeObj {
     protected int z;
     protected boolean kabe; //wall
 
-    public Rippotai(int _x, int _y, int _z, boolean _kabe) throws Exception {
+    public Rippotai(int _x, int _y, int _z, boolean _kabe) throws SemanticSakeError {
         if (_x < 0 || _y < 0 || _z < 0)
-            throw new Exception("#2"); //make normal
+            throw new SemanticSakeError("bad rippotai coordinates");
 
         x = _x;
         y = _y;
@@ -40,7 +41,8 @@ public class Rippotai implements SakeObj {
             case Y: return y;
             case Z: return z;
             case kabe: return kabe ? 1 : 0;
-            default: return -1; //error later
+            default: assert false;
+            return -1;
         }
     }
 
@@ -57,7 +59,7 @@ public class Rippotai implements SakeObj {
                 break;
             case kabe:
                 kabe = val != 0;
-            default: return; //error later
+            default: assert false;
         }
     }
 

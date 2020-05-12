@@ -45,23 +45,18 @@ public class AreaVis {
 
     protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet, CubeAttr attr) {
         if (deep.size() == 1) {
-            try {
-                if (attr == null)
-                    arr.set(deep.get(0), whatSet);
-                else {
-                    ((Rippotai)arr.get(deep.get(0))).setByAttr(attr, ((Countable)whatSet).getValue());
-                }
-                return;
-            } catch (Exception e) {
-                return;
-            } //expr later
+            if (attr == null)
+                arr.set(deep.get(0), whatSet);
+            else {
+                ((Rippotai)arr.get(deep.get(0))).setByAttr(attr, ((Countable)whatSet).getValue());
+            }
+            return;
         }
 
         setInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())), whatSet, attr);
     }
 
     public SakeObj getValByPtr(Pointer ptr) throws SemanticSakeError {
-        //expr later
         if (variables.containsKey(ptr.getName())) {
             if (ptr.isArray()) {
                 SakeObj whatInArr = getInArr((Hairetsu) variables.get(ptr.getName()), ptr.getDeep());
@@ -81,7 +76,7 @@ public class AreaVis {
         throw new SemanticSakeError("appeal to nonexistent variable " + ptr);
     }
 
-    public SakeObj getValByPtr(String name) throws Exception {
+    public SakeObj getValByPtr(String name) throws SemanticSakeError {
         Pointer ptr = new Pointer(name);
         return getValByPtr(ptr);
     }
@@ -114,7 +109,7 @@ public class AreaVis {
         SakeObj byPtr = null;
         try {
             byPtr = getValByPtr(ptr);
-        } catch (Exception e) { assert false; } //error later
+        } catch (Exception e) { assert false; }
 
         variables.clear();
         variables.put(ptr.getName(), byPtr);

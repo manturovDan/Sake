@@ -204,7 +204,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         SakeObj value = null;
         try {
             value = new Rippotai(x, y, z, kabe);
-        } catch (Exception e) {} //later
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(block_cb, e.toString());
+        }
 
         return value;
     }
@@ -225,7 +227,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected SakeObj defineHairetsu(SakeParserParser.OrderContext order, Pointer ptr, boolean assign) {
-        ArrayList<Integer> dimensions = ArFromOrder(order);
+        ArrayList<Integer> dimensions = ArFromOrder(order, 1);
 
         Hairetsu arr = new Hairetsu(dimensions);
 
@@ -234,27 +236,33 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 memory.declAndAssign(ptr, arr);
             else
                 memory.defineVal(ptr, arr);
-        } catch (Exception e) { //make normal
-            //Semantic error
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(order, e.toString());
         }
 
         return arr;
     }
 
     protected ArrayList<Integer> ArFromOrder(SakeParserParser.OrderContext order) {
+        return ArFromOrder(order, 0);
+    }
+
+    protected ArrayList<Integer> ArFromOrder(SakeParserParser.OrderContext order, int border) {
         if (order == null)
             return null;
 
         ArrayList<Integer> res = new ArrayList<>();
         for (SakeParserParser.ExprContext expr : order.expr()) {
             int sz = ((Countable)visit(expr)).getValue();
-            //if (sz < 1)
-            //    throw later
+            if (sz < border) {
+                errHandler.semanticError(order, "bad array size (" + sz + ")");
+            }
             res.add(sz);
         }
 
         return res;
     }
+
 
     protected CubeAttr whichCubeAttr(SakeParserParser.AppealContext appeal) {
         if(appeal.cube_attr() == null)
@@ -271,13 +279,13 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             case (SakeParserParser.TOKABE):
                 return CubeAttr.kabe;
             default:
-                System.out.println("Error later");
+                assert false;
                 return null;
         }
     }
 
     protected ArrayList<SakeObj> extractArgs(SakeParserParser.ArgumentsContext arguments) {
-        ArrayList<SakeObj> extraction = new ArrayList<>();;
+        ArrayList<SakeObj> extraction = new ArrayList<>();
         for (SakeParserParser.R_valueContext rv : arguments.r_value()) {
             SakeObj arg = visit(rv);
             
@@ -287,7 +295,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return extraction;
     }
 
-    protected Types typeByType(int type) {
+    protected Types typeByType(int type) throws SemanticSakeError {
         switch (type) {
             case (SakeParserParser.SEISU) :
                 return Types.seisu;
@@ -298,8 +306,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             case (SakeParserParser.HAIRETSU) :
                 return Types.hairetsu;
             default :
-                System.out.println("Error later");
-                return null;
+                throw new SemanticSakeError("type mismatch");
         }
     }
 
@@ -309,10 +316,17 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         for(SakeParserParser.One_paramContext param : params.one_param()) {
             String name = param.ID().getText();
-            if (busyNames.contains(name))
-                System.out.println("error later #1");
+            if (busyNames.contains(name)) {
+                errHandler.semanticError(param, "argument " + name + " is busy");
+                continue;
+            }
 
-            pasDct.add(new Tuple2<>(name, typeByType(param.type().t.getType())));
+            try {
+                pasDct.add(new Tuple2<>(name, typeByType(param.type().t.getType())));
+            } catch (SemanticSakeError e) {
+                errHandler.semanticError(param, e.toString());
+            }
+
             busyNames.add(name);
 
         }
@@ -410,8 +424,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         try {
             memory.declAndAssign(ptr, undef);
-        } catch (Exception e) { //make normal
-            //Semantic error
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
         }
 
         return undef;
@@ -480,7 +494,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
             memory = memory.parentArea(); //maybe clear
         }
-        catch (Exception e) {}
+        catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+        }
 
         return null;
     }
@@ -489,12 +505,20 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitFunction(SakeParserParser.FunctionContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
         ArrayList<Tuple2<String, Types>> argFields =  defineFunArgs(ctx.params());
-        Types retType = typeByType(ctx.type().t.getType());
+        Types retType = Types.seisu; // to check errors later
+
+        try {
+            retType = typeByType(ctx.type().t.getType());
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+        }
 
         Kansu func = new Kansu(ctx, argFields, retType);
         try {
             memory.declAndAssign(ptr, func);
-        } catch (Exception e) {} //error later
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+        }
 
         return func;
     }
@@ -507,10 +531,19 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         try {
             func = (Kansu) memory.getValByPtr(name);
-        } catch (Exception e) {} //error later
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+        }
 
-        assert func != null;
-        AreaVis areaExec = func.setRun(arguments);
+
+        AreaVis areaExec = null;
+        try {
+            areaExec = func.setRun(arguments);
+        }
+        catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+        }
+
         AreaVis current = memory;
         memory = areaExec;
 
@@ -521,7 +554,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
 
         if (!Kansu.compareTypes(returnVal, func.getRetType()))
-            System.out.println("error later #2");
+            errHandler.semanticError(ctx, "return value type missmatch");
 
         memory = current;
 
@@ -546,7 +579,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             return getCubeFromDef(ctx.block_coub());
         }
         else if (ctx.array_vals() != null) {
-            ArrayList<Integer> dimensions = ArFromOrder(ctx.array_vals().order());
+            ArrayList<Integer> dimensions = ArFromOrder(ctx.array_vals().order(), 1);
 
             return new Hairetsu(dimensions);
         }
@@ -570,9 +603,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         Hairetsu hai = null;
         try {
             hai = (Hairetsu) memory.getValByPtr(ptr);
-        } catch (Exception e) {/* error later */}
+        } catch (SemanticSakeError e) {
+            errHandler.semanticError(ctx, e.toString());
+        }
 
-        assert hai != null;
         return new Countable(hai.getLen());
     }
 }
