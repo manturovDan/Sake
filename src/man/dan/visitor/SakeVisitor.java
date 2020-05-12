@@ -6,6 +6,7 @@ import man.dan.langobj.*;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -54,16 +55,20 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
     }
 
-    @Override
-    public SakeObj visitNum_assign(SakeParserParser.Num_assignContext ctx) {
-        Pointer ptr = new Pointer(ctx.ID().getText());
-        Countable value = (Countable) visit(ctx.expr());
-
+    protected void assignCountable(Pointer ptr, Countable value, ParserRuleContext ctx) {
         try {
             memory.declAndAssign(ptr, value);
         } catch (SemanticSakeError e) {
             errHandler.semanticError(ctx, e.toString());
         }
+    }
+
+    @Override
+    public SakeObj visitNum_assign(SakeParserParser.Num_assignContext ctx) {
+        Pointer ptr = new Pointer(ctx.ID().getText());
+        Countable value = (Countable) visit(ctx.expr());
+
+        assignCountable(ptr, value, ctx);
 
         return value;
     }
@@ -73,13 +78,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         Pointer ptr = new Pointer(ctx.ID().getText());
         Countable value = (Countable) visit(ctx.expr());
 
-        //UNITE with seisu
-        //global now
-        try {
-            memory.declAndAssign(ptr, value);
-        } catch (Exception e) { //make normal
-            //Semantic error
-        }
+        assignCountable(ptr, value, ctx);
 
         return value;
     }

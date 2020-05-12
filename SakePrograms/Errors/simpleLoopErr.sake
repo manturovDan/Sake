@@ -1,0 +1,16 @@
+seisu some_var = -201;
+seisu target = 10000;
+seisu target = 321321;
+seisu counter = 0;
+seisu cont = -1;
+
+shuki i = some_var - 1 : target - -2 kido
+    seisu some_var = 5
+    cont = some_var;
+    counter = counter + 1;
+shushi;
+
+senden some_var;
+senden target;
+senden counter;
+senden cont;

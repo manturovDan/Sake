@@ -27,7 +27,7 @@ public class AreaVis {
 
     public void declAndAssign(Pointer ptr, SakeObj obj) throws SemanticSakeError {
         if (ptr.isArray() || variables.containsKey(ptr.getName()))
-            throw new SemanticSakeError("variable " + ptr + " was declared two times");
+            throw new SemanticSakeError("variable '" + ptr + "' was declared one more times");
         else if (obj == null)
             throw new SemanticSakeError("r_value of " + ptr + " is null");
 
