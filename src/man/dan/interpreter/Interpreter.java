@@ -52,7 +52,9 @@ public class Interpreter {
 
             eval.visit(tree);
         } catch (ParseCancellationException e) {
-            errPrint.println("Fatal parsing error:" + e.getMessage());
+            errPrint.println("Fatal parsing error");
+        } catch (Exception e) {
+            errPrint.println("Fatal execution error");
         }
     }
 
