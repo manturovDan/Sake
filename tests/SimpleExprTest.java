@@ -22,9 +22,9 @@ public class SimpleExprTest {
     AreaVis execute(String initialString) throws IOException {
         InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
         Interpreter interpreter;
-        interpreter = new Interpreter(System.in, System.out, System.out);
+        interpreter = new Interpreter(progIn, System.out, System.out);
         AreaVis memory = interpreter.getMemory();
-        interpreter.run(progIn);
+        interpreter.run();
         return memory;
     }
 

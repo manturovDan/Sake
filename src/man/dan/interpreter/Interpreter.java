@@ -1,5 +1,6 @@
 package man.dan.interpreter;
 
+import man.dan.errors.ErrorListener;
 import man.dan.langobj.SakeObj;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserLexer;
@@ -32,11 +33,13 @@ public class Interpreter {
         memory = new AreaVis();
     }
 
-    public void run(InputStream progIn) throws IOException {
-        CharStream input = CharStreams.fromStream(progIn);
+    public void run() throws IOException {
+        CharStream input = CharStreams.fromStream(sin);
         SakeParserLexer lexer = new SakeParserLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SakeParserParser parser = new SakeParserParser(tokens);
+        parser.removeErrorListeners();
+        parser.addErrorListener(new ErrorListener());
 
         try {
             ParseTree tree = parser.program();

@@ -21,8 +21,8 @@ public class SakeLaunch {
 
             if (args.length == 1) {
                 progIn = new FileInputStream(args[0]);
-                interpreter = new Interpreter(System.in, System.out, System.out);
-                interpreter.run(progIn);
+                interpreter = new Interpreter(progIn, System.out, System.err);
+                interpreter.run();
             }
 
         } catch (IOException e) {
