@@ -29,4 +29,16 @@ public class Hairetsu implements SakeObj{
     public void set(int where, SakeObj what) {
         arr.set(where, what);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder ret = new StringBuilder();
+        ret.append("{");
+        for (SakeObj el : arr) {
+            ret.append(el).append(", ");
+        }
+        ret.setLength(ret.length() - 2);
+        ret.append("}");
+        return ret.toString();
+    }
 }
