@@ -5,6 +5,18 @@ seisu kansu swap(hairetsu A, seisu i, seisu j) kido
     modoru 0; #return
 shushi;
 
+seisu kansu bubble(hairetsu A, seisu N) kido
+    shuki j = 0 : N-1 kido
+        shuki i = 0 : N-1 kido
+            sorenara A[i] > A[i+1] kido
+                swap(A, i, i+1);
+            shushi;
+        shushi;
+    shushi;
+
+    modoru 0;
+shushi;
+
 seisu N = 10;
 hairetsu A = {N};
 A[0] = 21;
@@ -20,7 +32,7 @@ A[9] = -11;
 
 senden A;
 
-swap(A, 3, 9);
+bubble(A, N);
 
 senden A;
 
