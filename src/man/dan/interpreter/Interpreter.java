@@ -39,17 +39,20 @@ public class Interpreter {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SakeParserParser parser = new SakeParserParser(tokens);
         parser.removeErrorListeners();
-        parser.addErrorListener(new ErrorListener());
+        ErrorListener erHandler = new ErrorListener(errPrint);
+        parser.addErrorListener(erHandler);
 
         try {
             ParseTree tree = parser.program();
-            //outPrint.println();
-            //outPrint.println(tree.toStringTree(parser));
-            //outPrint.println(tree);
             SakeVisitor eval = new SakeVisitor(memory, sin, outPrint, errPrint);
+
+            int ers = erHandler.getErrorCount();
+            if (ers > 0)
+                errPrint.println("There are (is) " + ers + " syntax error(s) in the program");
+
             eval.visit(tree);
         } catch (ParseCancellationException e) {
-            errPrint.println("Error message");
+            errPrint.println("Fatal parsing error:" + e.getMessage());
         }
     }
 
