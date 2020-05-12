@@ -7,10 +7,16 @@ shushi;
 
 seisu kansu bubble(hairetsu A, seisu N) kido
     shuki j = 0 : N-1 kido
-        shuki i = 0 : N-1 kido
+        ronri F = osu;
+        shuki i = 0 : N-j-1 kido
             sorenara A[i] > A[i+1] kido
                 swap(A, i, i+1);
+                F = shinri;
             shushi;
+        shushi;
+
+        sorenara ~F kido
+            j = N - 2;
         shushi;
     shushi;
 
