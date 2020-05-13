@@ -6,4 +6,9 @@ senden la;
 senden la[2, 1] => Z;
 la[2, 1] => Y = 5;
 senden la[2, 1] => Y;
-
+senden la[2, 1];
+rippotai kb = [0, 0, 0, 5];
+la[2, 0] = kb;
+kb => X = 1;
+senden la;
+senden kb;
