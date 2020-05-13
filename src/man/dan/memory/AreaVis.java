@@ -119,6 +119,9 @@ public class AreaVis {
         assert nested.size() <= 0;
 
         variables.clear();
+        if (parent == null)
+            return;
+
         int delPar = parent.nested.indexOf(this);
         assert delPar != -1;
 

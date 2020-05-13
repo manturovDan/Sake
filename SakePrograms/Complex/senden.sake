@@ -1,0 +1,9 @@
+seisu bz = -xAF;
+senden bz;
+hairetsu la = {4, 2};
+la[2, 1] = [1, 2, 0, shinri];
+senden la;
+senden la[2, 1] => Z;
+la[2, 1] => Y = 5;
+senden la[2, 1] => Y;
+
