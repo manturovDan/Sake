@@ -465,7 +465,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 }
             }
 
+            AreaVis forClear = memory;
             memory = memory.parentArea(); //maybe clear
+
+            forClear.clear();
         }
 
         return null;

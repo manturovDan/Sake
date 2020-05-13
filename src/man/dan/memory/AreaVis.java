@@ -114,4 +114,14 @@ public class AreaVis {
         variables.clear();
         variables.put(ptr.getName(), byPtr);
     }
+
+    public void clear() {
+        assert nested.size() <= 0;
+
+        variables.clear();
+        int delPar = parent.nested.indexOf(this);
+        assert delPar != -1;
+
+        parent.nested.remove(delPar);
+    }
 }
