@@ -4,6 +4,7 @@ import man.dan.memory.AreaVis;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -37,9 +38,9 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
-        //assertEquals(((Countable)memory.getValByPtr("c1")).getValue(), 121);
-        //assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 152);
+        String[] phrasesOut = progOut.toString().split("\n");
 
-        System.out.println(progOut.toString());
+        assertEquals(phrasesOut[0], "-175");
+
     }
 }
