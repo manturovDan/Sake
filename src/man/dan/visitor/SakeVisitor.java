@@ -49,7 +49,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected void cleanup() {
-
+        if (clearAreas)
+            memory.clear();
     }
 
     @Override

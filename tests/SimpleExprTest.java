@@ -24,6 +24,7 @@ public class SimpleExprTest {
         Interpreter interpreter;
         interpreter = new Interpreter(progIn, System.out, System.out);
         AreaVis memory = interpreter.getMemory();
+        interpreter.disableClear();
         interpreter.run();
         return memory;
     }

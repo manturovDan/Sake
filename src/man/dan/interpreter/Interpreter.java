@@ -23,6 +23,7 @@ public class Interpreter {
     protected PrintStream outPrint;
     protected PrintStream errPrint;
     protected AreaVis memory;
+    protected boolean clear;
 
     public Interpreter(InputStream _in, OutputStream _out, OutputStream _err) {
         sin = _in;
@@ -31,6 +32,11 @@ public class Interpreter {
         outPrint = new PrintStream(sout, true);
         errPrint = new PrintStream(serr, true);
         memory = new AreaVis();
+        clear = true;
+    }
+
+    public void disableClear() {
+        clear = false;
     }
 
     public void run() throws IOException {
@@ -45,6 +51,9 @@ public class Interpreter {
         try {
             ParseTree tree = parser.program();
             SakeVisitor eval = new SakeVisitor(memory, sin, outPrint, errPrint, erHandler);
+
+            if (!clear)
+                eval.disableClearing();
 
             int ers = erHandler.getSyntaxErrorCount();
             if (ers > 0)
