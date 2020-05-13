@@ -65,7 +65,7 @@ public class Rippotai implements SakeObj {
 
     @Override
     public String toString() {
-        return "{ X : " + x + "; Y : " + y + "; Z : " + z + "; isKabe" + kabe + " }";
+        return "{ X : " + x + "; Y : " + y + "; Z : " + z + "; isKabe : " + kabe + " }";
     }
 
     @Override

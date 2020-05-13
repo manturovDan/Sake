@@ -38,9 +38,17 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
+        System.out.println(progOut.toString());
+
         String[] phrasesOut = progOut.toString().split("\n");
 
         assertEquals(phrasesOut[0], "-175");
+        assertEquals(phrasesOut[1], "{{undefined, undefined}, {undefined, undefined}, {undefined, { X : 1; Y : 2; Z : 0; isKabe : true }}, {undefined, undefined}}");assertEquals(phrasesOut[0], "-175");
+        assertEquals(phrasesOut[2], "0");
+        assertEquals(phrasesOut[3], "5");
+        assertEquals(phrasesOut[4], "{ X : 1; Y : 5; Z : 0; isKabe : true }");
+        assertEquals(phrasesOut[5], "{{undefined, undefined}, {undefined, undefined}, {{ X : 0; Y : 0; Z : 0; isKabe : false }, { X : 1; Y : 5; Z : 0; isKabe : true }}, {undefined, undefined}}");
+        assertEquals(phrasesOut[6], "{ X : 1; Y : 0; Z : 0; isKabe : false }");
 
     }
 }
