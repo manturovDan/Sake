@@ -573,6 +573,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         memory = current;
 
+        if (clearAreas)
+            areaExec.clear();
+
         SakeObj result = returnVal;
         returnVal = null;
 
