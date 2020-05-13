@@ -27,6 +27,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     protected SakeObj returnVal;
 
+    protected boolean clearAreas;
+
     public SakeVisitor(AreaVis mem, InputStream _in, PrintStream _out, PrintStream _err, ErrorListener handler) {
         sin = _in;
         sout = _out;
@@ -34,6 +36,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         memory = mem;
         returnVal = null;
         errHandler = handler;
+        clearAreas = true;
+    }
+
+    public void disableClearing() {
+        clearAreas = false;
     }
 
     protected void init() {
@@ -466,9 +473,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             }
 
             AreaVis forClear = memory;
-            memory = memory.parentArea(); //maybe clear
+            memory = memory.parentArea();
 
-            forClear.clear();
+            if (clearAreas)
+                forClear.clear();
         }
 
         return null;
@@ -494,8 +502,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 cur.inc();
                 memory.clearExcluding(ptr);
             }
+            AreaVis forClear = memory;
+            memory = memory.parentArea();
 
-            memory = memory.parentArea(); //maybe clear
+            if (clearAreas)
+                forClear.clear();
+
         }
         catch (SemanticSakeError e) {
             errHandler.semanticError(ctx, e.toString());
