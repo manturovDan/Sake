@@ -55,7 +55,7 @@ block_coub
 ;
 
 rippotai_assign
-    : RIPPOTAI ID '=' (appeal|block_coub) ENDEXPR
+    : RIPPOTAI ID '=' (expr|block_coub) ENDEXPR
 ;
 
 order

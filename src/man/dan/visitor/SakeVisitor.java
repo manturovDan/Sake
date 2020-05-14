@@ -358,7 +358,13 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitRippotai_assign(SakeParserParser.Rippotai_assignContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
-        SakeObj cube = defineRippotai(ctx.block_coub(), ptr, true);
+        SakeObj cube = null;
+        if (ctx.block_coub() != null)
+            cube = defineRippotai(ctx.block_coub(), ptr, true);
+        else if (ctx.expr() != null)
+            cube = visit(ctx.expr());
+        else
+            assert false;
 
         if (cube == null)
             errHandler.semanticError(ctx, "appeal to nonexistent cube or the second declaration");

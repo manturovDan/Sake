@@ -240,7 +240,9 @@ public class ComplexTest {
                                 "senden ab;\n" +
                                 "cd => X = 1;\n" +
                                 "senden cd;\n" +
-                                "#rippotai ef = cd;\n" +
+                                "rippotai ef = cd;\n" +
+                                "ef => Y = 10;\n" +
+                                "senden ef;\n" +
                                 "#rippotai gh = ab;";
 
         OutputStream progOut = new ByteArrayOutputStream();
@@ -248,13 +250,15 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
+        String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
 
         System.out.println(progErr.toString());
         System.out.println(progOut.toString());
 
-        //assertEquals(phrasesErr[0], "Semantic error: r_value of seisu is undefined in line 12");
-        //assertEquals(phrasesErr[1], "Semantic error: r_value of k is null in line 12");
+        assertEquals(phrasesOut[0], "{ X : 0; Y : 0; Z : 5; isKabe : true }");
+        assertEquals(phrasesOut[1], "{ X : 1; Y : 0; Z : 5; isKabe : true }");
+        assertEquals(phrasesOut[2], "{ X : 1; Y : 10; Z : 5; isKabe : true }");
 
     }
 }
