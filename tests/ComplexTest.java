@@ -258,8 +258,8 @@ public class ComplexTest {
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
 
-        System.out.println(progErr.toString());
-        System.out.println(progOut.toString());
+        //System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
 
         assertEquals(phrasesOut[0], "{ X : 0; Y : 0; Z : 5; isKabe : true }");
         assertEquals(phrasesOut[1], "{ X : 1; Y : 0; Z : 5; isKabe : true }");

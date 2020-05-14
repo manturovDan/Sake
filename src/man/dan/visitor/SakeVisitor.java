@@ -428,7 +428,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             value = visit(ctx.r_value().expr());
         else if (isRippotai(current)) {
             if (ctx.r_value().expr() != null) {
-                value = visit(ctx.r_value().expr()).getCopy();
+                try {
+                    value = visit(ctx.r_value().expr()).getCopy();
+                } catch (NullPointerException e) {
+                    errHandler.semanticError(ctx, "null value assigns");
+                }
 
                 if (!(value instanceof Rippotai))
                     errHandler.semanticError(ctx, "type mismatch in rippotai definition");
@@ -445,7 +449,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
         else if (isHairetsu(current)) {
             if (ctx.r_value().expr() != null) {
-                value = visit(ctx.r_value().expr()).getCopy();
+                try {
+                    value = visit(ctx.r_value().expr()).getCopy();
+                } catch (NullPointerException e) {
+                    errHandler.semanticError(ctx, "null value assigns");
+                }
 
                 if (!(value instanceof Hairetsu))
                     errHandler.semanticError(ctx, "type mismatch in hairetsu definition");
@@ -457,7 +465,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
         else if (ptr.isArray()) {
             if (ctx.r_value().expr() != null)
-                value = visit(ctx.r_value().expr()).getCopy();
+                try {
+                    value = visit(ctx.r_value().expr()).getCopy();
+                } catch (NullPointerException e) {
+                    errHandler.semanticError(ctx, "null value assigns");
+                }
             else if (ctx.r_value().array_vals() != null)
                 return defineHairetsu(ctx.r_value().array_vals().order(), ptr, false);
             else if (ctx.r_value().block_coub() != null) {
