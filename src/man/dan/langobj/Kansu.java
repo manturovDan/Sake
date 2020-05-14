@@ -41,15 +41,16 @@ public class Kansu implements SakeObj {
 
     public AreaVis setRun(ArrayList<SakeObj> arguments) throws SemanticSakeError {
         if (arguments.size() != params.size())
-            throw new SemanticSakeError("arguments count missmatch");
+            throw new SemanticSakeError("arguments count mismatch");
 
         AreaVis runVis = curMemory.nestedArea();
 
         for (int i = 0; i < arguments.size(); ++i) {
-            if (compareTypes(arguments.get(i), params.get(i)._2())) {
-                try {
-                    runVis.declAndAssign(new Pointer(params.get(i)._1()), arguments.get(i));
-                } catch (Exception e) {} //error later
+            if (compareTypes(arguments.get(i), params.get(i)._2()))
+                runVis.declAndAssign(new Pointer(params.get(i)._1()), arguments.get(i));
+            else {
+                runVis.clear();
+                throw new SemanticSakeError("Parameters type mismatch");
             }
         }
 

@@ -630,6 +630,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
         catch (SemanticSakeError e) {
             errHandler.semanticError(ctx, e.toString());
+            return null;
         }
 
         AreaVis current = memory;
