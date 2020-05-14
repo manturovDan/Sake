@@ -67,7 +67,7 @@ array_vals
 ;
 
 hairetsu_assign
-    : HAIRETSU ID '=' array_vals ENDEXPR
+    : HAIRETSU ID '=' (expr|array_vals) ENDEXPR
 ;
 
 cube_attr

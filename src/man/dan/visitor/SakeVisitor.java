@@ -385,7 +385,26 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitHairetsu_assign(SakeParserParser.Hairetsu_assignContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
-        return defineHairetsu(ctx.array_vals().order(), ptr, true);
+        SakeObj arr = null;
+        if (ctx.array_vals() != null)
+            arr = defineHairetsu(ctx.array_vals().order(), ptr, true);
+        else if (ctx.expr() != null) {
+            try {
+                arr = visit(ctx.expr()).getCopy();
+
+                if (!(arr instanceof Hairetsu)) {
+                    errHandler.semanticError(ctx, "type mismatch in hairetsu assignment");
+                }
+
+                memory.declAndAssign(ptr, arr);
+            } catch (SemanticSakeError e) {
+                errHandler.semanticError(ctx, e.toString());
+            }
+        }
+        else
+            assert false;
+
+        return arr;
     }
 
     @Override
