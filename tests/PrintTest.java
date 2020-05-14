@@ -118,10 +118,14 @@ public class PrintTest {
         OutputStream progErr = new ByteArrayOutputStream();
 
         AreaVis memory = executeWithClear(initialString, progOut, progErr);
-        String[] output = progErr.toString().split("\n");
+        String[] output = progOut.toString().split("\n");
 
         assertEquals(output[0],  "{{undefined}}");
-        assertEquals(output[1],  "123");
+        assertEquals(output[1],  "{{undefined}}");
+        assertEquals(output[2],  "{{undefined}}");
+        assertEquals(output[3],  "{{undefined}}");
+        assertEquals(output[4],  "{{undefined}}");
+        assertEquals(output[5],  "123");
         assertNull(memory.parentArea());
         assertEquals(memory.nestedCount(), 0);
         assertEquals(memory.variablesCount(), 0);
