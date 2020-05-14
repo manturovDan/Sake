@@ -131,4 +131,12 @@ public class AreaVis {
 
         parent.nested.remove(delPar);
     }
+
+    public int variablesCount() {
+        return variables.size();
+    }
+
+    public int nestedCount() {
+        return nested.size();
+    }
 }
