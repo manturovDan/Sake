@@ -9,24 +9,29 @@ import java.io.InputStream;
 public class SakeLaunch {
     public static void main(String[] args) {
         InputStream progIn = null;
-        InputStream mazeIn;
+        InputStream mazeIn = null;
 
         Interpreter interpreter;
 
         try {
-            if (args.length == 0) {
-                System.out.println("Run interpreter with <PROGRAM>.sake <MAZE>.LB (optional)");
+            if (args.length == 0 || args.length == 2 || args.length > 3) {
+                System.err.println("Run interpreter with <PROGRAM>.sake [<MAZE>.maze <DELAY SECONDS>]");
                 System.exit(-1);
             }
 
+            progIn = new FileInputStream(args[0]);
+            interpreter = new Interpreter(progIn, System.out, System.err);
+
             if (args.length == 1) {
-                progIn = new FileInputStream(args[0]);
-                interpreter = new Interpreter(progIn, System.out, System.err);
+                interpreter.run();
+            }
+            else {
+                mazeIn = new FileInputStream(args[1]);
                 interpreter.run();
             }
 
         } catch (IOException e) {
-            System.out.println("Critical error: " + e.getMessage());
+            System.err.println("Critical error: " + e.getMessage());
             System.exit(-1);
         } finally {
             if (progIn != null) {
