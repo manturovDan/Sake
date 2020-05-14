@@ -37,10 +37,14 @@ public class AreaVis {
         variables.put(ptr.getName(), obj);
     }
 
-    protected SakeObj getInArr(Hairetsu arr, ArrayList<Integer> deep) {
+    protected SakeObj getInArr(Hairetsu arr, ArrayList<Integer> deep) throws SemanticSakeError {
         if (deep.size() == 1)
             return arr.get(deep.get(0));
-        return getInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())));
+        try {
+            return getInArr((Hairetsu) arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())));
+        } catch (Exception e) {
+            throw new SemanticSakeError("inconsistency array deep");
+        }
     }
 
     protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet, CubeAttr attr) throws SemanticSakeError{

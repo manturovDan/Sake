@@ -179,7 +179,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         try {
             return memory.getValByPtr(ptr).getCopy();
-        } catch (Exception e) {
+        } catch (SemanticSakeError e) {
             errHandler.semanticError(ctx, e.toString());
             return null;
         }
@@ -276,7 +276,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         for (SakeParserParser.ExprContext expr : order.expr()) {
             int sz = ((Countable)visit(expr)).getValue();
             if (sz < border) {
-                errHandler.semanticError(order, "bad array size (" + sz + ")");
+                errHandler.semanticError(order, "bad array parameter (" + sz + ")");
             }
             res.add(sz);
         }

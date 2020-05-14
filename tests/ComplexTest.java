@@ -312,4 +312,37 @@ public class ComplexTest {
         assertEquals(phrasesErr[4], "Semantic error: type mismatch in hairetsu definition (rippotai) in line 14");
 
     }
+
+    @Test
+    public void arrayIndexesTest() throws Exception {
+        String initialString =  "hairetsu A = {3, 3, 3};\n" +
+                                "senden A[0, 0, 0];\n" +
+                                "senden A;\n" +
+                                "senden A[0, 0, 0, 0];\n" +
+                                "senden A[10, 0];\n" +
+                                "senden A[0, 0, 100, 0];\n" +
+                                "senden A[0, 0, -1];\n" +
+                                "senden A[0, 0, 3];\n";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        executeWithClear(initialString, progOut, progErr);
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        //System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
+
+        assertEquals(phrasesOut[0], "undefined");
+        assertEquals(phrasesOut[1], "{{{undefined, undefined, undefined}, {undefined, undefined, undefined}, {undefined, undefined, undefined}}, {{undefined, undefined, undefined}, {undefined, undefined, undefined}, {undefined, undefined, undefined}}, {{undefined, undefined, undefined}, {undefined, undefined, undefined}, {undefined, undefined, undefined}}}");
+
+
+        assertEquals(phrasesErr[0], "Semantic error: inconsistency array deep in line 4");
+        assertEquals(phrasesErr[1], "Semantic error: inconsistency array deep in line 5");
+        assertEquals(phrasesErr[2], "Semantic error: inconsistency array deep in line 6");
+        assertEquals(phrasesErr[3], "Semantic error: bad array parameter (-1) in line 7");
+
+    }
 }
