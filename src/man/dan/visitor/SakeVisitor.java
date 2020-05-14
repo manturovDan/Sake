@@ -363,7 +363,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             cube = defineRippotai(ctx.block_coub(), ptr, true);
         else if (ctx.expr() != null)
             try {
-                cube = visit(ctx.expr()).getCopy();
+                try {
+                    cube = visit(ctx.expr()).getCopy();
+                } catch (NullPointerException e) {
+                    errHandler.semanticError(ctx, "null value assigns to rippotai");
+                }
 
                 if (!(cube instanceof Rippotai)) {
                     errHandler.semanticError(ctx, "type mismatch in rippotai assignment");
@@ -390,7 +394,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             arr = defineHairetsu(ctx.array_vals().order(), ptr, true);
         else if (ctx.expr() != null) {
             try {
-                arr = visit(ctx.expr()).getCopy();
+                try {
+                    arr = visit(ctx.expr()).getCopy();
+                } catch (NullPointerException e) {
+                    errHandler.semanticError(ctx, "null value assigns to hairetsu");
+                }
 
                 if (!(arr instanceof Hairetsu)) {
                     errHandler.semanticError(ctx, "type mismatch in hairetsu assignment");

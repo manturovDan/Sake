@@ -366,13 +366,64 @@ public class ComplexTest {
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
 
-        System.out.println(progErr.toString());
-        System.out.println(progOut.toString());
+        //System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
 
-        assertEquals(phrasesErr[0], "Semantic error: inconsistency array deep in line 4");
-        assertEquals(phrasesErr[1], "Semantic error: inconsistency array deep in line 5");
-        assertEquals(phrasesErr[2], "Semantic error: inconsistency array deep in line 6");
-        assertEquals(phrasesErr[3], "Semantic error: bad array parameter (-1) in line 7");
+        assertEquals(phrasesErr[0], "Semantic error: Parameters type mismatch in line 9");
+
+    }
+
+    @Test
+    public void funcParamsCountMiss() throws Exception {
+        String initialString =  "seisu kansu fibo(seisu f) kido\n" +
+                "    sorenara f < 3 kido\n" +
+                "        modoru 1;\n" +
+                "    shushi;\n" +
+                "\n" +
+                "    modoru fibo(f-2) + fibo(f-1);\n" +
+                "shushi;\n" +
+                "\n" +
+                "senden fibo(10, [1, 1, 1, 1]);";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        executeWithClear(initialString, progOut, progErr);
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        //System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
+
+        assertEquals(phrasesErr[0], "Semantic error: arguments count mismatch in line 9");
+
+    }
+
+    @Test
+    public void funcRetTypeMiss() throws Exception {
+        String initialString =  "seisu kansu fibo(seisu f) kido\n" +
+                "    sorenara f < 3 kido\n" +
+                "        modoru 1;\n" +
+                "    shushi;\n" +
+                "\n" +
+                "    modoru fibo(f-2) + fibo(f-1);\n" +
+                "shushi;\n" +
+                "\n" +
+                "hairetsu A = fibo(10);";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        executeWithClear(initialString, progOut, progErr);
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        //System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
+
+        assertEquals(phrasesErr[0], "Semantic error: type mismatch in hairetsu assignment in line 9");
 
     }
 }
