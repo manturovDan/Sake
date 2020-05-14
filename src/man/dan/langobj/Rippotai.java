@@ -46,7 +46,9 @@ public class Rippotai implements SakeObj {
         }
     }
 
-    public void setByAttr(CubeAttr attr, int val) {
+    public void setByAttr(CubeAttr attr, int val) throws SemanticSakeError {
+        if (val < 0)
+            throw new SemanticSakeError("bad rippotai coordinate " + attr);
         switch (attr) {
             case X:
                 x = val;

@@ -43,7 +43,7 @@ public class AreaVis {
         return getInArr((Hairetsu)arr.get(deep.get(0)), new ArrayList<>(deep.subList(1, deep.size())));
     }
 
-    protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet, CubeAttr attr) {
+    protected void setInArr(Hairetsu arr, ArrayList<Integer> deep, SakeObj whatSet, CubeAttr attr) throws SemanticSakeError{
         if (deep.size() == 1) {
             if (attr == null)
                 arr.set(deep.get(0), whatSet);
