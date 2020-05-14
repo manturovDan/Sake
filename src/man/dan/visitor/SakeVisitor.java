@@ -434,7 +434,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
 
         if (isCountable(current))
-            value = visit(ctx.r_value().expr());
+            try {
+                value = visit(ctx.r_value().expr());
+            } catch (Exception e) {
+                errHandler.semanticError(ctx, "Type mismatch in definition if number");
+                return null;
+            }
         else if (isRippotai(current)) {
             if (ctx.r_value().expr() != null) {
                 try {

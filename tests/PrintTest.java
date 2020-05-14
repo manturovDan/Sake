@@ -18,7 +18,7 @@ public class PrintTest {
     }
 
     @Test
-    public void fiboPrint() throws IOException {
+    public void fiboPrintTest() throws IOException {
         String initialString =      "seisu kansu fibo(seisu f) kido\n" +
                 "    sorenara f < 3 kido\n" +
                 "        modoru 1;\n" +
@@ -36,6 +36,68 @@ public class PrintTest {
         AreaVis memory = executeWithClear(initialString, progOut, progErr);
 
         assertEquals(progOut.toString(),  "55\n");
+        assertNull(memory.parentArea());
+        assertEquals(memory.nestedCount(), 0);
+        assertEquals(memory.variablesCount(), 0);
+    }
+
+    @Test
+    public void areaDefCondTest() throws IOException {
+        String initialString =      "seisu c = 123;\n" +
+                                    "sorenara shinri > 0 kido\n" +
+                                        "c = 321;\n" +
+                                        "senden c;\n" +
+                                    "shushi;\n" +
+                                    "senden c;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        AreaVis memory = executeWithClear(initialString, progOut, progErr);
+
+        assertEquals(progOut.toString(),  "321\n321\n");
+        assertNull(memory.parentArea());
+        assertEquals(memory.nestedCount(), 0);
+        assertEquals(memory.variablesCount(), 0);
+    }
+
+    @Test
+    public void areaDefCondLoopTest() throws IOException {
+        String initialString =      "seisu c = 123;\n" +
+                                        "shuki j = 0 : 5 kido\n" +
+                                            "sorenara shinri > 0 kido\n" +
+                                                "c = 521;\n" +
+                                            "shushi;" +
+                                        "shushi;\n" +
+                                    "senden c;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        AreaVis memory = executeWithClear(initialString, progOut, progErr);
+
+        assertEquals(progOut.toString(),  "521\n");
+        assertNull(memory.parentArea());
+        assertEquals(memory.nestedCount(), 0);
+        assertEquals(memory.variablesCount(), 0);
+    }
+
+    @Test
+    public void areaDefCondLoopErrTest() throws IOException {
+        String initialString =      "seisu c = 123;\n" +
+                                    "shuki j = 0 : 5 kido\n" +
+                                        "sorenara shinri > 0 kido\n" +
+                                            "c = {10, 10};\n" +
+                                        "shushi;" +
+                                    "shushi;\n" +
+                                    "senden c;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        AreaVis memory = executeWithClear(initialString, progOut, progErr);
+
+        assertEquals(progErr.toString().split("\n")[0],  "Semantic error: Type mismatch in definition if number in line 4");
         assertNull(memory.parentArea());
         assertEquals(memory.nestedCount(), 0);
         assertEquals(memory.variablesCount(), 0);
