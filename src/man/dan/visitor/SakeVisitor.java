@@ -362,7 +362,17 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         if (ctx.block_coub() != null)
             cube = defineRippotai(ctx.block_coub(), ptr, true);
         else if (ctx.expr() != null)
-            cube = visit(ctx.expr());
+            try {
+                cube = visit(ctx.expr()).getCopy();
+
+                if (!(cube instanceof Rippotai)) {
+                    errHandler.semanticError(ctx, "type mismatch in rippotai assignment");
+                }
+
+                memory.declAndAssign(ptr, cube);
+            } catch (SemanticSakeError e) {
+                errHandler.semanticError(ctx, e.toString());
+            }
         else
             assert false;
 
@@ -398,21 +408,33 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         if (isCountable(current))
             value = visit(ctx.r_value().expr());
         else if (isRippotai(current)) {
-            if (ctx.r_value().expr() != null)
+            if (ctx.r_value().expr() != null) {
                 value = visit(ctx.r_value().expr()).getCopy();
-            else {
+
+                if (!(value instanceof Rippotai))
+                    errHandler.semanticError(ctx, "type mismatch in rippotai definition");
+            }
+            else if (ctx.r_value().block_coub() != null) {
                 SakeObj cube = defineRippotai(ctx.r_value().block_coub(), ptr, false);
                 if (cube == null)
                     errHandler.semanticError(ctx, "appeal to nonexistent cube in rippotai");
 
                 return cube;
             }
+            else
+                errHandler.semanticError(ctx, "type mismatch in rippotai definition (hairetsu)");
         }
         else if (isHairetsu(current)) {
-            if (ctx.r_value().expr() != null)
+            if (ctx.r_value().expr() != null) {
                 value = visit(ctx.r_value().expr()).getCopy();
-            else
+
+                if (!(value instanceof Hairetsu))
+                    errHandler.semanticError(ctx, "type mismatch in hairetsu definition");
+            }
+            else if (ctx.r_value().array_vals() != null)
                 return defineHairetsu(ctx.r_value().array_vals().order(), ptr, false);
+            else
+                errHandler.semanticError(ctx, "type mismatch in rippotai hairetsu (definition)");
         }
         else if (ptr.isArray()) {
             if (ctx.r_value().expr() != null)

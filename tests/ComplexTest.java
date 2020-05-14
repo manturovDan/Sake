@@ -243,7 +243,12 @@ public class ComplexTest {
                                 "rippotai ef = cd;\n" +
                                 "ef => Y = 10;\n" +
                                 "senden ef;\n" +
-                                "#rippotai gh = ab;";
+                                "rippotai gh;\n" +
+                                "rippotai ij = gh;\n" +
+                                "ab = gh;\n" +
+                                "gh = 5;\n" +
+                                "cd = {10, 10};\n" +
+                                "\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -259,6 +264,12 @@ public class ComplexTest {
         assertEquals(phrasesOut[0], "{ X : 0; Y : 0; Z : 5; isKabe : true }");
         assertEquals(phrasesOut[1], "{ X : 1; Y : 0; Z : 5; isKabe : true }");
         assertEquals(phrasesOut[2], "{ X : 1; Y : 10; Z : 5; isKabe : true }");
+
+        assertEquals(phrasesErr[0], "Semantic error: type mismatch in rippotai assignment in line 11");
+        assertEquals(phrasesErr[1], "Semantic error: type mismatch in rippotai definition in line 12");
+        assertEquals(phrasesErr[2], "Semantic error: type mismatch in rippotai definition in line 13");
+
+        assertEquals(phrasesErr[3], "Semantic error: type mismatch in rippotai assignment in line 15");
 
     }
 }
