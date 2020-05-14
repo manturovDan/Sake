@@ -453,7 +453,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             else if (ctx.r_value().array_vals() != null)
                 return defineHairetsu(ctx.r_value().array_vals().order(), ptr, false);
             else
-                errHandler.semanticError(ctx, "type mismatch in rippotai hairetsu (definition)");
+                errHandler.semanticError(ctx, "type mismatch in hairetsu definition (rippotai)");
         }
         else if (ptr.isArray()) {
             if (ctx.r_value().expr() != null)

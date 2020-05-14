@@ -268,8 +268,7 @@ public class ComplexTest {
         assertEquals(phrasesErr[0], "Semantic error: type mismatch in rippotai assignment in line 11");
         assertEquals(phrasesErr[1], "Semantic error: type mismatch in rippotai definition in line 12");
         assertEquals(phrasesErr[2], "Semantic error: type mismatch in rippotai definition in line 13");
-
-        assertEquals(phrasesErr[3], "type mismatch in rippotai definition (hairetsu) in line 14");
+        assertEquals(phrasesErr[3], "Semantic error: type mismatch in rippotai definition (hairetsu) in line 14");
 
     }
 
@@ -282,13 +281,13 @@ public class ComplexTest {
                                 "cd[0, 0, 0] = [2, 2, 1, 1];\n" +
                                 "senden cd;\n" +
                                 "hairetsu ef = cd;\n" +
-                                "#ef[0, 0, 0] = 10;\n" +
-                                "#senden ef;\n" +
-                                "#hairetsu gh;\n" +
-                                "#hairetsu ij = gh;\n" +
-                                "#ab = gh;\n" +
-                                "#gh = 5;\n" +
-                                "#cd = [1, 1, 1, 1];\n" +
+                                "ef[0, 0, 0] = 10;\n" +
+                                "senden ef;\n" +
+                                "hairetsu gh;\n" +
+                                "hairetsu ij = gh;\n" +
+                                "ab = gh;\n" +
+                                "gh = 5;\n" +
+                                "cd = [1, 1, 1, 1];\n" +
                                 "\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
@@ -299,18 +298,18 @@ public class ComplexTest {
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
 
-        System.out.println(progErr.toString());
-        System.out.println(progOut.toString());
-/*
-        assertEquals(phrasesOut[0], "{ X : 0; Y : 0; Z : 5; isKabe : true }");
-        assertEquals(phrasesOut[1], "{ X : 1; Y : 0; Z : 5; isKabe : true }");
-        assertEquals(phrasesOut[2], "{ X : 1; Y : 10; Z : 5; isKabe : true }");
+        //System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
 
-        assertEquals(phrasesErr[0], "Semantic error: type mismatch in rippotai assignment in line 11");
-        assertEquals(phrasesErr[1], "Semantic error: type mismatch in rippotai definition in line 12");
-        assertEquals(phrasesErr[2], "Semantic error: type mismatch in rippotai definition in line 13");
+        assertEquals(phrasesOut[0], "{{{undefined}}}");
+        assertEquals(phrasesOut[1], "{{{{ X : 2; Y : 2; Z : 1; isKabe : true }}}}");
+        assertEquals(phrasesOut[2], "{{{10}}}");
 
-        assertEquals(phrasesErr[3], "type mismatch in rippotai definition (hairetsu) in line 14");*/
+        assertEquals(phrasesErr[0], "Semantic error: type mismatch in rippotai definition in line 8");
+        assertEquals(phrasesErr[1], "Semantic error: type mismatch in hairetsu assignment in line 11");
+        assertEquals(phrasesErr[2], "Semantic error: type mismatch in hairetsu definition in line 12");
+        assertEquals(phrasesErr[3], "Semantic error: type mismatch in hairetsu definition in line 13");
+        assertEquals(phrasesErr[4], "Semantic error: type mismatch in hairetsu definition (rippotai) in line 14");
 
     }
 }
