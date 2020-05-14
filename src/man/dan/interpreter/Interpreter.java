@@ -63,7 +63,7 @@ public class Interpreter {
         } catch (ParseCancellationException e) {
             errPrint.println("Fatal parsing error");
         } //catch (Exception e) {
-        //    errPrint.println("Fatal execution error");
+         //   errPrint.println("Fatal execution error");
         //}
     }
 

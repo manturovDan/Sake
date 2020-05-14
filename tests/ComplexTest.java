@@ -224,15 +224,37 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
-        System.out.println(progOut);
-        System.out.println(progErr);
-
-        String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
 
 
         assertEquals(phrasesErr[0], "Semantic error: r_value of seisu is undefined in line 12");
         assertEquals(phrasesErr[1], "Semantic error: r_value of k is null in line 12");
+
+    }
+
+    @Test
+    public void redefNullCubeTest() throws Exception {
+        String initialString =  "rippotai ab;\n" +
+                                "rippotai cd = [0, 0, 5, shinri];\n" +
+                                "ab = cd;\n" +
+                                "senden ab;\n" +
+                                "cd => X = 1;\n" +
+                                "senden cd;\n" +
+                                "#rippotai ef = cd;\n" +
+                                "#rippotai gh = ab;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        executeWithClear(initialString, progOut, progErr);
+
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        System.out.println(progErr.toString());
+        System.out.println(progOut.toString());
+
+        //assertEquals(phrasesErr[0], "Semantic error: r_value of seisu is undefined in line 12");
+        //assertEquals(phrasesErr[1], "Semantic error: r_value of k is null in line 12");
 
     }
 }
