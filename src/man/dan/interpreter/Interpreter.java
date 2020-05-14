@@ -62,9 +62,9 @@ public class Interpreter {
             eval.visit(tree);
         } catch (ParseCancellationException e) {
             errPrint.println("Fatal parsing error");
-        } catch (Exception e) {
-            errPrint.println("Fatal execution error");
-        }
+        } //catch (Exception e) {
+        //    errPrint.println("Fatal execution error");
+        //}
     }
 
     public AreaVis getMemory() {

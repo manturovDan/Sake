@@ -112,7 +112,7 @@ public class ComplexTest {
     }
 
     @Test
-    public void nonExistentVar() throws Exception {
+    public void nonExistentVarTest() throws Exception {
         String initialString =  "seisu bz = -xAF;\n" +
                 "senden bz;\n" +
                 "hairetsu la = {4, 2};\n" +
@@ -136,7 +136,7 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
-        System.out.println(progErr);
+        //System.out.println(progErr);
 
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
@@ -153,5 +153,86 @@ public class ComplexTest {
         assertEquals(phrasesErr[2], "Semantic error: bad rippotai coordinates in line 16");
     }
 
+    @Test
+    public void definitionTest() throws Exception {
+        String initialString =  "seisu bz = -xAF;\n" +
+                                "senden bz\n" +
+                                "hairetsu la = {4, 2};\n" +
+                                "la[2, 1] = [1, 2, 0, shinri];\n" +
+                                "senden la;\n" +
+                                "ronri la = osu;\n" +
+                                "ne => X = 55;" +
+                                "senden la[2, 1] => Z;\n" +
+                                "la[2, 1] => Y = 5;\n" +
+                                "senden la[2, 1] => Y;\n" +
+                                "senden la[2, 1];\n" +
+                                "rippotai kb = [0, 0, 0, 5];" +
+                                "rippotai kb;\n" +
+                                "la[2, 0] = kb;\n" +
+                                "kb => X = 1;\n" +
+                                "senden la;\n" +
+                                "senden kb;\n" +
+                                "kb => X = 1;\n" +
+                                "rippotai kbp = [0, 21, 0, shinri];\n" +
+                                "rippotai kbp = [89, 21, 55, shinri];";
 
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        executeWithClear(initialString, progOut, progErr);
+
+        //System.out.println(progErr);
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        assertEquals(phrasesOut[0], "-175");
+        assertEquals(phrasesOut[2], "0");
+        assertEquals(phrasesOut[3], "5");
+        assertEquals(phrasesOut[4], "{ X : 1; Y : 5; Z : 0; isKabe : true }");
+        assertEquals(phrasesOut[5], "{{undefined, undefined}, {undefined, undefined}, {{ X : 0; Y : 0; Z : 0; isKabe : false }, { X : 1; Y : 5; Z : 0; isKabe : true }}, {undefined, undefined}}");
+        assertEquals(phrasesOut[6], "{ X : 1; Y : 0; Z : 0; isKabe : false }");
+
+
+        assertEquals(phrasesErr[0], "Syntax Error: missing ';' at 'hairetsu' in line 3, at character 0");
+        assertEquals(phrasesErr[1], "There are (is) 1 syntax error(s) in the program");
+        assertEquals(phrasesErr[2], "Semantic error: variable 'la' was declared one more times in line 6");
+        assertEquals(phrasesErr[3], "Semantic error: appeal to nonexistent variable ne => X in line 7");
+        assertEquals(phrasesErr[4], "Semantic error: variable 'kb' was declared one more times in line 11");
+        assertEquals(phrasesErr[5], "Semantic error: appeal to nonexistent cube or the second declaration in line 18");
+
+    }
+
+    @Test
+    public void redefNullTest() throws Exception {
+        String initialString =  "seisu ab;\n" +
+                                "seisu redef = -(4-9);\n" +
+                                "shuki k1 = 0 : (5+2) kido\n" +
+                                "    sorenara redef > 10 kido\n" +
+                                "        redef = redef + 2;\n" +
+                                "    shushi;\n" +
+                                "\n" +
+                                "    sorenara redef < 10 kido\n" +
+                                "        redef = redef + 1;\n" +
+                                "    shushi;\n" +
+                                "    \n" +
+                                "    seisu k = ab;\n" +
+                                "shushi;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        executeWithClear(initialString, progOut, progErr);
+
+        System.out.println(progOut);
+        System.out.println(progErr);
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+
+        assertEquals(phrasesErr[0], "Semantic error: r_value of seisu is undefined in line 12");
+        assertEquals(phrasesErr[1], "Semantic error: r_value of k is null in line 12");
+
+    }
 }

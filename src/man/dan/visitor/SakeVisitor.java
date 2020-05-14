@@ -74,7 +74,13 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitNum_assign(SakeParserParser.Num_assignContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
-        Countable value = (Countable) visit(ctx.expr());
+        Countable value = null;
+
+        try {
+            value = (Countable) visit(ctx.expr());
+        } catch (Exception e) {
+            errHandler.semanticError(ctx, "r_value of seisu is undefined");
+        }
 
         assignCountable(ptr, value, ctx);
 
@@ -84,7 +90,14 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitBool_assign(SakeParserParser.Bool_assignContext ctx) {
         Pointer ptr = new Pointer(ctx.ID().getText());
-        Countable value = (Countable) visit(ctx.expr());
+
+        Countable value = null;
+
+        try {
+            value = (Countable) visit(ctx.expr());
+        } catch (Exception e) {
+            errHandler.semanticError(ctx, "r_value of ronri is undefined");
+        }
 
         assignCountable(ptr, value, ctx);
 
@@ -348,7 +361,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         SakeObj cube = defineRippotai(ctx.block_coub(), ptr, true);
 
         if (cube == null)
-            errHandler.semanticError(ctx, "appeal to nonexistent cube");
+            errHandler.semanticError(ctx, "appeal to nonexistent cube or the second declaration");
 
         return cube;
     }
@@ -384,7 +397,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             else {
                 SakeObj cube = defineRippotai(ctx.r_value().block_coub(), ptr, false);
                 if (cube == null)
-                errHandler.semanticError(ctx, "appeal to nonexistent cube");
+                    errHandler.semanticError(ctx, "appeal to nonexistent cube in rippotai");
 
                 return cube;
             }
@@ -403,7 +416,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             else if (ctx.r_value().block_coub() != null) {
                 SakeObj cube = defineRippotai(ctx.r_value().block_coub(), ptr, false);
                 if (cube == null)
-                    errHandler.semanticError(ctx, "appeal to nonexistent cube");
+                    errHandler.semanticError(ctx, "appeal to nonexistent cube in hairetsu");
 
                 return cube;
             }

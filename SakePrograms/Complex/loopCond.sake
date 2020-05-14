@@ -1,0 +1,13 @@
+seisu ab;
+seisu redef = -(4-9);
+shuki k1 = 0 : (5+2) kido
+    sorenara redef > 10 kido
+        redef = redef + 2;
+    shushi;
+
+    sorenara redef < 10 kido
+        redef = redef + 1;
+    shushi;
+
+    seisu k = ab;
+shushi
