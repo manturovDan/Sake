@@ -102,4 +102,108 @@ public class PrintTest {
         assertEquals(memory.nestedCount(), 0);
         assertEquals(memory.variablesCount(), 0);
     }
+
+    @Test
+    public void areaAssignCondLoopTest() throws IOException {
+        String initialString =      "seisu c = 123;\n" +
+                                    "shuki j = 0 : 5 kido\n" +
+                                    "sorenara shinri > 0 kido\n" +
+                                    "hairetsu c = {1, 1};\n" +
+                                    "senden c;\n" +
+                                    "shushi;" +
+                                    "shushi;\n" +
+                                    "senden c;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        AreaVis memory = executeWithClear(initialString, progOut, progErr);
+        String[] output = progErr.toString().split("\n");
+
+        assertEquals(output[0],  "{{undefined}}");
+        assertEquals(output[1],  "123");
+        assertNull(memory.parentArea());
+        assertEquals(memory.nestedCount(), 0);
+        assertEquals(memory.variablesCount(), 0);
+    }
+
+    @Test
+    public void areaAssignCondLoop2Test() throws IOException {
+        String initialString =      "seisu c = 123;\n" +
+                                    "shuki j = 0 : 5 kido\n" +
+                                    "sorenara shinri > 0 kido\n" +
+                                    "seisu c = 555;\n" +
+                                    "senden c;\n" +
+                                    "shushi;" +
+                                    "shushi;\n" +
+                                    "senden c;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        AreaVis memory = executeWithClear(initialString, progOut, progErr);
+        String[] output = progOut.toString().split("\n");
+
+        //System.out.println(progOut.toString());
+
+        assertEquals(output[0],  "555");
+        assertEquals(output[1],  "555");
+        assertEquals(output[2],  "555");
+        assertEquals(output[3],  "555");
+        assertEquals(output[4],  "555");
+        assertEquals(output[5],  "123");
+        assertNull(memory.parentArea());
+        assertEquals(memory.nestedCount(), 0);
+        assertEquals(memory.variablesCount(), 0);
+    }
+
+    @Test
+    public void fiboFIFTest() throws IOException {
+        String initialString =      "seisu kansu fiboWrap(seisu f) kido\n" +
+                                    "   seisu kansu fibo(seisu f) kido\n" +
+                                    "       sorenara f < 3 kido\n" +
+                                    "           modoru 1;\n" +
+                                    "       shushi;\n" +
+                                    "       modoru fibo(f-2) + fibo(f-1);\n" +
+                                    "   shushi;\n" +
+                                    "   seisu k = fibo(f);\n" +
+                                    "   modoru k;\n" +
+                                    "shushi;" +
+                                    "senden fiboWrap(10);";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        AreaVis memory = executeWithClear(initialString, progOut, progErr);
+
+        assertEquals(progOut.toString(),  "55\n");
+        assertNull(memory.parentArea());
+        assertEquals(memory.nestedCount(), 0);
+        assertEquals(memory.variablesCount(), 0);
+    }
+
+    @Test
+    public void fiboFIF2Test() throws IOException {
+        String initialString =      "seisu kansu fiboWrap(seisu ff) kido\n" +
+                                    "   seisu kansu fibo(seisu f) kido\n" +
+                                    "       sorenara f < 3 kido\n" +
+                                    "           modoru 1;\n" +
+                                    "       shushi;\n" +
+                                    "       modoru fibo(f-2) + fibo(f-1);\n" +
+                                    "   shushi;\n" +
+                                    "   seisu k = fibo(ff);\n" +
+                                    "   modoru k;\n" +
+                                    "shushi;" +
+                                    "senden fiboWrap(10);";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        AreaVis memory = executeWithClear(initialString, progOut, progErr);
+
+        assertEquals(progOut.toString(),  "55\n");
+        assertNull(memory.parentArea());
+        assertEquals(memory.nestedCount(), 0);
+        assertEquals(memory.variablesCount(), 0);
+    }
 }
