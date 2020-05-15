@@ -1,6 +1,8 @@
 package man.dan.robot;
 
 import io.vavr.Tuple3;
+import man.dan.errors.SemanticSakeError;
+import man.dan.langobj.Rippotai;
 
 import javax.management.modelmbean.XMLParseException;
 import javax.xml.namespace.QName;
@@ -61,8 +63,12 @@ public class Maze {
         }
     }
 
-    protected Integer getIntFromArg(StartElement startElement, String arg) {
-        return Integer.parseInt(startElement.getAttributeByName(new QName(arg)).getValue());
+    protected Integer getIntFromArg(StartElement startElement, String arg) throws XMLParseException {
+        Integer res = Integer.parseInt(startElement.getAttributeByName(new QName(arg)).getValue());
+        if (res < Rippotai.minCoord || res > Rippotai.maxCoord) {
+            throw new XMLParseException("Bad coordinates");
+        }
+        return res;
     }
 
     protected RoboState RoboState() {

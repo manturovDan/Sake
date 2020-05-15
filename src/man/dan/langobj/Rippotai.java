@@ -9,8 +9,11 @@ public class Rippotai implements SakeObj {
     protected int z;
     protected boolean kabe; //wall
 
+    static public final int minCoord = 0;
+    static public final int maxCoord = 29;
+
     public Rippotai(int _x, int _y, int _z, boolean _kabe) throws SemanticSakeError {
-        if (_x < 0 || _y < 0 || _z < 0)
+        if (_x < minCoord || _y < minCoord || _z < minCoord || _x > maxCoord || _y > maxCoord || _z > maxCoord)
             throw new SemanticSakeError("bad rippotai coordinates");
 
         x = _x;
