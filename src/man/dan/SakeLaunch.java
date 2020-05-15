@@ -31,7 +31,7 @@ public class SakeLaunch {
                 mazeIn = new FileInputStream(args[1]);
                 Maze lab = new Maze(mazeIn);
 
-                Thread goon = new Thread(new Travel());
+                Thread goon = new Thread(new Travel(lab, Integer.parseInt(args[2])));
                 goon.start();
 
                 interpreter.run();
