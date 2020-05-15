@@ -18,6 +18,7 @@ statement
     | function
     | condition
     | cycle
+    | robo_stmt
     | COMMENT
     | NEWLINE
 ;
@@ -67,7 +68,7 @@ array_vals
 ;
 
 hairetsu_assign
-    : HAIRETSU ID '=' (expr|array_vals) ENDEXPR
+    : HAIRETSU ID '=' (expr|array_vals|robo_stmt) ENDEXPR
 ;
 
 cube_attr
@@ -101,7 +102,7 @@ declaration_stmt
 ;
 
 r_value
-    : (expr|array_vals|block_coub)
+    : (expr|array_vals|block_coub|robo_stmt)
 ;
 
 def_simp_stmt
@@ -154,4 +155,28 @@ cycle
 
 function_call
     : ID '(' arguments ')'
+;
+
+robo_action
+    : UP
+    | DOWN
+    | LEFTWARD
+    | RIGHTWARD
+    | FORWARD
+    | BACK
+    | BREAK
+    | LOOKUP
+    | LOOKDOWN
+    | LOOKLEFT
+    | LOOKRIGHT
+    | LOOKFW
+    | LOOKBACK
+;
+
+robo_do
+    : (robo_action | '{' robo_action (';' robo_action)* '}')
+;
+
+robo_stmt
+    : robo_do ENDEXPR
 ;

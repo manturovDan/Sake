@@ -417,4 +417,34 @@ public interface SakeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunction_call(SakeParserParser.Function_callContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#robo_action}.
+	 * @param ctx the parse tree
+	 */
+	void enterRobo_action(SakeParserParser.Robo_actionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#robo_action}.
+	 * @param ctx the parse tree
+	 */
+	void exitRobo_action(SakeParserParser.Robo_actionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#robo_do}.
+	 * @param ctx the parse tree
+	 */
+	void enterRobo_do(SakeParserParser.Robo_doContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#robo_do}.
+	 * @param ctx the parse tree
+	 */
+	void exitRobo_do(SakeParserParser.Robo_doContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#robo_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterRobo_stmt(SakeParserParser.Robo_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#robo_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitRobo_stmt(SakeParserParser.Robo_stmtContext ctx);
 }

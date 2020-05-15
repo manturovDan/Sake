@@ -23,7 +23,7 @@ public class SakeLexer extends Lexer {
 		GREATER=24, LESS=25, ID=26, NEWLINE=27, COMMENT=28, ENDEXPR=29, WS=30, 
 		END_BLOCK=31, UP=32, DOWN=33, LEFTWARD=34, RIGHTWARD=35, FORWARD=36, BACK=37, 
 		BREAK=38, LOOKUP=39, LOOKDOWN=40, LOOKLEFT=41, LOOKRIGHT=42, LOOKFW=43, 
-		LLOKBACK=44;
+		LOOKBACK=44;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -39,7 +39,7 @@ public class SakeLexer extends Lexer {
 			"FIELD", "TOX", "TOY", "TOZ", "TOKABE", "PLUS", "MINUS", "GREATER", "LESS", 
 			"ID", "NEWLINE", "COMMENT", "ENDEXPR", "WS", "END_BLOCK", "UP", "DOWN", 
 			"LEFTWARD", "RIGHTWARD", "FORWARD", "BACK", "BREAK", "LOOKUP", "LOOKDOWN", 
-			"LOOKLEFT", "LOOKRIGHT", "LOOKFW", "LLOKBACK"
+			"LOOKLEFT", "LOOKRIGHT", "LOOKFW", "LOOKBACK"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -62,7 +62,7 @@ public class SakeLexer extends Lexer {
 			"SENDEN", "FIELD", "TOX", "TOY", "TOZ", "TOKABE", "PLUS", "MINUS", "GREATER", 
 			"LESS", "ID", "NEWLINE", "COMMENT", "ENDEXPR", "WS", "END_BLOCK", "UP", 
 			"DOWN", "LEFTWARD", "RIGHTWARD", "FORWARD", "BACK", "BREAK", "LOOKUP", 
-			"LOOKDOWN", "LOOKLEFT", "LOOKRIGHT", "LOOKFW", "LLOKBACK"
+			"LOOKDOWN", "LOOKLEFT", "LOOKRIGHT", "LOOKFW", "LOOKBACK"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();

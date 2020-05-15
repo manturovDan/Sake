@@ -254,4 +254,22 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunction_call(SakeParserParser.Function_callContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#robo_action}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRobo_action(SakeParserParser.Robo_actionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#robo_do}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRobo_do(SakeParserParser.Robo_doContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#robo_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRobo_stmt(SakeParserParser.Robo_stmtContext ctx);
 }
