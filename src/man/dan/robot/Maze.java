@@ -35,9 +35,7 @@ public class Maze {
                     if (robot != null)
                         throw new XMLParseException("there must be only one robot");
 
-                    robot = new Tuple3<>(   Integer.parseInt(startElement.getAttributeByName(new QName("X")).getValue()),
-                            Integer.parseInt(startElement.getAttributeByName(new QName("Y")).getValue()),
-                            Integer.parseInt(startElement.getAttributeByName(new QName("Z")).getValue()));
+                    robot = new Tuple3<>(getIntFromArg(startElement, "X"), getIntFromArg(startElement, "Y"), getIntFromArg(startElement, "Z"));
 
                     System.out.println("ROBOT");
                 }
@@ -46,16 +44,11 @@ public class Maze {
                     way = new HashSet<>();
                 } else if (inMaze && inSpaces) {
                     if (startElement.getName().getLocalPart().equals("passage")) {
-                        int x = getIntFromArg(startElement, "X");
-                        int y = getIntFromArg(startElement, "Y");
-                        int z = getIntFromArg(startElement, "Z");
-                        way.add(new Passage(x, y, z));
+                        way.add(new Passage(getIntFromArg(startElement, "X"), getIntFromArg(startElement, "Y"), getIntFromArg(startElement, "Z")));
                         System.out.println("PASSAGE");
                     }
                     else if (startElement.getName().getLocalPart().equals("portal")) {
-                        way.add(new Passage(    Integer.parseInt(startElement.getAttributeByName(new QName("X")).getValue()),
-                                                Integer.parseInt(startElement.getAttributeByName(new QName("Y")).getValue()),
-                                                Integer.parseInt(startElement.getAttributeByName(new QName("Z")).getValue()), true));
+                        way.add(new Passage(getIntFromArg(startElement, "X"), getIntFromArg(startElement, "Y"), getIntFromArg(startElement, "Z"), true));
                         System.out.println("PORTAL");
                     }
                     else
