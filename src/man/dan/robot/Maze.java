@@ -120,6 +120,7 @@ public class Maze {
         return robotZ;
     }
 
+
     public int look_up() {
         int dist = 0;
         Passage mwn = new Passage(robotX, robotY, robotZ);
@@ -133,18 +134,63 @@ public class Maze {
     }
 
     public int look_down() {
+        int dist = 0;
+        Passage mwn = new Passage(robotX, robotY, robotZ);
+        mwn.decZ();
+        while(isPassage(mwn)) {
+            dist++;
+            mwn.decZ();
+        }
+
+        return dist;
     }
 
     public int look_left() {
+        int dist = 0;
+        Passage mwn = new Passage(robotX, robotY, robotZ);
+        mwn.incX();
+        while(isPassage(mwn)) {
+            dist++;
+            mwn.incX();
+        }
+
+        return dist;
     }
 
     public int look_right() {
+        int dist = 0;
+        Passage mwn = new Passage(robotX, robotY, robotZ);
+        mwn.decX();
+        while(isPassage(mwn)) {
+            dist++;
+            mwn.decX();
+        }
+
+        return dist;
     }
 
     public int look_forward() {
+        int dist = 0;
+        Passage mwn = new Passage(robotX, robotY, robotZ);
+        mwn.incY();
+        while(isPassage(mwn)) {
+            dist++;
+            mwn.incY();
+        }
+
+        return dist;
     }
 
     public int look_back() {
+        int dist = 0;
+        Passage mwn = new Passage(robotX, robotY, robotZ);
+        mwn.decY();
+        while(isPassage(mwn)) {
+            dist++;
+            mwn.decY();
+        }
+
+        return dist;
     }
 
     protected boolean isPassage(Passage pass) {
