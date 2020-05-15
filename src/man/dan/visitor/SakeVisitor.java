@@ -413,6 +413,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 errHandler.semanticError(ctx, e.toString());
             }
         }
+        else if (ctx.robo_do() != null) {
+            arr = visit(ctx.robo_do());
+        }
         else
             assert false;
 
@@ -780,5 +783,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     public void setTravelVis(Travel trv) {
         travel = trv;
+    }
+
+    public SakeObj visitRobo_do(SakeParserParser.Robo_doContext ctx) {
+        return super.visitRobo_do(ctx);
     }
 }
