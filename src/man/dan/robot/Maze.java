@@ -119,4 +119,39 @@ public class Maze {
     public int rZ() {
         return robotZ;
     }
+
+    public int look_up() {
+        int dist = 0;
+        Passage mwn = new Passage(robotX, robotY, robotZ);
+        mwn.incZ();
+        while(isPassage(mwn)) {
+            dist++;
+            mwn.incZ();
+        }
+
+        return dist;
+    }
+
+    public int look_down() {
+    }
+
+    public int look_left() {
+    }
+
+    public int look_right() {
+    }
+
+    public int look_forward() {
+    }
+
+    public int look_back() {
+    }
+
+    protected boolean isPassage(Passage pass) {
+        pass.portal = false;
+        boolean notPor = way.contains(pass);
+        pass.portal = true;
+        boolean por = way.contains(pass);
+        return por | notPor;
+    }
 }

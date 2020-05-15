@@ -73,6 +73,30 @@ public class Travel implements Runnable {
         maze.back();
     }
 
+    public int look_up() {
+        return maze.look_up();
+    }
+
+    public int look_down() {
+        return maze.look_down();
+    }
+
+    public int look_left() {
+        return maze.look_left();
+    }
+
+    public int look_right() {
+        return maze.look_right();
+    }
+
+    public int look_forward() {
+        return maze.look_forward();
+    }
+
+    public int look_back() {
+        return maze.look_back();
+    }
+
     public RoboState getStatus() {
         return maze.RoboState();
     }

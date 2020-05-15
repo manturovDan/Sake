@@ -29,4 +29,28 @@ public class Passage {
     public int hashCode() {
         return (x + y + z) % 17 + (portal ? 1 : 0);
     }
+
+    public void incX() {
+        x++;
+    }
+
+    public void decX() {
+        x--;
+    }
+
+    public void incY() {
+        y++;
+    }
+
+    public void decY() {
+        y--;
+    }
+
+    public void incZ() {
+        z++;
+    }
+
+    public void decZ() {
+        z--;
+    }
 }
