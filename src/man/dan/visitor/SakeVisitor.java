@@ -743,6 +743,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         travel.fakeStep();
         boolean motion = false;
+        boolean look = false;
+
         if (ctx.UP() != null) {
             travel.up();
             motion = true;
@@ -761,6 +763,18 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         } else if (ctx.BACK() != null) {
             travel.back();
             motion = true;
+        } else if (ctx.LOOKUP() != null) {
+            System.out.println("UP : " + travel.look_up());
+        } else if (ctx.LOOKDOWN() != null) {
+            System.out.println("DOWN : " + travel.look_down());
+        } else if (ctx.LOOKLEFT() != null) {
+            System.out.println("LEFT : " + travel.look_left());
+        } else if (ctx.LOOKRIGHT() != null) {
+            System.out.println("RIGHT : " + travel.look_right());
+        } else if (ctx.LOOKFW() != null) {
+            System.out.println("FW : " + travel.look_forward());
+        } else if (ctx.LOOKBACK() != null) {
+            System.out.println("BACK : " + travel.look_back());
         }
 
         if (motion) {
