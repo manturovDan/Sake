@@ -6,6 +6,7 @@ import man.dan.langobj.*;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
+import man.dan.robot.Travel;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected PrintStream serr;
     protected AreaVis memory;
     protected ErrorListener errHandler;
+    protected Travel travel;
 
     protected PrintStream printStream;
     protected BufferedReader inputStream;
@@ -714,5 +716,20 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
 
         return new Countable(hai.getLen());
+    }
+
+    @Override
+    public SakeObj visitRobo_action(SakeParserParser.Robo_actionContext ctx) {
+        if (travel == null) {
+            errHandler.semanticError(ctx, "trying to manage the robot however robot mode is disabled");
+            return null;
+        }
+
+        travel.fakeStep();
+        return null;
+    }
+
+    public void setTravelVis(Travel trv) {
+        travel = trv;
     }
 }

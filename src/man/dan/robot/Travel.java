@@ -13,13 +13,24 @@ public class Travel implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            System.out.println("In parallel thread");
-            try {
-                TimeUnit.SECONDS.sleep(delay);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+    }
+
+    public Maze getMaze() {
+        return maze;
+    }
+
+    public int getDelay() {
+        return delay;
+    }
+
+    public void fakeStep() {
+        System.out.println("STEP START");
+        try {
+            TimeUnit.SECONDS.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        System.out.println("STEP END");
     }
 }

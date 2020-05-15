@@ -6,6 +6,7 @@ import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserLexer;
 import man.dan.parser.SakeParserParser;
 import man.dan.parser.SakeParserVisitor;
+import man.dan.robot.Travel;
 import man.dan.visitor.SakeVisitor;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
@@ -24,6 +25,7 @@ public class Interpreter {
     protected PrintStream errPrint;
     protected AreaVis memory;
     protected boolean clear;
+    protected Travel travel;
 
     public Interpreter(InputStream _in, OutputStream _out, OutputStream _err) {
         sin = _in;
@@ -55,6 +57,9 @@ public class Interpreter {
             if (!clear)
                 eval.disableClearing();
 
+            if (travel != null)
+                eval.setTravelVis(travel);
+
             int ers = erHandler.getSyntaxErrorCount();
             if (ers > 0)
                 errPrint.println("There are (is) " + ers + " syntax error(s) in the program");
@@ -65,6 +70,10 @@ public class Interpreter {
         } catch (Exception e) {
             errPrint.println("Fatal execution error");
         }
+    }
+
+    public void setTravel (Travel trv) {
+        travel = trv;
     }
 
     public AreaVis getMemory() {
