@@ -1,5 +1,7 @@
 package man.dan.visitor;
 import io.vavr.Tuple2;
+import io.vavr.Tuple3;
+import io.vavr.Tuple4;
 import man.dan.errors.ErrorListener;
 import man.dan.errors.SemanticSakeError;
 import man.dan.langobj.*;
@@ -31,6 +33,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected SakeObj returnVal;
 
     protected boolean clearAreas;
+    protected HashSet<Rippotai> openCubes;
 
     public SakeVisitor(AreaVis mem, InputStream _in, PrintStream _out, PrintStream _err, ErrorListener handler) {
         sin = _in;

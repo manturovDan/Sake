@@ -79,4 +79,15 @@ public class Rippotai implements SakeObj {
             return new Rippotai(x, y, z, isKabe());
         } catch (Exception e) { return null; }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Rippotai eq = (Rippotai)obj;
+        return x == eq.x && y == eq.y && z == eq.z && kabe == eq.kabe;
+    }
+
+    @Override
+    public int hashCode() {
+        return (x + y + z) % 17 + (kabe ? 1 : 0);
+    }
 }
