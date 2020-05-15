@@ -139,53 +139,53 @@ END_BLOCK
 ;
 
 UP
-    : '^_^'
+    : '^-^'
 ;
 
 DOWN
-    : 'v_v'
+    : 'v-v'
 ;
 
 LEFTWARD
-    : '<_<'
+    : '<-<'
 ;
 
 RIGHTWARD
-    : '>_>'
+    : '>->'
 ;
 
 FORWARD
-    : 'o_o'
+    : 'o-o'
 ;
 
 BACK
-    : '~_~'
+    : '~-~'
 ;
 
 BREAK
-    : '>_<'
+    : '>-<'
 ;
 
 LOOKUP
-    : '^_0'
+    : '^-0'
 ;
 
 LOOKDOWN
-    : 'v_0'
+    : 'v-0'
 ;
 
 LOOKLEFT
-    : '<_0'
+    : '<-0'
 ;
 
 LOOKRIGHT
-    : '>_0'
+    : '>-0'
 ;
 
 LOOKFW
-    : 'o_0'
+    : 'o-0'
 ;
 
 LOOKBACK
-    : '~_0'
+    : '~-0'
 ;

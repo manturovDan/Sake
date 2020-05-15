@@ -54,8 +54,8 @@ public class SakeParserParser extends Parser {
 			"'rippotai'", "'hairetsu'", "'jigen'", "'nagasa'", "'shushi'", "'kido'", 
 			"'kansu'", "'sorenara'", "'modoru'", "'shuki'", "'senden'", "'=>'", "'X'", 
 			"'Y'", "'Z'", "'kabe'", "'+'", "'-'", "'>'", "'<'", null, null, null, 
-			"';'", null, null, "'^_^'", "'v_v'", "'<_<'", "'>_>'", "'o_o'", "'~_~'", 
-			"'>_<'", "'^_0'", "'v_0'", "'<_0'", "'>_0'", "'o_0'", "'~_0'"
+			"';'", null, null, "'^-^'", "'v-v'", "'<-<'", "'>->'", "'o-o'", "'~-~'", 
+			"'>-<'", "'^-0'", "'v-0'", "'<-0'", "'>-0'", "'o-0'", "'~-0'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
