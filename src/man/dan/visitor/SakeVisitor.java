@@ -756,14 +756,15 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         if (motion) {
             printStream.println(" -> " + travel.whereRobotPrint());
-            if(travel.isDead())
+            if(travel.isDead()) {
                 printStream.println("*_*");
-            return null;
+                return null;
+            }
         }
-
 
         travel.lock();
         System.out.println("LOCK TO MAIN");
+
         return null;
     }
 
