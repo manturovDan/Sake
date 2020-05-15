@@ -65,10 +65,17 @@ public class Maze {
         return Integer.parseInt(startElement.getAttributeByName(new QName(arg)).getValue());
     }
 
-    protected boolean isDead() {
+    protected RoboState RoboState() {
         Passage checkPas = new Passage(robotX, robotY, robotZ, false);
         Passage checkPasPortal = new Passage(robotX, robotY, robotZ, true);
-        return !(way.contains(checkPas) || way.contains(checkPasPortal)) || robotX < 0 || robotY < 0 || robotZ < 0;
+
+        if (way.contains(checkPas))
+            return RoboState.inMotion;
+
+        if(way.contains(checkPasPortal))
+            return RoboState.success;
+
+        return RoboState.died;
     }
 
     public void up() {

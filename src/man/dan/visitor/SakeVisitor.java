@@ -6,6 +6,7 @@ import man.dan.langobj.*;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserBaseVisitor;
 import man.dan.parser.SakeParserParser;
+import man.dan.robot.RoboState;
 import man.dan.robot.Travel;
 import org.antlr.v4.runtime.ParserRuleContext;
 
@@ -725,8 +726,13 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             return null;
         }
 
-        if (travel.isDead()) {
+        RoboState status = travel.getStatus();
+
+        if (status == RoboState.died) {
             errHandler.semanticError(ctx, "trying to manipulate died robot");
+            return null;
+        } else if (status == RoboState.success) {
+            errHandler.semanticError(ctx, "trying to manipulate successful robot");
             return null;
         }
 
@@ -756,8 +762,12 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         if (motion) {
             printStream.println(" -> " + travel.whereRobotPrint());
-            if(travel.isDead()) {
+            status = travel.getStatus();
+            if(status == RoboState.died) {
                 printStream.println("*_*");
+                return null;
+            } else if (status == RoboState.success) {
+                printStream.println("SUCCESS");
                 return null;
             }
         }

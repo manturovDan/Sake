@@ -73,8 +73,8 @@ public class Travel implements Runnable {
         maze.back();
     }
 
-    public boolean isDead() {
-        return maze.isDead();
+    public RoboState getStatus() {
+        return maze.RoboState();
     }
 
     public String whereRobotPrint() {
