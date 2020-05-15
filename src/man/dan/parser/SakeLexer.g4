@@ -186,6 +186,6 @@ LOOKFW
     : 'o_0'
 ;
 
-LLOKBACK
+LOOKBACK
     : '~_0'
 ;
