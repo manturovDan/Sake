@@ -68,7 +68,7 @@ array_vals
 ;
 
 hairetsu_assign
-    : HAIRETSU ID '=' (expr|array_vals|robo_stmt) ENDEXPR
+    : HAIRETSU ID '=' (expr|array_vals|robo_do) ENDEXPR
 ;
 
 cube_attr
@@ -102,7 +102,7 @@ declaration_stmt
 ;
 
 r_value
-    : (expr|array_vals|block_coub|robo_stmt)
+    : (expr|array_vals|block_coub|robo_do)
 ;
 
 def_simp_stmt

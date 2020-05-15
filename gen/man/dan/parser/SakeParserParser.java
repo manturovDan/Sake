@@ -1187,8 +1187,8 @@ public class SakeParserParser extends Parser {
 		public Array_valsContext array_vals() {
 			return getRuleContext(Array_valsContext.class,0);
 		}
-		public Robo_stmtContext robo_stmt() {
-			return getRuleContext(Robo_stmtContext.class,0);
+		public Robo_doContext robo_do() {
+			return getRuleContext(Robo_doContext.class,0);
 		}
 		public Hairetsu_assignContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1239,7 +1239,7 @@ public class SakeParserParser extends Parser {
 			case 3:
 				{
 				setState(168);
-				robo_stmt();
+				robo_do();
 				}
 				break;
 			}
@@ -1607,8 +1607,8 @@ public class SakeParserParser extends Parser {
 		public Block_coubContext block_coub() {
 			return getRuleContext(Block_coubContext.class,0);
 		}
-		public Robo_stmtContext robo_stmt() {
-			return getRuleContext(Robo_stmtContext.class,0);
+		public Robo_doContext robo_do() {
+			return getRuleContext(Robo_doContext.class,0);
 		}
 		public R_valueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1659,7 +1659,7 @@ public class SakeParserParser extends Parser {
 			case 4:
 				{
 				setState(206);
-				robo_stmt();
+				robo_do();
 				}
 				break;
 			}
@@ -2754,7 +2754,7 @@ public class SakeParserParser extends Parser {
 		"\2\2\u009f\23\3\2\2\2\u00a0\u009e\3\2\2\2\u00a1\u00a2\7\f\2\2\u00a2\u00a3"+
 		"\5\22\n\2\u00a3\u00a4\7\r\2\2\u00a4\25\3\2\2\2\u00a5\u00a6\7\25\2\2\u00a6"+
 		"\u00a7\7(\2\2\u00a7\u00ab\7\b\2\2\u00a8\u00ac\5\b\5\2\u00a9\u00ac\5\24"+
-		"\13\2\u00aa\u00ac\5B\"\2\u00ab\u00a8\3\2\2\2\u00ab\u00a9\3\2\2\2\u00ab"+
+		"\13\2\u00aa\u00ac\5@!\2\u00ab\u00a8\3\2\2\2\u00ab\u00a9\3\2\2\2\u00ab"+
 		"\u00aa\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad\u00ae\7+\2\2\u00ae\27\3\2\2\2"+
 		"\u00af\u00b0\7\37\2\2\u00b0\u00b1\t\5\2\2\u00b1\31\3\2\2\2\u00b2\u00bf"+
 		"\7(\2\2\u00b3\u00b4\7\t\2\2\u00b4\u00b5\5\22\n\2\u00b5\u00b6\7\13\2\2"+
@@ -2767,8 +2767,8 @@ public class SakeParserParser extends Parser {
 		"\u00c4\3\2\2\2\u00c6\35\3\2\2\2\u00c7\u00c8\t\6\2\2\u00c8\37\3\2\2\2\u00c9"+
 		"\u00ca\5\36\20\2\u00ca\u00cb\7(\2\2\u00cb\u00cc\7+\2\2\u00cc!\3\2\2\2"+
 		"\u00cd\u00d2\5\b\5\2\u00ce\u00d2\5\24\13\2\u00cf\u00d2\5\16\b\2\u00d0"+
-		"\u00d2\5B\"\2\u00d1\u00cd\3\2\2\2\u00d1\u00ce\3\2\2\2\u00d1\u00cf\3\2"+
-		"\2\2\u00d1\u00d0\3\2\2\2\u00d2#\3\2\2\2\u00d3\u00d4\5\32\16\2\u00d4\u00d5"+
+		"\u00d2\5@!\2\u00d1\u00cd\3\2\2\2\u00d1\u00ce\3\2\2\2\u00d1\u00cf\3\2\2"+
+		"\2\u00d1\u00d0\3\2\2\2\u00d2#\3\2\2\2\u00d3\u00d4\5\32\16\2\u00d4\u00d5"+
 		"\7\b\2\2\u00d5\u00d6\5\"\22\2\u00d6\u00d7\7+\2\2\u00d7%\3\2\2\2\u00d8"+
 		"\u00d9\7\26\2\2\u00d9\u00da\5\32\16\2\u00da\u00db\7+\2\2\u00db\'\3\2\2"+
 		"\2\u00dc\u00dd\7\27\2\2\u00dd\u00de\5\32\16\2\u00de\u00df\7+\2\2\u00df"+
