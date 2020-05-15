@@ -14,6 +14,7 @@ import java.util.HashSet;
 public class Maze {
     protected InputStream mazeStreamXML;
     protected HashSet<Passage> way;
+    protected Tuple3<Integer, Integer, Integer> robot;
 
     public Maze(InputStream ms) throws Exception {
         mazeStreamXML = ms;
@@ -23,7 +24,6 @@ public class Maze {
 
         boolean inMaze = false;
         boolean inSpaces = false;
-        Tuple3<Integer, Integer, Integer> robot = null;
 
         while (reader.hasNext()) {
             XMLEvent nextEvent = reader.nextEvent();
@@ -36,8 +36,6 @@ public class Maze {
                         throw new XMLParseException("there must be only one robot");
 
                     robot = new Tuple3<>(getIntFromArg(startElement, "X"), getIntFromArg(startElement, "Y"), getIntFromArg(startElement, "Z"));
-
-                    System.out.println("ROBOT");
                 }
                 else if (startElement.getName().getLocalPart().equals("spaces") && inMaze) {
                     inSpaces = true;
@@ -45,11 +43,9 @@ public class Maze {
                 } else if (inMaze && inSpaces) {
                     if (startElement.getName().getLocalPart().equals("passage")) {
                         way.add(new Passage(getIntFromArg(startElement, "X"), getIntFromArg(startElement, "Y"), getIntFromArg(startElement, "Z")));
-                        System.out.println("PASSAGE");
                     }
                     else if (startElement.getName().getLocalPart().equals("portal")) {
                         way.add(new Passage(getIntFromArg(startElement, "X"), getIntFromArg(startElement, "Y"), getIntFromArg(startElement, "Z"), true));
-                        System.out.println("PORTAL");
                     }
                     else
                         throw new XMLParseException("wrong XML tag");
