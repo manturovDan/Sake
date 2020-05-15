@@ -746,7 +746,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         travel.fakeStep();
         boolean motion = false;
-        boolean look = false;
 
         if (ctx.UP() != null) {
             travel.up();
@@ -803,6 +802,19 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     public SakeObj visitRobo_do(SakeParserParser.Robo_doContext ctx) {
+        openCubes = new HashSet<>();
         return super.visitRobo_do(ctx);
+    }
+
+    protected void completeUp(HashSet<Rippotai> openCubes, int dist) throws SemanticSakeError {
+        int x = travel.getRx();
+        int y = travel.getRy();
+        int z = travel.getRz();
+
+        for (; z < travel.getRz() + dist; ++z) {
+            openCubes.add(new Rippotai(x, y, z, false));
+        }
+
+        openCubes.add(new Rippotai(x, y, z, true));
     }
 }
