@@ -37,6 +37,7 @@ public class SakeLaunch {
                 goon.start();
 
                 interpreter.setTravel(travel);
+                travel.lock();
                 interpreter.run();
             }
 

@@ -725,7 +725,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             return null;
         }
 
+        travel.unlock();
         travel.fakeStep();
+        travel.lock();
+        System.out.println("LOCK TO MAIN");
         return null;
     }
 

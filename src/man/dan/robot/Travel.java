@@ -1,14 +1,26 @@
 package man.dan.robot;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Travel implements Runnable {
     protected Maze maze;
     protected int delay;
+    protected ReentrantLock lock;
 
     public Travel(Maze _maze, int _delay) {
         maze = _maze;
         delay = _delay;
+        lock = new ReentrantLock();
+    }
+
+    public void lock() {
+        lock.lock();
+    }
+
+    public void unlock() {
+        lock.unlock();
     }
 
     @Override
@@ -24,7 +36,8 @@ public class Travel implements Runnable {
         return delay;
     }
 
-    public void fakeStep() {
+    public synchronized void fakeStep() {
+        lock.lock();
         System.out.println("STEP START");
         try {
             TimeUnit.SECONDS.sleep(delay);
@@ -32,5 +45,6 @@ public class Travel implements Runnable {
             e.printStackTrace();
         }
         System.out.println("STEP END");
+        lock.unlock();
     }
 }
