@@ -137,3 +137,55 @@ WS
 END_BLOCK
     : SHUSHI ENDEXPR
 ;
+
+UP
+    : '^_^'
+;
+
+DOWN
+    : 'v_v'
+;
+
+LEFTWARD
+    : '<_<'
+;
+
+RIGHTWARD
+    : '>_>'
+;
+
+FORWARD
+    : 'o_o'
+;
+
+BACK
+    : '~_~'
+;
+
+BREAK
+    : '>_<'
+;
+
+LOOKUP
+    : '^_0'
+;
+
+LOOKDOWN
+    : 'v_0'
+;
+
+LOOKLEFT
+    : '<_0'
+;
+
+LOOKRIGHT
+    : '>_0'
+;
+
+LOOKFW
+    : 'o_0'
+;
+
+LLOKBACK
+    : '~_0'
+;
