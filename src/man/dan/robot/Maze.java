@@ -67,7 +67,8 @@ public class Maze {
 
     protected boolean isDead() {
         Passage checkPas = new Passage(robotX, robotY, robotZ, false);
-        return !way.contains(checkPas) || robotX < 0 || robotY < 0 || robotZ < 0;
+        Passage checkPasPortal = new Passage(robotX, robotY, robotZ, true);
+        return !(way.contains(checkPas) || way.contains(checkPasPortal)) || robotX < 0 || robotY < 0 || robotZ < 0;
     }
 
     public void up() {
