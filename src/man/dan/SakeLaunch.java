@@ -1,6 +1,7 @@
 package man.dan;
 
 import man.dan.interpreter.Interpreter;
+import man.dan.robot.Maze;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,12 +28,15 @@ public class SakeLaunch {
             }
             else {
                 mazeIn = new FileInputStream(args[1]);
+                Maze lab = new Maze(mazeIn);
                 interpreter.run();
             }
 
         } catch (IOException e) {
             System.err.println("Critical error: " + e.getMessage());
             System.exit(-1);
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (progIn != null) {
                 try {

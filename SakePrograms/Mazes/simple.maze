@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <maze>
-<robot X="1" Y="2" Z="0"/>
+    <robot X="1" Y="2" Z="0"/>
     <spaces>
     <space X="1" Y="2" Z="0"/>
-        <space X = "1" Y = "2" Z = "0" />
-        <space X = "1" Y = "2" Z = "1" />
-        <space X = "1" Y = "2" Z = "2" />
-        <space X = "1" Y = "2" Z = "3" />
-        <space X = "1" Y = "1" Z = "3" />
-        <space X = "1" Y = "0" Z = "3" go = "out" />
+        <passage X = "1" Y = "2" Z = "0" />
+        <passage X = "1" Y = "2" Z = "1" />
+        <passage X = "1" Y = "2" Z = "2" />
+        <passage X = "1" Y = "2" Z = "3" />
+        <passage X = "1" Y = "1" Z = "3" />
+        <portal X = "1" Y = "0" Z = "3" />
     </spaces>
 </maze>
