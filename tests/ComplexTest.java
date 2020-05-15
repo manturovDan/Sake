@@ -174,7 +174,8 @@ public class ComplexTest {
                                 "senden kb;\n" +
                                 "kb => X = 1;\n" +
                                 "rippotai kbp = [0, 21, 0, shinri];\n" +
-                                "rippotai kbp = [89, 21, 55, shinri];";
+                                "rippotai kbp = [9, 21, 5, shinri];\n" +
+                                "rippotai kbpt = [9, 211, 5, shinri];";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -200,6 +201,7 @@ public class ComplexTest {
         assertEquals(phrasesErr[3], "Semantic error: appeal to nonexistent variable ne => X in line 7");
         assertEquals(phrasesErr[4], "Semantic error: variable 'kb' was declared one more times in line 11");
         assertEquals(phrasesErr[5], "Semantic error: appeal to nonexistent cube or the second declaration in line 18");
+        assertEquals(phrasesErr[6], "Semantic error: bad rippotai coordinates in line 19");
 
     }
 
