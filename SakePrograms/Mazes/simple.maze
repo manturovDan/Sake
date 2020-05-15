@@ -2,7 +2,7 @@
 <maze>
     <robot X="1" Y="2" Z="0"/>
     <spaces>
-    <space X="1" Y="2" Z="0"/>
+        <passage X = "1" Y = "2" Z = "0" />
         <passage X = "1" Y = "2" Z = "0" />
         <passage X = "1" Y = "2" Z = "1" />
         <passage X = "1" Y = "2" Z = "2" />
