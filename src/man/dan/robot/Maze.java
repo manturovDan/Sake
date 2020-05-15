@@ -14,7 +14,10 @@ import java.util.HashSet;
 public class Maze {
     protected InputStream mazeStreamXML;
     protected HashSet<Passage> way;
-    protected Tuple3<Integer, Integer, Integer> robot;
+
+    protected int robotX = -1;
+    protected int robotY = -1;
+    protected int robotZ = -1;
 
     public Maze(InputStream ms) throws Exception {
         mazeStreamXML = ms;
@@ -32,10 +35,12 @@ public class Maze {
                 if (startElement.getName().getLocalPart().equals("maze"))
                     inMaze = true;
                 else if (startElement.getName().getLocalPart().equals("robot") && inMaze) {
-                    if (robot != null)
+                    if (robotX > -1)
                         throw new XMLParseException("there must be only one robot");
 
-                    robot = new Tuple3<>(getIntFromArg(startElement, "X"), getIntFromArg(startElement, "Y"), getIntFromArg(startElement, "Z"));
+                    robotX = getIntFromArg(startElement, "X");
+                    robotY = getIntFromArg(startElement, "Y");
+                    robotZ = getIntFromArg(startElement, "Z");
                 }
                 else if (startElement.getName().getLocalPart().equals("spaces") && inMaze) {
                     inSpaces = true;
@@ -58,5 +63,46 @@ public class Maze {
 
     protected Integer getIntFromArg(StartElement startElement, String arg) {
         return Integer.parseInt(startElement.getAttributeByName(new QName(arg)).getValue());
+    }
+
+    protected boolean isDead() {
+        Passage checkPas = new Passage(robotX, robotY, robotZ, false);
+        return !way.contains(checkPas) || robotX < 0 || robotY < 0 || robotZ < 0;
+    }
+
+    public void up() {
+        robotZ++;
+    }
+
+    public void down() {
+        robotZ--;
+    }
+
+    public void leftward() {
+        robotX++;
+    }
+
+    public void rightward() {
+        robotX--;
+    }
+
+    public void forward() {
+        robotY++;
+    }
+
+    public void back() {
+        robotY--;
+    }
+
+    public int rX() {
+        return robotX;
+    }
+
+    public int rY() {
+        return robotY;
+    }
+
+    public int rZ() {
+        return robotZ;
     }
 }

@@ -1,7 +1,8 @@
 package man.dan.robot;
 
+import man.dan.parser.SakeParserParser;
+
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Travel implements Runnable {
@@ -46,5 +47,37 @@ public class Travel implements Runnable {
         }
         System.out.println("STEP END");
         lock.unlock();
+    }
+
+    public void up() {
+        maze.up();
+    }
+
+    public void down() {
+        maze.down();
+    }
+
+    public void leftward() {
+        maze.leftward();
+    }
+
+    public void rightward() {
+        maze.rightward();
+    }
+
+    public void forward() {
+        maze.forward();
+    }
+
+    public void back() {
+        maze.back();
+    }
+
+    public boolean isDead() {
+        return maze.isDead();
+    }
+
+    public String whereRobotPrint() {
+        return "\uD83E\uDD16 : { X " + maze.rX() + ", Y " + maze.rY() + ", Z " + maze.rZ() + "}";
     }
 }

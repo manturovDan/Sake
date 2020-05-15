@@ -725,8 +725,43 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             return null;
         }
 
+        if (travel.isDead()) {
+            errHandler.semanticError(ctx, "trying to manipulate died robot");
+            return null;
+        }
+
         travel.unlock();
+
         travel.fakeStep();
+        boolean motion = false;
+        if (ctx.UP() != null) {
+            travel.up();
+            motion = true;
+        } else if (ctx.DOWN() != null) {
+            travel.down();
+            motion = true;
+        } else if (ctx.LEFTWARD() != null) {
+            travel.leftward();
+            motion = true;
+        } else if (ctx.RIGHTWARD() != null) {
+            travel.rightward();
+            motion = true;
+        } else if (ctx.FORWARD() != null) {
+            travel.forward();
+            motion = true;
+        } else if (ctx.BACK() != null) {
+            travel.back();
+            motion = true;
+        }
+
+        if (motion) {
+            printStream.println(" -> " + travel.whereRobotPrint());
+            if(travel.isDead())
+                printStream.println("*_*");
+            return null;
+        }
+
+
         travel.lock();
         System.out.println("LOCK TO MAIN");
         return null;

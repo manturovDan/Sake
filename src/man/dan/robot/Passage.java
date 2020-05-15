@@ -18,4 +18,15 @@ public class Passage {
         z = _z;
         portal = _p;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Passage pass = (Passage)obj;
+        return x == pass.x && y == pass.y && z == pass.z && portal == pass.portal;
+    }
+
+    @Override
+    public int hashCode() {
+        return (x + y + z) % 17 + (portal ? 1 : 0);
+    }
 }
