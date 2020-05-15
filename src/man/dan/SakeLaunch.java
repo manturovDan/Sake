@@ -2,6 +2,7 @@ package man.dan;
 
 import man.dan.interpreter.Interpreter;
 import man.dan.robot.Maze;
+import man.dan.robot.Travel;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,6 +30,10 @@ public class SakeLaunch {
             else {
                 mazeIn = new FileInputStream(args[1]);
                 Maze lab = new Maze(mazeIn);
+
+                Thread goon = new Thread(new Travel());
+                goon.start();
+
                 interpreter.run();
             }
 
