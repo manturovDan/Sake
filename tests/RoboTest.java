@@ -104,10 +104,18 @@ public class RoboTest {
 
         Travel travel = go(initialString, "tests/mazes/simplem1.maze", progOut, progErr);
 
-        Maze maze = travel.getMaze();
-
         System.out.println(progOut.toString());
         System.out.println(progErr.toString());
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        assertEquals(phrasesOut[0], "-> { X 26, Y 9, Z 5 }");
+        assertEquals(phrasesOut[1], "-> { X 27, Y 9, Z 5 }");
+        assertEquals(phrasesOut[2], "*_*");
+
+        assertEquals(phrasesErr.length, 1);
+        assertEquals(phrasesErr[0], "");
 
     }
 }

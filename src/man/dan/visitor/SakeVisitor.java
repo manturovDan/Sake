@@ -778,7 +778,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
 
         if (motion) {
-            printStream.println(" -> " + travel.whereRobotPrint());
+            printStream.println("-> " + travel.whereRobotPrint());
             status = travel.getStatus();
             if(status == RoboState.died) {
                 printStream.println("*_*");

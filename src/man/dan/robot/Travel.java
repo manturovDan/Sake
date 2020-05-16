@@ -120,6 +120,6 @@ public class Travel implements Runnable {
     }
 
     public String whereRobotPrint() {
-        return "\uD83E\uDD16 : { X " + maze.rX() + ", Y " + maze.rY() + ", Z " + maze.rZ() + " }";
+        return "{ X " + maze.rX() + ", Y " + maze.rY() + ", Z " + maze.rZ() + " }";
     }
 }
