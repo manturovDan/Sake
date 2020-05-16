@@ -348,7 +348,16 @@ public class RoboTest {
         for(int i = 0; i < 6; ++i)
             sen.append(sen);
         sen.setLength(sen.length() - 1);
-        String initialString =      "senden {" + sen + "};";
+
+        StringBuilder senFw = new StringBuilder("o-0; >-<; o-o;");
+        for(int i = 0; i < 6; ++i)
+            senFw.append(senFw);
+        senFw.setLength(senFw.length() - 1);
+
+
+        String initialString =      "senden {" + sen + "};\n" +
+                                    "senden ~-0;\n" +
+                                    "senden {" + senFw + "};\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
