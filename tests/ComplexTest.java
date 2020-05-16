@@ -68,7 +68,7 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
-        System.out.println(progErr.toString());
+        //System.out.println(progErr.toString());
 
         String[] phrasesErr = progErr.toString().split("\n");
 

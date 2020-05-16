@@ -124,6 +124,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNagasa(SakeParserParser.NagasaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNagasa(SakeParserParser.NagasaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGrLess(SakeParserParser.GrLessContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -352,13 +364,13 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx) { }
+	@Override public void enterNagasa_expr(SakeParserParser.Nagasa_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx) { }
+	@Override public void exitNagasa_expr(SakeParserParser.Nagasa_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

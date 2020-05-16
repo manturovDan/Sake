@@ -12,7 +12,6 @@ statement
     | return_stmt
     | def_simp_stmt
     | jigen_stmt
-    | nagasa_stmt
     | call_stmt
     | senden_stmt
     | function
@@ -40,6 +39,7 @@ expr
     | constant                          #const
     | appeal                            #app
     | function_call                     #funCall
+    | nagasa_expr                       #nagasa
     | '(' expr ')'                      #brackets
 ;
 
@@ -113,9 +113,10 @@ jigen_stmt
     : JIGEN appeal ENDEXPR
 ;
 
-nagasa_stmt
-    : NAGASA appeal ENDEXPR
+nagasa_expr
+    : NAGASA appeal
 ;
+
 
 senden_stmt
     : SENDEN (expr|r_value) ENDEXPR

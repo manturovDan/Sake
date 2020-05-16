@@ -179,7 +179,7 @@ public class RoboTest {
         assertEquals(phrasesOut[0], "-> { X 26, Y 9, Z 5 }"); //>
         assertEquals(phrasesOut[1], "-> { X 26, Y 8, Z 5 }"); //~
         assertEquals(phrasesOut[2], "-> { X 26, Y 7, Z 5 }"); //~
-        assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //~
+        assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //o
         assertEquals(phrasesOut[4], "-> { X 26, Y 9, Z 5 }"); //o
         assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //0
         assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 7 }"); //^
@@ -210,10 +210,10 @@ public class RoboTest {
                                     "view = ^-0;\n" +
                                     "senden view;\n" +
                                     "senden {>->; ~-0; ~-~; ~-~; o-o};\n" +
-                                    "#o-o;\n" +
-                                    "#{^-^};\n" +
-                                    "#^-^;\n" +
-                                    "#v-v;\n" +
+                                    "o-o;\n" +
+                                    "{^-0;^-^};\n" + //
+                                    "^-^;\n" +
+                                    "v-v;\n" +
                                     "#hairetsu vw = ^-0;\n" +
                                     "#senden vw;\n" +
                                     "#{^-^;^-^;^-^;^-^};\n" +
@@ -225,7 +225,14 @@ public class RoboTest {
                                     "#<-<;\n" +
                                     "" +
                                     "#<-<;\n" +
-                                    "#o-0;";
+                                    "#o-0;\n" +
+                                    "seisu kansu funfun(hairetsu meas, seisu _) kido\n" +
+                                    "   shuki k = 0 : nagasa meas kido\n" +
+                                    "       meas[k] => X = meas[k] => X + _;\n" +
+                                    "       meas[k] => Y = meas[k] => Y + _;\n" +
+                                    "       meas[k] => Z = meas[k] => Z + _;\n" +
+                                    "   shushi;\n" +
+                                    "shushi;\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -254,9 +261,19 @@ public class RoboTest {
         assertEquals(phrasesOut[2], "-> { X 26, Y 9, Z 5 }"); //>
         assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //~
         assertEquals(phrasesOut[4], "-> { X 26, Y 7, Z 5 }"); //~
-        assertEquals(phrasesOut[5], "-> { X 26, Y 8, Z 5 }"); //~
-        /*assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 5 }"); //o
-        assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //0
+        assertEquals(phrasesOut[5], "-> { X 26, Y 8, Z 5 }"); //o
+
+        StringBuilder phrase2 = new StringBuilder(phrasesOut[6]);
+        phrase2.setLength(phrase2.length() - 1);
+        phrase2.deleteCharAt(0);
+        ArrayList<String> phrase2Parts = new ArrayList<>(Arrays.asList(phrase2.toString().split(", ")));
+
+        assertTrue(phrase2Parts.contains("{ X : 26; Y : 6; Z : 5; isKabe : true }"));
+        assertTrue(phrase2Parts.contains("{ X : 26; Y : 8; Z : 5; isKabe : false }"));
+        assertTrue(phrase2Parts.contains("{ X : 26; Y : 7; Z : 5; isKabe : false }"));
+
+        assertEquals(phrasesOut[7], "-> { X 26, Y 9, Z 5 }"); //o
+        /*assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //^
         assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 7 }"); //^
         assertEquals(phrasesOut[7], "-> { X 26, Y 9, Z 6 }"); //v
         assertEquals(phrasesOut[8], "-> { X 26, Y 9, Z 7 }"); //^

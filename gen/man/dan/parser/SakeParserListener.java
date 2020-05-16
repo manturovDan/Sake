@@ -110,6 +110,18 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitAnd(SakeParserParser.AndContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code nagasa}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNagasa(SakeParserParser.NagasaContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code nagasa}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNagasa(SakeParserParser.NagasaContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code grLess}
 	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
@@ -308,15 +320,15 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitJigen_stmt(SakeParserParser.Jigen_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SakeParserParser#nagasa_stmt}.
+	 * Enter a parse tree produced by {@link SakeParserParser#nagasa_expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
+	void enterNagasa_expr(SakeParserParser.Nagasa_exprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SakeParserParser#nagasa_stmt}.
+	 * Exit a parse tree produced by {@link SakeParserParser#nagasa_expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx);
+	void exitNagasa_expr(SakeParserParser.Nagasa_exprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#senden_stmt}.
 	 * @param ctx the parse tree
