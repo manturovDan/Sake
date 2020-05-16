@@ -415,5 +415,45 @@ public class RoboTest {
         assertEquals(phraseLeftParts.size(), 14);
 
         assertEquals(phrasesOut[15], "{}");
+
+        assertEquals(phrasesOut[16], "-> { X 0, Y 1, Z 0 }");
+        assertEquals(phrasesOut[17], "-> { X 0, Y 2, Z 0 }");
+        assertEquals(phrasesOut[18], "-> { X 0, Y 3, Z 0 }");
+        assertEquals(phrasesOut[19], "-> { X 0, Y 4, Z 0 }");
+        assertEquals(phrasesOut[20], "-> { X 0, Y 5, Z 0 }");
+        assertEquals(phrasesOut[21], "-> { X 0, Y 6, Z 0 }");
+
+        StringBuilder phraseTop = new StringBuilder(phrasesOut[22]);
+        phraseTop.setLength(phraseTop.length() - 1);
+        phraseTop.deleteCharAt(0);
+        ArrayList<String> phraseTopParts = new ArrayList<>(Arrays.asList(phraseTop.toString().split(", ")));
+
+        assertTrue(phraseTopParts.contains("{ X : 0; Y : 1; Z : 0; isKabe : false }"));
+        assertTrue(phraseTopParts.contains("{ X : 0; Y : 2; Z : 0; isKabe : false }"));
+        assertTrue(phraseTopParts.contains("{ X : 0; Y : 3; Z : 0; isKabe : false }"));
+        assertTrue(phraseTopParts.contains("{ X : 0; Y : 4; Z : 0; isKabe : false }"));
+        assertTrue(phraseTopParts.contains("{ X : 0; Y : 5; Z : 0; isKabe : false }"));
+        assertTrue(phraseTopParts.contains("{ X : 0; Y : 6; Z : 0; isKabe : false }"));
+        assertTrue(phraseTopParts.contains("{ X : 0; Y : 7; Z : 0; isKabe : true }"));
+        assertEquals(phraseTopParts.size(), 7);
+
+        assertEquals(phrasesOut[23], "-> { X 1, Y 6, Z 0 }");
+        assertEquals(phrasesOut[24], "-> { X 2, Y 6, Z 0 }");
+        assertEquals(phrasesOut[25], "-> { X 3, Y 6, Z 0 }");
+        assertEquals(phrasesOut[26], "-> { X 4, Y 6, Z 0 }");
+        assertEquals(phrasesOut[27], "-> { X 5, Y 6, Z 0 }");
+
+        StringBuilder phraseRight = new StringBuilder(phrasesOut[28]);
+        phraseRight.setLength(phraseRight.length() - 1);
+        phraseRight.deleteCharAt(0);
+        ArrayList<String> phraseRightParts = new ArrayList<>(Arrays.asList(phraseRight.toString().split(", ")));
+
+        assertTrue(phraseRightParts.contains("{ X : 1; Y : 6; Z : 0; isKabe : false }"));
+        assertTrue(phraseRightParts.contains("{ X : 2; Y : 6; Z : 0; isKabe : false }"));
+        assertTrue(phraseRightParts.contains("{ X : 3; Y : 6; Z : 0; isKabe : false }"));
+        assertTrue(phraseRightParts.contains("{ X : 4; Y : 6; Z : 0; isKabe : false }"));
+        assertTrue(phraseRightParts.contains("{ X : 5; Y : 6; Z : 0; isKabe : false }"));
+        assertTrue(phraseRightParts.contains("{ X : 6; Y : 6; Z : 0; isKabe : true }"));
+        assertEquals(phraseRightParts.size(), 6);
     }
 }
