@@ -45,7 +45,12 @@
         <passage X = "14" Y = "0" Z = "0" />
         <passage X = "14" Y = "1" Z = "0" />
 
+        <passage X = "2" Y = "6" Z = "0" />
+        <passage X = "3" Y = "6" Z = "0" />
+        <passage X = "4" Y = "6" Z = "0" />
+        <passage X = "5" Y = "6" Z = "0" />
+
         <passage X = "4" Y = "6" Z = "1" />
-        <portal X = "13" Y = "6" Z = "1" />
+        <portal X = "3" Y = "6" Z = "1" />
     </spaces>
 </maze>
