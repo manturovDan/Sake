@@ -217,8 +217,9 @@ public class RoboTest {
                                     "hairetsu view2 = {^-^; >-0; ^-^; <-0; ^-^; ^-^};\n" +
                                     "seisu c = funfun(view2, 0);\n" +
                                     "v-v;\n" +
-                                    "senden {o-0;v-v;>->};\n" +
-                                    "#{>->};\n" +
+                                    "senden {o-0;v-v;~-0;>->;~-0};\n" +
+                                    "{>->};\n" +
+                                    "senden {>-0; o-0};\n" +
                                     "#{>->};\n" +
                                     "#o-o;\n" +
                                     "#<-<;\n" +
@@ -303,15 +304,18 @@ public class RoboTest {
         assertEquals(phrasesOut[19], "-> { X 26, Y 9, Z 8 }"); //v
         assertEquals(phrasesOut[20], "-> { X 27, Y 9, Z 8 }"); //>
 
-        StringBuilder phrase5 = new StringBuilder(phrasesOut[9]);
+        StringBuilder phrase5 = new StringBuilder(phrasesOut[21]);
         phrase5.setLength(phrase5.length() - 1);
         phrase5.deleteCharAt(0);
         ArrayList<String> phrase5Parts = new ArrayList<>(Arrays.asList(phrase5.toString().split(", ")));
 
-        assertTrue(phrase5Parts.contains("{ X : 26; Y : 10; Z : 10; isKabe : true }"));
+        assertTrue(phrase5Parts.contains("{ X : 26; Y : 10; Z : 9; isKabe : true }"));
+        assertTrue(phrase5Parts.contains("{ X : 26; Y : 8; Z : 8; isKabe : true }"));
+        assertTrue(phrase5Parts.contains("{ X : 27; Y : 8; Z : 8; isKabe : true }"));
+        assertEquals(phrase5Parts.size(), 3);
 
-        /*assertEquals(phrasesOut[15], "-> { X 28, Y 9, Z 8 }"); //>
-        assertEquals(phrasesOut[16], "-> { X 29, Y 9, Z 8 }"); //>
+        assertEquals(phrasesOut[22], "-> { X 28, Y 9, Z 8 }"); //>
+        /*assertEquals(phrasesOut[16], "-> { X 29, Y 9, Z 8 }"); //>
         assertEquals(phrasesOut[17], "-> { X 29, Y 10, Z 8 }"); //^
         assertEquals(phrasesOut[18], "-> { X 28, Y 10, Z 8 }"); //<
         assertEquals(phrasesOut[19], "SUCCESS"); //success
