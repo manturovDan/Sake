@@ -193,7 +193,7 @@ public class Maze {
         return dist;
     }
 
-    protected boolean isPassage(Passage pass) {
+    public boolean isPassage(Passage pass) {
         pass.portal = false;
         boolean notPor = way.contains(pass);
         pass.portal = true;

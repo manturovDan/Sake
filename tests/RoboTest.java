@@ -1,12 +1,15 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.memory.AreaVis;
 import man.dan.robot.Maze;
+import man.dan.robot.Passage;
+import man.dan.robot.RoboState;
 import man.dan.robot.Travel;
 import org.junit.Test;
 
 import java.io.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RoboTest {
     protected Travel go(String initialString, String pathToMaze, OutputStream progOut, OutputStream progErr) throws Exception {
@@ -47,5 +50,33 @@ public class RoboTest {
         Maze maze = travel.getMaze();
 
         assertEquals(maze.rX(), 25);
+        assertEquals(maze.rY(), 9);
+        assertEquals(maze.rZ(), 5);
+        assertEquals(travel.getRx(), 25);
+        assertEquals(travel.getRy(), 9);
+        assertEquals(travel.getRz(), 5);
+        assertEquals(travel.getDelay(), 0);
+        assertEquals(travel.getStatus(), RoboState.inMotion);
+
+        assertTrue(maze.isPassage(new Passage(24, 9, 5)));
+        assertTrue(maze.isPassage(new Passage(24, 10, 5)));
+        assertTrue(maze.isPassage(new Passage(24, 9, 6)));
+        assertTrue(maze.isPassage(new Passage(25, 9, 5)));
+        assertTrue(maze.isPassage(new Passage(26, 9, 5)));
+        assertTrue(maze.isPassage(new Passage(26, 8, 5)));
+        assertTrue(maze.isPassage(new Passage(26, 7, 5)));
+        assertTrue(maze.isPassage(new Passage(26, 9, 6)));
+        assertTrue(maze.isPassage(new Passage(26, 9, 7)));
+        assertTrue(maze.isPassage(new Passage(26, 9, 8)));
+        assertTrue(maze.isPassage(new Passage(26, 9, 9)));
+        assertTrue(maze.isPassage(new Passage(26, 9, 10)));
+        assertTrue(maze.isPassage(new Passage(27, 9, 8)));
+        assertTrue(maze.isPassage(new Passage(28, 9, 8)));
+        assertTrue(maze.isPassage(new Passage(29, 9, 8)));
+        assertTrue(maze.isPassage(new Passage(28, 10, 8)));
+        assertTrue(maze.isPassage(new Passage(29, 10, 8)));
+        assertTrue(maze.isPassage(new Passage(28, 8, 8)));
+        assertTrue(maze.isPassage(new Passage(29, 8, 8)));
+
     }
 }
