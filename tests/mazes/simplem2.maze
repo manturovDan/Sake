@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<maze>
+    <robot X = "14" Y = "0" Z = "0"/>
+    <spaces>
+        <passage X = "0" Y = "0" Z = "0" />
+        <passage X = "0" Y = "1" Z = "0" />
+        <passage X = "0" Y = "2" Z = "0" />
+        <passage X = "0" Y = "3" Z = "0" />
+        <passage X = "0" Y = "4" Z = "0" />
+        <passage X = "0" Y = "5" Z = "0" />
+        <passage X = "0" Y = "6" Z = "0" />
+
+        <passage X = "1" Y = "0" Z = "0" />
+        <passage X = "1" Y = "1" Z = "0" />
+        <passage X = "1" Y = "2" Z = "0" />
+        <passage X = "1" Y = "3" Z = "0" />
+        <passage X = "1" Y = "4" Z = "0" />
+        <passage X = "1" Y = "5" Z = "0" />
+        <passage X = "1" Y = "6" Z = "0" />
+
+        <passage X = "2" Y = "0" Z = "0" />
+        <passage X = "2" Y = "1" Z = "0" />
+        <passage X = "3" Y = "0" Z = "0" />
+        <passage X = "3" Y = "1" Z = "0" />
+        <passage X = "4" Y = "0" Z = "0" />
+        <passage X = "5" Y = "1" Z = "0" />
+        <passage X = "5" Y = "0" Z = "0" />
+        <passage X = "5" Y = "1" Z = "0" />
+        <passage X = "6" Y = "0" Z = "0" />
+        <passage X = "6" Y = "1" Z = "0" />
+        <passage X = "7" Y = "0" Z = "0" />
+        <passage X = "7" Y = "1" Z = "0" />
+        <passage X = "8" Y = "0" Z = "0" />
+        <passage X = "8" Y = "1" Z = "0" />
+        <passage X = "9" Y = "0" Z = "0" />
+        <passage X = "9" Y = "1" Z = "0" />
+        <passage X = "10" Y = "0" Z = "0" />
+        <passage X = "10" Y = "1" Z = "0" />
+        <passage X = "11" Y = "0" Z = "0" />
+        <passage X = "11" Y = "1" Z = "0" />
+        <passage X = "12" Y = "0" Z = "0" />
+        <passage X = "12" Y = "1" Z = "0" />
+        <passage X = "13" Y = "0" Z = "0" />
+        <passage X = "13" Y = "1" Z = "0" />
+        <passage X = "14" Y = "0" Z = "0" />
+        <passage X = "14" Y = "1" Z = "0" />
+
+        <passage X = "4" Y = "6" Z = "1" />
+        <portal X = "13" Y = "6" Z = "1" />
+    </spaces>
+</maze>
