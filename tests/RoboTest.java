@@ -210,12 +210,12 @@ public class RoboTest {
                                     "view = ^-0;\n" +
                                     "senden view;\n" +
                                     "senden {>->; ~-0; ~-~; ~-~; o-o};\n" +
-                                    "o-o;\n" +
-                                    "{^-^};\n" +
-                                    "^-^;\n" +
-                                    "v-v;\n" +
-                                    "hairetsu vw = ^-0;\n" +
-                                    "senden vw;\n" +
+                                    "#o-o;\n" +
+                                    "#{^-^};\n" +
+                                    "#^-^;\n" +
+                                    "#v-v;\n" +
+                                    "#hairetsu vw = ^-0;\n" +
+                                    "#senden vw;\n" +
                                     "#{^-^;^-^;^-^;^-^};\n" +
                                     "#v-v;\n" +
                                     "#{v-v;>->};\n" +

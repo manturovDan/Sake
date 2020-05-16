@@ -196,6 +196,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitSenden_stmt(SakeParserParser.Senden_stmtContext ctx) {
         if (ctx.expr() != null)
             printStream.println(visit(ctx.expr()));
+        else if (ctx.r_value() != null)
+            printStream.println(visit(ctx.r_value()));
         return null;
     }
 
