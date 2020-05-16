@@ -878,7 +878,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         int y = travel.getRy();
         int z = travel.getRz();
 
-        for (; x <= travel.getRx() - dist; --x) {
+        for (; x >= travel.getRx() - dist; --x) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
