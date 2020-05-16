@@ -833,8 +833,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         SakeObj res;
         boolean lastBr = false;
         for (SakeParserParser.Robo_actionContext act : ctx.robo_action()) {
-            if (act.BREAK() != null && lastBr)
-                break;
+            if (act.BREAK() != null)
+                if (lastBr) break;
+                else continue;
+
             lastBr = false;
 
             res = visit(act);
@@ -888,7 +890,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         int y = travel.getRy();
         int z = travel.getRz();
 
-        for (; x >= travel.getRx() + dist; ++x) {
+        for (; x <= travel.getRx() + dist; ++x) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
