@@ -365,15 +365,15 @@ public class RoboTest {
                                     "senden {" + senFw + "};\n" +
                                     "senden {v-0; " + senRight + "};\n" +
                                     "senden {^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^};\n" +
-                                    "<-<;";
+                                    "{-; <-<};";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
 
         Travel travel = go(initialString, "tests/mazes/simplem2.maze", progOut, progErr);
 
-        System.out.println(progOut.toString());
-        System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
+        //System.out.println(progErr.toString());
 
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
@@ -464,5 +464,10 @@ public class RoboTest {
         assertEquals(phrasesOut[32], "SUCCESS");
 
         assertEquals(phrasesOut.length, 33);
+
+        assertEquals(phrasesErr.length, 3);
+        assertEquals(phrasesErr[0], "Syntax Error: mismatched input '-' expecting {'^-^', 'v-v', '<-<', '>->', 'o-o', '~-~', '>-<', '^-0', 'v-0', '<-0', '>-0', 'o-0', '~-0'} in line 6, at character 1");
+        assertEquals(phrasesErr[1], "There are (is) 1 syntax error(s) in the program");
+        assertEquals(phrasesErr[2], "Semantic error: unknown robot command in line 6");
     }
 }

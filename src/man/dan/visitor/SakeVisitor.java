@@ -820,8 +820,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                     look = travel.look_back();
                     //System.out.println("BACK : " + look);
                     completeBack(look);
-                } else
-                    assert false;
+                } else {
+                    throw new SemanticSakeError("unknown robot command");
+                }
                 ret = new Countable(look);
             } catch (SemanticSakeError error) {
                 errHandler.semanticError(ctx, error.toString());
