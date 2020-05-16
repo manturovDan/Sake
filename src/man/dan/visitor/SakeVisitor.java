@@ -64,10 +64,14 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitProgram(SakeParserParser.ProgramContext ctx) {
         init();
         try {
-            return super.visitProgram(ctx);
+            for (SakeParserParser.StatementContext stmt : ctx.statement()) {
+                visit(stmt);
+            }
         } finally {
             cleanup();
         }
+
+        return null;
     }
 
     protected void assignCountable(Pointer ptr, Countable value, ParserRuleContext ctx) {

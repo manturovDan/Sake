@@ -211,7 +211,7 @@ public class RoboTest {
                                     "senden view;\n" +
                                     "senden {>->; ~-0; ~-~; ~-~; o-o};\n" +
                                     "o-o;\n" +
-                                    "{^-0;^-^};\n" + //
+                                    "funfun({^-0;^-^}, 1);\n" +
                                     "^-^;\n" +
                                     "v-v;\n" +
                                     "#hairetsu vw = ^-0;\n" +
@@ -232,6 +232,7 @@ public class RoboTest {
                                     "       meas[k] => Y = meas[k] => Y + _;\n" +
                                     "       meas[k] => Z = meas[k] => Z + _;\n" +
                                     "   shushi;\n" +
+                                    "   senden meas;\n" +
                                     "shushi;\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
