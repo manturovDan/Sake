@@ -194,7 +194,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitSenden_stmt(SakeParserParser.Senden_stmtContext ctx) {
-        printStream.println(visit(ctx.expr()));
+        if (ctx.expr() != null)
+            printStream.println(visit(ctx.expr()));
         return null;
     }
 
@@ -704,6 +705,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             ArrayList<Integer> dimensions = ArFromOrder(ctx.array_vals().order(), 1);
 
             return new Hairetsu(dimensions);
+        }
+        else if (ctx.robo_do() != null) {
+            return visit(ctx.robo_do());
         }
         return null;
     }
