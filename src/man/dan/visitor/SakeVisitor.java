@@ -820,7 +820,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     public SakeObj visitRobo_do(SakeParserParser.Robo_doContext ctx) {
         openCubes = new HashSet<>();
-        super.visitRobo_do(ctx);
+        for (SakeParserParser.Robo_actionContext act : ctx.robo_action()) {
+            visit(act);
+        }
         return null;
     }
 
