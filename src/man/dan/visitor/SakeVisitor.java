@@ -851,50 +851,50 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     protected void completeLeft(int dist) throws SemanticSakeError {
-        int x = travel.getRx();
+        int x = travel.getRx() - 1;
         int y = travel.getRy();
         int z = travel.getRz();
 
-        for (; x < travel.getRx() + dist; ++x) {
+        for (; x < travel.getRx() - dist; --x) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, y, z, true));
+        openCubes.add(new Rippotai(travel.getRx() - dist - 1, y, z, true));
     }
 
     protected void completeRight(int dist) throws SemanticSakeError {
-        int x = travel.getRx();
+        int x = travel.getRx() + 1;
         int y = travel.getRy();
         int z = travel.getRz();
 
-        for (; x > travel.getRx() - dist; --x) {
+        for (; x > travel.getRx() + dist; ++x) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, y, z, true));
+        openCubes.add(new Rippotai(travel.getRx() + dist + 1, y, z, true));
     }
 
     protected void completeForward(int dist) throws SemanticSakeError {
         int x = travel.getRx();
-        int y = travel.getRy();
+        int y = travel.getRy() + 1;
         int z = travel.getRz();
 
         for (; y > travel.getRy() + dist; ++y) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, y, z, true));
+        openCubes.add(new Rippotai(x, travel.getRy() + dist + 1, z, true));
     }
 
     protected void completeBack(int dist) throws SemanticSakeError {
         int x = travel.getRx();
-        int y = travel.getRy();
+        int y = travel.getRy() - 1;
         int z = travel.getRz();
 
         for (; y > travel.getRy() - dist; --y) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, y, z, true));
+        openCubes.add(new Rippotai(x, travel.getRy() - dist - 1, z, true));
     }
 }
