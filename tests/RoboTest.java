@@ -181,7 +181,7 @@ public class RoboTest {
         assertEquals(phrasesOut[2], "-> { X 26, Y 7, Z 5 }"); //~
         assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //o
         assertEquals(phrasesOut[4], "-> { X 26, Y 9, Z 5 }"); //o
-        assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //0
+        assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //o
         assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 7 }"); //^
         assertEquals(phrasesOut[7], "-> { X 26, Y 9, Z 6 }"); //v
         assertEquals(phrasesOut[8], "-> { X 26, Y 9, Z 7 }"); //^
@@ -211,14 +211,13 @@ public class RoboTest {
                                     "senden view;\n" +
                                     "senden {>->; ~-0; ~-~; ~-~; o-o};\n" +
                                     "o-o;\n" +
-                                    "funfun({^-0;^-^}, 1);\n" +
+                                    "senden funfun({^-0;^-^}, 1);\n" +
                                     "^-^;\n" +
                                     "v-v;\n" +
-                                    "#hairetsu vw = ^-0;\n" +
-                                    "#senden vw;\n" +
-                                    "#{^-^;^-^;^-^;^-^};\n" +
-                                    "#v-v;\n" +
-                                    "#{v-v;>->};\n" +
+                                    "hairetsu view2 = {^-^; >-0; ^-^; <-0; ^-^; ^-^};\n" +
+                                    "seisu c = funfun(view2, 0);\n" +
+                                    "v-v;\n" +
+                                    "senden {o-0;v-v;>->};\n" +
                                     "#{>->};\n" +
                                     "#{>->};\n" +
                                     "#o-o;\n" +
@@ -233,6 +232,7 @@ public class RoboTest {
                                     "       meas[k] => Z = meas[k] => Z + _;\n" +
                                     "   shushi;\n" +
                                     "   senden meas;\n" +
+                                    "   modoru 0;\n" +
                                     "shushi;\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
@@ -258,6 +258,7 @@ public class RoboTest {
         assertTrue(phrase1Parts.contains("{ X : 26; Y : 9; Z : 5; isKabe : false }"));
         assertTrue(phrase1Parts.contains("{ X : 27; Y : 9; Z : 5; isKabe : true }"));
         assertTrue(phrase1Parts.contains("{ X : 25; Y : 9; Z : 4; isKabe : true }"));
+        assertEquals(phrase1Parts.size(), 5);
         assertEquals(phrasesOut[1], "{{ X : 25; Y : 9; Z : 6; isKabe : true }}"); //>
         assertEquals(phrasesOut[2], "-> { X 26, Y 9, Z 5 }"); //>
         assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //~
@@ -272,19 +273,44 @@ public class RoboTest {
         assertTrue(phrase2Parts.contains("{ X : 26; Y : 6; Z : 5; isKabe : true }"));
         assertTrue(phrase2Parts.contains("{ X : 26; Y : 8; Z : 5; isKabe : false }"));
         assertTrue(phrase2Parts.contains("{ X : 26; Y : 7; Z : 5; isKabe : false }"));
+        assertEquals(phrase2Parts.size(), 3);
 
         assertEquals(phrasesOut[7], "-> { X 26, Y 9, Z 5 }"); //o
-        /*assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //^
-        assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 7 }"); //^
-        assertEquals(phrasesOut[7], "-> { X 26, Y 9, Z 6 }"); //v
-        assertEquals(phrasesOut[8], "-> { X 26, Y 9, Z 7 }"); //^
-        assertEquals(phrasesOut[9], "-> { X 26, Y 9, Z 8 }"); //^
-        assertEquals(phrasesOut[10], "-> { X 26, Y 9, Z 9 }"); //^
-        assertEquals(phrasesOut[11], "-> { X 26, Y 9, Z 10 }"); //^
-        assertEquals(phrasesOut[12], "-> { X 26, Y 9, Z 9 }"); //v
-        assertEquals(phrasesOut[13], "-> { X 26, Y 9, Z 8 }"); //v
-        assertEquals(phrasesOut[14], "-> { X 27, Y 9, Z 8 }"); //>
-        assertEquals(phrasesOut[15], "-> { X 28, Y 9, Z 8 }"); //>
+        assertEquals(phrasesOut[8], "-> { X 26, Y 9, Z 6 }"); //^
+
+        StringBuilder phrase3 = new StringBuilder(phrasesOut[9]);
+        phrase3.setLength(phrase3.length() - 1);
+        phrase3.deleteCharAt(0);
+        ArrayList<String> phrase3Parts = new ArrayList<>(Arrays.asList(phrase3.toString().split(", ")));
+
+        assertTrue(phrase3Parts.contains("{ X : 27; Y : 10; Z : 7; isKabe : false }"));
+        assertTrue(phrase3Parts.contains("{ X : 27; Y : 10; Z : 8; isKabe : false }"));
+        assertTrue(phrase3Parts.contains("{ X : 27; Y : 10; Z : 9; isKabe : false }"));
+        assertTrue(phrase3Parts.contains("{ X : 27; Y : 10; Z : 10; isKabe : false }"));
+        assertTrue(phrase3Parts.contains("{ X : 27; Y : 10; Z : 11; isKabe : false }"));
+        assertTrue(phrase3Parts.contains("{ X : 27; Y : 10; Z : 12; isKabe : true }"));
+        assertEquals(phrase3Parts.size(), 6);
+
+        assertEquals(phrasesOut[10], "0");
+        assertEquals(phrasesOut[11], "-> { X 26, Y 9, Z 7 }"); //^
+        assertEquals(phrasesOut[12], "-> { X 26, Y 9, Z 6 }"); //v
+        assertEquals(phrasesOut[13], "-> { X 26, Y 9, Z 7 }"); //^
+        assertEquals(phrasesOut[14], "-> { X 26, Y 9, Z 8 }"); //^
+        assertEquals(phrasesOut[15], "-> { X 26, Y 9, Z 9 }"); //^
+        assertEquals(phrasesOut[16], "-> { X 26, Y 9, Z 10 }"); //^
+        assertEquals(phrasesOut[17], "{{ X : 25; Y : 9; Z : 8; isKabe : true }, { X : 27; Y : 9; Z : 7; isKabe : true }}");
+        assertEquals(phrasesOut[18], "-> { X 26, Y 9, Z 9 }"); //v
+        assertEquals(phrasesOut[19], "-> { X 26, Y 9, Z 8 }"); //v
+        assertEquals(phrasesOut[20], "-> { X 27, Y 9, Z 8 }"); //>
+
+        StringBuilder phrase5 = new StringBuilder(phrasesOut[9]);
+        phrase5.setLength(phrase5.length() - 1);
+        phrase5.deleteCharAt(0);
+        ArrayList<String> phrase5Parts = new ArrayList<>(Arrays.asList(phrase5.toString().split(", ")));
+
+        assertTrue(phrase5Parts.contains("{ X : 26; Y : 10; Z : 10; isKabe : true }"));
+
+        /*assertEquals(phrasesOut[15], "-> { X 28, Y 9, Z 8 }"); //>
         assertEquals(phrasesOut[16], "-> { X 29, Y 9, Z 8 }"); //>
         assertEquals(phrasesOut[17], "-> { X 29, Y 10, Z 8 }"); //^
         assertEquals(phrasesOut[18], "-> { X 28, Y 10, Z 8 }"); //<

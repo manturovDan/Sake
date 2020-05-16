@@ -678,7 +678,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         visStmt(func.getContext().statement());
 
         if (!Kansu.compareTypes(returnVal, func.getRetType()))
-            errHandler.semanticError(ctx, "return value type missmatch");
+            errHandler.semanticError(ctx, "return value type mismatch");
 
         memory = current;
 
@@ -912,7 +912,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         int y = travel.getRy() + 1;
         int z = travel.getRz();
 
-        for (; y > travel.getRy() + dist; ++y) {
+        for (; y <= travel.getRy() + dist; ++y) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
