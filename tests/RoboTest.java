@@ -251,10 +251,11 @@ public class RoboTest {
         assertTrue(phrase1Parts.contains("{ X : 27; Y : 9; Z : 5; isKabe : true }"));
         assertTrue(phrase1Parts.contains("{ X : 25; Y : 9; Z : 4; isKabe : true }"));
         assertEquals(phrasesOut[1], "{{ X : 25; Y : 9; Z : 6; isKabe : true }}"); //>
-        /*assertEquals(phrasesOut[1], "-> { X 26, Y 8, Z 5 }"); //~
-        assertEquals(phrasesOut[2], "-> { X 26, Y 7, Z 5 }"); //~
+        assertEquals(phrasesOut[2], "-> { X 26, Y 9, Z 5 }"); //>
         assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //~
-        assertEquals(phrasesOut[4], "-> { X 26, Y 9, Z 5 }"); //o
+        assertEquals(phrasesOut[4], "-> { X 26, Y 7, Z 5 }"); //~
+        assertEquals(phrasesOut[5], "-> { X 26, Y 8, Z 5 }"); //~
+        /*assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 5 }"); //o
         assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //0
         assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 7 }"); //^
         assertEquals(phrasesOut[7], "-> { X 26, Y 9, Z 6 }"); //v

@@ -68,6 +68,8 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
+        System.out.println(progErr.toString());
+
         String[] phrasesErr = progErr.toString().split("\n");
 
         assertEquals(phrasesErr[0], "Syntax Error: missing ';' at 'la' in line 4, at character 0");
@@ -75,8 +77,7 @@ public class ComplexTest {
         assertNotEquals(-1, phrasesErr[2].indexOf("in line 9, at character 10"));
         assertNotEquals(-1, phrasesErr[3].indexOf("in line 13, at character 0"));
         assertEquals(phrasesErr[4], "There are (is) 4 syntax error(s) in the program");
-        assertEquals(phrasesErr[5], "Semantic error: appeal to nonexistent variable la2 in line 9");
-        assertEquals(phrasesErr[6], "Semantic error: appeal to nonexistent variable kb in line 10");
+        assertEquals(phrasesErr[5], "Semantic error: appeal to nonexistent variable kb in line 10");
     }
 
     @Test
@@ -182,20 +183,21 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
+        //System.out.println(progOut);
         //System.out.println(progErr);
 
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
 
-        assertEquals(phrasesOut[0], "-175");
-        assertEquals(phrasesOut[2], "0");
-        assertEquals(phrasesOut[3], "5");
-        assertEquals(phrasesOut[4], "{ X : 1; Y : 5; Z : 0; isKabe : true }");
-        assertEquals(phrasesOut[5], "{{undefined, undefined}, {undefined, undefined}, {{ X : 0; Y : 0; Z : 0; isKabe : false }, { X : 1; Y : 5; Z : 0; isKabe : true }}, {undefined, undefined}}");
-        assertEquals(phrasesOut[6], "{ X : 1; Y : 0; Z : 0; isKabe : false }");
+        assertEquals(phrasesOut[0], "{{undefined, undefined}, {undefined, undefined}, {undefined, { X : 1; Y : 2; Z : 0; isKabe : true }}, {undefined, undefined}}");
+        assertEquals(phrasesOut[1], "0");
+        assertEquals(phrasesOut[2], "5");
+        assertEquals(phrasesOut[3], "{ X : 1; Y : 5; Z : 0; isKabe : true }");
+        assertEquals(phrasesOut[4], "{{undefined, undefined}, {undefined, undefined}, {{ X : 0; Y : 0; Z : 0; isKabe : false }, { X : 1; Y : 5; Z : 0; isKabe : true }}, {undefined, undefined}}");
+        assertEquals(phrasesOut[5], "{ X : 1; Y : 0; Z : 0; isKabe : false }");
 
 
-        assertEquals(phrasesErr[0], "Syntax Error: missing ';' at 'hairetsu' in line 3, at character 0");
+        assertEquals(phrasesErr[0], "Syntax Error: no viable alternative at input 'bzhairetsu' in line 3, at character 0");
         assertEquals(phrasesErr[1], "There are (is) 1 syntax error(s) in the program");
         assertEquals(phrasesErr[2], "Semantic error: variable 'la' was declared one more times in line 6");
         assertEquals(phrasesErr[3], "Semantic error: appeal to nonexistent variable ne => X in line 7");
