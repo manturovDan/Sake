@@ -768,6 +768,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             motion = true;
         }
 
+        Countable ret = null;
+
         try {
             if (ctx.LOOKUP() != null) {
                 look = travel.look_up();
@@ -793,7 +795,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 look = travel.look_back();
                 System.out.println("BACK : " + look);
                 completeBack(look);
-            }
+            } else
+                assert false;
+            ret = new Countable(look);
         } catch (SemanticSakeError ignored) {}
 
         if (motion) {
@@ -801,17 +805,15 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             status = travel.getStatus();
             if(status == RoboState.died) {
                 printStream.println("*_*");
-                return null;
             } else if (status == RoboState.success) {
                 printStream.println("SUCCESS");
-                return null;
             }
         }
 
         travel.lock();
         System.out.println("LOCK TO MAIN");
 
-        return null;
+        return ret;
     }
 
     public void setTravelVis(Travel trv) {
@@ -820,8 +822,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     public SakeObj visitRobo_do(SakeParserParser.Robo_doContext ctx) {
         openCubes = new HashSet<>();
+        SakeObj res;
         for (SakeParserParser.Robo_actionContext act : ctx.robo_action()) {
-            visit(act);
+            res = visit(act);
+            if (res != null && ((Countable)res).getValue() == 0)
+                break;
         }
         return null;
     }
