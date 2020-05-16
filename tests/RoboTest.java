@@ -200,4 +200,68 @@ public class RoboTest {
         assertEquals(phrasesErr[1], "Semantic error: trying to manipulate successful robot in line 14");
 
     }
+
+    @Test
+    public void complSensorTest() throws Exception {
+        String initialString =      "hairetsu view = {v-0; <-0; >-0};\n" +
+                                    "senden view;\n" +
+                                    "view = ^-0;\n" +
+                                    "senden view;\n" +
+                                    "{>->; ~-~; ~-~; o-o};\n" +
+                                    "o-o;\n" +
+                                    "{^-^};\n" +
+                                    "^-^;\n" +
+                                    "v-v;\n" +
+                                    "hairetsu vw = ^-0;\n" +
+                                    "senden vw;\n" +
+                                    "#{^-^;^-^;^-^;^-^};\n" +
+                                    "#v-v;\n" +
+                                    "#{v-v;>->};\n" +
+                                    "#{>->};\n" +
+                                    "#{>->};\n" +
+                                    "#o-o;\n" +
+                                    "#<-<;\n" +
+                                    "" +
+                                    "#<-<;\n" +
+                                    "#o-0;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        Travel travel = go(initialString, "tests/mazes/simplem1.maze", progOut, progErr);
+
+        System.out.println(progOut.toString());
+        System.out.println(progErr.toString());
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        //assertEquals(phrasesOut.length, 20);
+
+        /*assertEquals(phrasesOut[0], "-> { X 26, Y 9, Z 5 }"); //>
+        assertEquals(phrasesOut[1], "-> { X 26, Y 8, Z 5 }"); //~
+        assertEquals(phrasesOut[2], "-> { X 26, Y 7, Z 5 }"); //~
+        assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //~
+        assertEquals(phrasesOut[4], "-> { X 26, Y 9, Z 5 }"); //o
+        assertEquals(phrasesOut[5], "-> { X 26, Y 9, Z 6 }"); //0
+        assertEquals(phrasesOut[6], "-> { X 26, Y 9, Z 7 }"); //^
+        assertEquals(phrasesOut[7], "-> { X 26, Y 9, Z 6 }"); //v
+        assertEquals(phrasesOut[8], "-> { X 26, Y 9, Z 7 }"); //^
+        assertEquals(phrasesOut[9], "-> { X 26, Y 9, Z 8 }"); //^
+        assertEquals(phrasesOut[10], "-> { X 26, Y 9, Z 9 }"); //^
+        assertEquals(phrasesOut[11], "-> { X 26, Y 9, Z 10 }"); //^
+        assertEquals(phrasesOut[12], "-> { X 26, Y 9, Z 9 }"); //v
+        assertEquals(phrasesOut[13], "-> { X 26, Y 9, Z 8 }"); //v
+        assertEquals(phrasesOut[14], "-> { X 27, Y 9, Z 8 }"); //>
+        assertEquals(phrasesOut[15], "-> { X 28, Y 9, Z 8 }"); //>
+        assertEquals(phrasesOut[16], "-> { X 29, Y 9, Z 8 }"); //>
+        assertEquals(phrasesOut[17], "-> { X 29, Y 10, Z 8 }"); //^
+        assertEquals(phrasesOut[18], "-> { X 28, Y 10, Z 8 }"); //<
+        assertEquals(phrasesOut[19], "SUCCESS"); //success
+
+        assertEquals(phrasesErr.length, 2);
+        assertEquals(phrasesErr[0], "Semantic error: trying to manipulate successful robot in line 13");
+        assertEquals(phrasesErr[1], "Semantic error: trying to manipulate successful robot in line 14");*/
+
+    }
 }
