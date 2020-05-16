@@ -1,8 +1,6 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
 import man.dan.memory.AreaVis;
-import man.dan.robot.Maze;
-import man.dan.robot.Travel;
 import org.junit.Test;
 
 import java.io.*;
@@ -11,22 +9,10 @@ import static org.junit.Assert.*;
 
 
 public class PrintTest {
-    protected AreaVis executeWithClear(String initialString, String pathToMaze, OutputStream progOut, OutputStream progErr) throws Exception {
+    protected AreaVis executeWithClear(String initialString, OutputStream progOut, OutputStream progErr) throws IOException {
         InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
         Interpreter interpreter;
         interpreter = new Interpreter(progIn, progOut, progErr);
-
-        InputStream mazeIn = new FileInputStream(pathToMaze);
-        Maze lab = new Maze(mazeIn);
-
-        Travel travel = new Travel(lab, 0);
-
-        Thread goon = new Thread(travel);
-        goon.start();
-
-        interpreter.setTravel(travel);
-        travel.lock();
-
         interpreter.run();
         return interpreter.getMemory();
     }
