@@ -218,8 +218,5 @@ seisu kansu findWay(hairetsu mazeMatrix) kido
     shushi
 shushi
 
-seisu kansu samurai() kido
-    hairetsu exits = getMapFromFile(giron[1]);
-    hairetsu mazeMatrix = {getMapX(), getMapY(), getMapZ(), 4};
-    findWay(mazeMatrix, exits);
-shushi
+hairetsu mazeMatrix = {30, 30, 30, 4};
+findWay(mazeMatrix, exits);
