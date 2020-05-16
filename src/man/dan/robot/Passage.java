@@ -53,4 +53,5 @@ public class Passage {
     public void decZ() {
         z--;
     }
+
 }

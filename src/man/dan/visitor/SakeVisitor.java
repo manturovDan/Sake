@@ -842,7 +842,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         int y = travel.getRy();
         int z = travel.getRz() - 1;
 
-        for (; z > travel.getRz() - dist; --z) {
+        for (; z >= travel.getRz() - dist; --z) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
@@ -855,7 +855,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         int y = travel.getRy();
         int z = travel.getRz();
 
-        for (; x < travel.getRx() - dist; --x) {
+        for (; x <= travel.getRx() - dist; --x) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
@@ -867,7 +867,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         int y = travel.getRy();
         int z = travel.getRz();
 
-        for (; x > travel.getRx() + dist; ++x) {
+        for (; x >= travel.getRx() + dist; ++x) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
@@ -891,7 +891,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         int y = travel.getRy() - 1;
         int z = travel.getRz();
 
-        for (; y > travel.getRy() - dist; --y) {
+        for (; y >= travel.getRy() - dist; --y) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 

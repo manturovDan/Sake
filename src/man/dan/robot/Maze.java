@@ -150,7 +150,7 @@ public class Maze {
         Passage mwn = new Passage(robotX, robotY, robotZ);
         mwn.decX();
         while(isPassage(mwn)) {
-            dist--;
+            dist++;
             mwn.decX();
         }
 
