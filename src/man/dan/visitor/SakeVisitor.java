@@ -844,7 +844,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 lastBr = true;
         }
 
-        return new Hairetsu(openCubes);
+        SakeObj measure = new Hairetsu(openCubes);
+
+        return measure;
     }
 
     protected void completeUp(int dist) throws SemanticSakeError {

@@ -118,7 +118,7 @@ nagasa_stmt
 ;
 
 senden_stmt
-    : SENDEN expr ENDEXPR
+    : SENDEN (expr|r_value) ENDEXPR
 ;
 
 call_stmt

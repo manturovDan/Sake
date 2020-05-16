@@ -209,7 +209,7 @@ public class RoboTest {
                                     "senden view;\n" +
                                     "view = ^-0;\n" +
                                     "senden view;\n" +
-                                    "{>->; ~-~; ~-~; o-o};\n" +
+                                    "senden {>->; ~-0; ~-~; ~-~; o-o};\n" +
                                     "o-o;\n" +
                                     "{^-^};\n" +
                                     "^-^;\n" +
@@ -250,8 +250,8 @@ public class RoboTest {
         assertTrue(phrase1Parts.contains("{ X : 26; Y : 9; Z : 5; isKabe : false }"));
         assertTrue(phrase1Parts.contains("{ X : 27; Y : 9; Z : 5; isKabe : true }"));
         assertTrue(phrase1Parts.contains("{ X : 25; Y : 9; Z : 4; isKabe : true }"));
-        /*assertEquals(phrasesOut[0], "-> { X 26, Y 9, Z 5 }"); //>
-        assertEquals(phrasesOut[1], "-> { X 26, Y 8, Z 5 }"); //~
+        assertEquals(phrasesOut[1], "{{ X : 25; Y : 9; Z : 6; isKabe : true }}"); //>
+        /*assertEquals(phrasesOut[1], "-> { X 26, Y 8, Z 5 }"); //~
         assertEquals(phrasesOut[2], "-> { X 26, Y 7, Z 5 }"); //~
         assertEquals(phrasesOut[3], "-> { X 26, Y 8, Z 5 }"); //~
         assertEquals(phrasesOut[4], "-> { X 26, Y 9, Z 5 }"); //o
