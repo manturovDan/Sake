@@ -823,7 +823,9 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 } else
                     assert false;
                 ret = new Countable(look);
-            } catch (SemanticSakeError ignored) {}
+            } catch (SemanticSakeError error) {
+                errHandler.semanticError(ctx, error.toString());
+            }
         }
 
         travel.lock();
@@ -892,7 +894,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(travel.getRx() - dist - 1, y, z, true));
+        if (travel.getRx() - dist > Rippotai.minCoord)
+            openCubes.add(new Rippotai(travel.getRx() - dist - 1, y, z, true));
     }
 
     protected void completeRight(int dist) throws SemanticSakeError {
@@ -904,7 +907,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(travel.getRx() + dist + 1, y, z, true));
+        if (travel.getRx() + dist < Rippotai.maxCoord)
+            openCubes.add(new Rippotai(travel.getRx() + dist + 1, y, z, true));
     }
 
     protected void completeForward(int dist) throws SemanticSakeError {
@@ -916,7 +920,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, travel.getRy() + dist + 1, z, true));
+        if (travel.getRy() + dist < Rippotai.maxCoord)
+            openCubes.add(new Rippotai(x, travel.getRy() + dist + 1, z, true));
     }
 
     protected void completeBack(int dist) throws SemanticSakeError {
@@ -928,6 +933,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, travel.getRy() - dist - 1, z, true));
+        if (travel.getRy() - dist > Rippotai.minCoord)
+            openCubes.add(new Rippotai(x, travel.getRy() - dist - 1, z, true));
     }
 }
