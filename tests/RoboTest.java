@@ -32,7 +32,7 @@ public class RoboTest {
     }
 
     @Test
-    public void simpMotion() throws Exception {
+    public void simpMazeTest() throws Exception {
         String initialString =      "seisu c = 123;\n" +
                 "shuki j = 0 : 5 kido\n" +
                 "sorenara shinri > 0 kido\n" +
@@ -92,6 +92,22 @@ public class RoboTest {
         assertFalse(maze.isPassagePoor(new Passage(29, 20, 8, true)));
 
         assertEquals(maze.mazeSize(), 19);
+
+    }
+
+    @Test
+    public void motionTest() throws Exception {
+        String initialString =      "{>->; >->};";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        Travel travel = go(initialString, "tests/mazes/simplem1.maze", progOut, progErr);
+
+        Maze maze = travel.getMaze();
+
+        System.out.println(progOut.toString());
+        System.out.println(progErr.toString());
 
     }
 }

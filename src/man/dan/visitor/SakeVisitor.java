@@ -751,7 +751,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         travel.unlock();
 
-        travel.fakeStep();
         boolean motion = false;
         int look = -1;
 
@@ -777,35 +776,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         Countable ret = null;
 
-        try {
-            if (ctx.LOOKUP() != null) {
-                look = travel.look_up();
-                System.out.println("UP : " + look);
-                completeUp(look);
-            } else if (ctx.LOOKDOWN() != null) {
-                look = travel.look_down();
-                System.out.println("DOWN : " + look);
-                completeDown(look);
-            } else if (ctx.LOOKLEFT() != null) {
-                look = travel.look_left();
-                System.out.println("LEFT : " + look);
-                completeLeft(look);
-            } else if (ctx.LOOKRIGHT() != null) {
-                look = travel.look_right();
-                System.out.println("RIGHT : " + look);
-                completeRight(look);
-            } else if (ctx.LOOKFW() != null) {
-                look = travel.look_forward();
-                System.out.println("FW : " + look);
-                completeForward(look);
-            } else if (ctx.LOOKBACK() != null) {
-                look = travel.look_back();
-                System.out.println("BACK : " + look);
-                completeBack(look);
-            } else
-                assert false;
-            ret = new Countable(look);
-        } catch (SemanticSakeError ignored) {}
 
         if (motion) {
             printStream.println(" -> " + travel.whereRobotPrint());
@@ -816,9 +786,40 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 printStream.println("SUCCESS");
             }
         }
+        else {
+            try {
+                if (ctx.LOOKUP() != null) {
+                    look = travel.look_up();
+                    //System.out.println("UP : " + look);
+                    completeUp(look);
+                } else if (ctx.LOOKDOWN() != null) {
+                    look = travel.look_down();
+                    //System.out.println("DOWN : " + look);
+                    completeDown(look);
+                } else if (ctx.LOOKLEFT() != null) {
+                    look = travel.look_left();
+                    //System.out.println("LEFT : " + look);
+                    completeLeft(look);
+                } else if (ctx.LOOKRIGHT() != null) {
+                    look = travel.look_right();
+                    //System.out.println("RIGHT : " + look);
+                    completeRight(look);
+                } else if (ctx.LOOKFW() != null) {
+                    look = travel.look_forward();
+                    //System.out.println("FW : " + look);
+                    completeForward(look);
+                } else if (ctx.LOOKBACK() != null) {
+                    look = travel.look_back();
+                    //System.out.println("BACK : " + look);
+                    completeBack(look);
+                } else
+                    assert false;
+                ret = new Countable(look);
+            } catch (SemanticSakeError ignored) {}
+        }
 
         travel.lock();
-        System.out.println("LOCK TO MAIN");
+        //System.out.println("LOCK TO MAIN");
 
         return ret;
     }

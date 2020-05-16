@@ -39,38 +39,44 @@ public class Travel implements Runnable {
 
     public synchronized void fakeStep() {
         lock.lock();
-        System.out.println("STEP START");
+        //System.out.println("STEP START");
         try {
             TimeUnit.SECONDS.sleep(delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("STEP END");
+        //System.out.println("STEP END");
         lock.unlock();
     }
 
     public void up() {
         maze.up();
+        fakeStep();
     }
 
     public void down() {
         maze.down();
+        fakeStep();
     }
 
     public void leftward() {
         maze.leftward();
+        fakeStep();
     }
 
     public void rightward() {
         maze.rightward();
+        fakeStep();
     }
 
     public void forward() {
         maze.forward();
+        fakeStep();
     }
 
     public void back() {
         maze.back();
+        fakeStep();
     }
 
     public int look_up() {
