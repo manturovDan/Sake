@@ -200,4 +200,12 @@ public class Maze {
         boolean por = way.contains(pass);
         return por | notPor;
     }
+
+    public boolean isPassagePoor(Passage pass) {
+        return way.contains(pass);
+    }
+
+    public int mazeSize() {
+        return way.size();
+    }
 }

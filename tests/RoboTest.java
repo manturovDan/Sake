@@ -86,5 +86,12 @@ public class RoboTest {
         assertFalse(maze.isPassage(new Passage(20, 19, 5)));
         assertFalse(maze.isPassage(new Passage(201, 9, 5)));
 
+        assertTrue(maze.isPassagePoor(new Passage(28, 10, 8, true)));
+        assertTrue(maze.isPassagePoor(new Passage(29, 8, 8, true)));
+        assertFalse(maze.isPassagePoor(new Passage(29, 10, 8, true)));
+        assertFalse(maze.isPassagePoor(new Passage(29, 20, 8, true)));
+
+        assertEquals(maze.mazeSize(), 19);
+
     }
 }
