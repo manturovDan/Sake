@@ -722,10 +722,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     }
 
     @Override
-    public SakeObj visitNagasa_stmt(SakeParserParser.Nagasa_stmtContext ctx) {
-        String name = ctx.appeal().ID().getText();
-        ArrayList<Integer> deep = ArFromOrder(ctx.appeal().order());
-        CubeAttr attr = whichCubeAttr(ctx.appeal());
+    public SakeObj visitNagasa(SakeParserParser.NagasaContext ctx)  {
+        String name = ctx.nagasa_expr().appeal().ID().getText();
+        ArrayList<Integer> deep = ArFromOrder(ctx.nagasa_expr().appeal().order());
+        CubeAttr attr = whichCubeAttr(ctx.nagasa_expr().appeal());
         Pointer ptr = new Pointer(name, deep, attr);
 
         Hairetsu hai = null;
