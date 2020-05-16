@@ -418,6 +418,11 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
         else if (ctx.robo_do() != null) {
             arr = visit(ctx.robo_do());
+            try {
+                memory.declAndAssign(ptr, arr);
+            } catch (SemanticSakeError e) {
+                errHandler.semanticError(ctx, e.toString());
+            }
         }
         else
             assert false;
@@ -834,10 +839,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 lastBr = true;
         }
 
-        if (openCubes.size() > 0)
-            return new Hairetsu(openCubes);
-        else
-            return null;
+        return new Hairetsu(openCubes);
     }
 
     protected void completeUp(int dist) throws SemanticSakeError {
