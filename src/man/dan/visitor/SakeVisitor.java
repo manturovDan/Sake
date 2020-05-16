@@ -833,19 +833,21 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, y, travel.getRz() + dist + 1, true));
+        if (travel.getRz() + dist < Rippotai.maxCoord)
+            openCubes.add(new Rippotai(x, y, travel.getRz() + dist + 1, true));
     }
 
     protected void completeDown(int dist) throws SemanticSakeError {
         int x = travel.getRx();
         int y = travel.getRy();
-        int z = travel.getRz();
+        int z = travel.getRz() - 1;
 
         for (; z > travel.getRz() - dist; --z) {
             openCubes.add(new Rippotai(x, y, z, false));
         }
 
-        openCubes.add(new Rippotai(x, y, z, true));
+        if (travel.getRz() - dist > Rippotai.minCoord)
+            openCubes.add(new Rippotai(x, y, travel.getRz() - dist - 1, true));
     }
 
     protected void completeLeft(int dist) throws SemanticSakeError {
