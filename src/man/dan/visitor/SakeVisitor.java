@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected InputStream sin;
@@ -60,13 +61,24 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         }
     }
 
+    public void visStmt(List<SakeParserParser.StatementContext> statement) {
+        for (SakeParserParser.StatementContext stmt : statement)
+            if (stmt.function() != null)
+                visit(stmt);
+        for (SakeParserParser.StatementContext stmt : statement)
+            if (stmt.function() == null) {
+                visit(stmt);
+                if (returnVal != null) {
+                    break;
+                }
+            }
+    }
+
     @Override
     public SakeObj visitProgram(SakeParserParser.ProgramContext ctx) {
         init();
         try {
-            for (SakeParserParser.StatementContext stmt : ctx.statement()) {
-                visit(stmt);
-            }
+            visStmt(ctx.statement());
         } finally {
             cleanup();
         }
@@ -575,12 +587,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         if (((Countable)visit(ctx.expr())).isShinri()) {
             memory = memory.nestedArea();
 
-            for (SakeParserParser.StatementContext stmt : ctx.statement()) {
-                visit(stmt);
-                if (returnVal != null) {
-                    break;
-                }
-            }
+            visStmt(ctx.statement());
 
             AreaVis forClear = memory;
             memory = memory.parentArea();
@@ -603,12 +610,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         try {
             memory.declAndAssign(ptr, cur);
             while (cur.lessThan(to).isShinri()) {
-                for (SakeParserParser.StatementContext stmt : ctx.statement()) {
-                    visit(stmt);
-                    if (returnVal != null) {
-                        break;
-                    }
-                }
+                visStmt(ctx.statement());
                 cur.inc();
                 memory.clearExcluding(ptr);
             }
@@ -673,11 +675,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         AreaVis current = memory;
         memory = areaExec;
 
-        for (SakeParserParser.StatementContext stmt : func.getContext().statement()) {
-            visit(stmt);
-            if (returnVal != null)
-                break;
-        }
+        visStmt(func.getContext().statement());
 
         if (!Kansu.compareTypes(returnVal, func.getRetType()))
             errHandler.semanticError(ctx, "return value type missmatch");
