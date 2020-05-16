@@ -341,4 +341,29 @@ public class RoboTest {
         assertEquals(phrasesErr[4], "Semantic error: trying to manipulate died robot in line 20");
 
     }
+
+    @Test
+    public void stupidMotionTest() throws Exception {
+        StringBuilder sen = new StringBuilder("<-0; >-<; <-<;");
+        for(int i = 0; i < 6; ++i)
+            sen.append(sen);
+        sen.setLength(sen.length() - 1);
+        String initialString =      "senden {" + sen + "};";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        Travel travel = go(initialString, "tests/mazes/simplem2.maze", progOut, progErr);
+
+        System.out.println(progOut.toString());
+        System.out.println(progErr.toString());
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        //assertEquals(phrasesOut.length, 20);
+
+        //assertEquals(phrasesOut[0], "-> { X 26, Y 9, Z 5 }"); //>
+
+    }
 }
