@@ -823,12 +823,21 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     public SakeObj visitRobo_do(SakeParserParser.Robo_doContext ctx) {
         openCubes = new HashSet<>();
         SakeObj res;
+        boolean lastBr = false;
         for (SakeParserParser.Robo_actionContext act : ctx.robo_action()) {
+            if (act.BREAK() != null && lastBr)
+                break;
+            lastBr = false;
+
             res = visit(act);
             if (res != null && ((Countable)res).getValue() == 0)
-                break;
+                lastBr = true;
         }
-        return null;
+
+        if (openCubes.size() > 0)
+            return new Hairetsu(openCubes);
+        else
+            return null;
     }
 
     protected void completeUp(int dist) throws SemanticSakeError {

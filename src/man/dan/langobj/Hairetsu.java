@@ -1,6 +1,9 @@
 package man.dan.langobj;
 
+import io.vavr.Tuple3;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Hairetsu implements SakeObj{
     protected ArrayList<SakeObj> arr;
@@ -19,6 +22,17 @@ public class Hairetsu implements SakeObj{
             } else {
                 arr.add(new Undefined());
             }
+        }
+    }
+
+    public Hairetsu(HashSet<Rippotai> cubes) {
+        arr = new ArrayList<>();
+
+        if (cubes.size() == 0)
+            return;
+
+        for (Rippotai cube : cubes) {
+            arr.add(cube.getCopy());
         }
     }
 
