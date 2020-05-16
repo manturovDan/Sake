@@ -8,8 +8,7 @@ import org.junit.Test;
 
 import java.io.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class RoboTest {
     protected Travel go(String initialString, String pathToMaze, OutputStream progOut, OutputStream progErr) throws Exception {
@@ -77,6 +76,15 @@ public class RoboTest {
         assertTrue(maze.isPassage(new Passage(29, 10, 8)));
         assertTrue(maze.isPassage(new Passage(28, 8, 8)));
         assertTrue(maze.isPassage(new Passage(29, 8, 8)));
+
+        assertFalse(maze.isPassage(new Passage(20, 9, 5)));
+        assertFalse(maze.isPassage(new Passage(30, 0, 5)));
+        assertFalse(maze.isPassage(new Passage(29, 9, 9)));
+        assertFalse(maze.isPassage(new Passage(0, 0, 0)));
+        assertFalse(maze.isPassage(new Passage(24, 9, 7)));
+        assertFalse(maze.isPassage(new Passage(3, 1, -12)));
+        assertFalse(maze.isPassage(new Passage(20, 19, 5)));
+        assertFalse(maze.isPassage(new Passage(201, 9, 5)));
 
     }
 }
