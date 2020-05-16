@@ -1,6 +1,8 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
 import man.dan.memory.AreaVis;
+import man.dan.robot.Maze;
+import man.dan.robot.Travel;
 import org.junit.Test;
 
 import java.io.*;
@@ -9,10 +11,22 @@ import static org.junit.Assert.*;
 
 
 public class PrintTest {
-    protected AreaVis executeWithClear(String initialString, OutputStream progOut, OutputStream progErr) throws IOException {
+    protected AreaVis executeWithClear(String initialString, String pathToMaze, OutputStream progOut, OutputStream progErr) throws Exception {
         InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
         Interpreter interpreter;
         interpreter = new Interpreter(progIn, progOut, progErr);
+
+        InputStream mazeIn = new FileInputStream(pathToMaze);
+        Maze lab = new Maze(mazeIn);
+
+        Travel travel = new Travel(lab, 0);
+
+        Thread goon = new Thread(travel);
+        goon.start();
+
+        interpreter.setTravel(travel);
+        travel.lock();
+
         interpreter.run();
         return interpreter.getMemory();
     }
@@ -20,15 +34,15 @@ public class PrintTest {
     @Test
     public void fiboPrintTest() throws IOException {
         String initialString =      "seisu kansu fibo(seisu f) kido\n" +
-                "    sorenara f < 3 kido\n" +
-                "        modoru 1;\n" +
-                "    shushi;\n" +
-                "\n" +
-                "    modoru fibo(f-2) + fibo(f-1);\n" +
-                "shushi;\n" +
-                "\n" +
-                "seisu k = fibo(10);\n" +
-                "senden k;";
+                                    "    sorenara f < 3 kido\n" +
+                                    "        modoru 1;\n" +
+                                    "    shushi;\n" +
+                                    "\n" +
+                                    "    modoru fibo(f-2) + fibo(f-1);\n" +
+                                    "shushi;\n" +
+                                    "\n" +
+                                    "seisu k = fibo(10);\n" +
+                                    "senden k;";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
