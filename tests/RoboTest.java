@@ -203,7 +203,7 @@ public class RoboTest {
 
     @Test
     public void complSensorTest() throws Exception {
-        String initialString =      "hairetsu view = {v-0; <-0; >-0};\n" +
+        String initialString =      "hairetsu view = >-0;\n" +
                                     "senden view;\n" +
                                     "view = ^-0;\n" +
                                     "senden view;\n" +
