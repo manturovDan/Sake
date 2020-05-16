@@ -9,7 +9,7 @@ import java.io.*;
 import static org.junit.Assert.assertEquals;
 
 public class RoboTest {
-    protected AreaVis go(String initialString, String pathToMaze, OutputStream progOut, OutputStream progErr) throws Exception {
+    protected Travel go(String initialString, String pathToMaze, OutputStream progOut, OutputStream progErr) throws Exception {
         InputStream progIn = new ByteArrayInputStream(initialString.getBytes());
         Interpreter interpreter;
         interpreter = new Interpreter(progIn, progOut, progErr);
@@ -26,7 +26,7 @@ public class RoboTest {
         travel.lock();
 
         interpreter.run();
-        return interpreter.getMemory();
+        return travel;
     }
 
     @Test
@@ -42,8 +42,10 @@ public class RoboTest {
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
 
-        AreaVis memory = go(initialString, "tests/mazes/simplem1.maze", progOut, progErr);
+        Travel travel = go(initialString, "tests/mazes/simplem1.maze", progOut, progErr);
 
-        assertEquals(1, 1);
+        Maze maze = travel.getMaze();
+
+        assertEquals(maze.rX(), 25);
     }
 }
