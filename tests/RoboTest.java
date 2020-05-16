@@ -363,7 +363,9 @@ public class RoboTest {
         String initialString =      "senden {" + sen + "};\n" +
                                     "senden ~-0;\n" +
                                     "senden {" + senFw + "};\n" +
-                                    "senden {v-0; " + senRight + "};";
+                                    "senden {v-0; " + senRight + "};\n" +
+                                    "senden {^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^; ^-0; ^-0; >-<; ^-^};\n" +
+                                    "<-<;";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -455,5 +457,12 @@ public class RoboTest {
         assertTrue(phraseRightParts.contains("{ X : 5; Y : 6; Z : 0; isKabe : false }"));
         assertTrue(phraseRightParts.contains("{ X : 6; Y : 6; Z : 0; isKabe : true }"));
         assertEquals(phraseRightParts.size(), 6);
+
+        assertEquals(phrasesOut[29], "-> { X 5, Y 6, Z 1 }");
+        assertEquals(phrasesOut[30], "{{ X : 5; Y : 6; Z : 1; isKabe : false }, { X : 5; Y : 6; Z : 2; isKabe : true }}");
+        assertEquals(phrasesOut[31], "-> { X 4, Y 6, Z 1 }");
+        assertEquals(phrasesOut[32], "SUCCESS");
+
+        assertEquals(phrasesOut.length, 33);
     }
 }
