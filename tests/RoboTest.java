@@ -7,6 +7,8 @@ import man.dan.robot.Travel;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -203,7 +205,7 @@ public class RoboTest {
 
     @Test
     public void complSensorTest() throws Exception {
-        String initialString =      "hairetsu view = <-0;#{>-0; v-0};\n" +
+        String initialString =      "hairetsu view = {>-0; v-0; <-0};\n" +
                                     "senden view;\n" +
                                     "view = ^-0;\n" +
                                     "senden view;\n" +
@@ -238,6 +240,16 @@ public class RoboTest {
 
         //assertEquals(phrasesOut.length, 20);
 
+        StringBuilder phrase1 = new StringBuilder(phrasesOut[0]);
+        phrase1.setLength(phrase1.length() - 1);
+        phrase1.deleteCharAt(0);
+        ArrayList<String> phrase1Parts = new ArrayList<>(Arrays.asList(phrase1.toString().split(", ")));
+
+        assertTrue(phrase1Parts.contains("{ X : 23; Y : 9; Z : 5; isKabe : true }"));
+        assertTrue(phrase1Parts.contains("{ X : 24; Y : 9; Z : 5; isKabe : false }"));
+        assertTrue(phrase1Parts.contains("{ X : 26; Y : 9; Z : 5; isKabe : false }"));
+        assertTrue(phrase1Parts.contains("{ X : 27; Y : 9; Z : 5; isKabe : true }"));
+        assertTrue(phrase1Parts.contains("{ X : 25; Y : 9; Z : 4; isKabe : true }"));
         /*assertEquals(phrasesOut[0], "-> { X 26, Y 9, Z 5 }"); //>
         assertEquals(phrasesOut[1], "-> { X 26, Y 8, Z 5 }"); //~
         assertEquals(phrasesOut[2], "-> { X 26, Y 7, Z 5 }"); //~
