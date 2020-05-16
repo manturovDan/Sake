@@ -241,8 +241,8 @@ public class RoboTest {
 
         Travel travel = go(initialString, "tests/mazes/simplem1.maze", progOut, progErr);
 
-        System.out.println(progOut.toString());
-        System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
+        //System.out.println(progErr.toString());
 
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
@@ -328,11 +328,17 @@ public class RoboTest {
 
         assertEquals(phrasesOut[24], "-> { X 29, Y 9, Z 8 }"); //>
         assertEquals(phrasesOut[25], "-> { X 30, Y 9, Z 8 }"); //>x
-        assertEquals(phrasesOut[26], "*_*"); //success
+        assertEquals(phrasesOut[26], "*_*"); //crash
+        assertEquals(phrasesOut[27], "{}");
 
-        //assertEquals(phrasesErr.length, 2);
-        //assertEquals(phrasesErr[0], "Semantic error: trying to manipulate successful robot in line 13");
-        //assertEquals(phrasesErr[1], "Semantic error: trying to manipulate successful robot in line 14");*/
+        assertEquals(phrasesOut.length, 28);
+
+        assertEquals(phrasesErr.length, 5);
+        assertEquals(phrasesErr[0], "Semantic error: trying to manipulate died robot in line 16");
+        assertEquals(phrasesErr[1], "Semantic error: trying to manipulate died robot in line 17");
+        assertEquals(phrasesErr[2], "Semantic error: trying to manipulate died robot in line 18");
+        assertEquals(phrasesErr[3], "Semantic error: trying to manipulate died robot in line 19");
+        assertEquals(phrasesErr[4], "Semantic error: trying to manipulate died robot in line 20");
 
     }
 }

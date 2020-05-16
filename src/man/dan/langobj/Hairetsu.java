@@ -62,6 +62,8 @@ public class Hairetsu implements SakeObj{
 
     @Override
     public String toString() {
+        if (arr.size() == 0)
+            return "{}";
         StringBuilder ret = new StringBuilder();
         ret.append("{");
         for (SakeObj el : arr) {
