@@ -93,11 +93,11 @@ public class Maze {
     }
 
     public void leftward() {
-        robotX++;
+        robotX--;
     }
 
     public void rightward() {
-        robotX--;
+        robotX++;
     }
 
     public void forward() {
@@ -148,10 +148,10 @@ public class Maze {
     public int look_left() {
         int dist = 0;
         Passage mwn = new Passage(robotX, robotY, robotZ);
-        mwn.incX();
+        mwn.decX();
         while(isPassage(mwn)) {
-            dist++;
-            mwn.incX();
+            dist--;
+            mwn.decX();
         }
 
         return dist;
@@ -160,10 +160,10 @@ public class Maze {
     public int look_right() {
         int dist = 0;
         Passage mwn = new Passage(robotX, robotY, robotZ);
-        mwn.decX();
+        mwn.incX();
         while(isPassage(mwn)) {
             dist++;
-            mwn.decX();
+            mwn.incX();
         }
 
         return dist;
