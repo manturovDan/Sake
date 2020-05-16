@@ -220,12 +220,12 @@ public class RoboTest {
                                     "senden {o-0;v-v;~-0;>->;~-0};\n" +
                                     "{>->};\n" +
                                     "senden {>-0; o-0};\n" +
-                                    "#{>->};\n" +
-                                    "#o-o;\n" +
-                                    "#<-<;\n" +
-                                    "" +
-                                    "#<-<;\n" +
-                                    "#o-0;\n" +
+                                    "senden {>->; >-0; >->; ^-0};\n" +
+                                     "" +
+                                    "o-o;\n" +
+                                    "<-<;\n" +
+                                    "<-<;\n" +
+                                    "o-0;\n" +
                                     "seisu kansu funfun(hairetsu meas, seisu _) kido\n" +
                                     "   shuki k = 0 : nagasa meas kido\n" +
                                     "       meas[k] => X = meas[k] => X + _;\n" +
@@ -315,14 +315,24 @@ public class RoboTest {
         assertEquals(phrase5Parts.size(), 3);
 
         assertEquals(phrasesOut[22], "-> { X 28, Y 9, Z 8 }"); //>
-        /*assertEquals(phrasesOut[16], "-> { X 29, Y 9, Z 8 }"); //>
-        assertEquals(phrasesOut[17], "-> { X 29, Y 10, Z 8 }"); //^
-        assertEquals(phrasesOut[18], "-> { X 28, Y 10, Z 8 }"); //<
-        assertEquals(phrasesOut[19], "SUCCESS"); //success
 
-        assertEquals(phrasesErr.length, 2);
-        assertEquals(phrasesErr[0], "Semantic error: trying to manipulate successful robot in line 13");
-        assertEquals(phrasesErr[1], "Semantic error: trying to manipulate successful robot in line 14");*/
+        StringBuilder phrase6 = new StringBuilder(phrasesOut[23]);
+        phrase6.setLength(phrase6.length() - 1);
+        phrase6.deleteCharAt(0);
+        ArrayList<String> phrase6Parts = new ArrayList<>(Arrays.asList(phrase6.toString().split(", ")));
+
+        assertTrue(phrase6Parts.contains("{ X : 29; Y : 9; Z : 8; isKabe : false }"));
+        assertTrue(phrase6Parts.contains("{ X : 28; Y : 10; Z : 8; isKabe : false }"));
+        assertTrue(phrase6Parts.contains("{ X : 28; Y : 11; Z : 8; isKabe : true }"));
+        assertEquals(phrase6Parts.size(), 3);
+
+        assertEquals(phrasesOut[24], "-> { X 29, Y 9, Z 8 }"); //>
+        assertEquals(phrasesOut[25], "-> { X 30, Y 9, Z 8 }"); //>x
+        assertEquals(phrasesOut[26], "*_*"); //success
+
+        //assertEquals(phrasesErr.length, 2);
+        //assertEquals(phrasesErr[0], "Semantic error: trying to manipulate successful robot in line 13");
+        //assertEquals(phrasesErr[1], "Semantic error: trying to manipulate successful robot in line 14");*/
 
     }
 }
