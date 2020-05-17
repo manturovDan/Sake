@@ -13,6 +13,7 @@ seisu kansu printMaze(hairetsu mazeMatrix) kido
                     #senden 11111111;
                     senden [x, y, z, mazeMatrix[x, y, z, 1]];
                     senden mazeMatrix[x, y, z, 0];
+                    senden mazeMatrix[x, y, z, 1];
                     senden mazeMatrix[x, y, z, 2];
                     senden mazeMatrix[x, y, z, 3];
                     #senden 22222222;
@@ -120,7 +121,7 @@ seisu kansu coloring(hairetsu mazeMatrix) kido
 shushi;
 
 seisu kansu wave(hairetsu mazeMatrix, seisu x, seisu y, seisu z, seisu dist) kido
-    sorenara x > -1 ^ x < 30 ^ y > -1 ^ y < 30 ^ z > -1 ^ z < 30 ^ ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) ^ mazeMatrix[x, y, z, 3] < 0 kido
+    sorenara x > -1 ^ x < 30 ^ y > -1 ^ y < 30 ^ z > -1 ^ z < 30 ^ ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) ^ mazeMatrix[x, y, z, 3] < 0 ^ mazeMatrix[x, y, z, 1] < 1 kido
         mazeMatrix[x, y, z, 3] = dist;
         wave(mazeMatrix, x + 1, y, z, dist + 1);
         wave(mazeMatrix, x - 1, y, z, dist + 1);
