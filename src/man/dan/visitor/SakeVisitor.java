@@ -941,6 +941,34 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
     @Override
     public SakeObj visitRuikei(SakeParserParser.RuikeiContext ctx) {
-        return null;
+        SakeObj comp1 = objForComp(ctx, 0);
+        SakeObj comp2 = objForComp(ctx, 1);
+
+        return new Countable(    comp1 instanceof Undefined && comp2 instanceof Undefined
+                ||  comp1 instanceof Countable && comp2 instanceof Countable
+                ||  comp1 instanceof Rippotai && comp2 instanceof Rippotai
+                ||  comp1 instanceof Hairetsu && comp2 instanceof Hairetsu);
+    }
+
+    public SakeObj objForComp(SakeParserParser.RuikeiContext ctx, int num) {
+        SakeObj comp = null;
+        if (ctx.type_comp().type_to_comp().get(num).UNDEFINED() != null)
+            comp = new Undefined();
+        else if (ctx.type_comp().type_to_comp().get(num).type() != null) {
+            if (ctx.type_comp().type_to_comp().get(num).type().t.getType() == SakeParserParser.SEISU ||
+                    ctx.type_comp().type_to_comp().get(num).type().t.getType() == SakeParserParser.RONRI)
+                comp = new Countable(num);
+            else if (ctx.type_comp().type_to_comp().get(num).type().t.getType() == SakeParserParser.HAIRETSU)
+                comp = new Hairetsu(new ArrayList<>());
+            else if (ctx.type_comp().type_to_comp().get(num).type().t.getType() == SakeParserParser.RIPPOTAI)
+                try {
+                    comp = new Rippotai(0, 0, 0, false);
+                }catch (Exception ignored) {}
+            else assert false;
+        }
+        else
+            comp = visit(ctx.type_comp().type_to_comp(num).r_value());
+
+        return comp;
     }
 }
