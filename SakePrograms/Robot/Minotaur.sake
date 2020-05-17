@@ -51,7 +51,7 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     #senden 1111111;
     hairetsu target = {1};
 
-    shuki t = 0 : 10 kido
+    shuki t = 0 : 1 kido
         senden t;
         senden 11111111;
         lookAround(mazeMatrix);
@@ -77,7 +77,12 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
         travel(mazeMatrix, way);
 
         t = t - 1;
-        senden t;
+
+        sorenara inFinal() kido
+            senden 0;
+            modoru 0;
+        shushi;
+
     shushi;
     modoru 0;
 shushi;
@@ -299,6 +304,10 @@ seisu kansu travel(hairetsu mazeMatrix, hairetsu way) kido
             step = shinri;
             myState[0] => Y = myState[0] => Y - 1;
         shushi;
+
+        sorenara inFinal() kido
+            modoru 1;
+        shushi;
     shushi;
     modoru 0;
 shushi;
@@ -308,3 +317,12 @@ replenish(mazeMatrix, myState);
 replenish(mazeMatrix, exits);
 
 findWay(mazeMatrix, exits);
+
+ronri kansu inFinal() kido
+    shuki e = 0 : nagasa exits kido
+        sorenara eqCube(exits[e], myState[0]) kido
+            modoru shinri;
+        shushi;
+    shushi;
+    modoru osu;
+shushi;
