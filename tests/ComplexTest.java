@@ -448,10 +448,20 @@ public class ComplexTest {
 
         executeWithClear(initialString, progOut, progErr);
 
-        String[] phrasesOut = progOut.toString().split("\n");
-        String[] phrasesErr = progErr.toString().split("\n");
+        //String[] phrasesOut = progOut.toString().split("\n");
+        //String[] phrasesErr = progErr.toString().split("\n");
 
-        System.out.println(progErr.toString());
-        System.out.println(progOut.toString());
+        //System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
+
+        assertEquals(progOut.toString(), "1\n" +
+                "0\n" +
+                "0\n" +
+                "1\n" +
+                "1\n" +
+                "0\n" +
+                "1\n");
+
+        assertEquals(progErr.toString(), "");
     }
 }
