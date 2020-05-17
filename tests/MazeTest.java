@@ -48,11 +48,7 @@ public class MazeTest {
         return travel;
     }
 
-    @Test
-    public void maze1ToFinishTest() throws Exception {
-        String pathToSake = "SakePrograms/Robot/Minotaur.sake";
-        String pathToMaze = "tests/mazes/simplem1.maze";
-
+    protected void successTest(String pathToSake, String pathToMaze) throws Exception {
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
 
@@ -97,7 +93,14 @@ public class MazeTest {
 
         assertEquals(phrasesErr.length, 1);
         assertEquals(phrasesErr[0], "");
+    }
 
+    @Test
+    public void maze1ToFinishTest() throws Exception {
+        String pathToSake = "SakePrograms/Robot/Minotaur.sake";
+        String pathToMaze = "tests/mazes/simplem1.maze";
+
+        successTest(pathToSake, pathToMaze);
     }
 
     @Test
@@ -149,5 +152,13 @@ public class MazeTest {
         assertEquals(phrasesErr.length, 1);
         assertEquals(phrasesErr[0], "");
 
+    }
+
+    @Test
+    public void maze2ToFinishTest() throws Exception {
+        String pathToSake = "SakePrograms/Robot/MinotaurHardcore.sake";
+        String pathToMaze = "tests/mazes/hardcore.maze";
+
+        successTest(pathToSake, pathToMaze);
     }
 }
