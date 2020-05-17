@@ -701,6 +701,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 return val;
             else if (val instanceof Hairetsu)
                 return val;
+            else if (val instanceof Undefined)
+                return val;
         }
         else if (ctx.block_coub() != null) {
             return getCubeFromDef(ctx.block_coub());
