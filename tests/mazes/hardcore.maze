@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<maze>
+    <robot X = "3" Y = "2" Z = "4"/>
+    <spaces>
+        <!-- 2nd floor -->
+        <passage X = "0" Y = "0" Z = "4" />
+        <passage X = "0" Y = "1" Z = "4" />
+        <passage X = "0" Y = "2" Z = "4" />
+        <passage X = "0" Y = "3" Z = "4" />
+        <passage X = "0" Y = "4" Z = "4" />
+        <passage X = "0" Y = "5" Z = "4" />
+        <passage X = "0" Y = "6" Z = "4" />
+
+        <passage X = "1" Y = "5" Z = "4" />
+        <passage X = "1" Y = "6" Z = "4" />
+        <passage X = "2" Y = "5" Z = "4" />
+        <passage X = "2" Y = "6" Z = "4" />
+        <passage X = "3" Y = "5" Z = "4" />
+        <passage X = "3" Y = "6" Z = "4" />
+        <passage X = "4" Y = "5" Z = "4" />
+        <passage X = "4" Y = "6" Z = "4" />
+        <passage X = "5" Y = "5" Z = "4" />
+        <passage X = "6" Y = "5" Z = "4" />
+        <passage X = "6" Y = "6" Z = "4" />
+        <passage X = "7" Y = "5" Z = "4" />
+        <passage X = "7" Y = "6" Z = "4" />
+
+        <passage X = "7" Y = "0" Z = "4" />
+        <passage X = "7" Y = "1" Z = "4" />
+        <passage X = "7" Y = "2" Z = "4" />
+        <passage X = "7" Y = "3" Z = "4" />
+        <passage X = "7" Y = "4" Z = "4" />
+        <passage X = "6" Y = "3" Z = "4" />
+
+        <passage X = "1" Y = "0" Z = "4" />
+        <passage X = "2" Y = "0" Z = "4" />
+        <passage X = "2" Y = "1" Z = "4" />
+        <passage X = "2" Y = "2" Z = "4" />
+        <passage X = "3" Y = "2" Z = "4" />
+        <passage X = "4" Y = "2" Z = "4" />
+        <passage X = "3" Y = "1" Z = "4" />
+        <passage X = "3" Y = "0" Z = "4" />
+        <passage X = "5" Y = "0" Z = "4" />
+        <passage X = "6" Y = "0" Z = "4" />
+        <passage X = "8" Y = "0" Z = "4" />
+        <passage X = "9" Y = "0" Z = "4" />
+        <passage X = "8" Y = "2" Z = "4" />
+        <passage X = "8" Y = "3" Z = "4" />
+        <passage X = "9" Y = "3" Z = "4" />
+
+        <passage X = "10" Y = "2" Z = "4" />
+        <passage X = "10" Y = "3" Z = "4" />
+        <passage X = "10" Y = "4" Z = "4" />
+        <passage X = "10" Y = "5" Z = "4" />
+        <passage X = "10" Y = "6" Z = "4" />
+        <passage X = "10" Y = "7" Z = "4" />
+        <passage X = "10" Y = "8" Z = "4" />
+
+        <passage X = "10" Y = "0" Z = "4" />
+        <passage X = "10" Y = "1" Z = "4" />
+        <passage X = "10" Y = "2" Z = "4" />
+        <passage X = "10" Y = "3" Z = "4" />
+        <passage X = "10" Y = "4" Z = "4" />
+        <passage X = "10" Y = "5" Z = "4" />
+        <passage X = "10" Y = "6" Z = "4" />
+        <passage X = "10" Y = "7" Z = "4" />
+        <passage X = "10" Y = "8" Z = "4" />
+        <passage X = "10" Y = "9" Z = "4" />
+        <passage X = "10" Y = "10" Z = "4" />
+        <passage X = "10" Y = "11" Z = "4" />
+        <passage X = "10" Y = "12" Z = "4" />
+
+        <passage X = "11" Y = "1" Z = "4" />
+        <passage X = "11" Y = "2" Z = "4" />
+        <passage X = "11" Y = "3" Z = "4" />
+        <passage X = "11" Y = "5" Z = "4" />
+        <passage X = "11" Y = "6" Z = "4" />
+        <passage X = "11" Y = "7" Z = "4" />
+        <passage X = "11" Y = "9" Z = "4" />
+        <passage X = "11" Y = "10" Z = "4" />
+        <passage X = "11" Y = "11" Z = "4" />
+        <passage X = "11" Y = "12" Z = "4" />
+
+        <passage X = "12" Y = "12" Z = "4" />
+        <passage X = "13" Y = "12" Z = "4" />
+        <passage X = "14" Y = "12" Z = "4" />
+        <passage X = "15" Y = "12" Z = "4" />
+        <passage X = "16" Y = "12" Z = "4" />
+        <passage X = "17" Y = "12" Z = "4" />
+
+        <passage X = "14" Y = "11" Z = "4" />
+        <passage X = "15" Y = "11" Z = "4" />
+        <passage X = "17" Y = "11" Z = "4" />
+        <passage X = "14" Y = "10" Z = "4" />
+        <passage X = "15" Y = "10" Z = "4" />
+        <passage X = "16" Y = "10" Z = "4" />
+        <passage X = "17" Y = "10" Z = "4" />
+        <passage X = "15" Y = "9" Z = "4" />
+
+        <passage X = "14" Y = "8" Z = "4" />
+        <passage X = "15" Y = "8" Z = "4" />
+        <passage X = "16" Y = "8" Z = "4" />
+        <passage X = "17" Y = "8" Z = "4" />
+        <passage X = "18" Y = "8" Z = "4" />
+        <passage X = "14" Y = "7" Z = "4" />
+        <passage X = "15" Y = "7" Z = "4" />
+        <passage X = "16" Y = "7" Z = "4" />
+        <passage X = "17" Y = "7" Z = "4" />
+        <passage X = "18" Y = "7" Z = "4" />
+        <passage X = "14" Y = "6" Z = "4" />
+        <passage X = "15" Y = "6" Z = "4" />
+        <passage X = "16" Y = "6" Z = "4" />
+        <passage X = "17" Y = "6" Z = "4" />
+        <passage X = "18" Y = "6" Z = "4" />
+        <passage X = "14" Y = "6" Z = "4" />
+        <passage X = "18" Y = "5" Z = "4" />
+
+        <passage X = "14" Y = "4" Z = "4" />
+        <passage X = "15" Y = "4" Z = "4" />
+        <passage X = "16" Y = "4" Z = "4" />
+        <passage X = "17" Y = "4" Z = "4" />
+        <passage X = "18" Y = "4" Z = "4" />
+
+        <passage X = "14" Y = "3" Z = "4" />
+        <passage X = "16" Y = "3" Z = "4" />
+        <passage X = "17" Y = "3" Z = "4" />
+        <passage X = "18" Y = "3" Z = "4" />
+
+        <passage X = "17" Y = "2" Z = "4" />
+        <passage X = "18" Y = "2" Z = "4" />
+
+        <passage X = "2" Y = "10" Z = "4" />
+        <passage X = "3" Y = "10" Z = "4" />
+        <passage X = "3" Y = "11" Z = "4" />
+        <portal X = "2" Y = "11" Z = "4" />
+
+        <!-- 2nd floor -->
+        <passage X = "3" Y = "10" Z = "5" />
+        <passage X = "4" Y = "10" Z = "5" />
+        <passage X = "7" Y = "6" Z = "5" />
+
+
+        <!-- 3nd floor -->
+    </spaces>
+</maze>
