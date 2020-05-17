@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <maze>
-    <robot X="25" Y="9" Z="5"/>
+    <robot X = "25" Y = "9" Z = "5"/>
     <spaces>
         <passage X = "24" Y = "9" Z = "5" />
         <passage X = "24" Y = "10" Z = "5" />
