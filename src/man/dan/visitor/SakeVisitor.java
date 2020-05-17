@@ -944,7 +944,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         SakeObj comp1 = objForComp(ctx, 0);
         SakeObj comp2 = objForComp(ctx, 1);
 
-        return new Countable(    comp1 instanceof Undefined && comp2 instanceof Undefined
+        return new Countable(    (comp1 instanceof Undefined && comp2 instanceof Undefined && ((((Undefined) comp1).getType() == -1 || ((Undefined) comp2).getType() == -1) ||
+                ((Undefined) comp1).getType() == ((Undefined) comp2).getType()))
                 ||  comp1 instanceof Countable && comp2 instanceof Countable
                 ||  comp1 instanceof Rippotai && comp2 instanceof Rippotai
                 ||  comp1 instanceof Hairetsu && comp2 instanceof Hairetsu);
