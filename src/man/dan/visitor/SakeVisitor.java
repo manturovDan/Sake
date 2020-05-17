@@ -561,21 +561,29 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     @Override
     public SakeObj visitOr(SakeParserParser.OrContext ctx) {
         Countable left = (Countable) visit(ctx.expr(0));
-        Countable right = (Countable) visit(ctx.expr(1));
 
-        if (left.isShinri() || right.isShinri())
+        if (left.isShinri())
             return new Countable(true);
-        else
-            return new Countable(false);
+        else {
+            Countable right = (Countable) visit(ctx.expr(1));
+            if (right.isShinri())
+                return new Countable(true);
+            else
+                return new Countable(false);
+        }
     }
 
     @Override
     public SakeObj visitAnd(SakeParserParser.AndContext ctx) {
         Countable left = (Countable) visit(ctx.expr(0));
-        Countable right = (Countable) visit(ctx.expr(1));
 
-        if (left.isShinri() && right.isShinri())
-            return new Countable(true);
+        if (left.isShinri()) {
+            Countable right = (Countable) visit(ctx.expr(1));
+            if (right.isShinri())
+                return new Countable(true);
+            else
+                return new Countable(false);
+        }
         else
             return new Countable(false);
     }
