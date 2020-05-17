@@ -49,8 +49,8 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     #printMaze(mazeMatrix);
     #senden 1111111;
     lookAround(mazeMatrix);
-    printMaze(mazeMatrix);
     coloring(mazeMatrix);
+    printMaze(mazeMatrix);
     modoru 0;
 shushi;
 
@@ -70,42 +70,46 @@ seisu kansu coloring(hairetsu mazeMatrix) kido
                         ronri fw = osu;
                         ronri back = osu;
 
-                        sorenara z < 29 ^ ~(ruikei <mazeMatrix[x, y, z+1, 0], undefined>) kido
+                        sorenara z > 28 v z < 29 ^ ~(ruikei <mazeMatrix[x, y, z+1, 0], undefined>) kido
                             top = shinri;
                         shushi;
 
-                        sorenara z > 0 ^ ~(ruikei <mazeMatrix[x, y, z-1, 0], undefined>) kido
+                        sorenara z < 1 v z > 0 ^ ~(ruikei <mazeMatrix[x, y, z-1, 0], undefined>) kido
                             bottom = shinri;
                         shushi;
 
-                        sorenara x < 29 ^ ~(ruikei <mazeMatrix[x+1, y, z, 0], undefined>) kido
+                        sorenara x > 28 v x < 29 ^ ~(ruikei <mazeMatrix[x+1, y, z, 0], undefined>) kido
                             right = shinri;
                         shushi;
 
-                        sorenara x > 0 ^ ~(ruikei <mazeMatrix[x-1, y, z, 0], undefined>) kido
+                        sorenara x < 1 v x > 0 ^ ~(ruikei <mazeMatrix[x-1, y, z, 0], undefined>) kido
                             left = shinri;
                         shushi;
 
-                        sorenara y < 29 ^ ~(ruikei <mazeMatrix[x, y+1, z, 0], undefined>) kido
+                        sorenara y > 28 v y < 29 ^ ~(ruikei <mazeMatrix[x, y+1, z, 0], undefined>) kido
                             fw = shinri;
                         shushi;
 
-                        sorenara y > 0 ^ ~(ruikei <mazeMatrix[x, y-1, z, 0], undefined>) kido
+                        sorenara y < 1 v y > 0 ^ ~(ruikei <mazeMatrix[x, y-1, z, 0], undefined>) kido
                             back = shinri;
                         shushi;
 
-                        senden 1111111;
-                        senden x;
-                        senden y;
-                        senden z;
+                        sorenara top ^ bottom ^ left ^ right ^ fw ^ back kido
+                            mazeMatrix[x, y, z, 0] = 2;
+                        shushi;
 
-                        senden top;
-                        senden bottom;
-                        senden left;
-                        senden right;
-                        senden fw;
-                        senden back;
-                        senden 2222222;
+                        #senden 1111111;
+                        #senden x;
+                        #senden y;
+                        #senden z;
+
+                        #senden top;
+                        #senden bottom;
+                        #senden left;
+                        #senden right;
+                        #senden fw;
+                        #senden back;
+                        #senden 2222222;
                     shushi;
                 shushi;
             shushi;
