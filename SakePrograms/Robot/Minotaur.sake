@@ -232,36 +232,46 @@ shushi;
 
 seisu kansu travel(hairetsu mazeMatrix, hairetsu way) kido
     shuki s = 0 : nagasa way kido
+        sorenara s > 0 kido
+            lookAround(mazeMatrix);
+        shushi;
+
         ronri step = osu;
 
         sorenara way[s] < 1 kido
             ^-^;
             step = shinri;
+            myState[0] => Z = myState[0] => Z + 1;
         shushi;
 
         sorenara ~step ^ way[s] < 2 kido
             v-v;
             step = shinri;
+            myState[0] => Z = myState[0] => Z - 1;
         shushi;
 
         sorenara ~step ^ way[s] < 3 kido
             <-<;
             step = shinri;
+            myState[0] => X = myState[0] => X - 1;
         shushi;
 
         sorenara ~step ^ way[s] < 4 kido
             >->;
             step = shinri;
+            myState[0] => X = myState[0] => X + 1;
         shushi;
 
         sorenara ~step ^ way[s] < 5 kido
             o-o;
             step = shinri;
+            myState[0] => Y = myState[0] => Y + 1;
         shushi;
 
         sorenara ~step ^ way[s] < 6 kido
             ~-~;
             step = shinri;
+            myState[0] => Y = myState[0] => Y - 1;
         shushi;
     shushi;
     modoru 0;
