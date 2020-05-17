@@ -10,12 +10,12 @@ seisu kansu printMaze(hairetsu mazeMatrix) kido
         shuki y = 0 : 30 kido
             shuki z = 0 : 30 kido
                 sorenara ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) kido
-                    senden 11111111;
+                    #senden 11111111;
                     senden [x, y, z, mazeMatrix[x, y, z, 1]];
                     senden mazeMatrix[x, y, z, 0];
                     senden mazeMatrix[x, y, z, 2];
                     senden mazeMatrix[x, y, z, 3];
-                    senden 22222222;
+                    #senden 22222222;
                 shushi;
             shushi;
         shushi;
@@ -25,7 +25,7 @@ shushi;
 
 seisu kansu replenish(hairetsu mazeMatrix, hairetsu add) kido
     shuki i = 0 : nagasa add kido
-        mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 0] = 0;
+        mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 0] = 1; #gray
         mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 1] = add[i] => kabe;
         ronri isExit = osu;
         shuki e = 0 : nagasa exits kido
@@ -47,10 +47,15 @@ shushi;
 seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     senden exits;
     printMaze(mazeMatrix);
+    senden 1111111;
+    lookAround(mazeMatrix);
+    printMaze(mazeMatrix);
     modoru 0;
 shushi;
 
-
+seisu kansu lookAround(hairetsu mazeMatrix) kido
+    modoru replenish(mazeMatrix, {^-0; v-0; <-0; >-0; o-0; ~-0});
+shushi;
 
 hairetsu mazeMatrix = {30, 30, 30, 4};
 replenish(mazeMatrix, myState);
