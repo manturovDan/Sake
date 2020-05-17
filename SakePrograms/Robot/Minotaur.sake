@@ -65,7 +65,8 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
 
     senden target[0];
 
-    senden restoreWay(mazeMatrix, target[0]);
+    hairetsu way = restoreWay(mazeMatrix, target[0]);
+    travel(mazeMatrix, way);
     modoru 0;
 shushi;
 
@@ -263,6 +264,7 @@ seisu kansu travel(hairetsu mazeMatrix, hairetsu way) kido
             step = shinri;
         shushi;
     shushi;
+    modoru 0;
 shushi;
 
 hairetsu mazeMatrix = {30, 30, 30, 4};
