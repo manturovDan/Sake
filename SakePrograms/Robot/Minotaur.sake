@@ -46,15 +46,71 @@ shushi;
 
 seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     senden exits;
-    printMaze(mazeMatrix);
-    senden 1111111;
+    #printMaze(mazeMatrix);
+    #senden 1111111;
     lookAround(mazeMatrix);
     printMaze(mazeMatrix);
+    coloring(mazeMatrix);
     modoru 0;
 shushi;
 
 seisu kansu lookAround(hairetsu mazeMatrix) kido
     modoru replenish(mazeMatrix, {^-0; v-0; <-0; >-0; o-0; ~-0});
+shushi;
+
+seisu kansu coloring(hairetsu mazeMatrix) kido
+    shuki x = 0 : 30 kido
+            shuki y = 0 : 30 kido
+                shuki z = 0 : 30 kido
+                    sorenara ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) kido
+                        ronri top = osu;
+                        ronri bottom = osu;
+                        ronri left = osu;
+                        ronri right = osu;
+                        ronri fw = osu;
+                        ronri back = osu;
+
+                        sorenara z < 29 ^ ~(ruikei <mazeMatrix[x, y, z+1, 0], undefined>) kido
+                            top = shinri;
+                        shushi;
+
+                        sorenara z > 0 ^ ~(ruikei <mazeMatrix[x, y, z-1, 0], undefined>) kido
+                            bottom = shinri;
+                        shushi;
+
+                        sorenara x < 29 ^ ~(ruikei <mazeMatrix[x+1, y, z, 0], undefined>) kido
+                            right = shinri;
+                        shushi;
+
+                        sorenara x > 0 ^ ~(ruikei <mazeMatrix[x-1, y, z, 0], undefined>) kido
+                            left = shinri;
+                        shushi;
+
+                        sorenara y < 29 ^ ~(ruikei <mazeMatrix[x, y+1, z, 0], undefined>) kido
+                            fw = shinri;
+                        shushi;
+
+                        sorenara y > 0 ^ ~(ruikei <mazeMatrix[x, y-1, z, 0], undefined>) kido
+                            back = shinri;
+                        shushi;
+
+                        senden 1111111;
+                        senden x;
+                        senden y;
+                        senden z;
+
+                        senden top;
+                        senden bottom;
+                        senden left;
+                        senden right;
+                        senden fw;
+                        senden back;
+                        senden 2222222;
+                    shushi;
+                shushi;
+            shushi;
+        shushi;
+        modoru 0;
 shushi;
 
 hairetsu mazeMatrix = {30, 30, 30, 4};
