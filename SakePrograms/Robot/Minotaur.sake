@@ -26,12 +26,22 @@ shushi;
 seisu kansu replenish(hairetsu mazeMatrix, hairetsu add) kido
     shuki i = 0 : nagasa add kido
         mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 0] = 0;
-        mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 1] = 0;
-        mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 2] = 0;
+        mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 1] = add[i] => kabe;
+        ronri isExit = osu;
+        shuki e = 0 : nagasa exits kido
+            sorenara eqCube(exits[e], add[i]) kido
+                isExit = shinri;
+            shushi;
+        shushi;
+        mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 2] = isExit;
         mazeMatrix[add[i] => X, add[i] => Y, add[i] => Z, 3] = -1;
     shushi;
 
     modoru 0;
+shushi;
+
+ronri kansu eqCube(rippotai c1, rippotai c2) kido
+    modoru ~(c1=>X > c2=>X v c1=>X < c2=>X) ^ ~(c1=>Y > c2=>Y v c1=>Y < c2=>Y) ^ ~(c1=>Z > c2=>Z v c1=>Z < c2=>Z) ^ (c1=>kabe ^ c2=>kabe v ~c1=>kabe ^ ~c2=>kabe);
 shushi;
 
 seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
