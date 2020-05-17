@@ -49,24 +49,34 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     senden exits;
     #printMaze(mazeMatrix);
     #senden 1111111;
-    lookAround(mazeMatrix);
-    wave(mazeMatrix, myState[0] => X, myState[0] => Y, myState[0] => Z, 0);
-    printMaze(mazeMatrix);
     hairetsu target = {1};
-    target[0] = [0, 0, 0, 0];
 
-    seisu findStatus = findGray(mazeMatrix, target);
-    senden findStatus;
+    shuki t = 0 : 2 kido
+        senden 11111111;
+        lookAround(mazeMatrix);
+        wave(mazeMatrix, myState[0] => X, myState[0] => Y, myState[0] => Z, 0);
+        printMaze(mazeMatrix);
+        target[0] = [0, 0, 0, 0];
 
-    sorenara findStatus < 1 kido
-        senden -2;
-        modoru -2; #no way out
+        seisu findStatus = findGray(mazeMatrix, target);
+        senden findStatus;
+
+        sorenara findStatus < 1 kido
+            senden -2;
+            modoru -2; #no way out
+        shushi;
+
+        senden target[0];
+
+        hairetsu way = restoreWay(mazeMatrix, target[0]);
+        clearWay(mazeMatrix);
+
+        senden way;
+
+        travel(mazeMatrix, way);
+
+        t = t - 1;
     shushi;
-
-    senden target[0];
-
-    hairetsu way = restoreWay(mazeMatrix, target[0]);
-    travel(mazeMatrix, way);
     modoru 0;
 shushi;
 
@@ -175,6 +185,19 @@ seisu kansu findGray(hairetsu mazeMatrix, hairetsu target) kido
         shushi;
     shushi;
     modoru isGray;
+shushi;
+
+seisu kansu clearWay(hairetsu mazeMatrix) kido
+    shuki x = 0 : 30 kido
+        shuki y = 0 : 30 kido
+            shuki z = 0 : 30 kido
+                sorenara ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) ^ mazeMatrix[x, y, z, 3] > 0 kido
+                    mazeMatrix[x, y, z, 3] = -1;
+                shushi;
+            shushi;
+        shushi;
+    shushi;
+    modoru 0;
 shushi;
 
 hairetsu kansu restoreWay(hairetsu mazeMatrix, rippotai target) kido
