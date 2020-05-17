@@ -1,0 +1,11 @@
+seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
+    senden exits;
+    #senden mazeMatrix;
+    modoru 0;
+shushi;
+
+hairetsu exits = {2};
+exits[0] = [28, 10, 8, osu];
+exits[1] = [29, 8, 8, osu];
+hairetsu mazeMatrix = {30, 30, 30, 4};
+findWay(mazeMatrix, exits);
