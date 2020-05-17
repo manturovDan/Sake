@@ -51,7 +51,7 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     #senden 1111111;
     hairetsu target = {1};
 
-    shuki t = 0 : 2 kido
+    shuki t = 0 : 10 kido
         senden 11111111;
         lookAround(mazeMatrix);
         wave(mazeMatrix, myState[0] => X, myState[0] => Y, myState[0] => Z, 0);
@@ -164,6 +164,9 @@ seisu kansu findGray(hairetsu mazeMatrix, hairetsu target) kido
     shuki x = 0 : 30 kido
         shuki y = 0 : 30 kido
             shuki z = 0 : 30 kido
+                #senden x;
+                #senden y;
+                #senden z;
                 sorenara ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) ^ mazeMatrix[x, y, z, 1] < 1 ^ mazeMatrix[x, y, z, 3] > 0 ^ mazeMatrix[x, y, z, 0] > 0 kido
                     sorenara mazeMatrix[x, y, z, 0] < 2 kido
                         isGray = 1;
@@ -175,9 +178,7 @@ seisu kansu findGray(hairetsu mazeMatrix, hairetsu target) kido
                             target[0] = exits[e];
                             e = nagasa exits;
                             isGray = 2;
-                            x = 30;
-                            y = 30;
-                            z = 30;
+                            modoru 2;
                         shushi;
                     shushi;
                 shushi;
