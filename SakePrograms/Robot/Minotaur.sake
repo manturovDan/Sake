@@ -58,7 +58,7 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     sorenara findGray(mazeMatrix, target) < 1 kido
         senden -2;
         modoru -2; #no way out
-    kido;
+    shushi;
 
     senden target[0];
 
