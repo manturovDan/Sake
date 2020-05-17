@@ -52,6 +52,7 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     hairetsu target = {1};
 
     shuki t = 0 : 10 kido
+        senden t;
         senden 11111111;
         lookAround(mazeMatrix);
         wave(mazeMatrix, myState[0] => X, myState[0] => Y, myState[0] => Z, 0);
@@ -76,6 +77,7 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
         travel(mazeMatrix, way);
 
         t = t - 1;
+        senden t;
     shushi;
     modoru 0;
 shushi;
