@@ -55,7 +55,10 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     hairetsu target = {1};
     target[0] = [0, 0, 0, 0];
 
-    sorenara findGray(mazeMatrix, target) < 1 kido
+    seisu findStatus = findGray(mazeMatrix, target);
+    senden findStatus;
+
+    sorenara findStatus < 1 kido
         senden -2;
         modoru -2; #no way out
     shushi;
@@ -144,44 +147,30 @@ seisu kansu wave(hairetsu mazeMatrix, seisu x, seisu y, seisu z, seisu dist) kid
 shushi;
 
 seisu kansu findGray(hairetsu mazeMatrix, hairetsu target) kido
-    ronri isGray = osu;
-    ronri break = osu;
+    seisu isGray = 0; #0 not found, 1 - gray, 2 - exit
 
     shuki x = 0 : 30 kido
         shuki y = 0 : 30 kido
             shuki z = 0 : 30 kido
                 sorenara ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) ^ mazeMatrix[x, y, z, 1] < 1 ^ mazeMatrix[x, y, z, 3] > 0 ^ mazeMatrix[x, y, z, 0] > 0 kido
                     sorenara mazeMatrix[x, y, z, 0] < 2 kido
-                        isGray = shinri;
+                        isGray = 1;
                         target[0] = [x, y, z, osu];
                     shushi;
 
                     shuki e = 0 : nagasa exits kido
                         sorenara eqCube(exits[e], target[0]) kido
                             target[0] = exits[e];
-                            break = shinri;
                             e = nagasa exits;
-                            isGray = shinri;
+                            isGray = 2;
+                            x = 30;
+                            y = 30;
+                            z = 30;
                         shushi;
                     shushi;
-
-                    sorenara break kido
-                        z = 30;
-                    shushi;
-
                 shushi;
             shushi;
-
-            sorenara break kido
-                y = 30;
-            shushi;
-
         shushi;
-
-        sorenara break kido
-            x = 30;
-        shushi;
-
     shushi;
     modoru isGray;
 shushi;
