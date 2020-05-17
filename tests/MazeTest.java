@@ -103,7 +103,7 @@ public class MazeTest {
     @Test
     public void maze1DeadEndTest() throws Exception {
         String pathToSake = "SakePrograms/Robot/Minotaur.sake";
-        String pathToMaze = "tests/mazes/simplem1.maze";
+        String pathToMaze = "tests/mazes/simplem1d.maze";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -111,13 +111,8 @@ public class MazeTest {
         Travel travel = goMaze(pathToSake, pathToMaze, progOut, progErr);
         Maze maze = travel.getMaze();
 
-        Class mazeClass = maze.getClass();
-        Field wayField = getField(mazeClass, "way");
-        wayField.setAccessible(true);
-        ((HashSet<Passage>)wayField.get(maze)).remove(new Passage(28, 9, 8));
-
-        System.out.println(progOut.toString());
-        System.out.println(progErr.toString());
+        //System.out.println(progOut.toString());
+        //System.out.println(progErr.toString());
 
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
@@ -148,9 +143,8 @@ public class MazeTest {
             i++;
         }
 
-        assertEquals(phrasesOut[i++], "SUCCESS");
-        assertEquals(phrasesOut[i], "0");
-        assertEquals(phrasesOut.length, i+1);
+        assertEquals(phrasesOut[i++], "-2");
+        assertEquals(phrasesOut.length, i);
 
         assertEquals(phrasesErr.length, 1);
         assertEquals(phrasesErr[0], "");
