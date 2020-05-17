@@ -133,6 +133,45 @@ seisu kansu wave(hairetsu mazeMatrix, seisu x, seisu y, seisu z, seisu dist) kid
     modoru 0;
 shushi;
 
+seisu kansu findGray(hairetsu mazeMatrix, hairetsu target) kido
+    ronri isGray = osu;
+    ronri break = osu;
+
+    shuki x = 0 : 30 kido
+        shuki y = 0 : 30 kido
+            shuki z = 0 : 30 kido
+                sorenara ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) ^ mazeMatrix[x, y, z, 1] < 1 ^ mazeMatrix[x, y, z, 3] > 0 ^ mazeMatrix[x, y, z, 0] > 0 ^ mazeMatrix[x, y, z, 0] < 2 kido
+                    isGray = shinri;
+                    target[0] = [x, y, z, osu];
+                    shuki e = 0 : nagasa exits kido
+                        sorenara eqCube(exits[e], target[0]) kido
+                            target[0] = exits[e];
+                            break = shinri;
+                            e = nagasa exits;
+                        shushi;
+                    shushi;
+
+                    sorenara break kido
+                        z = 30;
+                    shushi;
+
+                shushi;
+            shushi;
+
+            sorenara break kido
+                y = 30;
+            shushi;
+
+        shushi;
+
+        sorenara break kido
+            x = 30;
+        shushi;
+
+    shushi;
+    modoru isGray;
+shushi;
+
 hairetsu mazeMatrix = {30, 30, 30, 4};
 replenish(mazeMatrix, myState);
 replenish(mazeMatrix, exits);
