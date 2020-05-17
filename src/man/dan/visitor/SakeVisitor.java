@@ -16,9 +16,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected InputStream sin;
@@ -962,7 +960,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                     ctx.type_comp().type_to_comp().get(num).type().t.getType() == SakeParserParser.RONRI)
                 comp = new Countable(num);
             else if (ctx.type_comp().type_to_comp().get(num).type().t.getType() == SakeParserParser.HAIRETSU)
-                comp = new Hairetsu(new ArrayList<>());
+                comp = new Hairetsu(new ArrayList<>(Collections.singletonList(1)));
             else if (ctx.type_comp().type_to_comp().get(num).type().t.getType() == SakeParserParser.RIPPOTAI)
                 try {
                     comp = new Rippotai(0, 0, 0, false);

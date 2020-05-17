@@ -437,7 +437,11 @@ public class ComplexTest {
                 "senden ruikei <5, {3, 1, 1}>;\n" +
                 "ronri p;\n" +
                 "senden ruikei <p, shinri>;\n" +
-                "senden ruikei <p, undefined>;";
+                "senden ruikei <p, undefined>;\n" +
+                "hairetsu pp = {2, 2, 2};\n" +
+                "senden ruikei <pp[1, 1, 1], undefined>;\n" +
+                "senden ruikei <pp[1, 1, 1], ronri>;\n" +
+                "senden ruikei <pp[1, 1], hairetsu>;";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
