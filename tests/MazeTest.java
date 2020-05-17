@@ -1,11 +1,15 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.robot.Maze;
+import man.dan.robot.Passage;
 import man.dan.robot.Travel;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MazeTest {
     protected Travel goMaze(String pathToAlg, String pathToMaze, OutputStream progOut, OutputStream progErr) throws Exception {
@@ -37,6 +41,7 @@ public class MazeTest {
         OutputStream progErr = new ByteArrayOutputStream();
 
         Travel travel = goMaze(pathToSake, pathToMaze, progOut, progErr);
+        Maze maze = travel.getMaze();
 
         //System.out.println(progOut.toString());
         //System.out.println(progErr.toString());
@@ -44,7 +49,35 @@ public class MazeTest {
         String[] phrasesOut = progOut.toString().split("\n");
         String[] phrasesErr = progErr.toString().split("\n");
 
-        assertEquals(phrasesOut[0], "-> { X 26, Y 9, Z 5 }");
+        Pattern pattern = Pattern.compile("->\\s\\{\\sX\\s([0-9]+),\\sY\\s([0-9]+),\\sZ\\s([0-9]+)\\s}");
+        int x, y, z, lx, ly, lz;
+        x = y = z = lx = ly = lz = -1;
+        int i = 0;
+        Matcher match;
+
+        while(true) {
+            match = pattern.matcher(phrasesOut[i]);
+            if (match.find()) {
+                x = Integer.parseInt(match.group(1));
+                y = Integer.parseInt(match.group(2));
+                z = Integer.parseInt(match.group(3));
+            }
+            else break;
+
+            assertTrue(maze.isPassage(new Passage(x, y, z)));
+            if (lx > -1) {
+                assertTrue(Math.abs(x - lx) == 1 ^ Math.abs(y - ly) == 1 ^ Math.abs(z - lz) == 1);
+            }
+
+            lx = x;
+            ly = y;
+            lz = z;
+            i++;
+        }
+
+        assertEquals(phrasesOut[i++], "SUCCESS");
+        assertEquals(phrasesOut[i], "0");
+        assertEquals(phrasesOut.length, i+1);
 
         assertEquals(phrasesErr.length, 1);
         assertEquals(phrasesErr[0], "");
