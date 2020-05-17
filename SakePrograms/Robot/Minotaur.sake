@@ -49,13 +49,15 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
     #printMaze(mazeMatrix);
     #senden 1111111;
     lookAround(mazeMatrix);
-    coloring(mazeMatrix);
+    wave(mazeMatrix, myState[0] => X, myState[0] => Y, myState[0] => Z, 0);
     printMaze(mazeMatrix);
     modoru 0;
 shushi;
 
 seisu kansu lookAround(hairetsu mazeMatrix) kido
-    modoru replenish(mazeMatrix, {^-0; v-0; <-0; >-0; o-0; ~-0});
+    replenish(mazeMatrix, {^-0; v-0; <-0; >-0; o-0; ~-0});
+    coloring(mazeMatrix);
+    modoru 0;
 shushi;
 
 seisu kansu coloring(hairetsu mazeMatrix) kido
@@ -115,6 +117,19 @@ seisu kansu coloring(hairetsu mazeMatrix) kido
             shushi;
         shushi;
         modoru 0;
+shushi;
+
+seisu kansu wave(hairetsu mazeMatrix, seisu x, seisu y, seisu z, seisu dist) kido
+    sorenara x > -1 ^ x < 30 ^ y > -1 ^ y < 30 ^ z > -1 ^ z < 30 ^ ~(ruikei <mazeMatrix[x, y, z, 0], undefined>) ^ mazeMatrix[x, y, z, 3] < 0 kido
+        mazeMatrix[x, y, z, 3] = dist;
+        wave(mazeMatrix, x + 1, y, z, dist + 1);
+        wave(mazeMatrix, x - 1, y, z, dist + 1);
+        wave(mazeMatrix, x, y + 1, z, dist + 1);
+        wave(mazeMatrix, x, y - 1, z, dist + 1);
+        wave(mazeMatrix, x, y, z + 1, dist + 1);
+        wave(mazeMatrix, x, y, z - 1, dist + 1);
+    shushi;
+    modoru 0;
 shushi;
 
 hairetsu mazeMatrix = {30, 30, 30, 4};
