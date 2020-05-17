@@ -617,6 +617,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             memory.declAndAssign(ptr, cur);
             while (cur.lessThan(to).isShinri()) {
                 visStmt(ctx.statement());
+
+                if (returnVal != null)
+                    break;
+
                 cur.inc();
                 memory.clearExcluding(ptr);
             }
