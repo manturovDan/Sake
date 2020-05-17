@@ -46,33 +46,27 @@ ronri kansu eqCube(rippotai c1, rippotai c2) kido
 shushi;
 
 seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
-    senden exits;
-    #printMaze(mazeMatrix);
-    #senden 1111111;
     hairetsu target = {1};
 
     shuki t = 0 : 1 kido
-        senden t;
-        senden 11111111;
         lookAround(mazeMatrix);
         wave(mazeMatrix, myState[0] => X, myState[0] => Y, myState[0] => Z, 0);
-        printMaze(mazeMatrix);
+        #printMaze(mazeMatrix);
         target[0] = [0, 0, 0, 0];
 
         seisu findStatus = findGray(mazeMatrix, target);
-        senden findStatus;
 
         sorenara findStatus < 1 kido
             senden -2;
             modoru -2; #no way out
         shushi;
 
-        senden target[0];
+        #senden target[0];
 
         hairetsu way = restoreWay(mazeMatrix, target[0]);
         clearWay(mazeMatrix);
 
-        senden way;
+        #senden way;
 
         travel(mazeMatrix, way);
 
