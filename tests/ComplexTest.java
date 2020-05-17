@@ -430,4 +430,24 @@ public class ComplexTest {
         assertEquals(phrasesErr[0], "Semantic error: type mismatch in hairetsu assignment in line 9");
 
     }
+
+    @Test
+    public void typeCompTest() throws Exception {
+        String initialString =  "senden ruikei <5, -x6>;\n" +
+                "senden ruikei <5, {3, 1, 1}>;\n" +
+                "ronri p;\n" +
+                "senden ruikei <p, shinri>;\n" +
+                "senden ruikei <p, undefined>;";
+
+        OutputStream progOut = new ByteArrayOutputStream();
+        OutputStream progErr = new ByteArrayOutputStream();
+
+        executeWithClear(initialString, progOut, progErr);
+
+        String[] phrasesOut = progOut.toString().split("\n");
+        String[] phrasesErr = progErr.toString().split("\n");
+
+        System.out.println(progErr.toString());
+        System.out.println(progOut.toString());
+    }
 }

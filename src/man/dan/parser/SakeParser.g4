@@ -123,7 +123,7 @@ type_to_comp
 ;
 
 type_comp
-    : RUIKEI type_to_comp type_to_comp
+    : RUIKEI '<' type_to_comp ',' type_to_comp '>'
 ;
 
 senden_stmt
