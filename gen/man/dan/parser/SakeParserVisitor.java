@@ -209,6 +209,12 @@ public interface SakeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNagasa_expr(SakeParserParser.Nagasa_exprContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SakeParserParser#type_to_comp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType_to_comp(SakeParserParser.Type_to_compContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SakeParserParser#type_comp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

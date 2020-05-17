@@ -118,8 +118,12 @@ nagasa_expr
     : NAGASA appeal
 ;
 
+type_to_comp
+    : (r_value|type|UNDEFINED)
+;
+
 type_comp
-    : RUIKEI (r_value|type|UNDEFINED) (r_value|type|UNDEFINED)
+    : RUIKEI type_to_comp type_to_comp
 ;
 
 senden_stmt

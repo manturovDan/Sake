@@ -388,6 +388,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterType_to_comp(SakeParserParser.Type_to_compContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType_to_comp(SakeParserParser.Type_to_compContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterType_comp(SakeParserParser.Type_compContext ctx) { }
 	/**
 	 * {@inheritDoc}

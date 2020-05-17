@@ -342,6 +342,16 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitNagasa_expr(SakeParserParser.Nagasa_exprContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#type_to_comp}.
+	 * @param ctx the parse tree
+	 */
+	void enterType_to_comp(SakeParserParser.Type_to_compContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#type_to_comp}.
+	 * @param ctx the parse tree
+	 */
+	void exitType_to_comp(SakeParserParser.Type_to_compContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#type_comp}.
 	 * @param ctx the parse tree
 	 */

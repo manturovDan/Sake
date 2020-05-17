@@ -234,6 +234,13 @@ public class SakeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitType_to_comp(SakeParserParser.Type_to_compContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitType_comp(SakeParserParser.Type_compContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

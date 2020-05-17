@@ -839,6 +839,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         travel = trv;
     }
 
+    @Override
     public SakeObj visitRobo_do(SakeParserParser.Robo_doContext ctx) {
         openCubes = new HashSet<>();
         SakeObj res;
@@ -936,5 +937,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
 
         if (travel.getRy() - dist > Rippotai.minCoord)
             openCubes.add(new Rippotai(x, travel.getRy() - dist - 1, z, true));
+    }
+
+    @Override
+    public SakeObj visitRuikei(SakeParserParser.RuikeiContext ctx) {
+        return null;
     }
 }
