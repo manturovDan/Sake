@@ -65,6 +65,7 @@ seisu kansu findWay(hairetsu mazeMatrix, hairetsu exits) kido
 
     senden target[0];
 
+    senden restoreWay(mazeMatrix, target[0]);
     modoru 0;
 shushi;
 
@@ -175,7 +176,7 @@ seisu kansu findGray(hairetsu mazeMatrix, hairetsu target) kido
     modoru isGray;
 shushi;
 
-seisu kansu restoreWay(hairetsu mazeMatrix, rippotai target) kido
+hairetsu kansu restoreWay(hairetsu mazeMatrix, rippotai target) kido
     seisu dist = mazeMatrix[target => X, target => Y, target => Z, 3];
     hairetsu way = {dist};
 
@@ -186,38 +187,46 @@ seisu kansu restoreWay(hairetsu mazeMatrix, rippotai target) kido
             way[dist-i] = 1;
             target => Z = target => Z + 1;
             verdict = shinri;
+            senden 1000000;
         shushi;
 
         sorenara ~verdict ^ ~(ruikei<mazeMatrix[target => X, target => Y, target => Z-1, 0], undefined>) ^ mazeMatrix[target => X, target => Y, target => Z-1, 3] > dist - i - 1 ^ mazeMatrix[target => X, target => Y, target => Z-1, 3] < dist - i + 1 kido
             way[dist-i] = 0;
             target => Z = target => Z - 1;
             verdict = shinri;
+            senden 2000000;
         shushi;
 
         sorenara ~verdict ^ ~(ruikei<mazeMatrix[target => X, target => Y - 1, target => Z, 0], undefined>) ^ mazeMatrix[target => X, target => Y - 1, target => Z, 3] > dist - i - 1 ^ mazeMatrix[target => X, target => Y - 1, target => Z, 3] < dist - i + 1 kido
             way[dist-i] = 4;
             target => Y = target => Y - 1;
             verdict = shinri;
+            senden 3000000;
         shushi;
 
         sorenara ~verdict ^ ~(ruikei<mazeMatrix[target => X, target => Y + 1, target => Z, 0], undefined>) ^ mazeMatrix[target => X, target => Y + 1, target => Z, 3] > dist - i - 1 ^ mazeMatrix[target => X, target => Y + 1, target => Z, 3] < dist - i + 1 kido
             way[dist-i] = 5;
             target => Y = target => Y + 1;
             verdict = shinri;
+            senden 4000000;
         shushi;
 
         sorenara ~verdict ^ ~(ruikei<mazeMatrix[target => X + 1, target => Y, target => Z, 0], undefined>) ^ mazeMatrix[target => X + 1, target => Y, target => Z, 3] > dist - i - 1 ^ mazeMatrix[target => X + 1, target => Y, target => Z, 3] < dist - i + 1 kido
             way[dist-i] = 2;
             target => X = target => X + 1;
             verdict = shinri;
+            senden 5000000;
         shushi;
 
          sorenara ~verdict ^ ~(ruikei<mazeMatrix[target => X - 1, target => Y, target => Z, 0], undefined>) ^ mazeMatrix[target => X - 1, target => Y, target => Z, 3] > dist - i - 1 ^ mazeMatrix[target => X - 1, target => Y, target => Z, 3] < dist - i + 1 kido
             way[dist-i] = 3;
             target => X = target => X - 1;
             verdict = shinri;
+            senden 6000000;
         shushi;
     shushi;
+
+    modoru way;
 shushi;
 
 hairetsu mazeMatrix = {30, 30, 30, 4};
