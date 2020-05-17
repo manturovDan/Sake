@@ -34,8 +34,8 @@ expr
     | '~' expr                          #not
     | expr op=(PLUS|MINUS) expr         #plusMin
     | expr op=(LESS|GREATER) expr       #grLess
-    | expr '^' expr                     #or
-    | expr 'v' expr                     #and
+    | expr '^' expr                     #and
+    | expr 'v' expr                     #or
     | constant                          #const
     | appeal                            #app
     | function_call                     #funCall

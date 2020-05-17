@@ -54,5 +54,6 @@ shushi;
 
 hairetsu mazeMatrix = {30, 30, 30, 4};
 replenish(mazeMatrix, myState);
+replenish(mazeMatrix, exits);
 
 findWay(mazeMatrix, exits);

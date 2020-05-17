@@ -819,7 +819,7 @@ public class SakeParserParser extends Parser {
 						break;
 					case 3:
 						{
-						_localctx = new OrContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new AndContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(114);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
@@ -831,7 +831,7 @@ public class SakeParserParser extends Parser {
 						break;
 					case 4:
 						{
-						_localctx = new AndContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new OrContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(117);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
