@@ -62,6 +62,18 @@ public interface SakeParserListener extends ParseTreeListener {
 	 */
 	void exitNot(SakeParserParser.NotContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ruikei}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuikei(SakeParserParser.RuikeiContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruikei}
+	 * labeled alternative in {@link SakeParserParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuikei(SakeParserParser.RuikeiContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code plusMin}
 	 * labeled alternative in {@link SakeParserParser#expr}.
 	 * @param ctx the parse tree
@@ -329,6 +341,16 @@ public interface SakeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNagasa_expr(SakeParserParser.Nagasa_exprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SakeParserParser#type_comp}.
+	 * @param ctx the parse tree
+	 */
+	void enterType_comp(SakeParserParser.Type_compContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SakeParserParser#type_comp}.
+	 * @param ctx the parse tree
+	 */
+	void exitType_comp(SakeParserParser.Type_compContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SakeParserParser#senden_stmt}.
 	 * @param ctx the parse tree

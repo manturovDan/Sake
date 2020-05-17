@@ -78,6 +78,11 @@ SENDEN
     : 'senden'
 ;
 
+/* types comparison */
+RUIKEI
+    : 'ruikei'
+;
+
 FIELD
     : '=>'
 ;

@@ -76,6 +76,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuikei(SakeParserParser.RuikeiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuikei(SakeParserParser.RuikeiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPlusMin(SakeParserParser.PlusMinContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -371,6 +383,18 @@ public class SakeParserBaseListener implements SakeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNagasa_expr(SakeParserParser.Nagasa_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterType_comp(SakeParserParser.Type_compContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType_comp(SakeParserParser.Type_compContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

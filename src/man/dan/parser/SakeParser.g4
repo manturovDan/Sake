@@ -41,6 +41,7 @@ expr
     | function_call                     #funCall
     | nagasa_expr                       #nagasa
     | '(' expr ')'                      #brackets
+    | type_comp                         #ruikei
 ;
 
 num_assign
@@ -117,6 +118,9 @@ nagasa_expr
     : NAGASA appeal
 ;
 
+type_comp
+    : RUIKEI (r_value|type) (r_value|type)
+;
 
 senden_stmt
     : SENDEN (expr|r_value) ENDEXPR
