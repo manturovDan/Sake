@@ -119,7 +119,7 @@ nagasa_expr
 ;
 
 type_comp
-    : RUIKEI (r_value|type) (r_value|type)
+    : RUIKEI (r_value|type|UNDEFINED) (r_value|type|UNDEFINED)
 ;
 
 senden_stmt

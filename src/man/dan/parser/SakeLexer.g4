@@ -83,6 +83,10 @@ RUIKEI
     : 'ruikei'
 ;
 
+UNDEFINED
+    : 'undefined'
+;
+
 FIELD
     : '=>'
 ;

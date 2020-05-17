@@ -20,11 +20,11 @@ public class SakeParserParser extends Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, INT=13, SEISU=14, RONRI=15, SHINRI=16, OSU=17, 
 		RIPPOTAI=18, HAIRETSU=19, JIGEN=20, NAGASA=21, SHUSHI=22, KIDO=23, KANSU=24, 
-		SORENARA=25, MODORU=26, SHUKI=27, SENDEN=28, RUIKEI=29, FIELD=30, TOX=31, 
-		TOY=32, TOZ=33, TOKABE=34, PLUS=35, MINUS=36, GREATER=37, LESS=38, ID=39, 
-		NEWLINE=40, COMMENT=41, ENDEXPR=42, WS=43, END_BLOCK=44, UP=45, DOWN=46, 
-		LEFTWARD=47, RIGHTWARD=48, FORWARD=49, BACK=50, BREAK=51, LOOKUP=52, LOOKDOWN=53, 
-		LOOKLEFT=54, LOOKRIGHT=55, LOOKFW=56, LOOKBACK=57;
+		SORENARA=25, MODORU=26, SHUKI=27, SENDEN=28, RUIKEI=29, UNDEFINED=30, 
+		FIELD=31, TOX=32, TOY=33, TOZ=34, TOKABE=35, PLUS=36, MINUS=37, GREATER=38, 
+		LESS=39, ID=40, NEWLINE=41, COMMENT=42, ENDEXPR=43, WS=44, END_BLOCK=45, 
+		UP=46, DOWN=47, LEFTWARD=48, RIGHTWARD=49, FORWARD=50, BACK=51, BREAK=52, 
+		LOOKUP=53, LOOKDOWN=54, LOOKLEFT=55, LOOKRIGHT=56, LOOKFW=57, LOOKBACK=58;
 	public static final int
 		RULE_program = 0, RULE_statement = 1, RULE_constant = 2, RULE_expr = 3, 
 		RULE_num_assign = 4, RULE_bool_assign = 5, RULE_block_coub = 6, RULE_rippotai_assign = 7, 
@@ -54,9 +54,10 @@ public class SakeParserParser extends Parser {
 			"'{'", "'}'", "':'", null, "'seisu'", "'ronri'", "'shinri'", "'osu'", 
 			"'rippotai'", "'hairetsu'", "'jigen'", "'nagasa'", "'shushi'", "'kido'", 
 			"'kansu'", "'sorenara'", "'modoru'", "'shuki'", "'senden'", "'ruikei'", 
-			"'=>'", "'X'", "'Y'", "'Z'", "'kabe'", "'+'", "'-'", "'>'", "'<'", null, 
-			null, null, "';'", null, null, "'^-^'", "'v-v'", "'<-<'", "'>->'", "'o-o'", 
-			"'~-~'", "'>-<'", "'^-0'", "'v-0'", "'<-0'", "'>-0'", "'o-0'", "'~-0'"
+			"'undefined'", "'=>'", "'X'", "'Y'", "'Z'", "'kabe'", "'+'", "'-'", "'>'", 
+			"'<'", null, null, null, "';'", null, null, "'^-^'", "'v-v'", "'<-<'", 
+			"'>->'", "'o-o'", "'~-~'", "'>-<'", "'^-0'", "'v-0'", "'<-0'", "'>-0'", 
+			"'o-0'", "'~-0'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -65,10 +66,11 @@ public class SakeParserParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, "INT", "SEISU", "RONRI", "SHINRI", "OSU", "RIPPOTAI", "HAIRETSU", 
 			"JIGEN", "NAGASA", "SHUSHI", "KIDO", "KANSU", "SORENARA", "MODORU", "SHUKI", 
-			"SENDEN", "RUIKEI", "FIELD", "TOX", "TOY", "TOZ", "TOKABE", "PLUS", "MINUS", 
-			"GREATER", "LESS", "ID", "NEWLINE", "COMMENT", "ENDEXPR", "WS", "END_BLOCK", 
-			"UP", "DOWN", "LEFTWARD", "RIGHTWARD", "FORWARD", "BACK", "BREAK", "LOOKUP", 
-			"LOOKDOWN", "LOOKLEFT", "LOOKRIGHT", "LOOKFW", "LOOKBACK"
+			"SENDEN", "RUIKEI", "UNDEFINED", "FIELD", "TOX", "TOY", "TOZ", "TOKABE", 
+			"PLUS", "MINUS", "GREATER", "LESS", "ID", "NEWLINE", "COMMENT", "ENDEXPR", 
+			"WS", "END_BLOCK", "UP", "DOWN", "LEFTWARD", "RIGHTWARD", "FORWARD", 
+			"BACK", "BREAK", "LOOKUP", "LOOKDOWN", "LOOKLEFT", "LOOKRIGHT", "LOOKFW", 
+			"LOOKBACK"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -1890,6 +1892,10 @@ public class SakeParserParser extends Parser {
 		public TypeContext type(int i) {
 			return getRuleContext(TypeContext.class,i);
 		}
+		public List<TerminalNode> UNDEFINED() { return getTokens(SakeParserParser.UNDEFINED); }
+		public TerminalNode UNDEFINED(int i) {
+			return getToken(SakeParserParser.UNDEFINED, i);
+		}
 		public Type_compContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1917,7 +1923,7 @@ public class SakeParserParser extends Parser {
 			{
 			setState(224);
 			match(RUIKEI);
-			setState(227);
+			setState(228);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
@@ -1958,10 +1964,16 @@ public class SakeParserParser extends Parser {
 				type();
 				}
 				break;
+			case UNDEFINED:
+				{
+				setState(227);
+				match(UNDEFINED);
+				}
+				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(231);
+			setState(233);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
@@ -1989,7 +2001,7 @@ public class SakeParserParser extends Parser {
 			case LOOKFW:
 			case LOOKBACK:
 				{
-				setState(229);
+				setState(230);
 				r_value();
 				}
 				break;
@@ -1998,8 +2010,14 @@ public class SakeParserParser extends Parser {
 			case RIPPOTAI:
 			case HAIRETSU:
 				{
-				setState(230);
+				setState(231);
 				type();
+				}
+				break;
+			case UNDEFINED:
+				{
+				setState(232);
+				match(UNDEFINED);
 				}
 				break;
 			default:
@@ -2052,25 +2070,25 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(233);
+			setState(235);
 			match(SENDEN);
-			setState(236);
+			setState(238);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
 				{
-				setState(234);
+				setState(236);
 				expr(0);
 				}
 				break;
 			case 2:
 				{
-				setState(235);
+				setState(237);
 				r_value();
 				}
 				break;
 			}
-			setState(238);
+			setState(240);
 			match(ENDEXPR);
 			}
 		}
@@ -2115,9 +2133,9 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(240);
+			setState(242);
 			function_call();
-			setState(241);
+			setState(243);
 			match(ENDEXPR);
 			}
 		}
@@ -2163,11 +2181,11 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(243);
-			match(MODORU);
-			setState(244);
-			expr(0);
 			setState(245);
+			match(MODORU);
+			setState(246);
+			expr(0);
+			setState(247);
 			match(ENDEXPR);
 			}
 		}
@@ -2212,9 +2230,9 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(247);
+			setState(249);
 			type();
-			setState(248);
+			setState(250);
 			match(ID);
 			}
 		}
@@ -2262,26 +2280,26 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(258);
+			setState(260);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SEISU) | (1L << RONRI) | (1L << RIPPOTAI) | (1L << HAIRETSU))) != 0)) {
 				{
-				setState(250);
+				setState(252);
 				one_param();
-				setState(255);
+				setState(257);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__7) {
 					{
 					{
-					setState(251);
+					setState(253);
 					match(T__7);
-					setState(252);
+					setState(254);
 					one_param();
 					}
 					}
-					setState(257);
+					setState(259);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -2344,35 +2362,35 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(260);
-			type();
-			setState(261);
-			match(KANSU);
 			setState(262);
-			match(ID);
+			type();
 			setState(263);
-			match(T__3);
+			match(KANSU);
 			setState(264);
-			params();
+			match(ID);
 			setState(265);
-			match(T__4);
+			match(T__3);
 			setState(266);
+			params();
+			setState(267);
+			match(T__4);
+			setState(268);
 			match(KIDO);
-			setState(268); 
+			setState(270); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(267);
+				setState(269);
 				statement();
 				}
 				}
-				setState(270); 
+				setState(272); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__9) | (1L << SEISU) | (1L << RONRI) | (1L << RIPPOTAI) | (1L << HAIRETSU) | (1L << JIGEN) | (1L << SORENARA) | (1L << MODORU) | (1L << SHUKI) | (1L << SENDEN) | (1L << ID) | (1L << NEWLINE) | (1L << COMMENT) | (1L << UP) | (1L << DOWN) | (1L << LEFTWARD) | (1L << RIGHTWARD) | (1L << FORWARD) | (1L << BACK) | (1L << BREAK) | (1L << LOOKUP) | (1L << LOOKDOWN) | (1L << LOOKLEFT) | (1L << LOOKRIGHT) | (1L << LOOKFW) | (1L << LOOKBACK))) != 0) );
-			setState(272);
+			setState(274);
 			match(END_BLOCK);
 			}
 		}
@@ -2420,26 +2438,26 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(282);
+			setState(284);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << T__9) | (1L << INT) | (1L << SHINRI) | (1L << OSU) | (1L << NAGASA) | (1L << RUIKEI) | (1L << MINUS) | (1L << ID) | (1L << UP) | (1L << DOWN) | (1L << LEFTWARD) | (1L << RIGHTWARD) | (1L << FORWARD) | (1L << BACK) | (1L << BREAK) | (1L << LOOKUP) | (1L << LOOKDOWN) | (1L << LOOKLEFT) | (1L << LOOKRIGHT) | (1L << LOOKFW) | (1L << LOOKBACK))) != 0)) {
 				{
-				setState(274);
+				setState(276);
 				r_value();
-				setState(279);
+				setState(281);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__7) {
 					{
 					{
-					setState(275);
+					setState(277);
 					match(T__7);
-					setState(276);
+					setState(278);
 					r_value();
 					}
 					}
-					setState(281);
+					setState(283);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -2498,27 +2516,27 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(284);
-			match(SORENARA);
-			setState(285);
-			expr(0);
 			setState(286);
+			match(SORENARA);
+			setState(287);
+			expr(0);
+			setState(288);
 			match(KIDO);
-			setState(288); 
+			setState(290); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(287);
+				setState(289);
 				statement();
 				}
 				}
-				setState(290); 
+				setState(292); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__9) | (1L << SEISU) | (1L << RONRI) | (1L << RIPPOTAI) | (1L << HAIRETSU) | (1L << JIGEN) | (1L << SORENARA) | (1L << MODORU) | (1L << SHUKI) | (1L << SENDEN) | (1L << ID) | (1L << NEWLINE) | (1L << COMMENT) | (1L << UP) | (1L << DOWN) | (1L << LEFTWARD) | (1L << RIGHTWARD) | (1L << FORWARD) | (1L << BACK) | (1L << BREAK) | (1L << LOOKUP) | (1L << LOOKDOWN) | (1L << LOOKLEFT) | (1L << LOOKRIGHT) | (1L << LOOKFW) | (1L << LOOKBACK))) != 0) );
-			setState(292);
+			setState(294);
 			match(END_BLOCK);
 			}
 		}
@@ -2576,35 +2594,35 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(294);
-			match(SHUKI);
-			setState(295);
-			match(ID);
 			setState(296);
-			match(T__5);
+			match(SHUKI);
 			setState(297);
-			expr(0);
+			match(ID);
 			setState(298);
-			match(T__11);
+			match(T__5);
 			setState(299);
 			expr(0);
 			setState(300);
+			match(T__11);
+			setState(301);
+			expr(0);
+			setState(302);
 			match(KIDO);
-			setState(302); 
+			setState(304); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(301);
+				setState(303);
 				statement();
 				}
 				}
-				setState(304); 
+				setState(306); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__9) | (1L << SEISU) | (1L << RONRI) | (1L << RIPPOTAI) | (1L << HAIRETSU) | (1L << JIGEN) | (1L << SORENARA) | (1L << MODORU) | (1L << SHUKI) | (1L << SENDEN) | (1L << ID) | (1L << NEWLINE) | (1L << COMMENT) | (1L << UP) | (1L << DOWN) | (1L << LEFTWARD) | (1L << RIGHTWARD) | (1L << FORWARD) | (1L << BACK) | (1L << BREAK) | (1L << LOOKUP) | (1L << LOOKDOWN) | (1L << LOOKLEFT) | (1L << LOOKRIGHT) | (1L << LOOKFW) | (1L << LOOKBACK))) != 0) );
-			setState(306);
+			setState(308);
 			match(END_BLOCK);
 			}
 		}
@@ -2649,13 +2667,13 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(308);
-			match(ID);
-			setState(309);
-			match(T__3);
 			setState(310);
-			arguments();
+			match(ID);
 			setState(311);
+			match(T__3);
+			setState(312);
+			arguments();
+			setState(313);
 			match(T__4);
 			}
 		}
@@ -2710,7 +2728,7 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(313);
+			setState(315);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << UP) | (1L << DOWN) | (1L << LEFTWARD) | (1L << RIGHTWARD) | (1L << FORWARD) | (1L << BACK) | (1L << BREAK) | (1L << LOOKUP) | (1L << LOOKDOWN) | (1L << LOOKLEFT) | (1L << LOOKRIGHT) | (1L << LOOKFW) | (1L << LOOKBACK))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2770,7 +2788,7 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(327);
+			setState(329);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case UP:
@@ -2787,33 +2805,33 @@ public class SakeParserParser extends Parser {
 			case LOOKFW:
 			case LOOKBACK:
 				{
-				setState(315);
+				setState(317);
 				robo_action();
 				}
 				break;
 			case T__9:
 				{
-				setState(316);
+				setState(318);
 				match(T__9);
-				setState(317);
+				setState(319);
 				robo_action();
-				setState(322);
+				setState(324);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==ENDEXPR) {
 					{
 					{
-					setState(318);
+					setState(320);
 					match(ENDEXPR);
-					setState(319);
+					setState(321);
 					robo_action();
 					}
 					}
-					setState(324);
+					setState(326);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(325);
+				setState(327);
 				match(T__10);
 				}
 				break;
@@ -2863,9 +2881,9 @@ public class SakeParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(329);
+			setState(331);
 			robo_do();
-			setState(330);
+			setState(332);
 			match(ENDEXPR);
 			}
 		}
@@ -2902,7 +2920,7 @@ public class SakeParserParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3;\u014f\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3<\u0151\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -2918,53 +2936,53 @@ public class SakeParserParser extends Parser {
 		"\3\16\3\16\3\16\5\16\u00c3\n\16\3\17\3\17\3\17\3\17\5\17\u00c9\n\17\3"+
 		"\20\3\20\3\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\5\22\u00d5\n\22\3\23"+
 		"\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\25\3\25\3\25\3\26\3\26\3\26"+
-		"\5\26\u00e6\n\26\3\26\3\26\5\26\u00ea\n\26\3\27\3\27\3\27\5\27\u00ef\n"+
-		"\27\3\27\3\27\3\30\3\30\3\30\3\31\3\31\3\31\3\31\3\32\3\32\3\32\3\33\3"+
-		"\33\3\33\7\33\u0100\n\33\f\33\16\33\u0103\13\33\5\33\u0105\n\33\3\34\3"+
-		"\34\3\34\3\34\3\34\3\34\3\34\3\34\6\34\u010f\n\34\r\34\16\34\u0110\3\34"+
-		"\3\34\3\35\3\35\3\35\7\35\u0118\n\35\f\35\16\35\u011b\13\35\5\35\u011d"+
-		"\n\35\3\36\3\36\3\36\3\36\6\36\u0123\n\36\r\36\16\36\u0124\3\36\3\36\3"+
-		"\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\6\37\u0131\n\37\r\37\16\37\u0132"+
-		"\3\37\3\37\3 \3 \3 \3 \3 \3!\3!\3\"\3\"\3\"\3\"\3\"\7\"\u0143\n\"\f\""+
-		"\16\"\u0146\13\"\3\"\3\"\5\"\u014a\n\"\3#\3#\3#\3#\2\3\b$\2\4\6\b\n\f"+
-		"\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BD\2\b\4\2\17\17"+
-		"\22\23\3\2%&\3\2\'(\3\2!$\4\2\20\21\24\25\3\2/;\2\u015d\2G\3\2\2\2\4X"+
-		"\3\2\2\2\6Z\3\2\2\2\bj\3\2\2\2\n}\3\2\2\2\f\u0083\3\2\2\2\16\u0089\3\2"+
-		"\2\2\20\u0093\3\2\2\2\22\u009c\3\2\2\2\24\u00a4\3\2\2\2\26\u00a8\3\2\2"+
-		"\2\30\u00b2\3\2\2\2\32\u00b5\3\2\2\2\34\u00c8\3\2\2\2\36\u00ca\3\2\2\2"+
-		" \u00cc\3\2\2\2\"\u00d4\3\2\2\2$\u00d6\3\2\2\2&\u00db\3\2\2\2(\u00df\3"+
-		"\2\2\2*\u00e2\3\2\2\2,\u00eb\3\2\2\2.\u00f2\3\2\2\2\60\u00f5\3\2\2\2\62"+
-		"\u00f9\3\2\2\2\64\u0104\3\2\2\2\66\u0106\3\2\2\28\u011c\3\2\2\2:\u011e"+
-		"\3\2\2\2<\u0128\3\2\2\2>\u0136\3\2\2\2@\u013b\3\2\2\2B\u0149\3\2\2\2D"+
-		"\u014b\3\2\2\2FH\5\4\3\2GF\3\2\2\2HI\3\2\2\2IG\3\2\2\2IJ\3\2\2\2J\3\3"+
+		"\3\26\5\26\u00e7\n\26\3\26\3\26\3\26\5\26\u00ec\n\26\3\27\3\27\3\27\5"+
+		"\27\u00f1\n\27\3\27\3\27\3\30\3\30\3\30\3\31\3\31\3\31\3\31\3\32\3\32"+
+		"\3\32\3\33\3\33\3\33\7\33\u0102\n\33\f\33\16\33\u0105\13\33\5\33\u0107"+
+		"\n\33\3\34\3\34\3\34\3\34\3\34\3\34\3\34\3\34\6\34\u0111\n\34\r\34\16"+
+		"\34\u0112\3\34\3\34\3\35\3\35\3\35\7\35\u011a\n\35\f\35\16\35\u011d\13"+
+		"\35\5\35\u011f\n\35\3\36\3\36\3\36\3\36\6\36\u0125\n\36\r\36\16\36\u0126"+
+		"\3\36\3\36\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\6\37\u0133\n\37\r\37"+
+		"\16\37\u0134\3\37\3\37\3 \3 \3 \3 \3 \3!\3!\3\"\3\"\3\"\3\"\3\"\7\"\u0145"+
+		"\n\"\f\"\16\"\u0148\13\"\3\"\3\"\5\"\u014c\n\"\3#\3#\3#\3#\2\3\b$\2\4"+
+		"\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BD\2\b\4"+
+		"\2\17\17\22\23\3\2&\'\3\2()\3\2\"%\4\2\20\21\24\25\3\2\60<\2\u0161\2G"+
+		"\3\2\2\2\4X\3\2\2\2\6Z\3\2\2\2\bj\3\2\2\2\n}\3\2\2\2\f\u0083\3\2\2\2\16"+
+		"\u0089\3\2\2\2\20\u0093\3\2\2\2\22\u009c\3\2\2\2\24\u00a4\3\2\2\2\26\u00a8"+
+		"\3\2\2\2\30\u00b2\3\2\2\2\32\u00b5\3\2\2\2\34\u00c8\3\2\2\2\36\u00ca\3"+
+		"\2\2\2 \u00cc\3\2\2\2\"\u00d4\3\2\2\2$\u00d6\3\2\2\2&\u00db\3\2\2\2(\u00df"+
+		"\3\2\2\2*\u00e2\3\2\2\2,\u00ed\3\2\2\2.\u00f4\3\2\2\2\60\u00f7\3\2\2\2"+
+		"\62\u00fb\3\2\2\2\64\u0106\3\2\2\2\66\u0108\3\2\2\28\u011e\3\2\2\2:\u0120"+
+		"\3\2\2\2<\u012a\3\2\2\2>\u0138\3\2\2\2@\u013d\3\2\2\2B\u014b\3\2\2\2D"+
+		"\u014d\3\2\2\2FH\5\4\3\2GF\3\2\2\2HI\3\2\2\2IG\3\2\2\2IJ\3\2\2\2J\3\3"+
 		"\2\2\2KY\5\34\17\2LY\5 \21\2MY\5\60\31\2NY\5$\23\2OY\5&\24\2PY\5.\30\2"+
-		"QY\5,\27\2RY\5\66\34\2SY\5:\36\2TY\5<\37\2UY\5D#\2VY\7+\2\2WY\7*\2\2X"+
+		"QY\5,\27\2RY\5\66\34\2SY\5:\36\2TY\5<\37\2UY\5D#\2VY\7,\2\2WY\7+\2\2X"+
 		"K\3\2\2\2XL\3\2\2\2XM\3\2\2\2XN\3\2\2\2XO\3\2\2\2XP\3\2\2\2XQ\3\2\2\2"+
 		"XR\3\2\2\2XS\3\2\2\2XT\3\2\2\2XU\3\2\2\2XV\3\2\2\2XW\3\2\2\2Y\5\3\2\2"+
-		"\2Z[\t\2\2\2[\7\3\2\2\2\\]\b\5\1\2]^\7&\2\2^k\5\b\5\16_`\7\3\2\2`k\5\b"+
-		"\5\rak\5\6\4\2bk\5\32\16\2ck\5> \2dk\5(\25\2ef\7\6\2\2fg\5\b\5\2gh\7\7"+
-		"\2\2hk\3\2\2\2ik\5*\26\2j\\\3\2\2\2j_\3\2\2\2ja\3\2\2\2jb\3\2\2\2jc\3"+
-		"\2\2\2jd\3\2\2\2je\3\2\2\2ji\3\2\2\2kz\3\2\2\2lm\f\f\2\2mn\t\3\2\2ny\5"+
-		"\b\5\rop\f\13\2\2pq\t\4\2\2qy\5\b\5\frs\f\n\2\2st\7\4\2\2ty\5\b\5\13u"+
-		"v\f\t\2\2vw\7\5\2\2wy\5\b\5\nxl\3\2\2\2xo\3\2\2\2xr\3\2\2\2xu\3\2\2\2"+
+		"\2Z[\t\2\2\2[\7\3\2\2\2\\]\b\5\1\2]^\7\'\2\2^k\5\b\5\16_`\7\3\2\2`k\5"+
+		"\b\5\rak\5\6\4\2bk\5\32\16\2ck\5> \2dk\5(\25\2ef\7\6\2\2fg\5\b\5\2gh\7"+
+		"\7\2\2hk\3\2\2\2ik\5*\26\2j\\\3\2\2\2j_\3\2\2\2ja\3\2\2\2jb\3\2\2\2jc"+
+		"\3\2\2\2jd\3\2\2\2je\3\2\2\2ji\3\2\2\2kz\3\2\2\2lm\f\f\2\2mn\t\3\2\2n"+
+		"y\5\b\5\rop\f\13\2\2pq\t\4\2\2qy\5\b\5\frs\f\n\2\2st\7\4\2\2ty\5\b\5\13"+
+		"uv\f\t\2\2vw\7\5\2\2wy\5\b\5\nxl\3\2\2\2xo\3\2\2\2xr\3\2\2\2xu\3\2\2\2"+
 		"y|\3\2\2\2zx\3\2\2\2z{\3\2\2\2{\t\3\2\2\2|z\3\2\2\2}~\7\20\2\2~\177\7"+
-		")\2\2\177\u0080\7\b\2\2\u0080\u0081\5\b\5\2\u0081\u0082\7,\2\2\u0082\13"+
-		"\3\2\2\2\u0083\u0084\7\21\2\2\u0084\u0085\7)\2\2\u0085\u0086\7\b\2\2\u0086"+
-		"\u0087\5\b\5\2\u0087\u0088\7,\2\2\u0088\r\3\2\2\2\u0089\u008a\7\t\2\2"+
+		"*\2\2\177\u0080\7\b\2\2\u0080\u0081\5\b\5\2\u0081\u0082\7-\2\2\u0082\13"+
+		"\3\2\2\2\u0083\u0084\7\21\2\2\u0084\u0085\7*\2\2\u0085\u0086\7\b\2\2\u0086"+
+		"\u0087\5\b\5\2\u0087\u0088\7-\2\2\u0088\r\3\2\2\2\u0089\u008a\7\t\2\2"+
 		"\u008a\u008b\5\b\5\2\u008b\u008c\7\n\2\2\u008c\u008d\5\b\5\2\u008d\u008e"+
 		"\7\n\2\2\u008e\u008f\5\b\5\2\u008f\u0090\7\n\2\2\u0090\u0091\5\b\5\2\u0091"+
-		"\u0092\7\13\2\2\u0092\17\3\2\2\2\u0093\u0094\7\24\2\2\u0094\u0095\7)\2"+
+		"\u0092\7\13\2\2\u0092\17\3\2\2\2\u0093\u0094\7\24\2\2\u0094\u0095\7*\2"+
 		"\2\u0095\u0098\7\b\2\2\u0096\u0099\5\b\5\2\u0097\u0099\5\16\b\2\u0098"+
-		"\u0096\3\2\2\2\u0098\u0097\3\2\2\2\u0099\u009a\3\2\2\2\u009a\u009b\7,"+
+		"\u0096\3\2\2\2\u0098\u0097\3\2\2\2\u0099\u009a\3\2\2\2\u009a\u009b\7-"+
 		"\2\2\u009b\21\3\2\2\2\u009c\u00a1\5\b\5\2\u009d\u009e\7\n\2\2\u009e\u00a0"+
 		"\5\b\5\2\u009f\u009d\3\2\2\2\u00a0\u00a3\3\2\2\2\u00a1\u009f\3\2\2\2\u00a1"+
 		"\u00a2\3\2\2\2\u00a2\23\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a4\u00a5\7\f\2"+
 		"\2\u00a5\u00a6\5\22\n\2\u00a6\u00a7\7\r\2\2\u00a7\25\3\2\2\2\u00a8\u00a9"+
-		"\7\25\2\2\u00a9\u00aa\7)\2\2\u00aa\u00ae\7\b\2\2\u00ab\u00af\5\b\5\2\u00ac"+
+		"\7\25\2\2\u00a9\u00aa\7*\2\2\u00aa\u00ae\7\b\2\2\u00ab\u00af\5\b\5\2\u00ac"+
 		"\u00af\5\24\13\2\u00ad\u00af\5B\"\2\u00ae\u00ab\3\2\2\2\u00ae\u00ac\3"+
-		"\2\2\2\u00ae\u00ad\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0\u00b1\7,\2\2\u00b1"+
-		"\27\3\2\2\2\u00b2\u00b3\7 \2\2\u00b3\u00b4\t\5\2\2\u00b4\31\3\2\2\2\u00b5"+
-		"\u00c2\7)\2\2\u00b6\u00b7\7\t\2\2\u00b7\u00b8\5\22\n\2\u00b8\u00b9\7\13"+
+		"\2\2\2\u00ae\u00ad\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0\u00b1\7-\2\2\u00b1"+
+		"\27\3\2\2\2\u00b2\u00b3\7!\2\2\u00b3\u00b4\t\5\2\2\u00b4\31\3\2\2\2\u00b5"+
+		"\u00c2\7*\2\2\u00b6\u00b7\7\t\2\2\u00b7\u00b8\5\22\n\2\u00b8\u00b9\7\13"+
 		"\2\2\u00b9\u00bc\3\2\2\2\u00ba\u00bc\5\30\r\2\u00bb\u00b6\3\2\2\2\u00bb"+
 		"\u00ba\3\2\2\2\u00bc\u00c3\3\2\2\2\u00bd\u00be\7\t\2\2\u00be\u00bf\5\22"+
 		"\n\2\u00bf\u00c0\7\13\2\2\u00c0\u00c1\5\30\r\2\u00c1\u00c3\3\2\2\2\u00c2"+
@@ -2972,48 +2990,49 @@ public class SakeParserParser extends Parser {
 		"\2\u00c4\u00c9\5\n\6\2\u00c5\u00c9\5\f\7\2\u00c6\u00c9\5\20\t\2\u00c7"+
 		"\u00c9\5\26\f\2\u00c8\u00c4\3\2\2\2\u00c8\u00c5\3\2\2\2\u00c8\u00c6\3"+
 		"\2\2\2\u00c8\u00c7\3\2\2\2\u00c9\35\3\2\2\2\u00ca\u00cb\t\6\2\2\u00cb"+
-		"\37\3\2\2\2\u00cc\u00cd\5\36\20\2\u00cd\u00ce\7)\2\2\u00ce\u00cf\7,\2"+
+		"\37\3\2\2\2\u00cc\u00cd\5\36\20\2\u00cd\u00ce\7*\2\2\u00ce\u00cf\7-\2"+
 		"\2\u00cf!\3\2\2\2\u00d0\u00d5\5\b\5\2\u00d1\u00d5\5\24\13\2\u00d2\u00d5"+
 		"\5\16\b\2\u00d3\u00d5\5B\"\2\u00d4\u00d0\3\2\2\2\u00d4\u00d1\3\2\2\2\u00d4"+
 		"\u00d2\3\2\2\2\u00d4\u00d3\3\2\2\2\u00d5#\3\2\2\2\u00d6\u00d7\5\32\16"+
-		"\2\u00d7\u00d8\7\b\2\2\u00d8\u00d9\5\"\22\2\u00d9\u00da\7,\2\2\u00da%"+
-		"\3\2\2\2\u00db\u00dc\7\26\2\2\u00dc\u00dd\5\32\16\2\u00dd\u00de\7,\2\2"+
+		"\2\u00d7\u00d8\7\b\2\2\u00d8\u00d9\5\"\22\2\u00d9\u00da\7-\2\2\u00da%"+
+		"\3\2\2\2\u00db\u00dc\7\26\2\2\u00dc\u00dd\5\32\16\2\u00dd\u00de\7-\2\2"+
 		"\u00de\'\3\2\2\2\u00df\u00e0\7\27\2\2\u00e0\u00e1\5\32\16\2\u00e1)\3\2"+
-		"\2\2\u00e2\u00e5\7\37\2\2\u00e3\u00e6\5\"\22\2\u00e4\u00e6\5\36\20\2\u00e5"+
-		"\u00e3\3\2\2\2\u00e5\u00e4\3\2\2\2\u00e6\u00e9\3\2\2\2\u00e7\u00ea\5\""+
-		"\22\2\u00e8\u00ea\5\36\20\2\u00e9\u00e7\3\2\2\2\u00e9\u00e8\3\2\2\2\u00ea"+
-		"+\3\2\2\2\u00eb\u00ee\7\36\2\2\u00ec\u00ef\5\b\5\2\u00ed\u00ef\5\"\22"+
-		"\2\u00ee\u00ec\3\2\2\2\u00ee\u00ed\3\2\2\2\u00ef\u00f0\3\2\2\2\u00f0\u00f1"+
-		"\7,\2\2\u00f1-\3\2\2\2\u00f2\u00f3\5> \2\u00f3\u00f4\7,\2\2\u00f4/\3\2"+
-		"\2\2\u00f5\u00f6\7\34\2\2\u00f6\u00f7\5\b\5\2\u00f7\u00f8\7,\2\2\u00f8"+
-		"\61\3\2\2\2\u00f9\u00fa\5\36\20\2\u00fa\u00fb\7)\2\2\u00fb\63\3\2\2\2"+
-		"\u00fc\u0101\5\62\32\2\u00fd\u00fe\7\n\2\2\u00fe\u0100\5\62\32\2\u00ff"+
-		"\u00fd\3\2\2\2\u0100\u0103\3\2\2\2\u0101\u00ff\3\2\2\2\u0101\u0102\3\2"+
-		"\2\2\u0102\u0105\3\2\2\2\u0103\u0101\3\2\2\2\u0104\u00fc\3\2\2\2\u0104"+
-		"\u0105\3\2\2\2\u0105\65\3\2\2\2\u0106\u0107\5\36\20\2\u0107\u0108\7\32"+
-		"\2\2\u0108\u0109\7)\2\2\u0109\u010a\7\6\2\2\u010a\u010b\5\64\33\2\u010b"+
-		"\u010c\7\7\2\2\u010c\u010e\7\31\2\2\u010d\u010f\5\4\3\2\u010e\u010d\3"+
-		"\2\2\2\u010f\u0110\3\2\2\2\u0110\u010e\3\2\2\2\u0110\u0111\3\2\2\2\u0111"+
-		"\u0112\3\2\2\2\u0112\u0113\7.\2\2\u0113\67\3\2\2\2\u0114\u0119\5\"\22"+
-		"\2\u0115\u0116\7\n\2\2\u0116\u0118\5\"\22\2\u0117\u0115\3\2\2\2\u0118"+
-		"\u011b\3\2\2\2\u0119\u0117\3\2\2\2\u0119\u011a\3\2\2\2\u011a\u011d\3\2"+
-		"\2\2\u011b\u0119\3\2\2\2\u011c\u0114\3\2\2\2\u011c\u011d\3\2\2\2\u011d"+
-		"9\3\2\2\2\u011e\u011f\7\33\2\2\u011f\u0120\5\b\5\2\u0120\u0122\7\31\2"+
-		"\2\u0121\u0123\5\4\3\2\u0122\u0121\3\2\2\2\u0123\u0124\3\2\2\2\u0124\u0122"+
-		"\3\2\2\2\u0124\u0125\3\2\2\2\u0125\u0126\3\2\2\2\u0126\u0127\7.\2\2\u0127"+
-		";\3\2\2\2\u0128\u0129\7\35\2\2\u0129\u012a\7)\2\2\u012a\u012b\7\b\2\2"+
-		"\u012b\u012c\5\b\5\2\u012c\u012d\7\16\2\2\u012d\u012e\5\b\5\2\u012e\u0130"+
-		"\7\31\2\2\u012f\u0131\5\4\3\2\u0130\u012f\3\2\2\2\u0131\u0132\3\2\2\2"+
-		"\u0132\u0130\3\2\2\2\u0132\u0133\3\2\2\2\u0133\u0134\3\2\2\2\u0134\u0135"+
-		"\7.\2\2\u0135=\3\2\2\2\u0136\u0137\7)\2\2\u0137\u0138\7\6\2\2\u0138\u0139"+
-		"\58\35\2\u0139\u013a\7\7\2\2\u013a?\3\2\2\2\u013b\u013c\t\7\2\2\u013c"+
-		"A\3\2\2\2\u013d\u014a\5@!\2\u013e\u013f\7\f\2\2\u013f\u0144\5@!\2\u0140"+
-		"\u0141\7,\2\2\u0141\u0143\5@!\2\u0142\u0140\3\2\2\2\u0143\u0146\3\2\2"+
-		"\2\u0144\u0142\3\2\2\2\u0144\u0145\3\2\2\2\u0145\u0147\3\2\2\2\u0146\u0144"+
-		"\3\2\2\2\u0147\u0148\7\r\2\2\u0148\u014a\3\2\2\2\u0149\u013d\3\2\2\2\u0149"+
-		"\u013e\3\2\2\2\u014aC\3\2\2\2\u014b\u014c\5B\"\2\u014c\u014d\7,\2\2\u014d"+
-		"E\3\2\2\2\32IXjxz\u0098\u00a1\u00ae\u00bb\u00c2\u00c8\u00d4\u00e5\u00e9"+
-		"\u00ee\u0101\u0104\u0110\u0119\u011c\u0124\u0132\u0144\u0149";
+		"\2\2\u00e2\u00e6\7\37\2\2\u00e3\u00e7\5\"\22\2\u00e4\u00e7\5\36\20\2\u00e5"+
+		"\u00e7\7 \2\2\u00e6\u00e3\3\2\2\2\u00e6\u00e4\3\2\2\2\u00e6\u00e5\3\2"+
+		"\2\2\u00e7\u00eb\3\2\2\2\u00e8\u00ec\5\"\22\2\u00e9\u00ec\5\36\20\2\u00ea"+
+		"\u00ec\7 \2\2\u00eb\u00e8\3\2\2\2\u00eb\u00e9\3\2\2\2\u00eb\u00ea\3\2"+
+		"\2\2\u00ec+\3\2\2\2\u00ed\u00f0\7\36\2\2\u00ee\u00f1\5\b\5\2\u00ef\u00f1"+
+		"\5\"\22\2\u00f0\u00ee\3\2\2\2\u00f0\u00ef\3\2\2\2\u00f1\u00f2\3\2\2\2"+
+		"\u00f2\u00f3\7-\2\2\u00f3-\3\2\2\2\u00f4\u00f5\5> \2\u00f5\u00f6\7-\2"+
+		"\2\u00f6/\3\2\2\2\u00f7\u00f8\7\34\2\2\u00f8\u00f9\5\b\5\2\u00f9\u00fa"+
+		"\7-\2\2\u00fa\61\3\2\2\2\u00fb\u00fc\5\36\20\2\u00fc\u00fd\7*\2\2\u00fd"+
+		"\63\3\2\2\2\u00fe\u0103\5\62\32\2\u00ff\u0100\7\n\2\2\u0100\u0102\5\62"+
+		"\32\2\u0101\u00ff\3\2\2\2\u0102\u0105\3\2\2\2\u0103\u0101\3\2\2\2\u0103"+
+		"\u0104\3\2\2\2\u0104\u0107\3\2\2\2\u0105\u0103\3\2\2\2\u0106\u00fe\3\2"+
+		"\2\2\u0106\u0107\3\2\2\2\u0107\65\3\2\2\2\u0108\u0109\5\36\20\2\u0109"+
+		"\u010a\7\32\2\2\u010a\u010b\7*\2\2\u010b\u010c\7\6\2\2\u010c\u010d\5\64"+
+		"\33\2\u010d\u010e\7\7\2\2\u010e\u0110\7\31\2\2\u010f\u0111\5\4\3\2\u0110"+
+		"\u010f\3\2\2\2\u0111\u0112\3\2\2\2\u0112\u0110\3\2\2\2\u0112\u0113\3\2"+
+		"\2\2\u0113\u0114\3\2\2\2\u0114\u0115\7/\2\2\u0115\67\3\2\2\2\u0116\u011b"+
+		"\5\"\22\2\u0117\u0118\7\n\2\2\u0118\u011a\5\"\22\2\u0119\u0117\3\2\2\2"+
+		"\u011a\u011d\3\2\2\2\u011b\u0119\3\2\2\2\u011b\u011c\3\2\2\2\u011c\u011f"+
+		"\3\2\2\2\u011d\u011b\3\2\2\2\u011e\u0116\3\2\2\2\u011e\u011f\3\2\2\2\u011f"+
+		"9\3\2\2\2\u0120\u0121\7\33\2\2\u0121\u0122\5\b\5\2\u0122\u0124\7\31\2"+
+		"\2\u0123\u0125\5\4\3\2\u0124\u0123\3\2\2\2\u0125\u0126\3\2\2\2\u0126\u0124"+
+		"\3\2\2\2\u0126\u0127\3\2\2\2\u0127\u0128\3\2\2\2\u0128\u0129\7/\2\2\u0129"+
+		";\3\2\2\2\u012a\u012b\7\35\2\2\u012b\u012c\7*\2\2\u012c\u012d\7\b\2\2"+
+		"\u012d\u012e\5\b\5\2\u012e\u012f\7\16\2\2\u012f\u0130\5\b\5\2\u0130\u0132"+
+		"\7\31\2\2\u0131\u0133\5\4\3\2\u0132\u0131\3\2\2\2\u0133\u0134\3\2\2\2"+
+		"\u0134\u0132\3\2\2\2\u0134\u0135\3\2\2\2\u0135\u0136\3\2\2\2\u0136\u0137"+
+		"\7/\2\2\u0137=\3\2\2\2\u0138\u0139\7*\2\2\u0139\u013a\7\6\2\2\u013a\u013b"+
+		"\58\35\2\u013b\u013c\7\7\2\2\u013c?\3\2\2\2\u013d\u013e\t\7\2\2\u013e"+
+		"A\3\2\2\2\u013f\u014c\5@!\2\u0140\u0141\7\f\2\2\u0141\u0146\5@!\2\u0142"+
+		"\u0143\7-\2\2\u0143\u0145\5@!\2\u0144\u0142\3\2\2\2\u0145\u0148\3\2\2"+
+		"\2\u0146\u0144\3\2\2\2\u0146\u0147\3\2\2\2\u0147\u0149\3\2\2\2\u0148\u0146"+
+		"\3\2\2\2\u0149\u014a\7\r\2\2\u014a\u014c\3\2\2\2\u014b\u013f\3\2\2\2\u014b"+
+		"\u0140\3\2\2\2\u014cC\3\2\2\2\u014d\u014e\5B\"\2\u014e\u014f\7-\2\2\u014f"+
+		"E\3\2\2\2\32IXjxz\u0098\u00a1\u00ae\u00bb\u00c2\u00c8\u00d4\u00e6\u00eb"+
+		"\u00f0\u0103\u0106\u0112\u011b\u011e\u0126\u0134\u0146\u014b";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
