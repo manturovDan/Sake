@@ -6,6 +6,6 @@
 
 ### Tools: Java, ANTLRv4 
 
-Docs (Russian) in SakeDocs directory 
+There are docs (Russian) in SakeDocs directory 
 
 Created my Danila Manturov in 2020
