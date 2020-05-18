@@ -4,7 +4,7 @@
 
 ### It was created for educational purposes
 
-###T ools: Java, ANTLRv4 
+### Tools: Java, ANTLRv4 
 
 Docs (Russian) in SakeDocs directory 
 
