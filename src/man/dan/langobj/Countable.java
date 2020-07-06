@@ -56,4 +56,5 @@ public class Countable implements SakeObj {
     public SakeObj getCopy() {
         return new Countable(value);
     }
+
 }
