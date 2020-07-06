@@ -20,7 +20,7 @@ public class Undefined implements SakeObj {
     }
 
     @Override
-    public SakeObj getCopy() {
+    public SakeObj clone() {
         return new Undefined(type);
     }
 }

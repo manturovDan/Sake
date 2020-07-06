@@ -74,7 +74,7 @@ public class Rippotai implements SakeObj {
     }
 
     @Override
-    public SakeObj getCopy() {
+    public SakeObj clone() {
         try {
             return new Rippotai(x, y, z, isKabe());
         } catch (Exception e) { return null; }

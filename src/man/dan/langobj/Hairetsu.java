@@ -9,7 +9,7 @@ public class Hairetsu implements SakeObj{
     protected ArrayList<SakeObj> arr;
 
     @Override //returns pointer, not copy
-    public SakeObj getCopy() {
+    public SakeObj clone() {
         return this;
     }
 
@@ -32,7 +32,7 @@ public class Hairetsu implements SakeObj{
             return;
 
         for (Rippotai cube : cubes) {
-            arr.add(cube.getCopy());
+            arr.add(cube.clone());
         }
     }
 

@@ -1,7 +1,5 @@
 package man.dan.visitor;
 import io.vavr.Tuple2;
-import io.vavr.Tuple3;
-import io.vavr.Tuple4;
 import man.dan.errors.ErrorListener;
 import man.dan.errors.SemanticSakeError;
 import man.dan.langobj.*;
@@ -199,7 +197,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         Pointer ptr = new Pointer(ctx.appeal().ID().getText(), deep, cAttr);
 
         try {
-            return memory.getValByPtr(ptr).getCopy();
+            return memory.getValByPtr(ptr).clone();
         } catch (SemanticSakeError e) {
             errHandler.semanticError(ctx, e.toString());
             return null;
@@ -220,25 +218,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return visit(ctx.expr());
     }
 
-    protected boolean isCountable(SakeObj current) {
-        return  (current instanceof Countable || (current instanceof Undefined &&
-                (((Undefined)current).getType() == SakeParserParser.SEISU ||
-                ((Undefined)current).getType() == SakeParserParser.RONRI)));
-    }
 
-    protected boolean isRippotai(SakeObj current) {
-        return  (current instanceof Rippotai || (current instanceof Undefined &&
-                (((Undefined) current).getType() == SakeParserParser.RIPPOTAI)));
-    }
-
-    protected boolean isHairetsu(SakeObj current) {
-        return  (current instanceof Hairetsu || (current instanceof Undefined &&
-                ((Undefined) current).getType() == SakeParserParser.HAIRETSU));
-    }
-
-    protected boolean isUndefinedUndefined(SakeObj current) {
-        return current instanceof Undefined && ((Undefined) current).getType() == -1;
-    }
 
     protected SakeObj getCubeFromDef(SakeParserParser.Block_coubContext block_cb) {
         int x = ((Countable)visit(block_cb.expr(0))).getValue();
@@ -388,7 +368,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else if (ctx.expr() != null)
             try {
                 try {
-                    cube = visit(ctx.expr()).getCopy();
+                    cube = visit(ctx.expr()).clone();
                 } catch (NullPointerException e) {
                     errHandler.semanticError(ctx, "null value assigns to rippotai");
                 }
@@ -419,7 +399,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else if (ctx.expr() != null) {
             try {
                 try {
-                    arr = visit(ctx.expr()).getCopy();
+                    arr = visit(ctx.expr()).clone();
                 } catch (NullPointerException e) {
                     errHandler.semanticError(ctx, "null value assigns to hairetsu");
                 }
@@ -464,17 +444,17 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             return null;
         }
 
-        if (isCountable(current))
+        if (TypeChecker.isCountable(current))
             try {
                 value = visit(ctx.r_value().expr());
             } catch (Exception e) {
                 errHandler.semanticError(ctx, "Type mismatch in definition if number");
                 return null;
             }
-        else if (isRippotai(current)) {
+        else if (TypeChecker.isRippotai(current)) {
             if (ctx.r_value().expr() != null) {
                 try {
-                    value = visit(ctx.r_value().expr()).getCopy();
+                    value = visit(ctx.r_value().expr()).clone();
                 } catch (NullPointerException e) {
                     errHandler.semanticError(ctx, "null value assigns");
                 }
@@ -492,10 +472,10 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             else
                 errHandler.semanticError(ctx, "type mismatch in rippotai definition (hairetsu)");
         }
-        else if (isHairetsu(current)) {
+        else if (TypeChecker.isHairetsu(current)) {
             if (ctx.r_value().expr() != null) {
                 try {
-                    value = visit(ctx.r_value().expr()).getCopy();
+                    value = visit(ctx.r_value().expr()).clone();
                 } catch (NullPointerException e) {
                     errHandler.semanticError(ctx, "null value assigns");
                 }
@@ -513,7 +493,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         else if (ptr.isArray()) {
             if (ctx.r_value().expr() != null)
                 try {
-                    value = visit(ctx.r_value().expr()).getCopy();
+                    value = visit(ctx.r_value().expr()).clone();
                 } catch (NullPointerException e) {
                     errHandler.semanticError(ctx, "null value assigns");
                 }
