@@ -32,6 +32,8 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
     protected boolean clearAreas;
     protected HashSet<Rippotai> openCubes;
 
+    protected RobotActions robotHelp;
+
     public SakeVisitor(AreaVis mem, InputStream _in, PrintStream _out, PrintStream _err, ErrorListener handler) {
         sin = _in;
         sout = _out;
@@ -40,6 +42,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         returnVal = null;
         errHandler = handler;
         clearAreas = true;
+        robotHelp = new RobotActions(this);
     }
 
     public void disableClearing() {
@@ -68,6 +71,18 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                     break;
                 }
             }
+    }
+
+    public void setTravelVis(Travel trv) {
+        travel = trv;
+    }
+
+    public Travel getTravelVis() {
+        return travel;
+    }
+
+    public HashSet<Rippotai> getOpenCubes() {
+        return openCubes;
     }
 
     @Override
@@ -218,8 +233,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return visit(ctx.expr());
     }
 
-
-
     protected SakeObj getCubeFromDef(SakeParserParser.Block_coubContext block_cb) {
         int x = ((Countable)visit(block_cb.expr(0))).getValue();
         int y = ((Countable)visit(block_cb.expr(1))).getValue();
@@ -320,21 +333,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         return extraction;
     }
 
-    protected Types typeByType(int type) throws SemanticSakeError {
-        switch (type) {
-            case (SakeParserParser.SEISU) :
-                return Types.seisu;
-            case (SakeParserParser.RONRI) :
-                return Types.ronri;
-            case (SakeParserParser.RIPPOTAI) :
-                return Types.rippotai;
-            case (SakeParserParser.HAIRETSU) :
-                return Types.hairetsu;
-            default :
-                throw new SemanticSakeError("type mismatch");
-        }
-    }
-
     protected ArrayList<Tuple2<String, Types>> defineFunArgs(SakeParserParser.ParamsContext params) {
         ArrayList<Tuple2<String, Types>> pasDct = new ArrayList<>();
         HashSet<String> busyNames = new HashSet<>();
@@ -347,7 +345,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
             }
 
             try {
-                pasDct.add(new Tuple2<>(name, typeByType(param.type().t.getType())));
+                pasDct.add(new Tuple2<>(name, TypeChecker.typeByType(param.type().t.getType())));
             } catch (SemanticSakeError e) {
                 errHandler.semanticError(param, e.toString());
             }
@@ -625,7 +623,7 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         Types retType = Types.seisu; // to check errors later
 
         try {
-            retType = typeByType(ctx.type().t.getType());
+            retType = TypeChecker.typeByType(ctx.type().t.getType());
         } catch (SemanticSakeError e) {
             errHandler.semanticError(ctx, e.toString());
         }
@@ -791,27 +789,27 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
                 if (ctx.LOOKUP() != null) {
                     look = travel.look_up();
                     //System.out.println("UP : " + look);
-                    completeUp(look);
+                    robotHelp.completeUp(look);
                 } else if (ctx.LOOKDOWN() != null) {
                     look = travel.look_down();
                     //System.out.println("DOWN : " + look);
-                    completeDown(look);
+                    robotHelp.completeDown(look);
                 } else if (ctx.LOOKLEFT() != null) {
                     look = travel.look_left();
                     //System.out.println("LEFT : " + look);
-                    completeLeft(look);
+                    robotHelp.completeLeft(look);
                 } else if (ctx.LOOKRIGHT() != null) {
                     look = travel.look_right();
                     //System.out.println("RIGHT : " + look);
-                    completeRight(look);
+                    robotHelp.completeRight(look);
                 } else if (ctx.LOOKFW() != null) {
                     look = travel.look_forward();
                     //System.out.println("FW : " + look);
-                    completeForward(look);
+                    robotHelp.completeForward(look);
                 } else if (ctx.LOOKBACK() != null) {
                     look = travel.look_back();
                     //System.out.println("BACK : " + look);
-                    completeBack(look);
+                    robotHelp.completeBack(look);
                 } else {
                     throw new SemanticSakeError("unknown robot command");
                 }
@@ -825,10 +823,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         //System.out.println("LOCK TO MAIN");
 
         return ret;
-    }
-
-    public void setTravelVis(Travel trv) {
-        travel = trv;
     }
 
     @Override
@@ -851,84 +845,6 @@ public class SakeVisitor extends SakeParserBaseVisitor<SakeObj>{
         SakeObj measure = new Hairetsu(openCubes);
 
         return measure;
-    }
-
-    protected void completeUp(int dist) throws SemanticSakeError {
-        int x = travel.getRx();
-        int y = travel.getRy();
-        int z = travel.getRz() + 1;
-
-        for (; z <= travel.getRz() + dist; ++z) {
-            openCubes.add(new Rippotai(x, y, z, false));
-        }
-
-        if (travel.getRz() + dist < Rippotai.maxCoord)
-            openCubes.add(new Rippotai(x, y, travel.getRz() + dist + 1, true));
-    }
-
-    protected void completeDown(int dist) throws SemanticSakeError {
-        int x = travel.getRx();
-        int y = travel.getRy();
-        int z = travel.getRz() - 1;
-
-        for (; z >= travel.getRz() - dist; --z) {
-            openCubes.add(new Rippotai(x, y, z, false));
-        }
-
-        if (travel.getRz() - dist > Rippotai.minCoord)
-            openCubes.add(new Rippotai(x, y, travel.getRz() - dist - 1, true));
-    }
-
-    protected void completeLeft(int dist) throws SemanticSakeError {
-        int x = travel.getRx() - 1;
-        int y = travel.getRy();
-        int z = travel.getRz();
-
-        for (; x >= travel.getRx() - dist; --x) {
-            openCubes.add(new Rippotai(x, y, z, false));
-        }
-
-        if (travel.getRx() - dist > Rippotai.minCoord)
-            openCubes.add(new Rippotai(travel.getRx() - dist - 1, y, z, true));
-    }
-
-    protected void completeRight(int dist) throws SemanticSakeError {
-        int x = travel.getRx() + 1;
-        int y = travel.getRy();
-        int z = travel.getRz();
-
-        for (; x <= travel.getRx() + dist; ++x) {
-            openCubes.add(new Rippotai(x, y, z, false));
-        }
-
-        if (travel.getRx() + dist < Rippotai.maxCoord)
-            openCubes.add(new Rippotai(travel.getRx() + dist + 1, y, z, true));
-    }
-
-    protected void completeForward(int dist) throws SemanticSakeError {
-        int x = travel.getRx();
-        int y = travel.getRy() + 1;
-        int z = travel.getRz();
-
-        for (; y <= travel.getRy() + dist; ++y) {
-            openCubes.add(new Rippotai(x, y, z, false));
-        }
-
-        if (travel.getRy() + dist < Rippotai.maxCoord)
-            openCubes.add(new Rippotai(x, travel.getRy() + dist + 1, z, true));
-    }
-
-    protected void completeBack(int dist) throws SemanticSakeError {
-        int x = travel.getRx();
-        int y = travel.getRy() - 1;
-        int z = travel.getRz();
-
-        for (; y >= travel.getRy() - dist; --y) {
-            openCubes.add(new Rippotai(x, y, z, false));
-        }
-
-        if (travel.getRy() - dist > Rippotai.minCoord)
-            openCubes.add(new Rippotai(x, travel.getRy() - dist - 1, z, true));
     }
 
     @Override
