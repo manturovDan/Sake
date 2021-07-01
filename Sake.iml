@@ -9,6 +9,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="org.antlr:antlr4:4.9.2" level="project" />
+    <orderEntry type="library" name="io.vavr:vavr:0.10.3" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
@@ -19,7 +21,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="org.antlr:antlr4:4.9.2" level="project" />
-    <orderEntry type="library" name="io.vavr:vavr:0.10.3" level="project" />
+    <orderEntry type="library" name="junit:junit:4.13.2" level="project" />
   </component>
 </module>
