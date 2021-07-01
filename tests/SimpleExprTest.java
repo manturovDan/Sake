@@ -41,7 +41,7 @@ public class SimpleExprTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByPtr("c1")).getValue(), 121);
+        assertEquals(((Countable)memory.getValByPtr("c1")).getValue(), 121 + 1);
         assertEquals(((Countable)memory.getValByPtr("b")).getValue(), 152);
     }
 
