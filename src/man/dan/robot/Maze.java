@@ -1,7 +1,5 @@
 package man.dan.robot;
 
-import io.vavr.Tuple3;
-import man.dan.errors.SemanticSakeError;
 import man.dan.langobj.Rippotai;
 
 import javax.management.modelmbean.XMLParseException;

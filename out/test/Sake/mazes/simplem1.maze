@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<maze>
+    <robot X = "25" Y = "9" Z = "5"/>
+    <spaces>
+        <passage X = "24" Y = "9" Z = "5" />
+        <passage X = "24" Y = "10" Z = "5" />
+        <passage X = "24" Y = "9" Z = "6" />
+        <passage X = "25" Y = "9" Z = "5" />
+        <passage X = "26" Y = "9" Z = "5" />
+        <passage X = "26" Y = "8" Z = "5" />
+        <passage X = "26" Y = "7" Z = "5" />
+        <passage X = "26" Y = "9" Z = "6" />
+        <passage X = "26" Y = "9" Z = "7" />
+        <passage X = "26" Y = "9" Z = "8" />
+        <passage X = "26" Y = "9" Z = "9" />
+        <passage X = "26" Y = "9" Z = "10" />
+        <passage X = "27" Y = "9" Z = "8" />
+        <passage X = "28" Y = "9" Z = "8" />
+        <passage X = "29" Y = "9" Z = "8" />
+        <portal X = "28" Y = "10" Z = "8" />
+        <passage X = "29" Y = "10" Z = "8" />
+        <passage X = "28" Y = "8" Z = "8" />
+        <portal X = "29" Y = "8" Z = "8" />
+    </spaces>
+</maze>
