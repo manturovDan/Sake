@@ -1,7 +1,6 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
 import man.dan.langobj.Hairetsu;
-import man.dan.langobj.Rippotai;
 import man.dan.langobj.Undefined;
 import man.dan.memory.AreaVis;
 import man.dan.parser.SakeParserParser;
