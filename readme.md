@@ -1,5 +1,7 @@
 # Sake - high alcohol programming language
 
+(teamcity test)
+
 ### This is my procedure programming language, that also can manipulate robots.
 
 ### It was created for educational purposes
