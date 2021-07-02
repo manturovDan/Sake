@@ -46,6 +46,20 @@ public class SimpleExprTest {
     }
 
     @Test
+    public void simpleCalc2() throws Exception {
+        String initialString =  "seisu b =   100;\n" +
+                "seisu c1 =   123;\n" +
+                "\n" +
+                "seisu aa1 = b    + c1;\n" +
+                "\n" +
+                "\n";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByPtr("aa1")).getValue(), 223);
+    }
+
+    @Test
     public void simpleCondTTest() throws Exception {
         String initialString =  "seisu var1 = x578;\n" + //1400
                                 "ronri bl = shinri;\n" +
