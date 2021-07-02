@@ -29,6 +29,34 @@ public class SimpleExprTest {
     }
 
     @Test
+    public void simpleCalc0() throws Exception {
+        String initialString =  "seisu b =   -1;\n" +
+                "seisu c1 =   1;\n" +
+                "\n" +
+                "seisu aa1 = b    + c1;\n" +
+                "\n" +
+                "\n";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByPtr("aa1")).getValue(), 0);
+    }
+
+    @Test
+    public void simpleCalcX() throws Exception {
+        String initialString =  "seisu b =   x16;\n" +
+                "seisu c1 =   x90;\n" +
+                "\n" +
+                "seisu aa1 = b    + c1;\n" +
+                "\n" +
+                "\n";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByPtr("aa1")).getValue(), 0xa6);
+    }
+
+    @Test
     public void simpleCalc() throws Exception {
         String initialString =  "seisu b =   x98;\n" +
                                 "seisu c1 =   123;\n" +
