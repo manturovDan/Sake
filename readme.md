@@ -2,7 +2,7 @@
 
 ### (used in TeamCity learning x5)
 
-### (simple branch, simple spec)
+### (simple branch, simple spec run)
 
 ### changed in master
 
