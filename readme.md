@@ -1,6 +1,6 @@
 # Sake - high alcohol programming language
 
-### (used in TeamCity learning x10)
+### (used in TeamCity learning x11)
 
 ### (simple branch x2, simple spec run)
 
