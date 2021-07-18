@@ -1,6 +1,6 @@
 # Sake - high alcohol programming language
 
-### (used in TeamCity learning - spec - test commit 15)
+### (used in TeamCity learning - spec - test commit 16)
 
 ### changed in master
 
