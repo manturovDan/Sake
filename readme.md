@@ -1,6 +1,6 @@
 # Sake - high alcohol programming language
 
-### (used in TeamCity learning x5 - merge2 test 10)
+### (used in TeamCity learning x5 - merge2 test 11)
 
 ### changed in master
 
