@@ -8,7 +8,7 @@ import man.dan.visitor.Pointer;
 
 import java.util.ArrayList;
 
-//this is master change 2
+//this is master change 3
 public class Kansu implements SakeObj {
     protected SakeParserParser.FunctionContext ctx;
     protected ArrayList<Tuple2<String, Types>> params;
