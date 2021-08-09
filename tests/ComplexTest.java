@@ -522,6 +522,6 @@ public class ComplexTest {
 
         AreaVis memory = execute(initialString);
 
-        assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  3-5);
+        assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  3-5); // comment
     }
 }
