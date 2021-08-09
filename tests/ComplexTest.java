@@ -507,4 +507,21 @@ public class ComplexTest {
 
         assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  3-5);
     }
+
+    @Test
+    public void fibonacciTest5() throws Exception {
+        String initialString =      "seisu kansu fibo(seisu f) kido\n" +
+                "    sorenara f < 3 kido\n" +
+                "        modoru 1;\n" +
+                "    shushi;\n" +
+                "\n" +
+                "    modoru fibo(f-2) + fibo(f-1);\n" +
+                "shushi;\n" +
+                "\n" +
+                "seisu k = fibo(4) - 5;";
+
+        AreaVis memory = execute(initialString);
+
+        assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  3-5);
+    }
 }
