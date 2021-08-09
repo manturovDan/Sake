@@ -10,8 +10,8 @@
 
 ### Tools: Java, ANTLRv4 
 
-### Example of programs - conflict 2
-#### Bubble sort = #######:
+### Example of programs
+#### Bubble sort - conflict:
 ```
 seisu kansu swap(hairetsu A, seisu i, seisu j) kido
     seisu c = A[i];
