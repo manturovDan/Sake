@@ -11,7 +11,7 @@
 ### Tools: Java, ANTLRv4 
 
 ### Example of programs - conflict 2
-#### Bubble sort:
+#### Bubble sort - conflict in the same row:
 ```
 seisu kansu swap(hairetsu A, seisu i, seisu j) kido
     seisu c = A[i];
