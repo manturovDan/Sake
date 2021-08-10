@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class Hairetsu implements SakeObj{
     protected ArrayList<SakeObj> arr;
-
+    //upd 1
     @Override //returns pointer, not copy
     public SakeObj clone() {
         return this;
