@@ -10,7 +10,7 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.InputStream;
 import java.util.HashSet;
-
+//upd1
 public class Maze {
     protected InputStream mazeStreamXML;
     protected HashSet<Passage> way;
