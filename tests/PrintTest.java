@@ -1,6 +1,7 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
 import man.dan.memory.AreaVis;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.*;
@@ -209,5 +210,10 @@ public class PrintTest {
         assertNull(memory.parentArea());
         assertEquals(memory.nestedCount(), 0);
         assertEquals(memory.variablesCount(), 0);
+    }
+
+    @Test
+    public void simple1test() throws Exception {
+        Assert.assertEquals(1, 1);
     }
 }
