@@ -221,4 +221,9 @@ public class PrintTest {
     public void simple2test() throws Exception {
         Assert.assertEquals(1, 1);
     }
+
+    @Test
+    public void simple3test() throws Exception {
+        Assert.assertEquals(1, 1);
+    }
 }
