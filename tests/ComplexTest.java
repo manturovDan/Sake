@@ -1,6 +1,7 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
 import man.dan.memory.AreaVis;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.*;
@@ -506,5 +507,10 @@ public class ComplexTest {
         AreaVis memory = execute(initialString);
 
         assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  3-5);
+    }
+
+    @Test
+    public void simpleTest() {
+        Assert.assertEquals(1, 1);
     }
 }
