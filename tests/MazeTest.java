@@ -2,6 +2,7 @@ import man.dan.interpreter.Interpreter;
 import man.dan.robot.Maze;
 import man.dan.robot.Passage;
 import man.dan.robot.Travel;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.*;
@@ -161,4 +162,10 @@ public class MazeTest {
 
         successTest(pathToSake, pathToMaze);
     }
+
+    @Test
+    public void simpleTest() {
+        Assert.assertEquals(1, 1);
+    }
+
 }
