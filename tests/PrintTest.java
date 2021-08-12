@@ -224,6 +224,6 @@ public class PrintTest {
 
     @Test
     public void simple3test() throws Exception {
-        Assert.assertEquals(1, 1);
+        Assert.assertEquals(1, 1); //
     }
 }
