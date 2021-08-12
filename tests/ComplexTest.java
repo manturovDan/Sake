@@ -513,4 +513,9 @@ public class ComplexTest {
     public void simpleTest() {
         Assert.assertEquals(1, 1);
     }
+
+    @Test
+    public void simple2Test() {
+        Assert.assertEquals(1, 1);
+    }
 }
