@@ -507,4 +507,6 @@ public class ComplexTest {
 
         assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  3-5);
     }
+
+    //conflict
 }
