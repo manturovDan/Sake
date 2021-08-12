@@ -528,6 +528,6 @@ public class ComplexTest {
 
     @Test
     public void simple1test() {
-        Assert.assertEquals(1, 1);
+        Assert.assertEquals(1, 1); //
     }
 }
