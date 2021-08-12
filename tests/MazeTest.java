@@ -168,4 +168,9 @@ public class MazeTest {
         Assert.assertEquals(1, 1);
     }
 
+    @Test
+    public void simpleTest() {
+        Assert.assertEquals(1, 1);
+    }
+
 }
