@@ -1,6 +1,7 @@
 import man.dan.interpreter.Interpreter;
 import man.dan.langobj.Countable;
 import man.dan.memory.AreaVis;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.*;
@@ -29,19 +30,19 @@ public class ComplexTest {
     @Test
     public void simpleCalc() throws Exception {
         String initialString =  "seisu bz = -xAF;\n" +
-                                "senden bz;\n" +
-                                "hairetsu la = {4, 2};\n" +
-                                "la[2, 1] = [1, 2, 0, shinri];\n" +
-                                "senden la;\n" +
-                                "senden la[2, 1] => Z;\n" +
-                                "la[2, 1] => Y = 5;\n" +
-                                "senden la[2, 1] => Y;\n" +
-                                "senden la[2, 1];\n" +
-                                "rippotai kb = [0, 0, 0, 5];\n" +
-                                "la[2, 0] = kb;\n" +
-                                "kb => X = 1;\n" +
-                                "senden la;\n" +
-                                "senden kb;";
+                "senden bz;\n" +
+                "hairetsu la = {4, 2};\n" +
+                "la[2, 1] = [1, 2, 0, shinri];\n" +
+                "senden la;\n" +
+                "senden la[2, 1] => Z;\n" +
+                "la[2, 1] => Y = 5;\n" +
+                "senden la[2, 1] => Y;\n" +
+                "senden la[2, 1];\n" +
+                "rippotai kb = [0, 0, 0, 5];\n" +
+                "la[2, 0] = kb;\n" +
+                "kb => X = 1;\n" +
+                "senden la;\n" +
+                "senden kb;";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -61,19 +62,19 @@ public class ComplexTest {
     @Test
     public void syntaxTestError() throws Exception {
         String initialString =  "seisu bz = -xAF;\n" +
-                                "senden bz;\n" +
-                                "hairetsu la = {4, 2}\n" +
-                                "la[2, 1] = [1, 2, 0, shinri]\n" +
-                                "senden la;\n" +
-                                "senden la[2, 1] => Z;\n" +
-                                "la[2, 1] => Y = 5;\n" +
-                                "senden la[2, 1] => Y;\n" +
-                                "senden la2, 1];\n" +
-                                "rippotail kb = [0, 0, 0, 5];\n" +
-                                "la[2, 0] = kb;\n" +
-                                "kb => X = \n" +
-                                "senden la;\n" +
-                                "senden kb;";
+                "senden bz;\n" +
+                "hairetsu la = {4, 2}\n" +
+                "la[2, 1] = [1, 2, 0, shinri]\n" +
+                "senden la;\n" +
+                "senden la[2, 1] => Z;\n" +
+                "la[2, 1] => Y = 5;\n" +
+                "senden la[2, 1] => Y;\n" +
+                "senden la2, 1];\n" +
+                "rippotail kb = [0, 0, 0, 5];\n" +
+                "la[2, 0] = kb;\n" +
+                "kb => X = \n" +
+                "senden la;\n" +
+                "senden kb;";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -95,8 +96,8 @@ public class ComplexTest {
     @Test
     public void varTypeMismatchTest() throws Exception {
         String initialString =  "seisu bz = -xAF;\n" +
-                                "senden bz;\n" +
-                                "seisu la = {4, 2};\n";
+                "senden bz;\n" +
+                "seisu la = {4, 2};\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -169,26 +170,26 @@ public class ComplexTest {
     @Test
     public void definitionTest() throws Exception {
         String initialString =  "seisu bz = -xAF;\n" +
-                                "senden bz\n" +
-                                "hairetsu la = {4, 2};\n" +
-                                "la[2, 1] = [1, 2, 0, shinri];\n" +
-                                "senden la;\n" +
-                                "ronri la = osu;\n" +
-                                "ne => X = 55;" +
-                                "senden la[2, 1] => Z;\n" +
-                                "la[2, 1] => Y = 5;\n" +
-                                "senden la[2, 1] => Y;\n" +
-                                "senden la[2, 1];\n" +
-                                "rippotai kb = [0, 0, 0, 5];" +
-                                "rippotai kb;\n" +
-                                "la[2, 0] = kb;\n" +
-                                "kb => X = 1;\n" +
-                                "senden la;\n" +
-                                "senden kb;\n" +
-                                "kb => X = 1;\n" +
-                                "rippotai kbp = [0, 21, 0, shinri];\n" +
-                                "rippotai kbp = [9, 21, 5, shinri];\n" +
-                                "rippotai kbpt = [9, 211, 5, shinri];";
+                "senden bz\n" +
+                "hairetsu la = {4, 2};\n" +
+                "la[2, 1] = [1, 2, 0, shinri];\n" +
+                "senden la;\n" +
+                "ronri la = osu;\n" +
+                "ne => X = 55;" +
+                "senden la[2, 1] => Z;\n" +
+                "la[2, 1] => Y = 5;\n" +
+                "senden la[2, 1] => Y;\n" +
+                "senden la[2, 1];\n" +
+                "rippotai kb = [0, 0, 0, 5];" +
+                "rippotai kb;\n" +
+                "la[2, 0] = kb;\n" +
+                "kb => X = 1;\n" +
+                "senden la;\n" +
+                "senden kb;\n" +
+                "kb => X = 1;\n" +
+                "rippotai kbp = [0, 21, 0, shinri];\n" +
+                "rippotai kbp = [9, 21, 5, shinri];\n" +
+                "rippotai kbpt = [9, 211, 5, shinri];";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -222,18 +223,18 @@ public class ComplexTest {
     @Test
     public void redefNullTest() throws Exception {
         String initialString =  "seisu ab;\n" +
-                                "seisu redef = -(4-9);\n" +
-                                "shuki k1 = 0 : (5+2) kido\n" +
-                                "    sorenara redef > 10 kido\n" +
-                                "        redef = redef + 2;\n" +
-                                "    shushi;\n" +
-                                "\n" +
-                                "    sorenara redef < 10 kido\n" +
-                                "        redef = redef + 1;\n" +
-                                "    shushi;\n" +
-                                "    \n" +
-                                "    seisu k = ab;\n" +
-                                "shushi;";
+                "seisu redef = -(4-9);\n" +
+                "shuki k1 = 0 : (5+2) kido\n" +
+                "    sorenara redef > 10 kido\n" +
+                "        redef = redef + 2;\n" +
+                "    shushi;\n" +
+                "\n" +
+                "    sorenara redef < 10 kido\n" +
+                "        redef = redef + 1;\n" +
+                "    shushi;\n" +
+                "    \n" +
+                "    seisu k = ab;\n" +
+                "shushi;";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -251,20 +252,20 @@ public class ComplexTest {
     @Test
     public void redefNullCubeTest() throws Exception {
         String initialString =  "rippotai ab;\n" +
-                                "rippotai cd = [0, 0, 5, shinri];\n" +
-                                "ab = cd;\n" +
-                                "senden ab;\n" +
-                                "cd => X = 1;\n" +
-                                "senden cd;\n" +
-                                "rippotai ef = cd;\n" +
-                                "ef => Y = 10;\n" +
-                                "senden ef;\n" +
-                                "rippotai gh;\n" +
-                                "rippotai ij = gh;\n" +
-                                "ab = gh;\n" +
-                                "gh = 5;\n" +
-                                "cd = {10, 10};\n" +
-                                "\n";
+                "rippotai cd = [0, 0, 5, shinri];\n" +
+                "ab = cd;\n" +
+                "senden ab;\n" +
+                "cd => X = 1;\n" +
+                "senden cd;\n" +
+                "rippotai ef = cd;\n" +
+                "ef => Y = 10;\n" +
+                "senden ef;\n" +
+                "rippotai gh;\n" +
+                "rippotai ij = gh;\n" +
+                "ab = gh;\n" +
+                "gh = 5;\n" +
+                "cd = {10, 10};\n" +
+                "\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -291,20 +292,20 @@ public class ComplexTest {
     @Test
     public void redefNullArrTest() throws Exception {
         String initialString =  "hairetsu ab;\n" +
-                                "hairetsu cd = {shinri, shinri, shinri};\n" +
-                                "ab = cd;\n" +
-                                "senden ab;\n" +
-                                "cd[0, 0, 0] = [2, 2, 1, 1];\n" +
-                                "senden cd;\n" +
-                                "hairetsu ef = cd;\n" +
-                                "ef[0, 0, 0] = 10;\n" +
-                                "senden ef;\n" +
-                                "hairetsu gh;\n" +
-                                "hairetsu ij = gh;\n" +
-                                "ab = gh;\n" +
-                                "gh = 5;\n" +
-                                "cd = [1, 1, 1, 1];\n" +
-                                "\n";
+                "hairetsu cd = {shinri, shinri, shinri};\n" +
+                "ab = cd;\n" +
+                "senden ab;\n" +
+                "cd[0, 0, 0] = [2, 2, 1, 1];\n" +
+                "senden cd;\n" +
+                "hairetsu ef = cd;\n" +
+                "ef[0, 0, 0] = 10;\n" +
+                "senden ef;\n" +
+                "hairetsu gh;\n" +
+                "hairetsu ij = gh;\n" +
+                "ab = gh;\n" +
+                "gh = 5;\n" +
+                "cd = [1, 1, 1, 1];\n" +
+                "\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -332,13 +333,13 @@ public class ComplexTest {
     @Test
     public void arrayIndexesTest() throws Exception {
         String initialString =  "hairetsu A = {3, 3, 3};\n" +
-                                "senden A[0, 0, 0];\n" +
-                                "senden A;\n" +
-                                "senden A[0, 0, 0, 0];\n" +
-                                "senden A[10, 0];\n" +
-                                "senden A[0, 0, 100, 0];\n" +
-                                "senden A[0, 0, -1];\n" +
-                                "senden A[0, 0, 3];\n";
+                "senden A[0, 0, 0];\n" +
+                "senden A;\n" +
+                "senden A[0, 0, 0, 0];\n" +
+                "senden A[10, 0];\n" +
+                "senden A[0, 0, 100, 0];\n" +
+                "senden A[0, 0, -1];\n" +
+                "senden A[0, 0, 3];\n";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -365,14 +366,14 @@ public class ComplexTest {
     @Test
     public void funcParamsTypeMiss() throws Exception {
         String initialString =  "seisu kansu fibo(seisu f) kido\n" +
-                                "    sorenara f < 3 kido\n" +
-                                "        modoru 1;\n" +
-                                "    shushi;\n" +
-                                "\n" +
-                                "    modoru fibo(f-2) + fibo(f-1);\n" +
-                                "shushi;\n" +
-                                "\n" +
-                                "senden fibo({10, 10, 10});";
+                "    sorenara f < 3 kido\n" +
+                "        modoru 1;\n" +
+                "    shushi;\n" +
+                "\n" +
+                "    modoru fibo(f-2) + fibo(f-1);\n" +
+                "shushi;\n" +
+                "\n" +
+                "senden fibo({10, 10, 10});";
 
         OutputStream progOut = new ByteArrayOutputStream();
         OutputStream progErr = new ByteArrayOutputStream();
@@ -508,5 +509,13 @@ public class ComplexTest {
         assertEquals(((Countable)memory.getValByPtr("k")).getValue(),  3-5);
     }
 
-    //conflict
+    @Test
+    public void simpleTest() {
+        Assert.assertEquals(1, 1);
+    }
+
+    @Test
+    public void simple2Test() {
+        Assert.assertEquals(1, 1);
+    }
 }
