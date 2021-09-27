@@ -18,7 +18,7 @@ public class MazeTest {
     private static Field getField(Class clazz, String fieldName)
             throws NoSuchFieldException {
         try {
-            return clazz.getDeclaredField(fieldName);
+            return clazz.getDeclaredField(fieldName); //fork feature comment
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
