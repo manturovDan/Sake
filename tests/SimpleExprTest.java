@@ -274,6 +274,6 @@ public class SimpleExprTest {
         assertEquals(((Countable)memory.getValByPtr(new Pointer("A", new ArrayList<>(Collections.singletonList(7))))).getValue(), 21);
         assertEquals(((Countable)memory.getValByPtr(new Pointer("A", new ArrayList<>(Collections.singletonList(8))))).getValue(), 321);
         assertEquals(((Countable)memory.getValByPtr(new Pointer("A", new ArrayList<>(Collections.singletonList(9))))).getValue(), 33213);
-    } //123
+    } //1234
 
 }
