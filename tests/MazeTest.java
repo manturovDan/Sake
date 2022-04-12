@@ -170,7 +170,7 @@ public class MazeTest {
 
     @Test
     public void simpleTest22() { //comment
-        Assert.assertEquals(2, 2); //one more change change dasdas dasd dasdas
+        Assert.assertEquals(2, 2); //one more change change dasdas dasd dasdas dasd
     }
 
 }
