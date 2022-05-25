@@ -2,13 +2,12 @@
 
 ### This is my procedure programming language, that also can manipulate robots.
 
-
 ### It was created for educational purposes
 
 ### Tools: Java, ANTLRv4 
 
 ### Example of programs
-#### Bubble sort: //
+#### Bubble sort: // 
 ```
 seisu kansu swap(hairetsu A, seisu i, seisu j) kido
     seisu c = A[i];
