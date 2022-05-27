@@ -4,7 +4,7 @@
 
 ### It was created for educational purposes
 
-### Tools: Java, ANTLRv4  у
+### Tools: Java, ANTLRv4
 
 ### Example of programs
 #### Bubble sort: // 
